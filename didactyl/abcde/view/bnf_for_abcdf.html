@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>BNF for abcDF</title>
+
+</head>
+<body>
+<h1>BNF for abcDF</h1>
+
+<pre><code>&lt;sequence&gt; := &lt;staff&gt; "@" &lt;staff&gt; | &lt;staff&gt;
+&lt;staff&gt; := &lt;line&gt; | &lt;line&gt; "&amp;" &lt;staff&gt;
+&lt;line&gt; := &lt;score_fingering&gt; | &lt;score_fingering&gt; &lt;line&gt;
+
+&lt;score_fingering&gt; := &lt;ornamental&gt; "/" &lt;ornamental&gt;
+                   | &lt;ornamental&gt;
+                   | &lt;pedaled_fingering&gt; "/" &lt;pedaled_fingering&gt;
+                   | &lt;pedaled_fingering&gt;
+                   | &lt;pedaling&gt; "/" &lt;pedaling&gt;
+                   | &lt;pedaling&gt;
+
+&lt;ornamental&gt; := "(" &lt;pedaled_fingerings&gt; ")"
+
+&lt;pedaled_fingering&gt; := &lt;soft&gt; &lt;fingering&gt; &lt;damper&gt;
+                     | &lt;soft&gt; &lt;fingering&gt;
+                     | &lt;fingering&gt; &lt;damper&gt;
+                     | &lt;fingering&gt;
+
+&lt;fingering&gt; := &lt;finger&gt; "," &lt;finger&gt;
+             | &lt;finger&gt;
+
+&lt;finger&gt; := &lt;hand&gt; &lt;digit&gt; | &lt;digit&gt;
+
+&lt;pedaled_fingerings&gt; := &lt;pedaled_fingering&gt;
+                      | &lt;pedaled_fingerings&gt; &lt;pedaled_fingerings&gt;
+
+&lt;pedaling&gt; := &lt;soft&gt; "x" &lt;damper&gt;
+            | &lt;soft&gt; "x"
+            | "x" &lt;damper&gt;
+
+&lt;damper&gt; := "_" | "^"
+&lt;soft&gt; := "p" | "f"
+&lt;hand&gt; := "&lt;" | "&gt;"
+&lt;digit&gt; := "1" | "2" | "3" | "4" | "5"
+</code></pre>
+
+<h1>EBNF equivalent</h1>
+
+<pre><code>sequence := staff ("@" staff)?
+staff := line "&amp;" staff | line | ""
+line := (score_fingering)*
+
+score_fingering := ornamental ("/" ornamental)? |
+                   pedaled_fingering ("/" pedaled_fingering)? |
+                   pedaling ("/" pedaling)?
+
+ornamental := "(" (pedaled_fingering)+ ")"
+
+pedaling := (soft)+ "x" (damper)+
+
+pedaled_fingering := (soft)? fingering (damper)?
+
+fingering := finger ("," finger)?
+
+finger := (hand)? digit
+
+damper := "_" | "^"
+soft := "p" | "f"
+hand := "&lt;" | "&gt;"
+digit := "1" | "2" | "3" | "4" | "5"
+</code></pre>
+
+<h1>PEG.js recognizer</h1>
+
+<pre><code>sequence = staff ("@" staff)?
+staff = line "&amp;" staff
+      / line
+      / ""
+line = score_fingering*
+score_fingering = ornamental "/" ornamental)?
+                / pedaled_fingering ("/" pedaled_fingering)?
+                / pedaling ("/" pedaling)?
+ornamental = "(" pedaled_fingering+ ")"
+pedaled_fingering = soft? fingering damper?
+pedaling = soft? "x" damper?
+fingering = finger ("," finger)?
+finger = hand? digit
+damper = [_^]
+soft = [pf]
+hand = [&lt;&gt;]
+digit = [1-5]
+</code></pre>
+
+<h1>PEG.js transformer</h1>
+
+<pre><code>sequence = upper:staff lower:("@" staff)? {
+    var map = {upper:upper};
+    if (lower) {
+        map['lower'] = lower[1];
+    }
+    return map;
+}
+staff = line "&amp;" staff
+      / line
+      / "" 
+line = score_fingerings:score_fingering* {
+    return {score_fingerings:score_fingerings};
+}
+score_fingering = orn:ornamental alt_orn:("/" ornamental)? { var map = {first:orn, last:null}; if (alt_orn) {map.last = alt_orn[1];} return map;}
+                / pf:pedaled_fingering alt_pf:("/" pedaled_fingering)? { var map = {first:pf, last:null}; if (alt_pf) {map.last = alt_pf[1];} return map;}
+                / p:pedaling alt_p:("/" pedaling)? { var map = {first:p, last:null}; if (alt_p) {map.last = alt_p[1];} return map;}
+ornamental = ornaments:("(" pedaled_fingering+ ")") {
+    ornaments.pop();
+    ornaments.shift();
+    return {ornaments:ornaments};
+}
+pedaled_fingering = soft:soft? fingering:fingering damper:damper? {
+    return {soft:soft, fingering:fingering, damper:damper};
+}
+pedaling = soft:soft? "x" damper:damper? {
+    var fingering = {strike:null, release:null};
+    return {soft:soft, fingering:fingering, damper:damper};
+}
+fingering = strike:finger release:(("," finger)?) {
+    var map = {strike:strike, release:null};
+    if (release) {
+        map['release'] = release[1];
+    }
+    return map;
+}
+finger = hand:hand? digit:digit {return {hand:hand, digit:digit};}
+damper = [_^]
+soft = [pf]
+hand = [&lt;&gt;]
+digit = [1-5]
+</code></pre>
+</body>
+</html>

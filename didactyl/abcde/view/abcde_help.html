@@ -1,0 +1,494 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>AbcDE help</title>
+
+</head>
+<body>
+<h1>AbcDE help</h1>
+
+<p><a href="http://drando2.gsites.uic.edu"><img src="http://drando2.gsites.uic.edu/_/rsrc/1433390247796/home/didactyl_logo5.png?height=240&amp;width=168" alt="Didactyl" /></a> Copyright © 2016 David A. Randolph</p>
+
+<h2>Overview</h2>
+
+<p>AbcDE, the <strong>D</strong>idactyl <strong>E</strong>ditor for <strong>abc</strong> music notation, provides a straightforward way to finger piano music. Intended primarily to collect data for researchers studying cognitive aspects of piano fingering, it also provides a convenient way for pianists to create nicely typeset music scores to reflect their personal fingering preferences.</p>
+
+<h2>Fingering entry</h2>
+
+<h3>Basic entry</h3>
+
+<p>To finger a note, first select it by clicking it. When selected, the note turns red or blue. You may then do one of the following:</p>
+
+<ul>
+<li>Enter a fingering by typing a digit 1-5.</li>
+<li>Move to the next note via the &lt;<strong>TAB</strong>> or &lt;<strong>RIGHT ARROW</strong>> key.</li>
+<li>Move to the previous note via the &lt;<strong>LEFT ARROW</strong>> key.</li>
+<li>Click on another note to select it.</li>
+</ul>
+
+
+<p>The vast majority of fingering entry you do will likely be accomplished by these few actions.</p>
+
+<p>If you are using a touch-capable device, a keypad should display at the bottom of your screen. If you do not see the keypad, click <strong>Preferences</strong> (<img src="http://nlp.cs.uic.edu/didactyl/abcde/images/cog.svg" alt="preferences" />) and ensure that <strong>Keypad</strong> is set to <strong>Show</strong>. Navigation using the keypad is via the arrow buttons.</p>
+
+<h4>Note sequencing</h4>
+
+<p>The selection will move automatically to the next note when you have entered a potentially complete fingering. The sequence of note selection proceeds from low to high (for chords and other synchronous notes) and then left to right (through time).</p>
+
+<h4>Annotation display</h4>
+
+<p>AbcDE renders all fingering annotations for the right hand in a serif font (Bookman). For contrast, it renders all left hand annotations in a bold non-serif font (Helvetica-Bold). This typesetting convention is adopted for conciseness over more traditional <em>RH:</em> or <em>LH:</em> markings. (It should also make it easier to distinguish fingering annotations from tuplet decorations, which are typically rendered in an italic serif font.)</p>
+
+<p>All annotations for notes on the upper staff are rendered above this staff. All annotations for the lower staff are rendered below the lower staff.</p>
+
+<h4>Toggling hands</h4>
+
+<p>By default, fingerings entered for notes on the upper staff are assumed to be for the right hand. Similarly, the default hand for notes on the lower staff is the left hand.</p>
+
+<p>To override this behavior, type the &lt;<strong>T</strong>> character. You will notice that the selected note now appears in blue instead of the default red and that the area around the printed score has turned black. This is to remind you that you are in toggle mode. Any fingerings you enter will be assigned to the non-default hand.</p>
+
+<p>This behavior will persist until you type the &lt;<strong>T</strong>> character again. Doing so will return you to the default hand mode.</p>
+
+<h3>Advanced entry</h3>
+
+<h4>Chords</h4>
+
+<p>Enter fingerings for chords from the lowest note to the highest. The chord will remain selected until each note has been annotated. To enter a partial annotation for a chord, enter &lt;<strong>TAB</strong>> or &lt;<strong>RIGHT ARROW</strong>>. Such partial annotations, when rendered, should be interpreted as applying the lowest notes of the chord.</p>
+
+<h4>Alternate fingerings for repeats</h4>
+
+<p>AbcDE presents and outputs music as it is scored. It does not unfold repeated sections. If you want to specify different fingerings for the first and last time a particular note is played in a repeated section, take these steps:</p>
+
+<ol>
+<li>Select the note by clicking or navigating to it.</li>
+<li>Enter the first fingering digit (1-5).</li>
+<li>Enter a forward slash ("/"). This will move the note selection back to the note requiring an alternate fingering.</li>
+<li>Enter the last fingering digit (1-5).</li>
+</ol>
+
+
+<h4>Finger shifts</h4>
+
+<p>In some situations, you may use a different finger to release a key from the one you used to strike it. AbcDE supports annotating such finger repositioning like this:</p>
+
+<ol>
+<li>Select the note by clicking or navigating to it.</li>
+<li>Enter the striking finger digit (1-5).</li>
+<li>Enter a comma (","). This will move the note selection back to the note requiring the reposition fingering.</li>
+<li>Enter the release fingering digit (1-5).</li>
+</ol>
+
+
+<h4>Grace notes</h4>
+
+<p>Grace note fingerings must be entered from low to high and left to right. Only single finger annotations are each element of a grace note. No alternate fingerings or re-positionings are currently allowed.</p>
+
+<h4>Ornamentation</h4>
+
+<p>Any single-pitch, non-grace note may be assigned a sequence of fingering digits to capture how to finger an ornament. Typically, such notes will be assigned an ornamentation symbol (e.g., trill, mordent, grupetto), but abcDE does not require any such symbols to be present.</p>
+
+<p>To assign an ornamented fingering to a note, do the following:</p>
+
+<ol>
+<li>Select the note by clicking or navigating to it.</li>
+<li>Enter an open parenthesis ("(").</li>
+<li>Enter the appropriate sequence of finger digits.</li>
+<li>Enter a close parenthesis (")").</li>
+</ol>
+
+
+<p>An ornamented pitch may either be fully fingered in parentheses, or any repeated finger patterns may be omitted. For example, a trilled note may be annotated equivalently as <code>(12121212121)</code> or <code>(121)</code>.</p>
+
+<h3>No backspace</h3>
+
+<p>Using the entry methods described above, a fingering must be entered in one continuous sequence of characters. Use of the &lt;<strong>BACKSPACE</strong>> key (&lt;<strong>DELETE</strong>> on Apple devices) will not remove the last character typed. Rather, this key operates on the entire fingering. For finer control over character input, use <a href="#">Dialog entry</a>.</p>
+
+<h3>Zooming</h3>
+
+<p>On touch-screen devices in particular, we recommend using the <strong>Zoom In</strong> (<img src="http://nlp.cs.uic.edu/didactyl/abcde/images/zoom-in.svg" alt="zoom_in" />) and <strong>Zoom Out</strong> (<img src="http://nlp.cs.uic.edu/didactyl/abcde/images/zoom-out.svg" alt="zoom_out" />) buttons in the control bar to change the size of the displayed music. Pinching or double-tapping will resize the entire window and may render the keypad inaccessible. Using <img src="http://nlp.cs.uic.edu/didactyl/abcde/images/zoom-in.svg" alt="zoom_in" /> and <img src="http://nlp.cs.uic.edu/didactyl/abcde/images/zoom-out.svg" alt="zoom_out" />, you can resize the score from 30% to 300%.</p>
+
+<h3>Dialog entry</h3>
+
+<p>In lieu of the "blind entry" methods described above, you may enter fingerings via a popup window. If you are working with a mouse or other pointing device, simply double-click a note to open its dialog window. You may also press the &lt;<strong>ENTER</strong>> key to work on the currently selected note or equivalently click the button on the display keypad.</p>
+
+<p>Note that you can enter fingerings for a sequence of notes in a single dialog.</p>
+
+<p>You should be familar with the <a href="http://nlp.cs.uic.edu/didactyl/abcde/view/bnf_for_abcdf.html">abcDF</a> syntax to get the most out of dialog entry. Indeed, some aspects of fingering can only be expressed via this dialog interface. If, however, waiting for screens to refresh is making standard (blind) entry cumbersome, you may find that dialog entry is more efficient for even the simplest of annotations.</p>
+
+<h2>Saving your work</h2>
+
+<p>Your fingering input is saved by your browser every five seconds. This mechanism should reduce the chances that you lose any significant amount of work in the event your browser or hardware system crashes.</p>
+
+<p>That said, you should save your work periodically in a format that abcDE can recognize. To do this, click the <strong>Download</strong> (<img src="http://nlp.cs.uic.edu/didactyl/abcde/images/data-transfer-download.svg" alt="download" />) button at the top of the screen. This should open a dialog window you can use to save a file. The file will be saved in <a href="http://nlp.cs.uic.edu/didactyl/abcde/view/abcd_description.html">abcD</a> format, which is recognized by abcDE and other Didactyl utilities.</p>
+
+<h3><a name="two_step_saving"></a> Two-step saving</h3>
+
+<p>Some browsers do not support directly saving files. You can work around this limitation with the following steps:</p>
+
+<ol>
+<li>Click the <strong>View</strong> (<img src="http://nlp.cs.uic.edu/didactyl/abcde/images/eye.svg" alt="eye" />) button in the control pane at the top of the screen.</li>
+<li>Select all text in the window or tab that opens.</li>
+<li>Paste this text into a new file in your text editor of choice.</li>
+</ol>
+
+
+<p>This workaround should not be necessary for any modern browser. We recommend Google Chrome for working with abcDE.</p>
+
+<p>Note that all valid <a href="http://nlp.cs.uic.edu/didactyl/abcde/view/abcd_description.html">abcD</a> files are also valid abc files. As such, they can be opened by any abc editor, such as the desktop application <a href="http://www.nilsliberg.se/ksp/easyabc/">EasyABC</a> or <a href="http://moinejf.free.fr/js/edit-1.xhtml">this online tool</a>.</p>
+
+<p>The <strong>Print</strong> (<img src="http://nlp.cs.uic.edu/didactyl/abcde/images/print.svg" alt="print" />) button is available to produce a hard copy or PDF of the engraved score.</p>
+
+<h3>Including annotations?</h3>
+
+<p>AbcDE provides you the option of including the embedded annotations in the printed output or source (abcD) output. This is done by way of the <strong>Annotated</strong> checkbox on the main control bar. Make sure this box is checked if you want to see annotations in your output.</p>
+
+<p>When printing via the <strong>Print</strong> (<img src="http://nlp.cs.uic.edu/didactyl/abcde/images/print.svg" alt="print" />) button, you typically will include annotations unless you want to view a clean copy of the score.</p>
+
+<p>However, you should <em>not</em> download (<img src="http://nlp.cs.uic.edu/didactyl/abcde/images/data-transfer-download.svg" alt="download" />) with <strong>Annotated</strong> checked if you will be using AbcDE to perform further annotation work on the file in the future. At the current time, embedded annotations will confuse AbcDE's output.</p>
+
+<p>(Raw fingering data are included in the abcD output separate from actual annotations, which are interleaved within the abc code. You can inspect the output via the <strong>View</strong> (<img src="http://nlp.cs.uic.edu/didactyl/abcde/images/eye.svg" alt="eye" />) button.)</p>
+
+<h2>Opening a new file</h2>
+
+<p>AbcDE can open piano scores encoded in abcD (<em>.abcd</em>), abc (<em>.abc</em> or <em>.txt</em>), and MusicXML (<em>.xml</em> or <em>.mxl</em>) formats.</p>
+
+<h3>From local file system</h3>
+
+<p>To annotate a new file that resides on your local file system, click <strong>Choose file</strong>. AbcDE can open any valid piano score encoded in the abc notation format.</p>
+
+<h3>From the Web</h3>
+
+<p>To annotate abc that resides on the Web, click <strong>From the Web</strong> (<img src="http://nlp.cs.uic.edu/didactyl/abcde/images/globe.svg" alt="globe" />) and enter the appropriate URL. Book 1 of the "Open" <em>Well Tempered Clavier</em> are available at <a href="http://nlp.cs.uic.edu/didactyl/abcde/abc">http://nlp.cs.uic.edu/didactyl/abcde/abc</a>. But any URL pointing to piano music encoded in abc format (with two staves) may be opened.</p>
+
+<p>Note: If your web content resides in a different Internet domain from where you are running abcDE, the other domain will need to be configured to support <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">cross-origin resource sharing (CORS)</a>.</p>
+
+<p>If you are unable to open a file you can otherwise browse to, you can save the file locally and click <strong>Choose file</strong> to load it into abcDE.</p>
+
+<h2>Troubleshooting</h2>
+
+<h3>Obscured or missing <em>Download</em> button</h3>
+
+<p>You may not be able to see the <strong>Download</strong> (<img src="http://nlp.cs.uic.edu/didactyl/abcde/images/data-transfer-download.svg" alt="download" />) button on the left of the control bar at the top of the screen. This is a known problem in Chrome and Safari for iOS.</p>
+
+<h4>Chrome</h4>
+
+<p>In Chrome, it may be covered by an translucent <strong>Play</strong> button (like <img src="http://nlp.cs.uic.edu/didactyl/abcde/images/media-play.svg" alt="download" />) for Adobe's Flash Player. (AbcDE uses Flash to perform file downloads.) To perform a download in this circumstance, you first need to run Flash by clicking <img src="http://nlp.cs.uic.edu/didactyl/abcde/images/media-play.svg" alt="download" />. Then click <img src="http://nlp.cs.uic.edu/didactyl/abcde/images/data-transfer-download.svg" alt="download" /> to download as normal.</p>
+
+<p>You will need to run Flash manually like this every time you launch abcDE, or you may avoid this inconvenience going forward by following these <a href="https://helpx.adobe.com/flash-player/kb/enabling-flash-player-chrome.html">configuration instructions from Adobe</a> to allow Flash always to run.</p>
+
+<p>The <img src="http://nlp.cs.uic.edu/didactyl/abcde/images/media-play.svg" alt="download" /> button may also be missing altogether. This is because you do not have the Adobe Flash Player plugin enabled. Adobe also explains how to fix this in their <a href="https://helpx.adobe.com/flash-player/kb/enabling-flash-player-chrome.html">procedure</a>.</p>
+
+<h4>Safari for iOS</h4>
+
+<p>Adobe Flash is not supported on Apple's iOS (for iPhone and iPad). Thus, the <img src="http://nlp.cs.uic.edu/didactyl/abcde/images/data-transfer-download.svg" alt="download" /> button is not available. You must use <a href="#two_step_saving">two-step saving</a> in Safari on iOS.</p>
+
+<h2>HTML configuration</h2>
+
+<p>AbcDE is deployed as a JavaScript library, which can be easily leveraged within an HTML document to provide a customized editor.</p>
+
+<p>The following HTML provides an abcDE editor with all features enabled and no constraints placed on user preferences.</p>
+
+<pre><code>&lt;html&gt;
+   &lt;head profile="http://www.w3.org/2005/10/profile"&gt;
+      &lt;link rel="stylesheet" type="text/css" href="http://nlp.cs.uic.edu/didactyl/abcde/css/abcDE.css"&gt;
+      &lt;script src="http://nlp.cs.uic.edu/didactyl/abcde/lib/abcDE_full_min.js" type="text/javascript"&gt;&lt;/script&gt;
+   &lt;/head&gt;
+
+   &lt;body&gt;
+      &lt;div id="abcde"&gt;&lt;/div&gt;
+      &lt;script type="text/javascript"&gt;
+         window.onload = function() {
+            AbcDE.render({
+               file_input:true,
+               url_input:true,
+               preset_select:true
+            });
+         }
+   &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>A call like the following to <code>AbcDE.render()</code> would be suitable for a controlled experiment where users must provide complete fingering data for a specific piece:</p>
+
+<pre><code>AbcDE.render({
+   preset:'first',
+   output:'append',
+   validate:'complete',
+   url:'http://nlp.cs.uic.edu/didactyl/s1/p1.abcd'
+});
+</code></pre>
+
+<p>You may also initialize the editor to specific abc (or abcd) content by including a <strong>TEXTAREA</strong> element with ID "abc_source" above the "abcde" <strong>DIV</strong> tag, like so:</p>
+
+<pre><code>   &lt;body&gt;
+      &lt;textarea id="abc_source"&gt;&lt;/textarea&gt;
+      &lt;div id="abcde"&gt;&lt;/div&gt;
+      &lt;script type="text/javascript"&gt;
+         window.onload = function() {
+            AbcDE.render({
+               file_input:true,
+               url_input:true,
+               preset_select:true
+            });
+         }
+   &lt;/body&gt;
+</code></pre>
+
+<h2>JavaScript API</h2>
+
+<h3>AbcDE.render(args)</h3>
+
+<p>Renders an abc Didactyl Editor within the <strong>DIV</strong> element with ID "abcde" on the page.</p>
+
+<p>Assumes such a <strong>DIV</strong> exists on the page.</p>
+
+<p>Accepts a hash of arguments to determine the specific behaviors of the editor, as specified below.</p>
+
+<h4>restore:'always'|'never'|'ask'</h4>
+
+<p>Determine when previously entered work saved by the browser should be restored. If <em>ask</em> is specified, prompt user to learn if data should be restored.</p>
+
+<p>If not specified, defer to user preference.</p>
+
+<p>(If integrating with Qualtrics, set to <em>always</em> both to ensure that data is retained and to avoid multiple prompts from being issued. Qualtrics appears to be doing some reloading of content under the covers.)</p>
+
+<h4>file_input:true|false</h4>
+
+<p>Allow user to select a file from the local file system to edit. Defaults to false.</p>
+
+<h4>include_pii:true|false</h4>
+
+<p>Include the <strong>Transcriber</strong> and <strong>Authority</strong> names in the abcD content returned through the JavaScript API. By default, such information is suppressed.</p>
+
+<h4>output:'append'|'replace'</h4>
+
+<p>Control how fingering data entered by the user is recorded in any saved or viewed abcD content. A new fingering block may be <em>append</em>ed to the abcD block, or it may <em>replace</em> the fingering block used to initiate the session.</p>
+
+<p>If not specified, defer to user preference.</p>
+
+<h4>preset:'first'|'last'|'none'</h4>
+
+<p>Parse any input abcD content and load either the <em>first</em> fingering sequence specified or the <em>last</em> sequence. If not specified, defer to user preference on the matter.</p>
+
+<h4>preset_select:true|false</h4>
+
+<p>Allow the user to browse different fingering sequences specified in an abcD input file. Defaults to false.</p>
+
+<h4>url:'&lt;URL>'</h4>
+
+<p>Initialize the editor with the abc content provided at the specified <em>URL</em>.</p>
+
+<h4>url_input:true|false</h4>
+
+<p>Allow the user to load abc content from a URL to edit. Defaults to false.</p>
+
+<h4>validate:'complete'|'auto'|'none'</h4>
+
+<p>Control how fingering input is validated. A <em>complete</em> validation requires that a fingering be provided for each note (pitch) in the input abc. An <em>auto</em>matic validation first applies heuristics in an attempt to infer a complete fingering.</p>
+
+<p>If not specified, no validation is performed.</p>
+
+<h3>AbcDE.getAuthority()</h3>
+
+<p>Returns the "Authority" responsible for the entered fingering. Returns the empty string unless <em>include_pii</em> is set to true.</p>
+
+<h3>AbcDE.getComments()</h3>
+
+<p>Returns user's entered comments about entered fingering data.</p>
+
+<h3>AbcDE.getEnteredCollection()</h3>
+
+<p>Returns the fingering data entered by the user as a string.</p>
+
+<h3>AbcDE.getEnteredAbcD()</h3>
+
+<p>Returns the complete abcD file, including the user's fingering data.</p>
+
+<h3>AbcDE.getTranscriber()</h3>
+
+<p>Returns the "Transcriber" responsible for the entered fingering. Returns the empty string unless <em>include_pii</em> is set to true.</p>
+
+<h3>AbcDE.getValidatedCollection()</h3>
+
+<p>Returns the fingering data as a string if and only if the requested validation is successful. Alerts user to the validation problem and returns an empty string if the validation fails.</p>
+
+<h3>AbcDE.getValidatedAbcD()</h3>
+
+<p>Returns the complete abcD file, including the user's fingering data, if and only if the requested validation is successful. Alerts user to the validation problem and returns an empty string if the validation fails.</p>
+
+<h3>AbcDE.getXValue(abc_string)</h3>
+
+<p>Returns the ID of the X (tune identifier) field from the input abc string. Convenient for distinguishing exercises posed in Qualtrics.</p>
+
+<h2>Acknowledgements</h2>
+
+<p>AbcDE would not be possible without the excellent <a href="http://moinejf.free.fr/js/">abc2svg</a> JavaScript library by Jef Moine.</p>
+
+<p>We are also indebted to the following open-source content that made our lives easier:</p>
+
+<ul>
+<li><a href="https://useiconic.com/open">OpenIconic</a> by Iconic</li>
+<li><a href="https://github.com/alexei/sprintf.js">sprintf.js</a> by Alexandru Mărășteanu</li>
+<li><a href="https://github.com/blueimp/JavaScript-MD5">JavaScript-MD5</a> by Sebastian Tschan</li>
+<li><a href="https://github.com/dcneiner/Downloadify">Downloadify</a> by Doug Neiner</li>
+<li><a href="http://wim.vree.org/svgParse/xml2abc.html">xml2abc-js</a> by Wim Vree</li>
+<li><a href="https://stuk.github.io/jszip/">JSZip</a> by Stuart Knightley</li>
+</ul>
+
+
+<p>Online documentation is authored in Markdown using the very handy <a href="http://25.io/mou/">Mou</a> editor.</p>
+
+<p>The Didactyl project has been partially funded by a <a href="http://grad.uic.edu/provosts-deiss-awards-graduate-research">Provost's Award for Graduate Research</a> from the University of Illinois at Chicago.</p>
+</body>
+</html>
