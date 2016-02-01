@@ -362,12 +362,13 @@ function AbcDE() {
         // localStorage.clear();
         if (!local_storage_is_supported()) {
             clearInterval(Autosaver);
-            return '';
+            return;
         }
 
         var sequence_spinner = document.getElementById('sequence_spinner');
         if (! sequence_spinner) {
             clearInterval(Autosaver);
+            return;
         }
 
         var sequence_number = get_current_sequence_number();
