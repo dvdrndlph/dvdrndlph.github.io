@@ -1125,6 +1125,9 @@ function AbcDE() {
         }
         abcde_div.remove();
         Ui_In_Place = false;
+        if (Autosaver) {
+            clearInterval(Autosaver);
+        }
     }
 
     /* Since our keypad can/will cover the Qualtrics NEXT and BACK
