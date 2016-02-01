@@ -75,7 +75,7 @@
  *        right hand) or "<" (for left hand) in the output stream.
  *
  */
-AbcDE = (function() {
+function AbcDE() {
     'use strict';
     var Options,
         Magnification = 1,
@@ -120,7 +120,7 @@ AbcDE = (function() {
     // var MEDIA_DIR = '../lib/media';
     // var MEDIA_DIR = 'http://nlp.cs.uic.edu/didactyl/abcde/lib/media';
     // var MEDIA_DIR =
-        // 'https://0b0f039ba2113bf1c6de76d7ee52555275b0fb18.googledrive.com/host/0B3BgE7P6T9GOd2dEQV9sM2pTTWc';
+    // 'https://0b0f039ba2113bf1c6de76d7ee52555275b0fb18.googledrive.com/host/0B3BgE7P6T9GOd2dEQV9sM2pTTWc';
 
     // FIXME: These regular expresions are too simplistic. Replace them
     // with PEG parser calls.
@@ -252,7 +252,7 @@ AbcDE = (function() {
     }
 
     function get_storage_key(field_name, sequence_number) {
-        if (! Md5_Key) {
+        if (!Md5_Key) {
             Md5_Key = md5(Org_Abc_Str);
         }
         var storage_key = field_name + "_" + sequence_number + "_" + Md5_Key;
@@ -264,7 +264,7 @@ AbcDE = (function() {
             return {};
         }
 
-        var saved_seq = {sequence:''};
+        var saved_seq = {sequence: ''};
         var storage_key = get_storage_key('sequence', sequence_number);
         var stored_fingerings = localStorage.getItem(storage_key) || '';
         if (stored_fingerings.match(/[^x&@]/)) {
@@ -308,12 +308,12 @@ AbcDE = (function() {
             sprintf("%02d", current_date.getSeconds());
 
         var sequence = {
-            sequence:abcde$get_entered_collection(),
-            authority:get_field_value('authority'),
-            authority_year:get_field_value('authority_year'),
-            transcriber:get_field_value('transcriber'),
-            transcription_date:date_str,
-            comments:get_field_value('comments')
+            sequence: getEnteredCollection(),
+            authority: get_field_value('authority'),
+            authority_year: get_field_value('authority_year'),
+            transcriber: get_field_value('transcriber'),
+            transcription_date: date_str,
+            comments: get_field_value('comments')
         };
         return sequence;
     }
@@ -351,7 +351,7 @@ AbcDE = (function() {
 
     function get_current_sequence_number() {
         var sequence_spinner = document.getElementById('sequence_spinner');
-        if (! sequence_spinner) {
+        if (!sequence_spinner) {
             alert("Sequence DOM element has gone missing.");
             return '1';
         }
@@ -367,7 +367,7 @@ AbcDE = (function() {
         var sequence_number = get_current_sequence_number();
 
         var storage_key = get_storage_key('sequence', sequence_number);
-        var fingerings = abcde$get_entered_collection();
+        var fingerings = getEnteredCollection();
         localStorage.setItem(storage_key, fingerings);
 
         store_sequence_field('authority', sequence_number);
@@ -686,11 +686,11 @@ AbcDE = (function() {
         var modal_window = document.getElementById('modal_window');
         modal_wrapper.className = 'overlay';
         var overflow = modal_window.offsetHeight - document.documentElement.clientHeight;
-        if(overflow > 0) {
+        if (overflow > 0) {
             modal_window.style.maxHeight = (parseInt(window.getComputedStyle(modal_window).height) - overflow) + "px";
         }
-        modal_window.style.marginTop = (-modal_window.offsetHeight)/2 + "px";
-        modal_window.style.marginLeft = (-modal_window.offsetWidth)/2 + "px";
+        modal_window.style.marginTop = (-modal_window.offsetHeight) / 2 + "px";
+        modal_window.style.marginLeft = (-modal_window.offsetWidth) / 2 + "px";
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
     }
 
@@ -746,7 +746,7 @@ AbcDE = (function() {
         if (error_txt) {
             console.log('xml2abc ERROR: ' + error_txt);
         }
-        if (! abc) {
+        if (!abc) {
             alert("Unable to open MusicXML file: " + error_txt);
         }
         return abc;
@@ -779,7 +779,7 @@ AbcDE = (function() {
             $.each(zip.files, function (index, zip_entry) {
                 content = zip_entry.asText();
             });
-        } catch(e) {
+        } catch (e) {
             alert("Could not open compressed MusicXML file: " + e.message);
             return '';
         }
@@ -812,14 +812,14 @@ AbcDE = (function() {
             var content = '';
             if (extension === 'mxl') {
                 content = mxl2abc(xhr.response);
-                if (! content) {
+                if (!content) {
                     return;
                 }
             } else {
                 content = xhr.responseText;
                 var xml_encoding = get_xml_encoding(content);
                 if (xml_encoding) {
-                    if (! /^utf/i.test(xml_encoding)) {
+                    if (!/^utf/i.test(xml_encoding)) {
                         alert("Input xml is not UTF-8 encoded. Cannot open.");
                         return;
                     } else {
@@ -829,7 +829,7 @@ AbcDE = (function() {
             }
             if (content) {
                 document.getElementById(SOURCE_ID).value = content;
-                abcde$render(Options);
+                renderUI(Options);
             }
         };
 
@@ -852,13 +852,13 @@ AbcDE = (function() {
     function import_mxl_file(file) {
         var reader = new FileReader();
         var content = '';
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             try {
                 var zip = new JSZip(e.target.result);
                 $.each(zip.files, function (index, zip_entry) {
-                     content = zip_entry.asText();
+                    content = zip_entry.asText();
                 });
-            } catch(e) {
+            } catch (e) {
                 alert("Could not open compressed MusicXML file: " + e.message);
                 return;
             }
@@ -869,7 +869,7 @@ AbcDE = (function() {
             } else {
                 content = xml2abc(content);
                 document.getElementById(SOURCE_ID).value = content;
-                abcde$render(Options);
+                renderUI(Options);
             }
         }
         reader.readAsArrayBuffer(file);
@@ -892,7 +892,7 @@ AbcDE = (function() {
 
         var is_xml = false;
         var encoding_reader = new FileReader();
-        encoding_reader.onload = function(e) {
+        encoding_reader.onload = function (e) {
             var encoding = get_xml_encoding(encoding_reader.result);
             var reader = new FileReader();
             if (encoding) {
@@ -900,7 +900,7 @@ AbcDE = (function() {
             } else {
                 encoding = 'UTF-8';
             }
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 var content = '';
                 if (is_xml) {
                     content = xml2abc(reader.result);
@@ -908,7 +908,7 @@ AbcDE = (function() {
                     content = e.target.result;
                 }
                 document.getElementById(SOURCE_ID).value = content;
-                abcde$render(Options);
+                renderUI(Options);
             }
             reader.readAsText(file, encoding);
         }
@@ -957,9 +957,9 @@ AbcDE = (function() {
         var key = event.keyCode || event.which;
         key = String.fromCharCode(key);
         var regex = /[0-9]/;
-        if( !regex.test(key) ) {
+        if (!regex.test(key)) {
             event.returnValue = false;
-            if(event.preventDefault) {
+            if (event.preventDefault) {
                 event.preventDefault();
             }
         }
@@ -1008,8 +1008,7 @@ AbcDE = (function() {
         container.appendChild(label);
     }
 
-    function insert_radio_buttons(container, prompt, name, ids, labels, selected, add_break)
-    {
+    function insert_radio_buttons(container, prompt, name, ids, labels, selected, add_break) {
         var radio_div = document.createElement('div');
         radio_div.class = 'radio_div';
         insert_label(container, prompt, 'prompt');
@@ -1097,7 +1096,7 @@ AbcDE = (function() {
         button.class = 'keypad-button';
         button.id = button_id;
         button.value = value;
-        button.onclick = function() {
+        button.onclick = function () {
             buffer_character_input(value);
         };
         container.appendChild(button);
@@ -1105,9 +1104,9 @@ AbcDE = (function() {
 
     function handle_qualtrics_click(button_id) {
         var qualtrics = get_setting('qualtrics');
-        var x_val = abcde$get_x_value(Org_Abc_Str);
+        var x_val = getXValue(Org_Abc_Str);
         var result_store = 'result_' + x_val;
-        var fingerings = abcde$get_entered_collection();
+        var fingerings = getEnteredCollection();
         console.log("SETTING " + result_store + " to " + fingerings);
         // qualtrics.setEmbeddedData(result_store, fingerings);
         Qualtrics.SurveyEngine.setEmbeddedData(result_store, fingerings);
@@ -1120,8 +1119,8 @@ AbcDE = (function() {
     }
 
     /* Since our keypad can/will cover the Qualtrics NEXT and BACK
-       buttons, we need to include our own on the keypad and mimic
-       their behaivior.
+     buttons, we need to include our own on the keypad and mimic
+     their behaivior.
      */
     function insert_qualtrics_button(container, button_id, value) {
         var button = document.createElement('input');
@@ -1129,7 +1128,7 @@ AbcDE = (function() {
         button.class = 'keypad-button';
         button.id = button_id;
         button.value = value;
-        button.onclick = function() {
+        button.onclick = function () {
             handle_qualtrics_click(button_id);
         };
         container.appendChild(button);
@@ -1142,7 +1141,7 @@ AbcDE = (function() {
         button.type = 'image';
         button.src = IMAGE_DIR + '/' + file_name;
         button.alt = alt;
-        button.onclick = function() {
+        button.onclick = function () {
             handle_navigation_input(button_id);
         };
         container.appendChild(button);
@@ -1420,7 +1419,8 @@ AbcDE = (function() {
         } else {
             var starts = [];
             var stops = [];
-            note.grace = true;i
+            note.grace = true;
+            i
             note.start = elem.extra.istart;
             size = 1;
             var last_note = elem.extra;
@@ -1480,10 +1480,10 @@ AbcDE = (function() {
     }
 
     function User() {
-        this.read_file = function(fn) {
+        this.read_file = function (fn) {
             return '';
         };
-        this.errmsg = function(msg, l, c) {
+        this.errmsg = function (msg, l, c) {
             var diverr = document.getElementById(ERROR_DIV_ID);
             if (l)
                 diverr.innerHTML += '<b onclick="gotoabc(' +
@@ -1494,7 +1494,7 @@ AbcDE = (function() {
                 diverr.innerHTML += msg + "<br/>\n";
         };
 
-        this.img_out = function(str) {
+        this.img_out = function (str) {
             var re = /<svg /;
             if (str.match(re)) {
                 Current_Line_Number++;
@@ -1502,7 +1502,7 @@ AbcDE = (function() {
 
             Abc_Images += str;
         };
-        this.anno_start = function(type, start, stop, x, y, w, h) {
+        this.anno_start = function (type, start, stop, x, y, w, h) {
             if (!Preprocessing_Completed && start in Note_At) {
                 Note_At[start].line = Current_Line_Number;
                 // print_note('anno_start', note_at[start]);
@@ -1634,8 +1634,6 @@ AbcDE = (function() {
         }
         this_note.next_note = undefined;
     }
-
-    // var user = new User();
 
     function sort_note_locations() {
         var key;
@@ -2270,7 +2268,7 @@ AbcDE = (function() {
         var unblanked_chars = [];
         for (var i = 0; i < current_fingerings.length; i++) {
             var char = current_fingerings[i];
-            if (char === 'x'){
+            if (char === 'x') {
                 unblanked_chars.push('');
             } else {
                 unblanked_chars.push(char);
@@ -2520,7 +2518,7 @@ AbcDE = (function() {
         var abcde_div = document.getElementById(ABCDE_DIV_ID);
         abcde_div.align = 'center';
         var source_div = document.getElementById(SOURCE_ID);
-        if (! source_div) {
+        if (!source_div) {
             source_div = document.createElement('div');
             source_div.id = SOURCE_ID;
             source_div.style.display = 'none';
@@ -2557,7 +2555,7 @@ AbcDE = (function() {
     }
 
     // Global interface
-    function abcde$render(options) {
+    function renderUI(options) {
         insert_main_divs();
         initialize_globals();
         process_options(options);
@@ -2598,7 +2596,7 @@ AbcDE = (function() {
         }
     }
 
-    function abcde$set_entered_collection(abcdf) {
+    function setEnteredCollection(abcdf) {
         Current_Note = Notes_On_Line[0][0][0];
         var seq_number = get_current_sequence_number();
         var seq = get_current_sequence();
@@ -2729,7 +2727,7 @@ AbcDE = (function() {
         }
     }
 
-    function abcde$get_x_value(abc_str) {
+    function getXValue(abc_str) {
         var lines = abc_str.split("\n");
         for (var i = 0; i < lines.length; i++) {
             var line = lines[i];
@@ -2897,18 +2895,18 @@ AbcDE = (function() {
         window.open('data:text/vnd.abc;charset=utf-8,' + encodeURI(abcd_str), 'view_window');
     }
 
-    function abcde$get_authority() {
+    function getAuthority() {
         if (get_setting('include_pii')) {
-            return(get_field_value('authority'));
+            return (get_field_value('authority'));
         }
         return '';
     }
 
-    function abcde$get_comments() {
-        return(get_field_value('comments'));
+    function getComments() {
+        return (get_field_value('comments'));
     }
 
-    function abcde$get_entered_collection() {
+    function getEnteredCollection() {
         return current_collection();
     }
 
@@ -2948,7 +2946,7 @@ AbcDE = (function() {
         return true;
     }
 
-    function abcde$get_validated_collection() {
+    function getValidatedCollection() {
         var dat = current_collection();
         if (is_valid_abcdf(dat)) {
             return dat;
@@ -2956,18 +2954,18 @@ AbcDE = (function() {
         return '';
     }
 
-    function abcde$get_entered_abcd() {
+    function getEnteredAbcD() {
         return get_abcd();
     }
 
-    function abcde$get_validated_abcd() {
+    function getValidatedAbcD() {
         var abcdf = current_collection();
         if (is_valid_abcdf(abcdf)) {
             var abcd = get_abcd();
-            if (! /^\s*X:/g.test(abcd)) {
+            if (!/^\s*X:/g.test(abcd)) {
                 alert("File is not valid abc.")
                 return '';
-            } else if (! /^% abcDidactyl/.test(abcd)) {
+            } else if (!/^% abcDidactyl/.test(abcd)) {
                 alert("File is not valid abcD.")
                 return '';
             }
@@ -2977,15 +2975,14 @@ AbcDE = (function() {
     }
 
     // Our illustrious public API.
-    return {
-        render: abcde$render,
-        getXValue: abcde$get_x_value,
-        getAuthority: abcde$get_authority,
-        getComments: abcde$get_comments,
-        getEnteredCollection: abcde$get_entered_collection,
-        getEnteredAbcD: abcde$get_entered_abcd,
-        getValidatedCollection: abcde$get_validated_collection,
-        getValidatedAbcD: abcde$get_validated_abcd,
-        setEnteredCollection: abcde$set_entered_collection
-    };
-}());
+    AbcDE.prototype.renderUI = renderUI;
+    AbcDE.prototype.getXValue = getXValue;
+    AbcDE.prototype.getAuthority = getAuthority;
+    AbcDE.prototype.getComments = getComments;
+    AbcDE.prototype.getEnteredCollection = getEnteredCollection;
+    AbcDE.prototype.getEnteredAbcD = getEnteredAbcD;
+    AbcDE.prototype.getValidatedCollection = getValidatedCollection;
+    AbcDE.prototype.getValidatedAbcD = getValidatedAbcD;
+    AbcDE.prototype.setEnteredCollection = setEnteredCollection;
+    return this;
+}

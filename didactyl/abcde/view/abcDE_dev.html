@@ -20,7 +20,9 @@
 
 <script type="text/javascript">
     window.onload = function() {
-        AbcDE.render({output:'append', preset:'first', file_input:true, url_input:true});
+        var abcDE = new AbcDE();
+        abcDE.renderUI({output:'append', preset:'first', file_input:true, url_input:true});
+        // AbcDE.render({output:'append', preset:'first', file_input:true, url_input:true});
     }
 </script>
 
