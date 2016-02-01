@@ -527,7 +527,10 @@ AbcDE = (function() {
         var sequence_number = get_current_sequence_number();
         var autosaved = get_autosaved_sequence(sequence_number);
         var preset = get_preset_sequence(sequence_number);
+        set_sequence(sequence_number, autosaved, preset);
+    }
 
+    function set_sequence(autosaved, preset) {
         var finger_str = preset.sequence;
         var presetting = true;
         var setting = get_setting('preset');
@@ -2587,8 +2590,12 @@ AbcDE = (function() {
 
     function abcde$set_entered_collection(abcdf) {
         Current_Note = Notes_On_Line[0][0][0];
-        var parsimony = Abcdf_Parser.parse(abcdf);
-        finger_notes_from_parse(parsimony);
+        var seq = get_current_sequence();
+        seq.sequence = abcdf;
+        var autosaved = get_autosaved_sequence(sequence_number);
+        set_sequence(autosaved, seq);
+        // var parsimony = Abcdf_Parser.parse(abcdf);
+        // finger_notes_from_parse(parsimony);
         rerender();
         highlight_note(Current_Note);
     }
