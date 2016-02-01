@@ -361,7 +361,13 @@ function AbcDE() {
     function autosave() {
         // localStorage.clear();
         if (!local_storage_is_supported()) {
+            clearInterval(Autosaver);
             return '';
+        }
+
+        var sequence_spinner = document.getElementById('sequence_spinner');
+        if (! sequence_spinner) {
+            clearInterval(Autosaver);
         }
 
         var sequence_number = get_current_sequence_number();
@@ -1111,12 +1117,6 @@ function AbcDE() {
         // qualtrics.setEmbeddedData(result_store, fingerings);
         Qualtrics.SurveyEngine.setEmbeddedData(result_store, fingerings);
 
-        if (button_id === 'q_next') {
-            qualtrics.clickNextButton();
-        } else {
-            qualtrics.clickPreviousButton();
-        }
-
         // Tear down the UI and hide from the incessant
         // Qualtrics.SurveyEngine.addOnload calls.
         var abcde_div = document.getElementById(ABCDE_DIV_ID);
@@ -1127,6 +1127,12 @@ function AbcDE() {
         Ui_In_Place = false;
         if (Autosaver) {
             clearInterval(Autosaver);
+        }
+
+        if (button_id === 'q_next') {
+            qualtrics.clickNextButton();
+        } else {
+            qualtrics.clickPreviousButton();
         }
     }
 
