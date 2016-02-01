@@ -2590,9 +2590,10 @@ AbcDE = (function() {
 
     function abcde$set_entered_collection(abcdf) {
         Current_Note = Notes_On_Line[0][0][0];
+        var seq_number = get_current_sequence_number();
         var seq = get_current_sequence();
         seq.sequence = abcdf;
-        var autosaved = get_autosaved_sequence(sequence_number);
+        var autosaved = get_autosaved_sequence(seq_number);
         set_sequence(autosaved, seq);
         // var parsimony = Abcdf_Parser.parse(abcdf);
         // finger_notes_from_parse(parsimony);
