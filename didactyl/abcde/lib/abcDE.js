@@ -838,7 +838,7 @@ function AbcDE() {
             }
             if (content) {
                 document.getElementById(SOURCE_ID).value = content;
-                render_ui(Options);
+                render_ui();
             }
         };
 
@@ -878,7 +878,7 @@ function AbcDE() {
             } else {
                 content = xml2abc(content);
                 document.getElementById(SOURCE_ID).value = content;
-                render_ui(Options);
+                render_ui();
             }
         }
         reader.readAsArrayBuffer(file);
@@ -917,7 +917,7 @@ function AbcDE() {
                     content = e.target.result;
                 }
                 document.getElementById(SOURCE_ID).value = content;
-                render_ui(Options);
+                render_ui();
             }
             reader.readAsText(file, encoding);
         }
@@ -2575,11 +2575,9 @@ function AbcDE() {
         abcde_div.appendChild(keypad_div);
     }
 
-    // Global interface
-    function render_ui(options) {
+    function render_ui() {
         insert_main_divs();
         initialize_globals();
-        process_options(options);
         insert_controls();
         preset_preferences();
         Org_Abc_Str = document.getElementById(SOURCE_ID).value;
@@ -2596,6 +2594,7 @@ function AbcDE() {
 
     function renderUI(options) {
         if (! Rendering_Complete) {
+            process_options(options);
             render_ui();
         }
         // Ignore subseqquent calls (from Qualtrics) to render the UI.
