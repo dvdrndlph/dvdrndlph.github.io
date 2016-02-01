@@ -78,6 +78,7 @@
 function AbcDE() {
     'use strict';
     var Options,
+        Rendering_Complete = false,
         Magnification = 1,
         Preferences = {},
         Sequences = [],
@@ -185,6 +186,7 @@ function AbcDE() {
         Org_Abc_Str = '';
         My_Abc = undefined;				// Abc object
         Input_Buffer = [];
+        Rendering_Complete = false;
         Open_Ornament = false;
         Trailing_Characters = [];
         Current_Note = undefined;
@@ -836,7 +838,7 @@ function AbcDE() {
             }
             if (content) {
                 document.getElementById(SOURCE_ID).value = content;
-                renderUI(Options);
+                render_ui(Options);
             }
         };
 
@@ -876,7 +878,7 @@ function AbcDE() {
             } else {
                 content = xml2abc(content);
                 document.getElementById(SOURCE_ID).value = content;
-                renderUI(Options);
+                render_ui(Options);
             }
         }
         reader.readAsArrayBuffer(file);
@@ -915,7 +917,7 @@ function AbcDE() {
                     content = e.target.result;
                 }
                 document.getElementById(SOURCE_ID).value = content;
-                renderUI(Options);
+                render_ui(Options);
             }
             reader.readAsText(file, encoding);
         }
@@ -2574,7 +2576,7 @@ function AbcDE() {
     }
 
     // Global interface
-    function renderUI(options) {
+    function render_ui(options) {
         insert_main_divs();
         initialize_globals();
         process_options(options);
@@ -2590,6 +2592,15 @@ function AbcDE() {
             handle_keys();
         }
         show_keypad();
+    }
+
+    function renderUI(options) {
+        if (! Rendering_Complete) {
+            render_ui();
+        }
+        // Ignore subseqquent calls (from Qualtrics) to render the UI.
+        // Once is enough.
+        Rendering_Complete = true;
     }
 
     function render_new_sequence() {
@@ -2622,8 +2633,6 @@ function AbcDE() {
         seq.sequence = abcdf;
         var autosaved = get_autosaved_sequence(seq_number);
         set_sequence(autosaved, seq);
-        // var parsimony = Abcdf_Parser.parse(abcdf);
-        // finger_notes_from_parse(parsimony);
         rerender();
         highlight_note(Current_Note);
     }
