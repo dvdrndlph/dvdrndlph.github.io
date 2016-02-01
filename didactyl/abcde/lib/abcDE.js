@@ -527,7 +527,7 @@ function AbcDE() {
         var sequence_number = get_current_sequence_number();
         var autosaved = get_autosaved_sequence(sequence_number);
         var preset = get_preset_sequence(sequence_number);
-        set_sequence(sequence_number, autosaved, preset);
+        set_sequence(autosaved, preset);
     }
 
     function set_sequence(autosaved, preset) {

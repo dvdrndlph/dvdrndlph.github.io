@@ -113,26 +113,13 @@ V:5
 
 <script type="text/javascript">
     window.onload = function() {
-        AbcDE.render({
+        var abcDE = new AbcDE();
+        abcDE.renderUI({
             preset:'first',
             output: 'append',
             preset_select:true,
             file_input:true,
             url_input:true});
-    }
-
-    function validate() {
-        var solution = valid_collection();
-        if (solution) {
-            console.log('SOLN: ' + solution);
-        }
-    }
-
-    function echo() {
-        var partial_solution = entered_collection();
-        if (partial_solution) {
-            console.log('ECHO: ' + partial_solution);
-        }
     }
 </script>
 
