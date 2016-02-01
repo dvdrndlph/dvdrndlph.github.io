@@ -599,6 +599,16 @@ AbcDE = (function() {
                     var notes_with_pit = get_sorted_synchronous_notes_with_pit(notes);
                     var pits = get_sorted_synchronous_pits(notes_with_pit);
 
+                    // Initialize pit fingerings to empty string. We will build them
+                    // up from scratch.
+                    for (i = 0; i < pits.length; i++) {
+                        var pit = pits[i];
+                        for (var j = 0; j < notes_with_pit[pit].length; j++) {
+                            var pit_note = notes_with_pit[pit][j];
+                            pit_note.fingering = '';
+                        }
+                    }
+
                     for (i = 0; i < pits.length; i++) {
                         var pit = pits[i];
                         for (var j = 0; j < notes_with_pit[pit].length; j++) {
