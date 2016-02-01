@@ -1116,6 +1116,15 @@ function AbcDE() {
         } else {
             qualtrics.clickPreviousButton();
         }
+
+        // Tear down the UI and hide from the incessant
+        // Qualtrics.SurveyEngine.addOnload calls.
+        var abcde_div = document.getElementById(ABCDE_DIV_ID);
+        while (abcde_div.firstChild) {
+            abcde_div.removeChild(abcde_div.firstChild);
+        }
+        abcde_div.remove();
+        Ui_In_Place = false;
     }
 
     /* Since our keypad can/will cover the Qualtrics NEXT and BACK
