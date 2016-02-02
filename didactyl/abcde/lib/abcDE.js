@@ -946,7 +946,7 @@ function AbcDE() {
     function display_kids(container, how) {
         var kids = container.children;
         for (var i = 0; i < kids.length; i++) {
-            kids[i].style.display = 'none';
+            kids[i].style.display = how;
         }
     }
 
@@ -969,7 +969,6 @@ function AbcDE() {
             }
 
         }
-
     }
 
     function show_metadata() {
