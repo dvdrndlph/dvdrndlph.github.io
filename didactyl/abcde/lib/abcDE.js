@@ -2599,7 +2599,7 @@ function AbcDE() {
         }
         // Ignore subseqquent calls (from Qualtrics) to render the UI.
         // Once is enough.
-        Rendering_Complete = true;
+        // Rendering_Complete = true;
     }
 
     function render_new_sequence() {
