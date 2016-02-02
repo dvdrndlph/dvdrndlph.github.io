@@ -943,14 +943,33 @@ function AbcDE() {
         show_metadata();
     }
 
+    function display_kids(container, how) {
+        var kids = container.children;
+        for (var i = 0; i < kids.length; i++) {
+            kids[i].style.display = 'none';
+        }
+    }
+
     function show_keypad() {
         var keypad_div = document.getElementById(KEYPAD_DIV_ID);
         var setting = get_setting('keypad');
         if (setting === 'show') {
+            display_kids(keypad_div, 'block')
             keypad_div.style.display = 'block';
         } else {
-            keypad_div.style.display = 'none';
+            display_kids(keypad_div, 'none')
+            var qualtrics = get_setting('qualtrics')
+            if (qualtrics) {
+                var next_button = document.getElementById('q_next');
+                next_button.style.display = 'block';
+                var back_button = document.getElementById('q_back');
+                back_button.style.display = 'block';
+            } else {
+                keypad_div.style.display = 'none';
+            }
+
         }
+
     }
 
     function show_metadata() {
@@ -1114,11 +1133,14 @@ function AbcDE() {
     function handle_qualtrics_click(button_id) {
         var qualtrics = get_setting('qualtrics');
         var x_val = getXValue(Org_Abc_Str);
-        var result_store = 'result_' + x_val;
+        var abcDF_store = 'abcDF_' + x_val;
+        var abcD_store = 'abcD_' + x_val;
         var fingerings = getEnteredCollection();
-        console.log("SETTING " + result_store + " to " + fingerings);
-        // qualtrics.setEmbeddedData(result_store, fingerings);
-        Qualtrics.SurveyEngine.setEmbeddedData(result_store, fingerings);
+        Qualtrics.SurveyEngine.setEmbeddedData(abcDF_store, fingerings);
+        var abcD = getEnteredAbcD();
+        Qualtrics.SurveyEngine.setEmbeddedData(abcD_store, abcD);
+
+        autosave();
 
         // Tear down the UI and hide from the incessant
         // Qualtrics.SurveyEngine.addOnload calls.
@@ -1132,7 +1154,8 @@ function AbcDE() {
             clearInterval(Autosaver);
         }
 
-        autosave();
+        qualtrics.enableNextButton();
+        qualtrics.enablePreviousButton();
 
         if (button_id === 'q_next') {
             qualtrics.clickNextButton();
@@ -2598,6 +2621,11 @@ function AbcDE() {
         if (! Rendering_Complete) {
             process_options(options);
             render_ui();
+        }
+        var qualtrics = get_setting('qualtrics');
+        if (qualtrics) {
+            qualtrics.disableNextButton();
+            qualtrics.disablePreviousButton();
         }
         // Ignore subseqquent calls (from Qualtrics) to render the UI.
         // Once is enough.

@@ -1,0 +1,305 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>abcD music format</title>
+
+</head>
+<body>
+<h1>abcD music format</h1>
+
+<p>(abcD version 5)</p>
+
+<p><a href="http://drando2.gsites.uic.edu"><img src="http://drando2.gsites.uic.edu/_/rsrc/1433390247796/home/didactyl_logo5.png?height=240&amp;width=168" alt="Didactyl" /></a> Copyright © 2016 David A. Randolph</p>
+
+<h2>Overview</h2>
+
+<p>abcD is a superset of the <a href="http://abcnotation.com/">abc</a> notation format. Any valid abcD file is also a valid abc file. The current abc standard is <a href="http://abcnotation.com/wiki/abc:standard:v2.1">2.1</a>.</p>
+
+<p>abcD augments abc with specially formatted comments to capture fingering information for performance. At present, only piano fingering is defined.</p>
+
+<h2>General requirements</h2>
+
+<p>Content specific to abcD (as opposed to general purpose abc content) must all be presented in a continuous sequence of lines (the "abcD block" either at the top or the bottom of the file.</p>
+
+<p>All lines in the abcD block begin with a <em>%</em> character followed by a space.</p>
+
+<p>No continuation of lines is allowed within the abcD block. Each line ends with a newline (<em>\n</em>) character or a carriage-return/line-feed (*\r\l).</p>
+
+<h2>Required elements</h2>
+
+<p>At a minimum, three lines must be added to an abc file to create an abcD file.</p>
+
+<h3>Title line</h3>
+
+<p>The following string must appear first in the abcD block:</p>
+
+<pre><code>% abcDidactyl v5
+</code></pre>
+
+<p>The final character (<em>5</em>) reflects the current version of the format. It will be updated as changes are introduced.</p>
+
+<h3>Fingering block</h3>
+
+<p>The line immediately following the title line must be a fingering specification. It <em>begins</em> with the following string:</p>
+
+<pre><code>% abcD fingering 1: 
+</code></pre>
+
+<p>After a space, a single-line fingering specification in <a href="http://nlp.cs.uic.edu/didactyl/abcde/view/bnf_for_abcdf.html">abcDF format</a> is required.</p>
+
+<p>Optional content may follow the fingering specification line. The block continues until another fingering block is defined or the abcD block is terminated with a terminal line.</p>
+
+<p>An example one-line fingering block follows:</p>
+
+<pre><code>% abcD fingering 1: (p&lt;2,&gt;3_2)fx_3412^xfxxpx_&amp;123@1&amp;12(125)133/4
+</code></pre>
+
+<h3>Terminal line</h3>
+
+<p>The abcC block must end with a terminal line like this:</p>
+
+<pre><code>% abcDidactyl END
+</code></pre>
+
+<h2>Optional fingering block elements</h2>
+
+<h3>Authority</h3>
+
+<p>The person who determined the sequence of fingerings should be specified. If possible, the year in which the fingering was suggested should be provided.</p>
+
+<pre><code>% Authority: &lt;name&gt; [(approximate_year)]
+</code></pre>
+
+<p>Example 1:</p>
+
+<pre><code>% Authority: Carl Czerny (1863)
+</code></pre>
+
+<p>Example 2:</p>
+
+<pre><code>% Authority: C. P. E. Bach
+</code></pre>
+
+<p>Example 3:</p>
+
+<pre><code>% Authority: Anne Laird (2016)
+</code></pre>
+
+<h3>Transcriber</h3>
+
+<p>The person who performed the transcription of the fingerings should be recorded.</p>
+
+<p>Example:</p>
+
+<pre><code>% Transcriber: David Randolph
+</code></pre>
+
+<h3>Transcription date</h3>
+
+<p>The date (and the 24-hour local time) when the transcription was completed may be specified.</p>
+
+<pre><code>% Transcription date: &lt;YYYY-MM-DD&gt; [&lt;HH:MI:SS&gt;]
+</code></pre>
+
+<p>Example 1:</p>
+
+<pre><code>% Transcription date: 2016-01-29 13:45:59
+</code></pre>
+
+<p>Example 2:</p>
+
+<pre><code>% Transcription date: 2017-12-31
+</code></pre>
+
+<h3>Comments</h3>
+
+<p>At the end of a fingering block, an arbitrary number of comment lines may be added.</p>
+
+<h2>abcD block examples</h2>
+
+<p>Minimal example:</p>
+
+<pre><code>% abcDidactyl v5
+% abcD fingering 1: 1xx4&amp;5xx2@xx45&amp;4x2x
+% abcDidactyl END
+</code></pre>
+
+<p>Example 2:</p>
+
+<pre><code>% abcDidactyl v5
+% abcD fingering 1: 1xx4&amp;5xx2@xx45&amp;4x2x
+% Authority: Charles Hanon (1873)
+% Transcriber: David Randolph
+% Transcription date: 2016-01-15 12:38:01
+% Taken from IMSLP in the public domain.
+% abcD fingering 2: 1234&amp;5432@2345&amp;4321
+% Authority: Dave Bartleby (2016)
+% Transcriber: Dave Bartleby
+% Transcription date: 2016-11-15 01:01:01
+% Filling in the blanks was much harder than expected.
+% abcDE kept crashing.
+% Who made that thing?
+% abcD fingering 3: 1111&amp;1111@1111&amp;1111
+% Authority: Tom Thumb (2016)
+% abcD fingering 4: 5555&amp;1111@5555&amp;1111
+% abcDidactyl END
+</code></pre>
+
+<h2>Acknowledgements</h2>
+
+<p>Thanks go to David Majda for the incredibly useful <a href="http://pegjs.org/">PEG.js</a> parser generator. As Hawk Harrelson says, "Hang a star next to that one."</p>
+
+<p>The Didactyl project has been funded by a <a href="http://grad.uic.edu/provosts-deiss-awards-graduate-research">Provost's Award for Graduate Research</a> from the University of Illinois at Chicago.</p>
+</body>
+</html>
