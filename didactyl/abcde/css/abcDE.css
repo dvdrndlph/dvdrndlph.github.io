@@ -33,15 +33,6 @@ table {
     width: 48px;
 }
 
-#q_back, #q_next {
-    margin-left: 4px;
-    margin-right: 4px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    vertical-align: middle;
-    text-align: right;
-}
-
 #help span { display: none;
     position: absolute; width:400px; left:150px;
     background-color:#e0e0e0; font-size:small;

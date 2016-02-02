@@ -952,19 +952,27 @@ function AbcDE() {
 
     function show_keypad() {
         var keypad_div = document.getElementById(KEYPAD_DIV_ID);
+        var number_div = document.getElementById('number_div');
+        var symbol_div = document.getElementById('symbol_div');
         var setting = get_setting('keypad');
         if (setting === 'show') {
-            display_kids(keypad_div, 'block')
             keypad_div.style.display = 'block';
+            number_div.style.display = 'block';
+            symbol_div.style.display = 'block';
+            display_kids(number_div, 'inline')
+            display_kids(symbol_div, 'inline')
         } else {
-            display_kids(keypad_div, 'none')
+            display_kids(symbol_div, 'none');
+            display_kids(number_div, 'none');
             var qualtrics = get_setting('qualtrics')
             if (qualtrics) {
                 var next_button = document.getElementById('q_next');
-                next_button.style.display = 'block';
+                next_button.style.display = 'inline';
                 var back_button = document.getElementById('q_back');
-                back_button.style.display = 'block';
+                back_button.style.display = 'inline';
             } else {
+                number_div.style.display = 'block';
+                symbol_div.style.display = 'block';
                 keypad_div.style.display = 'none';
             }
 
@@ -1196,7 +1204,9 @@ function AbcDE() {
     function insert_keypad() {
         var keypad_div = document.getElementById(KEYPAD_DIV_ID);
         var number_div = document.createElement('number_div');
+        number_div.id = 'number_div';
         var symbol_div = document.createElement('symbol_div');
+        symbol_div.id = 'symbol_div';
         keypad_div.appendChild(symbol_div);
         keypad_div.appendChild(document.createElement('br'));
         keypad_div.appendChild(number_div);
