@@ -3021,8 +3021,7 @@ function AbcDE() {
     }
 
     function getEnteredAbcD() {
-        var abc_str = get_fingered_abc_str();
-        return get_abcd(abc_str);
+        return get_abcd(Org_Abc_Str);
     }
 
     function getValidatedAbcD() {
