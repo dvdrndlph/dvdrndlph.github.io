@@ -1132,6 +1132,8 @@ function AbcDE() {
             clearInterval(Autosaver);
         }
 
+        autosave();
+
         if (button_id === 'q_next') {
             qualtrics.clickNextButton();
         } else {
