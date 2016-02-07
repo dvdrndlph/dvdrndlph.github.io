@@ -1,0 +1,705 @@
+X:1
+C: J.B. Arban
+T:First Studies 1
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+G8|G8|c8|c8|A8|A8|d8|d8|F8|F8|A8|A8|G8|G8|B8|B8|G8|G8|c8||
+
+X:2
+T:2
+M:4/4
+L:1/8
+Q:1/4=120
+K:G% 1 flats
+V:1
+G4 G4|A4 A4|B4 B4|c8|A4 A4|B4 B4|c4 c4|d8|
+d4 d4|c4 c4|B4 B4|A8|c4 c4|B4 B4|A4 A4|G8||
+
+X:3
+T:3
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+E4 F4|E8|F4 G4|F8|G4 A4|G8|A4 B4|A8|F4 G4|F8|G4 A4|G8|
+A4 B4|A8|B4 c4|B8|G4 A4|G8|A4 B4|A8|B4 c4|B8|c4 d4|c8||
+
+X:4
+T:4
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+e4 f4|e8|d4 e4|d8|c4 d4|c8|B4 c4|B8|d4 e4|d8|c4 d4|c8|
+B4 c4|B8|A4 B4|A8|c4 d4|c8|B4 c4|B8|G4 A4|G8|c4 d4|c8||
+
+X:5
+T:5
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+E4 G4|E8|F4 A4|F8|G4 B4|G8|A4 c4|A8|B4 d4|B8|c4 e4|c8|
+c4 e4|c8|B4 d4|B8|A4 c4|A8|G4 B4|G8|F4 A4|F8|E4 G4|E8||
+
+X:6
+T:6
+M:4/4
+L:1/8
+Q:1/4=120
+K:G% 1 flats
+V:1
+c4 B4|c4 d4|c4 B4|A8|d4 ^c4|d4 e4|d4 =c4|B8|
+G4 F4|G4 A4|B4 c4|d8|c4 e4|d4 c4|B4 A4|_A8|
+=A4 _A4|=A4 B4|c4 A4|B8|B4 A4|B4 c4|d4 B4|c8||
+
+X:7
+T:7
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+G8|c8|G8|e8|c8|g8|e8|c8|]^F8|B8|^F8|_e8|B8|^f8|_e8|B8|]
+=F8|_B8|F8|d8|_B8|=f8|d8|_B8|]E8|A8|E8|^c8|A8|=e8|^c8|A8|]
+_E8|_A8|_E8|=c8|_A8|_e8|c8|_A8|]D8|G8|D8|=B8|G8|d8|B8|G8|]
+C8|F8|C8|=A8|F8|c8|A8|F8|]G8|c8|G8|=e8|c8|g8|e8|c8|]
+
+X:8
+T:8
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+G4 G4|c4 c4|G4 G4|e4 e4|G4 G4|c8|^F4 ^F4|B4 B4|]
+^F4 ^F4|_e4 _e4|^F4 ^F4|B8|=F4 F4|_B4 _B4|F4 F4|d4 d4|]
+F4 F4|_B8|E4 E4|A4 A4|E4 E4|^c4 ^c4|E4 E4|A8|]
+_E4 _E4|_A4 _A4|_E4 _E4|=c4 c4|_E4 _E4|_A8|D4 D4|G4 G4|]
+D4 D4|=B4 B4|D4 D4|G8|C4 C4|F4 F4|C4 C4|=A4 A4|]
+C4 C4|F8|G4 G4|c4 c4|G4 G4|=e4 e4|G4 G4|c8|]
+
+X:9
+T:9
+M:4/4
+L:1/2
+Q:1/4=120
+K:F
+V:1
+C|DC|EC|FC|GC|AC|GC|F2|] \
+K:Gb
+D|ED|FD|GD|AD|BD|AD|G2|]
+K:G
+D|ED|FD|GD|AD|BD|AD|G2|] \
+K:Ab
+E|FE|GE|AE|BE|cE|BE|A2|]
+K:A
+E|FE|GE|AE|BE|cE|BE|A2|] \
+K:Bb
+F|GF|AF|BF|cF|dF|cF|B2|]
+K:B
+F|GF|AF|BF|cF|dF|cF|B2|] \
+K:C
+G|AG|BG|cG|dG|eG|dG|c2|]
+K:Db
+A|BA|cA|dA|eA|fA|eA|d2|] \
+K:D
+A|BA|cA|dA|eA|fA|eA|d2|]
+K:Eb
+B|cB|dB|eB|fB|gB|fB|e2|] \
+K:E
+B|cB|dB|eB|fB|gB|fB|e2|]
+
+X:10
+T:10
+M:4/4
+L:1/8
+Q:1/4=120
+K:C
+V:1
+=G4|^F4G4|=F4G4|E4G4|D4G4|C4G4|B,4G4|C8|] \
+K:Db 
+A4|=G4A4|_G4A4|F4A4|E4A4|D4A4|C4A4|D8|]
+K:D
+A4|^G4A4|=G4A4|F4A4|E4A4|D4A4|C4A4|D8|] \
+K:Eb
+B4|=A4B4|_A4B4|G4B4|F4B4|E4B4|D4B4|E8|]
+K:E
+B4|^A4B4|=A4B4|G4B4|F4B4|E4B4|D4B4|E8|] \
+K:F
+c4|=B4c4|_B4c4|A4c4|G4c4|F4c4|E4c4|F8||
+K:Gb
+d4|=c4d4|_c4d4|B4d4|A4d4|G4d4|F4d4|G8|] \
+K:G 
+d4|^c4d4|=c4d4|B4d4|A4d4|G4d4|F4d4|G8|]
+K:Ab
+e4|=d4e4|_d4e4|c4e4|B4e4|A4e4|G4e4|A8|] \
+K:A
+e4|^d4e4|=d4e4|c4e4|B4e4|A4e4|G4e4|A8|]
+K:Bb
+f4|=e4f4|_e4f4|d4f4|c4f4|B4f4|A4f4|B8|] \
+K:B
+f4|^e4f4|=e4f4|d4f4|c4f4|B4f4|A4f4|B8|]
+
+X:11
+T:11
+M:4/4
+L:1/8
+Q:1/4=120
+K:F% 3 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-1  minor=0
+F4 A2 F2|c2 A2 F2 A2|G4 E4|C2 D2 E2 C2|F4 A2 F2|D2 G2 c2 B2|A2 d2 c2 =B2|c2 _B2 A2 G2|
+F4 A2 F2|D4 B4|A2 c2 F2 A2|G4 C4|F4 A2 F2|c2 F2 A2 c2|B2 E2 G2 C2|F2 A2 F2 z2||
+
+X:12
+T:12
+M:4/4
+L:1/8
+Q:1/4=120
+K:F% 3 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-1  minor=0
+A2 F2 C4|F2 A2 c4|B2 G2 E4|G2 B2 A4|c2 A2 ^F4|A2 d2 c4|A2 ^F2 D4|^F2 A2 G4|
+G2 A2 ^C4|e2 ^c2 A4|B2 G2 E4|G2 E2 =C4|=c2 A2 =F4|f2 d2 c4|B2 d2 G4|c2 E2 F2 z2||
+
+X:13
+T:13
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+C4 E2 C2|D4 G4|F2 E2 D2 C2|B,2 D2 G2 z2|c4 e2 c2|d4 g4|f2 e2 d2 c2|B2 d2 g2 z2|
+f4 e2 _e2|=e4 d2 ^c2|d2 =c2 B2 A2|_A2 B2 E2 z2|F4 E2 _E2|=E4 D2 ^C2|D2 =C2 B,2 A,2|E6 z2|
+C4 E2 C2|D4 G4|F2 E2 D2 C2|B,2 D2 G2 z2|F4 =A2 F2|D4 A4|G2 E2 F2 D2|C2 E2 C2 z2||
+
+X:14
+T:14
+M:4/4
+L:1/8
+Q:1/4=120
+K:G% 1 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=1  minor=1
+G4 B2 G2|d2 B2 G2 B2|A4 F4|D2 E2 F2 D2|G4 B2 G2|F2 A2 d2 c2|B2 e2 d2 ^c2|d2 =c2 B2 A2|
+G4 B2 G2|E4 c4|B2 d2 G2 B2|A4 D4|G4 B2 G2|d2 G2 B2 d2|c2 F2 A2 d2|G2 B2 G2 z2||
+
+X:15
+T:15
+M:4/4
+L:1/8
+Q:1/4=120
+K:G% 1 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=1  minor=1
+B2 G2 D4|G2 B2 d4|c2 A2 F4|A2 c2 B4|d2 B2 _A4|B2 e2 d4|B2 _A2 E4|_A2 B2 =A4|
+A2 F2 _E4|A2 c2 B4|c2 A2 F4|A2 F2 D4|d2 B2 G4|g2 e2 d4|c2 e2 A4|d2 F2 G2 z2||
+
+X:16
+T:16
+M:4/4
+L:1/8
+Q:1/4=120
+K:F% 3 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-1  minor=0
+F2 G2 A2 B2|c2 B2 A2 G2|F2 A2 c2 f2|c2 A2 F2 A2|G2 A2 B2 c2|d2 c2 B2 A2|G2 A2 F2 G2|E2 F2 D2 E2|
+C2 D2 E2 F2|G2 F2 E2 D2|C2 E2 G2 c2|B2 G2 E2 ^C2|D2 E2 F2 G2|A2 G2 F2 E2|D2 F2 A2 d2|A2 F2 D2 F2|
+E2 F2 G2 A2|B2 A2 G2 F2|E2 G2 c2 B2|A2 c2 f2 e2|d2 c2 B2 A2|G2 B2 e2 d2|c2 B2 A2 G2|F4 z4||
+
+X:17
+T:17
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+C2 D2 E2 F2|G2 F2 E2 D2|C2 E2 G2 c2|G2 E2 C2 E2|D2 E2 F2 G2|A2 G2 F2 E2|D2 F2 A2 d2|
+A2 F2 D2 F2|E2 F2 G2 A2|B2 A2 G2 F2|E2 G2 c2 e2|c2 G2 E2 G2|F2 G2 A2 B2|c2 B2 A2 G2|F2 A2 c2 f2|c2 A2 F2 A2|
+G2 A2 B2 c2|d2 c2 B2 A2|G2 B2 d2 f2|e2 c2 G2 E2|D2 E2 F2 G2|A2 E2 F2 D2|G2 B2 d2 G2|c4 z4||
+
+X: 18
+T:18
+M:4/4
+L:1/8
+Q:1/4=120
+K:G% 1 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=1  minor=0
+G2 A2 B2 c2|d2 c2 B2 A2|G2 B2 d2 g2|d2 B2 G2 B2|A2 B2 c2 d2|e2 d2 c2 B2|A2 B2 G2 A2|F2 G2 E2 F2|
+D2 E2 F2 G2|A2 G2 F2 E2|_E2 F2 A2 c2|B2 A2 F2 _E2|=E2 F2 G2 A2|B2 A2 G2 F2|E2 G2 B2 e2|B2 G2 E2 G2|
+F2 G2 A2 B2|c2 B2 A2 G2|F2 A2 d2 c2|B2 d2 g2 f2|e2 d2 c2 B2|A2 c2 f2 e2|d2 c2 B2 A2|G4 z4||
+
+X:19
+T:19
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+G2 A2 B2 c2|d4 G4|A2 B2 c2 d2|e4 A4|B2 c2 d2 e2|f4 e4|d2 c2 B2 A2|_A2 B2 E2 z2|
+f2 e2 d2 c2|B2 d2 G2 z2|g2 f2 e2 d2|c2 e2 =A2 z2|d2 c2 B2 A2|f2 e2 d2 c2|B2 A2 G2 F2|E2 G2 D2 G2|
+C2 D2 E2 F2|G4 c4|B2 c2 d2 B2|c4 e4|g2 f2 e2 d2|d2 c2 B2 A2|G2 _A2 =A2 B2|c4 z4||
+
+X: 20
+T:20
+M:4/4
+L:1/8
+Q:1/4=120
+K:F% 3 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-1  minor=0
+F2 A2 G2 B2|A2 c2 B2 d2|c2 e2 d2 f2|e2 g2 f2 a2|g2 a2 f2 g2|e2 f2 d2 e2|c2 d2 B2 c2|A2 B2 G2 A2|
+F2 G2 E2 F2|D2 E2 C2 F2|D2 G2 E2 A2|F2 B2 G2 c2|A2 d2 g2 e2|c2 f2 d2 g2|e2 a2 f2 a2|e2 g2 d2 f2|
+c2 e2 B2 d2|A2 c2 G2 B2|F2 A2 E2 G2|D2 F2 C2 E2|F2 A2 c2 C2|F8|
+
+X: 21
+T:21
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+C2 E2 D2 F2|E2 G2 F2 A2|G2 B2 A2 c2|B2 d2 c2 e2|d2 f2 e2 g2|f2 g2 e2 f2|d2 e2 c2 d2|B2 c2 A2 B2|
+G2 A2 F2 G2|E2 F2 D2 E2|C2 F2 D2 G2|E2 A2 F2 B2|G2 c2 A2 d2|B2 e2 c2 f2|d2 g2 e2 g2|d2 f2 c2 e2|
+B2 d2 A2 c2|G2 B2 F2 A2|E2 G2 D2 F2|E2 G2 F2 A2|G2 B2 A2 c2|B2 d2 c2 e2|d2 g2 B2 d2|c2 e2 c2 
+
+X: 22
+T:22
+M:4/4
+L:1/8
+Q:1/4=120
+K:G% 1 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=1  minor=0
+G2 B2 A2 c2|B2 d2 c2 e2|d2 f2 e2 g2|f2 g2 e2 f2|d2 e2 c2 d2|B2 c2 A2 B2|G2 A2 F2 G2|E2 F2 D2 z2|
+D2 G2 E2 A2|F2 B2 G2 c2|A2 d2 B2 e2|c2 f2 d2 g2|e2 a2 f2 a2|e2 g2 d2 f2|c2 e2 B2 d2|A2 d2 G2 z2|
+g2 e2 f2 d2|e2 c2 d2 B2|c2 A2 B2 G2|A2 F2 G2 E2|F2 D2 E2 C2|D2 F2 E2 G2|F2 A2 d2 F2|G4 z4||
+
+X: 23
+T:23
+M:4/4
+L:1/8
+Q:1/4=120
+K:F% 3 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-1  minor=0
+F2 D2 E2 F2|G2 E2 F2 G2|A2 F2 G2 A2|B2 G2 A2 B2|c2 A2 B2 c2|d2 B2 c2 d2|e2 c2 d2 e2|f8|
+e2 g2 f2 e2|d2 f2 e2 d2|c2 e2 d2 c2|B2 d2 c2 B2|A2 c2 B2 A2|G2 B2 A2 G2|F2 A2 G2 F2|E8|
+f2 d2 e2 f2|e2 c2 d2 e2|d2 B2 c2 d2|c2 A2 B2 c2|B2 G2 A2 B2|A2 F2 G2 A2|G2 E2 F2 G2|F8||
+
+X: 24
+T:24
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+E2 C2 D2 E2|F2 D2 E2 F2|G2 E2 F2 G2|A2 F2 G2 A2|B2 G2 A2 B2|c2 A2 B2 c2|d2 B2 c2 d2|e8|
+e2 g2 f2 e2|d2 f2 e2 d2|c2 e2 d2 c2|B2 d2 c2 B2|A2 c2 B2 A2|G2 B2 A2 G2|F2 A2 G2 F2|E8|
+c2 e2 d2 c2|B2 d2 c2 B2|A2 c2 B2 A2|G2 B2 A2 G2|F2 A2 G2 F2|E2 G2 F2 E2|D2 F2 E2 D2|C8||
+
+X: 25
+T:25
+M:4/4
+L:1/8
+Q:1/4=120
+K:G% 1 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=1  minor=0
+G2 E2 F2 G2|A2 F2 G2 A2|B2 G2 A2 B2|c2 A2 B2 c2|d2 B2 c2 d2|e2 c2 d2 e2|f2 d2 e2 f2|g8|
+f2 a2 g2 f2|e2 g2 f2 e2|d2 f2 e2 d2|c2 e2 d2 c2|B2 d2 c2 B2|A2 c2 B2 A2|G2 B2 A2 G2|F8|
+g2 e2 f2 g2|f2 d2 e2 f2|e2 c2 d2 e2|d2 B2 c2 d2|c2 A2 B2 c2|B2 G2 A2 B2|A2 F2 G2 A2|G8||
+
+X: 26
+T:26
+M:3/4
+L:1/8
+Q:1/4=120
+% Last note suggests Phrygian mode tune
+K:C% 2 flats
+V:1
+% Time signature=3/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+C2 D2 E2|D2 E2 F2|E2 F2 G2|F2 G2 A2|G2 A2 B2|A2 B2 c2|B2 c2 d2|e6|
+e2 d2 c2|d2 c2 B2|c2 B2 A2|B2 A2 G2|A2 G2 F2|G2 F2 E2|F2 E2 D2|C6|
+G2 F2 E2|A2 G2 F2|B2 A2 G2|c2 B2 A2|d2 c2 B2|e2 d2 c2|f2 e2 d2|g6|
+e2 f2 g2|d2 e2 f2|c2 d2 e2|B2 c2 d2|A2 B2 c2|G2 A2 B2|F2 G2 A2|G6|
+c2 d2 e2|B2 c2 d2|A2 B2 c2|G2 A2 B2|F2 G2 A2|E2 F2 G2|D2 E2 F2|E6||
+
+X: 27
+T:27
+M:3/4
+L:1/8
+Q:1/4=120
+% Last note suggests Phrygian mode tune
+K:F% 3 flats
+V:1
+% Time signature=3/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-1  minor=0
+F2 G2 A2|G2 A2 B2|A2 B2 c2|B2 c2 d2|c2 d2 e2|d2 e2 f2|e2 f2 g2|a6|
+a2 g2 f2|g2 f2 e2|f2 e2 d2|e2 d2 c2|d2 c2 B2|c2 B2 A2|B2 A2 G2|F6|
+F2 E2 D2|G2 F2 E2|A2 G2 F2|B2 A2 G2|c2 B2 A2|d2 c2 B2|e2 d2 c2|f6|
+f2 g2 a2|e2 f2 g2|d2 e2 f2|c2 d2 e2|B2 c2 d2|A2 B2 c2|G2 A2 B2|A6||
+
+X: 28
+T:28
+M:4/4
+L:1/8
+Q:1/4=120
+K:F% 3 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-1  minor=0
+EF GA B2 G2|FG AB c2 A2|GA Bc d2 B2|AB cd e2 c2|Bc de f2 d2|cd ef g2 e2|de fg a2 f2|e4 z4|
+gf ed c2 e2|fe dc B2 d2|ed cB A2 c2|dc BA G2 B2|cB AG F2 A2|BA GF E2 G2|AG FE D2 E2|F4 z4||
+
+X: 29
+T:29
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+B,C DE F2 D2|CD EF G2 E2|DE FG A2 F2|EF GA B2 G2|FG AB c2 A2|GA Bc d2 B2|
+AB cd e2 c2|Bc de f2 d2|cd ef g2 e2|c4 z4|gf ed c2 e2|fe dc B2 d2|ed cB A2 c2|
+dc BA G2 B2|cB AG F2 A2|BA GF E2 G2|AG FE D2 F2|GF ED C2 E2|FE DC B,2 G2|C4 z4||
+
+X: 30
+T:30
+M:4/4
+L:1/8
+Q:1/4=120
+K:G% 1 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=1  minor=0
+DE FG A2 F2|EF GA B2 G2|FG AB c2 A2|GA Bc d2 B2|AB cd e2 c2|Bc de f2 d2|cd ef g2 e2|d4 z4|
+gf ed c2 e2|fe dc B2 d2|ed cB A2 c2|dc BA G2 B2|cB AG F2 A2|BA GF E2 G2|AG FE D2 F2|G4 z4||
+
+X: 31
+T:31
+M:4/4
+L:1/8
+Q:1/4=120
+K:F% 3 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-1  minor=0
+F2 DE FG AB|c4 C4|D2 EF GA Bc|d4 D4|E2 FG AB cd|e4 E4|
+F2 GA Bc de|f4 z4|f2 ed cB AG|F4 f4|e2 dc BA GF|E4 e4|d2 cB AG FE|
+D4 d4|c2 BA GF ED|C4 c4|B2 AG FE DC|B,4 B4|A2 GF FE DC|F4 z4||
+
+X: 32
+T:32
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+C2 DE FG AB|c4 C4|D2 EF GA Bc|d4 D4|E2 FG AB cd|e4 E4|
+F2 GA Bc de|f4 F4|G2 AB cd ef|g4 z4|g2 fe dc BA|G4 g4|f2 ed cB AG|
+F4 f4|e2 dc BA GF|E4 e4|d2 cB AG FE|D4 d4|c2 BA GF ED|C4 z4||
+
+X: 33
+T:33
+M:4/4
+L:1/8
+Q:1/4=120
+K:G% 1 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=1  minor=0
+B,2 CD EF GA|B4 B,4|C2 DE FG AB|c4 C4|
+D2 EF GA Bc|d4 D4|E2 FG AB cd|e4 E4|F2 GA Bc de|f4 F4|
+G2 AB cd ef|g4 z4|g2 fe dc BA|G4 g4|f2 ed cB AG|F4 f4|e2 dc BA GF|
+E4 e4|d2 cB AG FE|D4 d4|c2 BA GF ED|C4 c4|B2 AG FE DC|G4 z4||
+
+X: 34
+T:34
+M:4/4
+L:1/8
+Q:1/4=120
+K:D% 0 sharps
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=2  minor=1
+D2 EFGA Bc|d4 D4|E2 FG ABcd|e4 E4|F2 GA Bc de|f4 F4|G2 AB cdef|g4 G4|A2 Bc defg|a4 z4|
+a2 gf edcB|A4 a4|g2 fe dcBA|G4 g4|f2 ed cBAG|F4 f4|e2 dc BAGF|E4 e4|d2 cB AGFE|D4 z4||
+
+X: 35
+T:35
+M:4/4
+L:1/8
+Q:1/4=120
+% Last note suggests Lydian mode tune
+K:F% 3 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-2  minor=1
+B,2 CD _EFGA|B4 B,4|C2 D_E FGAB|c4 C4|D2 =EFGA Bc|d4 D4|E2 FG ABcd|e4 E4|F2 GA Bcd_e|f4 z4|
+f2 =ed cBAG|F4 f4|e2 dcBA GF|E4 e4|d2 cB AGF_E|D4 d4|c2 BA GF_ED|C4 c4|B2 AG F_EDC|B,4 z4|| 
+
+X: 35
+T:35
+M:4/4
+L:1/8
+Q:1/4=120
+% Last note suggests Lydian mode tune
+K:F% 3 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-2  minor=1
+B,2 CD _EFGA|B4 B,4|C2 D_E FGAB|c4 C4|D2 =EFGA Bc|d4 D4|E2 FG ABcd|e4 E4|F2 GA Bcd_e|f4 z4|
+f2 =ed cBAG|F4 f4|e2 dcBA GF|E4 e4|d2 cB AGF_E|D4 d4|c2 BA GF_ED|C4 c4|B2 AG F_EDC|B,4 z4|| 
+
+X: 36
+T:36
+M:3/4
+L:1/8
+Q:1/4=120
+K:F% 3 flats
+V:1
+% Time signature=3/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-1  minor=0
+FGABcA|F2c2A2|GABcdB|G2d2B2|ABcdec|A2e2c2|Bcdefd|B2f2d2|cdefge|c2g2e2|
+defgaf|d2a2f2|efgabg|f4z2|agfedf|a2d2f2|gfedce|g2c2e2|fedcBd|f2B2d2|
+edcBAc|e2A2c2|dcBAGB|d2G2B2|cBAGFA|c2F2A2|BAGFEG|B2E2G2|BAGFEG|F4 z2||
+
+X: 37
+T:37
+M:3/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+% Time signature=3/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+CDEFGE|C2G2E2|DEFGAF|D2A2F2|EFGABG|E2B2G2|FGABcA|F2c2A2|GABcdB|G2d2B2|ABcdec|
+A2e2c2|Bcdefd|B2f2d2|cdefge|c4z2|gfedce|g2c2e2|fedcBd|f2B2d2|edcBAc|e2A2c2|
+dcBAGB|d2G2B2|cBAGFA|c2F2A2|BAGFEG|B2E2G2|AGFEDF|A2D2F2|GFEDCB,|C4 z2||
+
+X: 38
+T:38
+M:3/4
+L:1/8
+Q:1/4=120
+K:G% 1 flats
+V:1
+% Time signature=3/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=1  minor=0
+B,CDEFD|B,2F2D2|CDEFGE|C2G2E2|DEFGAF|D2A2F2|EFGABG|E2B2G2|
+FGABcA|F2c2A2|GABcdB|G2d2B2|ABcdec|A2e2c2|Bcdefd|B2f2d2|cdefge|
+c2g2e2|defgaf|d4z2|agfedf|a2d2f2|gfedce|g2c2e2|fedcBd|f2B2d2|
+edcBAc|e2A2c2|dcBAGB|d2G2B2|cBAGFA|c2F2A2|BAGFEG|B2E2G2|
+AGFEDF|A2D2F2|GFEDCE|G2C2E2|FEDCB,D|G4
+
+X: 39
+T:39
+M:3/4
+L:1/8
+Q:1/4=120
+K:D% 0 sharps
+V:1
+% Time signature=3/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=2  minor=1
+DEFGAF|D2A2F2|EFGABG|E2B2G2|FGABcA|F2c2A2|GABcdB|G2d2B2|
+ABcdec|A2e2c2|Bcdefd|B2f2d2|cdefge|c2g2e2|defgaf|d4z2|
+agfedf|a2d2f2|gfedce|g2c2e2|fedcBd|f2B2d2|edcBAc|e2A2c2|
+dcBAGB|d2G2B2|cBAGFA|c2F2A2|BAGFEG|B2E2G2|AGFEDC|D4 z2||
+
+X: 40
+T:40
+M:3/4
+L:1/8
+Q:1/4=120
+K:Bb% 4 flats
+V:1
+% Time signature=3/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-2  minor=1
+B,CDEFD|B,2F2D2|CDEFGE|C2G2E2|DEFGAF|D2A2F2|EFGABG|
+E2B2G2|FGABcA|F2c2A2|GABcdB|G2d2B2|ABcdec|A2e2c2|Bcdefd|
+B4z2|fedcBd|f2B2d2|edcBAc|e2A2c2|dcBAGB|d2G2B2|cBAGFA|
+c2F2A2|BAGFEG|B2E2G2|AGFEDF|A2D2F2|GFEDCE|G2C2E2|FEDCB,A,|B,4 z2||
+
+X: 41
+T:41
+M:4/4
+L:1/8
+Q:1/4=120
+K:F% 3 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-1  minor=0
+F2 GA Bcde|fG AB cdef|gA Bc defg|a8|a2 gf edcB|Ag fe dcBA|Gf ed cBAG|F8||
+
+X: 42
+T:42
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+C2 DE FGAB|cEFG ABcd|eGAB cdef|g8|g2fe dcBA|Gedc BAGF|EcBA GFED|C8|
+
+X: 43
+T:43
+M:4/4
+L:1/8
+Q:1/4=120
+K:G% 1 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=1  minor=0
+G2 EF GABc|dFGA Bcde|fABc defg|a8|a2 gf edcB|Afed cBAG|FcBA GFED|G8||
+
+X: 44
+T:44
+M:4/4
+L:1/8
+Q:1/4=120
+K:D% 0 sharps
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=2  minor=1
+D2 EF GABc|dFGA Bcde|fABc defg|a8|a2 gf edcB|Afed cBAG|FdcB AGFE|D8||
+
+X: 45
+T:45
+M:4/4
+L:1/8
+Q:1/4=120
+K:Bb% 4 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=-2  minor=1
+B,2 CD EFGA|BDEF GABc|dFGA Bcde|f8|f2 ed cBAG|FdcB AGFE|DBAG FEDC|B,8||
+
+X: 46
+T:46
+M:2/2
+L:1/4
+Q:1/2=80
+K:C
+V:1
+CEGc|ecGE|DFGB|dBGF|EGce|gec_B|AcfF|EGcE|
+K:F
+FAcf|cAFA|GBce|EGcB|AFAc|fAc_e|dFBd|cFAc|
+K:Bb
+BDFB|dBFD|CEFA|cAFE|DFBd|fdB_A|GBeE|DFBD|
+K:Eb
+EGBe|BGEG|FABd|DFBA|GEGB|eGB_d|cEAc|BEGB|
+K:Ab
+ACEA|cAEC|B,DEG|BGED|CEAc|ecA_G|FAdD|CEAC|
+K:Db
+ACEA|cAEC|B,DEG|BGED|CEAc|ecA_G|FAdD|CEAC|
+K:Gb
+GBdg|dBGB|Acdf|FAdc|BGBd|gBd_f|eGce|dGBd|
+K:B
+BDFB|dBFD|CEFA|cAFE|DFBd|fdB=A|GBeE|DFBD|
+K:E
+EGBe|BGEG|FABd|DFBA|GEGB|eGB=d|cEAc|BEGB|
+K:A
+ACEA|cAEC|B,DEG|BGED|CEAc|ecA=G|FAdD|CEAC|
+K:D
+DFAd|fdAF|EGAc|ecAG|FAdf|afd=c|BdgG|FAdF|
+K:G
+GBdg|dBGB|Acdf|FAdc|BGBd|gBd=f|eGce|dGBd|
+K:C
+cEGc|ecGE|DFGB|dBGF|EGce|gecG|EcGE|C4||
+
+X: 47
+T:47
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+CGFG EGDG|CDEF GFED|CAGA FAEA|DEFG AGFE|DBAB GBFB|
+EFGA BAGF|EcBc AcGc|FGAB cBAG|Fdcd BdAd|GABc dcBA|Gede ceBe|
+ABcd edcB|Afef dfcf|Bcde fedc|Bgfg egdg|ceGe c2z2|
+Ggfg egdg|cdef gfed|cfef dfcf|Bcde fedc|Bede ceBe|ABcd edcB|
+Adcd BdAd|GABc dcBA|GcBc AcGc|FGAB cBAG|FBAB GBFB|
+EFGA BAGF|EAGA FAEA|DEFG AGFE|DGFG EGDG|CEGc C2 z2||
+
+X: 48
+T:48
+M:4/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+% Time signature=4/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+C2 DC ECFC|GCAC GCFC|E2cB AGFE|D2ED FDGD|ADBD ADGD|
+F2dc BAGF|E2FA GEAE|BEcE BEAE|G2ed cBAG|F2GF AFBF|
+cFdF cFBF|A2fe dcBA|G2AG BGcG|dGeG dGcG|B2gf edcB|A2BA cAdA|
+eAfA eAdA|c2fe dcBA|G2AG BGcG|dGeG dGcG|B2ed cBAG|
+F2GF AFBF|cFdF cFBF|A2dc BAGF|E2FA GEAE|BEcE BEAE|G2cB AGFE|
+D2ED FDGD|ADBD ADGD|F2BA GFED|C2DC ECFC|GcEG C2 z2|| 
+
+X: 49
+T:49
+M:2/4
+L:1/8
+Q:1/4=120
+K:C% 2 flats
+V:1
+% Time signature=2/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+cBc|AcGc|FcEc|Ddcd|BdAd|GdFd|Eede|ceBe|
+AeGe|Ffef|dfcf|BfAf|Ggfg|egdg|cgBg|Afef|
+dfcf|BfAf|Gede|ceBe|AeGe|Fdcd|BdAd|GdFd|
+EcBc|AcGc|FcEc|DBAB|GBFB|EGDG|CGB,G|C2 z2|| 
+
+X: 50
+T:50
+M:2/4
+L:1/8
+Q:1/4=120
+% Last note suggests Dorian mode tune
+K:C% 2 flats
+V:1
+% Time signature=2/4  MIDI-clocks/click=18  32nd-notes/24-MIDI-clocks=8
+% MIDI Key signature, sharp/flats=0  minor=0
+Cc B,B|Cc ^C^c|Dd _E_e|=E=e Gg|Ff Ee|Dd ^C^c|Dd Ee|Ff ^F^f|
+Gg =F=f|Ee Gg|Ff Ee|Dd =C=c|B,B Cc|Dd Ff|Ee Dd|Cc Cz|
+B,B Cc|Dd Ee|Ff Dd|Ee Gg|^F^f =F=f|Ee Dd|Cc Ee|Dd D z|
+Cc B,B|Cc ^C^c|Dd _E_e|=E=e Gg|Ff Ee|Dd ^C^c|Dd Ee|Ff ^F^f|
+Gg =F=f|Ee Gg|Ff Ee|Dd =C=c|B,B Cc|Dd Ff|Ee Dd|Cc Cz||
+

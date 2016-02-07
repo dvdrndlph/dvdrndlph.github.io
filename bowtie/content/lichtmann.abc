@@ -1,0 +1,388 @@
+X:1
+T:Lichtmann 1
+C:M. Praetorious
+M:2/4
+L:1/8
+Q:"Allegro" 1/4=138
+K:C
+!mf!C"_spiritoso"D EF|G2 E2|FG A2|G2 DE|F2 GF|EF G2|
+F2 E2|D2 C2|CD EF|(GE) FG|(AF) GA|G2 DE|
+F2 GF|E2 FE|(DC) D2|C4||c2 c2|B2 AB|c2 B2|
+(AB) G2|AB cd|B2 cB|(AG) A2|G4|G2 c2|c2 BA|
+B2 c2|G2DE|(FD) GF|(EC) FE|(DC) D2|C4|]
+
+X:2
+T:Lichtmann 2
+C:F. J. Haydn
+M:2/4
+L:1/8
+Q:"Andante tranquillo" 1/4=63
+K:C
+"_mp legato"
+(E3/2F/) EE|F2 E2|D2 C2|D3/2E/ (F/D/)(E/C/)|(E2D/)B,/C/D/|(E3/2F/) EE|
+F2 E2|D2 C2|(D3/E/) CB,|(D2 C2)||(G3/2A/) GG|(A3/B/) AA|
+(B3/c/) BB|cd e2||(f3/g/) ff|(e3/f/) ee|(d3/e/) dc|
+(c2B2)||(E3/F/) EE|F2 E2|D2C2|(D3/E/) CB,|(E3/F/) GG|
+(F3/E/) (F/E/)F/D/|(E3/F/) GG|(F3/E/) (F/E/)F/D/|E2C2|E2G2|c4|]
+
+X:3
+T:Lichtmann 3
+C:F. Mendelssohn
+M:3/4
+L:1/8
+Q:"Andante tranquillo" 1/4=58
+K:C
+"_mp dolce"G>G|c3 (Gcd)|(d2e2) g2|f2 e2 d2|g4 e2|(c2B2)c2|(c2d3)e|f3 (edc)|(c2B2)G>G||
+c3 (Gcd)|(d2e2) g2|f2e2d2|g4e2|(c2B2) c2|(c2d3) e|f3 (dcB)|c4 G>G||
+g3 (ede)|f3 (edc)|(B2c2) A2|(A2G2)G>G|g3 (ede)|(gf2) (edc)|"_rit."c>B (B2c2)|
+!breath!Hd4"_a tempo"G>G||c3 (Gcd)|(d2e2)g2|f2e2d2|g4e2|(c2B2)c2|(c2d3) e|f3 (dcB)|c4|]
+
+X:4
+T:Lichtmann 4
+C:H. Purcell
+M:3/4
+L:1/8
+Q:"Allegro" 1/4=100
+K:C
+!f!G"_pomposo"G/G/ EG EG|cc/c/ Gc Gc|ee/d/ ce dg/f/|ed/c/ g4|
+GG/G/ EG EG|cc/c/ Gc Gc|ee/d/ ce dg/f/|ed/e/ c4||G/F/G/A/ GE GF/E/|
+D/C/D/E/ DG DE/F/|GE CD/E/ DE/F/|EG DE/F/ EF/E/|DE/D/ D3 C|C6|]
+
+X:5
+T:Lichtmann 5
+C:M. Praetorius
+M:6/4
+L:1/4
+Q:"Allegro" 3/4=66
+K:C
+!mf!G"_spiritoso"|c2Gc2d|G3/f/gecg|f2ed2c|B3/c/dBGg|
+f2ed2c|B3/c/dBGg|d2ef2e|d2cB2G|ABcBcd|
+c3c2c||BGdBGd|B/A/ G d/c/ BGD|EFGAGA|
+G3G2g|ecgecg|f3f2e|d2cc2B|c3c2|]
+
+X:6
+T:Lichtmann 6
+C:A. Campra
+M:2/2
+L:1/4
+Q:"Moderato" 1/2=80
+K:C
+!f!G2"_stately"G2|G2FE|DEDC|(B,3/A,/) G,G|AGAB|c B/A/ G F/E/|
+DCDB,|(C/G,/)A,/B,/ C/D/E/F/|G2G2|G2FE|DE(D/E/)D/C/|(B,3/A,/)G,G|
+AGAB|c B/A/ G F/E/|DC D/C/B,|C4||E2EE|E2D2|(E/D/)E/F/ED|
+E2DG|GABc|d3c/B/|AGAB|GDEF||G3/A/ (G/A/)G/A/|G2FE|
+DE (D/E/)D/C/|(B,/C/)B,/A,/ G,G|A/G/ F (A/G/)A/B/|c B/A/ G F/E/|DCD/C/B,|C4|]
+
+X:7
+T:Lichtmann 7
+C:G. Holst
+M:3/4
+L:1/8
+Q:"Adagio" 1/4=72
+K:C
+!mf!(E"_sostenuto"G)|A2(Ac) B>G|(cd) c2B2|(AB) A2G2|E4(EG)|A2 (Ac) B>G|
+(cd) e2 e2|(ed) c2 d2|c4 (GE)||D2D2(CE)|D2G,2(GE)|D2D2(EG)|A4 (AB)|
+c2B2A2|G2c2E2|(DC) D2E2|G4 (EG)|A2 (Ac) B>G|(cd) c2B2|
+(AB) A2G2|E4(EG)|A2 (Ac) B>G|(cd) e2e2|(e"_molto rit."d) c2d2|c4|]
+
+X:8
+T:Lichtmann 8
+C:A. Vivaldi
+M:3/4
+L:1/8
+Q:"Tranquillo" 1/4=60
+K:G
+!p!!tenuto!G"_dolce"(F/E/) !tenuto!D!tenuto!C !tenuto!B,!tenuto!A,|!tenuto!G,2G4-|G2 !tenuto!F!tenuto!E!tenuto!F2|G4!tenuto!B2|E4!tenuto!A2|!tenuto!F2!tenuto!D2!tenuto!G2|(cB) !tenuto!A3!tenuto!G|
+!tenuto!G2G4-|G2(FE) D2|!tenuto!E2!tenuto!A,2A2-|A2 (GF) !tenuto!G2|!tenuto!F2 B4-|B2 (AG) !tenuto!F2|!tenuto!B2!tenuto!E3!tenuto!D|D6|]
+
+X:9
+T:Lichtmann 9
+C:M. Praetorious
+M:2/2
+L:1/8
+Q:"Vivace" 1/2=100
+K:G
+!f!Bc"_lively"|d2d2d3c|B2G2G2cd|e2c2c3B/c/|d2B2B2B2|A2G2A3G/A/|
+B2G2G2FG||A2A2A3G|F2D4A2|F2D4d2|B2G4cd|e2c2cde2|d2B4FG|
+A2A2A2AG|F2D4A2|F2D4d2|B2G4cB|A2G2F3E/F/|G4G2|]
+
+X:10
+T:Lichtmann 10
+C:M. Praetorious
+M:2/4
+L:1/8
+Q:"Pomposo" 1/4=80
+K:G
+!ff!B/c/"_marcato"d dd|d3c|(BG) GA|F2D2|B/c/d dd|d3c|BG GA|G4||
+B/c/d/e/ dd|d3c|B/A/G GA|(F/G/)F/E/ D2|B/c/d d/e/d/e/|d3c|B/A/G GA|G3 "_mp"B||
+BG GA|BG cA|BG GA|F2DB|BG GA|BG cA|BG GA|D3B||
+B/A/G GA|B/A/G c/B/A|BG G/F/G/A/|F>E DB|B/A/G GA|B/A/G/B/ c/B/A/c/|BG G(A//G//F//E//)|D4||
+B/c/d dd|d3c|BG GA|F>E DG/A/|B/c/d/e/ dd|d3 c|B/A/G/F/ G/F/G/A/|G4|]
+
+X:11
+T:Lichtmann 11
+C:G. Linley
+M:3/4
+L:1/8
+Q:"Moderato" 1/4=88
+K:G
+"_mp legato"D2|(B3AG2)|G4(FG)|(A2GF) ED|(D2G3)A|B2B3B|d4 (cB)|
+A2B2G2|A4D2|(B3AG2)|G4 (FG)|(A2GF) ED|(D2G3) A|(B2G3)c|(B2G2) E2|
+D2 (EG BA)|G4d2|(ed) cB AG|G4 GG|G2 (G2A2)|(BG3)zD|E4 (FG)|
+G4 A2|B2 ("_rit."cB) AG|HE4 z"_a tempo"D|(B3AG2)|G4 (FG)|(A2GF) ((3FED)|(DG3) A2|
+(B2G2) c2|(B2G2) E2|D2 (EF) ((3GAB)|c4(Bc)|(ed) cB AG|(dc) BA GE|D2 ("_rit."EG) (B>A)|G4|]
+
+X:12
+T:Lichtmann 12
+C:W. Byrd
+M:C
+L:1/8
+Q:"Allegro" 1/4=132
+K:G
+!f!d4"_deciso"d2d2|B3cd2d2|e2d2c2B2|A6 B2|c3 d ef g2|G3 A Bc d2|
+c2 B2 AGAB|G8||(dG)AB cded|(BA)Bc B2d2|(ef)de cdBc|A4A2AB|
+c3d (e/d/e/f/) g2|(GF)GA BcdB|cBAG (AG)AB|G8||d2 dd d2d2|e2f2g4|
+B2BB B2 G2|A2 B2c4|B3 A GA B2|c3B AB c2|d3c Bc d2|e3d cdBc|
+A2G2G2F2|G6 (F/G/A/B/)|c3 B (A/G/A/B/) c2|d3 c Bcdf|(ef)de cdBc|A2G2 (GA)GF|G8|]
+
+X:13
+T:Lichtmann 13
+C:F. J. Haydn
+M:2/4
+L:1/8
+Q:"Allegro" 1/4=126
+K:G
+!mf!D3"_spiritoso"G|E3G|(FA) DF|G2 z G|(FA) DF|G2 z G|(F/G/)A/F/ (D/E/)F/D/|
+G3(A/B/)|cc BB|AA GG|(F/G/)A/B/ (A/G/)F/E/|D4||D3G|E3G|(FA) DF|G2 z G|
+(FA) DF|G2 z G|(F/G/)A/F/ (D/E/)F/D/|G3 (A/B/)|cc BB|AA GG|(A/B/)c/A/ (F/G/)A/F/|G4|]
+
+X:14
+T:Lichtmann 14
+C:W. Mozart
+M:6/8
+L:1/8
+Q:"Adante" 1/8=104
+K:F
+!p!(A3/"_grazioso"B/A) c2c|(G3/A/G) B2B|F2F G2G|A2 (c/B/) (A2G)|(A3/B/A) c2c|(G3/A/)G B2B|
+F2G A2B|A2G F3||(c3/d/c) d2d|{(de)}(f3/e/d)( dc)c|(cA)F (cB)G|(cA)F (A2G)||
+(A3/B/A) c2c|(G3/A/G) B2B|F2G A2B|A2G G2A|A2B c2 (d/e//f//)|F2 (A/G/) F3|]
+
+X:15
+T:Lichtmann 15
+C:W. Mozart
+M:2/4
+L:1/8
+Q:"Allegro" 1/4=69
+K:F
+!mf!(A/"_energico"G/)|FF (G/F/E/F/)|GA G(G/E/)|C>C c>c|AG F(F/A/)|(G/F/E/F/) (G/F/E/F/)|
+GA G>G|c>c G>G|ED C(C/E/)|GG (A/G/F/G/)|AG F"_rit."c|E>E (G/F/E/F/)|
+GA !breath!HG "_a tempo"(E|F)(F//G//A//B//) c(B|A)(F//G//A//B//) c(F/G/)|A>A (B/A/G/A/)|Bc d(B/G/)|({/c}E>)E (F/E/D/E/)|
+(F/A/)(G/E/) F(F//G//A//B//)|c(B A)(F//G//A//B//)|c(E F)(C/F/)|(A>c)( c/B/A/G/)|FA F|]
+
+X:16
+T:Lichtmann 16
+C:J. S. Bach
+M:9/8
+L:1/8
+Q:"Con moto" 3/8=66
+K:F
+!mf!z(F"_sostenuto"G) (AcB) (Bdc)|(cfe) (fcA) (FGA)|(Bcd) (cBA) (GAF)|(EFG) (CEG) (BAG)|
+(AFG) (AcB) (Bdc)|(cfe) (fcA) (FGA)|(DcB) (AGF) (CFE)|(FAc) (fcA) F3||
+z(CD) (EGF) (GBA)|(FAG) (AcB) (Bdc)|(cfe) (fcA) (FGA)|(Bcd) (cBA) (GAF)|
+(EFG) (CEG) (BAG)|(AFG) (AcB) (Bdc)| (cfe) (fcA) (FGA)|"_rit."(DcB) (AGF) (CFE)|F6 |]
+
+X:17
+T:Lichtmann 17
+C:J. J. Mouret
+M:2/2
+L:1/8
+Q:"Allegro" 1/2=76
+K:F
+!f!A"_stately"G|F2C2F2G2|(AB)AG FGAB|c2 cc c2d2|(c/d/c2) B A2 AB|c2f2c2 cB|A2 GA (Bc)AB|
+G2C2G2GG|G6 AG|F2C2F2G2|(AB)AG FGAB|c2 cc c2d2|(c/d/c2) B A2 AB|c2f2c2 cB|
+A2 GA (Bc)AB|(Gc)BA G3 F|F6 AB||c2 cc c2 c2|A2F2 (FE)FG|A2 GA (BA)GF|
+(GF)ED CBAB|c2 cc c2 c2|A2 F2 (FE)FG|A2 GA (BA)GF|c6 AG||F2C2 (FE)FG|
+(AB)AG (F/C/D/E/ F/G/A/B/)|c2 cc c2 d2|(c/d/c2) B A2 AB|c2f2c2 cB|A2 GA (Bc/B/) (AB/A/)|(Gc)BA G3 F|F6|]
+
+X:18
+T:Lichtmann 18
+C:G. F. Handel
+M:3/4
+L:1/8
+Q:"Allegro moderato" 1/4=132
+K:F
+!f!A2A2A2|A2 (AB) (AB)|c2 c2 c2|c3 (B/c/)d2|B2B2B2|B3 (A/B/)c2|A2 AA AA|A6||
+AG F2 A2|A2 AB (A/G/A/B/)|c2c2(dc)|c3 (B/c/)d2|B2B2 (c/B/A/B/)|B3 (A/B/) c2|A2 AA AA|A6||
+c2c2c2|c2d2e2|f2ff ff|f4c2|d2c2B2|A2G2F2|G2 GG GG|G6||
+(AB)c2(BA)|!p!(GA)B2(AG)|(AB)c2(BA)|!f!(GA)B2(AG)|(AB)c2B2|A2(BA) GA|F2FF FF|F6|]
+
+X:19
+T:Lichtmann 19
+C:J. Dowland
+M:C
+L:1/8
+Q:"Moderato" 1/4=104
+K:D
+"_mp dolce"z2F>GA4|z2A2B2A2|G3GF4|z2A2A2G2|F2F2E4|z2E2F2D2|
+E3EE4||zA,!tenuto!D2zB,!tenuto!E2|zC!tenuto!F2zD!tenuto!G2|zEA6-|A4-AAGF|E3F EDD2-|DC/B,/C2D4||
+zA,!tenuto!D2 z/ (B,/C/D/)!tenuto!E2|zC!tenuto!F2z(A/G/)!tenuto!G2|zEA6-|A4-AA (G/A/)G/F/|E3F EDD2-|DC/B,/ (D/C/)B,/C/D4|]
+
+X:20
+T:Lichtmann 20
+C:M. Charpentier
+M:2/2
+L:1/8
+Q:"Allegro moderato" 1/2=66
+K:D
+!f!A,2"_stately"|D2DEF2D2|A4F3F|G2AG FG A2|(ED)EF E2A,2|D2DEF2D2|
+A4F3F|(GA)FGE3D|D6AG||F2D2G2GF|E3DC2F2|E2DEC2F2|D3CB,2B2|
+B2A2A2G2|F3ED2A2|A3BB3A|A6A,2||D2DE FE D2|A>B (AB)AG F3 F|
+B2A2A2G2|F3ED2A2|A3BB3A|A6A,2||D2DE FE D2|A>B (A/B/)A/G/ F3F|
+G2AG FGAB|EDEF E2 (A/G/)F/E/|D2DEF2(D/E/)F/G/|A4F3F|G(A/G/) F(G/F/)E3D|D6|]
+
+X:21
+T:Lichtmann 21
+C:C. M. Von Weber
+M:C
+L:1/8
+Q:"Adagio" 1/4=58
+K:D
+!p!(A4"_sostenuto"F2) (DF)|(E3G/F/E2)z2|(F4D2) (FA)|(A3GF2)z2|(d4B2) (GB)|
+(A4F2) (DF)|(AG)E2(GF)D2|(E6A2)|(A4F2)(DF)|(E3G/F/E2) z2|
+(F4D2) (FA)|(A3AB2) z2|(d4B2) (GB)|(A4F2) (DF)|A>D (F4E2)|D6|]
+
+X:22
+T:Lichtmann 22
+C:G. P. Telemann
+M:2/2
+L:1/8
+Q:"Vivace" 1/2=96
+K:D
+!f!D"_spiritoso"A,|D2D2 (DE)FG|A2A2A2FG|A2 GF G2 FE|(FG)FE D2 FD|
+C2FDE2FD|E2A,2A,2CA,|B,2CA,B,2CA,|B,2E2E2B,2|
+C2 DE B,2CD|C2 DE B,2 CD|(CB,)A,B,B,3A,|A,2EE CCEE|
+A2EE CCEE|A,6AE||A2A2(AB)cd|e2e2e2dc|f2ede2dc|
+(de)dcB2BF|G2E2E2GE|F2B,2B,2AF|(GF)EF F3E|E6 B,C|
+D2(DE/F/E2)D2|D2CB, (CD)EF|G2(GA/B/A2)G2|G2FEF2AF|G2E2E2GE|
+F2D2D2FD|(EG)FEE3D|D2AA FFAA|d2dd AAFF|D6|]
+
+X:23
+T:Lichtmann 23
+C:G. F. Handel
+M:3/4
+L:1/8
+Q:"Maestoso" 1/4=92
+K:D
+!f!d4"_stately"A2|F2D2A2|d2def2|d6|d2ded2|
+e2efe2|f2g2f2|e6|FGA2A2|BAG2F2|
+EFG2G2|AGF2E2|DED2D2|G2E2F2-|FGE3D|D6|]
+
+X:24
+T:Lichtmann 24
+C:M. Ravel
+M:C
+L:1/8
+Q:"Lento" 1/4=54
+K:Bb
+!p!(B4"_espressivo"-BcAG|F2(GA) (AG)G2)|(d4-decB|A2Bc- c)(dBA|
+G2AB- BcAG|A6)z2|z2d4(d2-|d4-dcfd)|
+(d2c2B2c2|G4-G)(FBA|G)(DFGA2)((3EDC|D8)|]
+
+X:25
+T:Lichtmann 25
+C:G. P. Telemann
+M:C
+L:1/8
+Q:"Allegro" 1/4=116
+K:Bb
+!f!B2"_grandioso"B>cB2F2|B>c d2-d>e f>e|d2 d>ed2c2|B>cd2-d>cd>B|
+c2f2e2d2|d2c>B c>F d2|c2f2e2d2|d2 c>B c>F c2|
+d2G2c2F2|G>A B4 A>G|A2 B>C G3 F|F2f2c>B A>G|
+A2f2 c>B A>G|A>F B4 A>G|A2B>cG3F|F8|]
+
+X:26
+T:Lichtmann 26
+C:G. F. Handel
+M:C|
+L:1/8
+Q:"Allegro maestoso" 1/2=66
+K:Bb
+!f!B4"_stately"f4|d2c2B2f2|d2c2d2B2|c4F4|B4f4|d2c2B2f2|
+d2 cB cedc|B8||!mf!B2d4cB|c2f4F2|B2d4cB|c4F4|B2d4cB|
+c2e4dc|f2edd2cB|B6!f!F2|B2AB c2Bc|d2B2F2c2|d2cde2de|
+f2d2B2f2|g4f4|e4d4|c2d2d2cB|c6"_mp"f2|f2c2dcBd|
+c6!f!c2|f2fed2dc|B2BAG2cd|e2edc2cB|A2AGF2F2|B2F2c2F2|
+d4c4|d2c2d2e2|f6f2|g2fgc2de|f2efB2fe|d2f2d2cB|B8|]
+
+X:27
+T:Lichtmann 27
+C:J. C. Bach
+M:C
+L:1/8
+Q:"Allegretto" 1/4=126
+K:Bb
+!mf!F2"_lightly"|B2cB (BA)GF|B2cB (BA)GF|B2c2d2e2|f6F2|
+B2cB (BA)GF|B2cB (BA)GF|B2D2E2F2|B,6FG|
+(AG)FG ABcd|e4d4|g4f4|f2e2d2F2|
+B2 (cB) BAGF|B2 (cB) BAGF|B2D2E2F2|B,6|]
+
+X:28
+T:Lichtmann 28
+C:A. Dvorak
+M:C
+L:1/8
+Q:"Lento" 1/8=72
+K:Bb
+!p!(D>F)"_dolce" F2(D>C) B,2|(D>D F>D C4)|(D>F) F2 (DC) B,2|(CD C>B,) B,4|
+(G>B)B2(AF) G2|(GBAFG4)|(G>B) B2 (AF) G2|(GBAF) G4|(D>F) F2 (D>C B,2)|
+(C>D F>D C4)|(D>F) F2 (B>c) d2|(c>B cG) B4|(c>B cG) B4|(c3Bc2G2)|B8|]
+
+X:29
+T:Lichtmann 29
+C:G. F. Handel
+M:3/8
+L:1/8
+Q:"Allegretto" 1/8=69
+K:A
+!mf!(A"_lively"E)A|A (A3/G//A//)|(BE)B|B (B3/A//B//)|(c3/4d//) ed|(cA)B|
+(c3/4d//) ed|(c/B/) AB|(c/B/) AB|B2 (B//c//d/)|(c/B/) AB|B2!p!B,|
+(C3/4D//) ED|(C/B,/) A,B,|(C/B,/) A,B,|B,2 (B,//C//D/)|(C/B,/) A,B,|B,3||
+!mf!E (E3/D//E//)|(FEF)|D (D3/C//D//)|(EDE)|C (C3/B,//C//)|(DCD)|
+(B,ED)|C3|D3|E3|F3|(cA)c|(dB)d|(ec)e|
+(dB)d|(cB)c|(BA)B|B2 (B//c//d/)|(cB)c|(BA)B|(AE)c|
+A2 !p!(A,//B,//C/)|(B,A,)B,|B,2 (B,//C//D/)|(CB,)C|(B,A,)B,|(A,E)C|A,3|]
+
+X:30
+T:Lichtmann 30
+C:W. Boyce
+M:C
+L:1/8
+Q:"Allegro" 1/4=84
+K:A
+!f!AE (C/A,/)C/E/ AA A3/(B//c//)|BB B3/(c//d//) c/B/A A>c|e2 (c/A/)c/e/ d2 (B/E/)B/d/|cA (E/A/)c/e/ c2 B2|
+!p!e2 (c/A/)c/e/ d2 (B/E/)B/d/|cA (E/A/)c/e/ c2B2|!f!AA/A/ Ac/A/ BB/B/ Bd/B/|cc/c/ ce/c/ dd/d/ df/d/|
+ec/e/ dB/d/ (c/d/)e/f/ (e>d)|c(d/B/) (B>A) A2 (A/B/)c/d/|e(c//d//e/) d(B//c//d/) (c/d/)e/f/ (e/f/)e/d/|c/e/(d//c//B//A//) (B>A) HA4|]
+
+X:31
+T:Lichtmann 31
+C:G. Concone
+M:C
+L:1/4
+Q:"Moderato" 1/4=92
+K:A
+!mf!(A,2"_smoothly"B,2|C3/DE2)z|(F2G2|A3/B/c)z|(c3B|A3G|F3D|C2B,)z|
+(E2G2|A2E)z|(B2E2|c2A)z|(E2G2|A2E)z|(DECE|B,3)z|
+(A,2B,2|C3/D/E)z|(F2G2|A3/B/c)z|(c3B|A3F|E4|A,2)z2|]
+
+X:32
+T:Lichtmann 32
+C:L. Beethoven
+M:2/4
+L:1/8
+Q:"Allegro" 1/4=108
+K:A
+!mf!c/d/"_playfully"|(ec) BA|G(f2e)|Bc de|c3 c/d/|(ec) BA|G (f2e)|Bc de|
+A3 B/c/|dd dd|(d/e/)d/c/ BB/c/|dd dd|(d/e/)d/c/ BB/c/|d (d2c)|f (f2e)|Bc de|
+(d2c)B/c/|dd dd|(d/e/)d/c/ BB/c/|dd dd|(d/e/)d/c/ BB/c/|d (d2c)|f (f2e)|Bc de|
+A3 c/d/|(ec) BA|G (f2e)|Bc de|c3 c/d/|(ec) BA|G (f2e)|Bc de|A3|]
+
