@@ -658,6 +658,9 @@ function AbcDE() {
             var sequence_number = get_current_sequence_number();
             var preset = get_preset_sequence(sequence_number);
             set_sequence(undefined, preset);
+            rerender();
+            Current_Note = Notes_On_Line[0][0][0];
+            highlight_note(Current_Note);
         }
     }
 
