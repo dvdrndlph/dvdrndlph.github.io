@@ -532,13 +532,6 @@ function AbcDE() {
         set_field('comments', metadata['comments']);
     }
 
-    function preset_sequence() {
-        var sequence_number = get_current_sequence_number();
-        var autosaved = get_autosaved_sequence(sequence_number);
-        var preset = get_preset_sequence(sequence_number);
-        set_sequence(autosaved, preset);
-    }
-
     function set_sequence(autosaved, preset) {
         var finger_str = preset.sequence;
         var presetting = true;
@@ -549,7 +542,7 @@ function AbcDE() {
         }
 
         var should_restore = false;
-        if (autosaved.sequence && autosaved.sequence !== finger_str) {
+        if (autosaved && autosaved.sequence && autosaved.sequence !== finger_str) {
             var restore_setting = get_setting('restore');
             if (restore_setting === 'always') {
                 should_restore = true;
@@ -645,6 +638,27 @@ function AbcDE() {
         Autosaver = setInterval(function () {
             autosave();
         }, AUTOSAVE_MS);
+    }
+
+    function preset_sequence() {
+        var sequence_number = get_current_sequence_number();
+        var autosaved = get_autosaved_sequence(sequence_number);
+        var preset = get_preset_sequence(sequence_number);
+        set_sequence(autosaved, preset);
+    }
+
+    function restore_sequence() {
+        if (! Org_Abc_Str) {
+            return;
+        }
+
+        var should_restore = confirm("All changes you have made to this fingering sequence will be discarded, " +
+                "and the initial sequence will be restored. Are you sure you want to proceed?");
+        if (should_restore) {
+            var sequence_number = get_current_sequence_number();
+            var preset = get_preset_sequence(sequence_number);
+            set_sequence(undefined, preset);
+        }
     }
 
 // We return an array of strings that start with the regex re
@@ -850,7 +864,7 @@ function AbcDE() {
     }
 
     function import_url() {
-        var prompt = 'Please enter URL for abc file to open.';
+        var prompt = 'Please enter URL for file to open.';
         var default_url = DIDACTYL_URL + '/abc/OpenWTC/pf02.abc';
         var url = window.prompt(prompt, default_url);
         if (url !== null) {
@@ -1320,6 +1334,16 @@ function AbcDE() {
         label.appendChild(document.createTextNode('Annotated'));
         cell.appendChild(checkbox);
         cell.appendChild(label);
+        row.appendChild(cell);
+
+        var reset_button = document.createElement('input');
+        reset_button.type = 'image';
+        reset_button.src = IMAGE_DIR + '/reload.svg';
+        reset_button.width = button_width;
+        reset_button.alt = 'reset';
+        reset_button.onclick = restore_sequence;
+        cell = document.createElement('td');
+        cell.appendChild(reset_button);
         row.appendChild(cell);
 
         var url_button = document.createElement('input');
