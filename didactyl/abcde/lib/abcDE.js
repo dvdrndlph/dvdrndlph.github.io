@@ -1227,6 +1227,8 @@ function AbcDE() {
         keypad_div.appendChild(symbol_div);
         keypad_div.appendChild(document.createElement('br'));
         keypad_div.appendChild(number_div);
+        insert_keypad_image_button(number_div, 'undo', 'action-undo.svg', 'undo');
+        insert_keypad_image_button(number_div, 'redo', 'action-redo.svg', 'redo');
         insert_keypad_button(number_div, 'one', '1');
         insert_keypad_button(number_div, 'two', '2');
         insert_keypad_button(number_div, 'three', '3');
