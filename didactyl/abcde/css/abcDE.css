@@ -24,7 +24,7 @@ table {
     font-weight: bold;
 }
 
-#backspace, #pencil, #previous, #next {
+#backspace, #pencil, #previous, #next, #undo, #redo {
     margin-left: 4px;
     margin-right: 4px;
     margin-top: 4px;
