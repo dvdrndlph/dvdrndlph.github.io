@@ -532,8 +532,85 @@ function AbcDE() {
         set_field('comments', metadata['comments']);
     }
 
-    function set_sequence(autosaved, preset) {
+    function set_sequence(finger_str, field_name) {
+        if (! finger_str) {
+            return;
+        }
+
+        console.log("Setting fingers: ", finger_str);
+        var staff_fingerings = {};
+        var staff_lines = finger_str.split('@');
+        var staff_num;
+        var line_num;
+        var fingering;
+        for (staff_num = 0; staff_num < staff_lines.length; staff_num++) {
+            var hand = get_staff_hand(staff_num);
+            staff_fingerings = [];
+            var finger_lines = staff_lines[staff_num].split('&');
+            for (line_num = 0; line_num < finger_lines.length; line_num++) {
+                var finger_line = finger_lines[line_num];
+                staff_fingerings = staff_fingerings.concat(get_tokens(PRESET_RE, finger_line));
+            }
+
+            var sorted_staff_note_times = get_sorted_staff_note_times(staff_num);
+            for (var time_index = 0; time_index < sorted_staff_note_times.length; time_index++) {
+                var time = sorted_staff_note_times[time_index];
+                var notes = Staff_Notes_At_Time[staff_num][time];
+                notes.sort(order_notes);
+                if (notes[0].grace) {
+                    notes[0][field_name] = '';
+                    for (var i = 0; i < notes[0].size; i++) {
+                        fingering = staff_fingerings.shift();
+                        if (!fingering) {
+                            console.log('Preset fingering MISSING for note:');
+                            print_note('preset grace note', notes[0]);
+                        }
+                        fingering = get_handed_fingering(fingering, hand);
+                        hand = get_new_last_hand(fingering, hand);
+                        notes[0][field_name] += fingering;
+                    }
+                }
+
+                var notes_with_pit = get_sorted_synchronous_notes_with_pit(notes);
+                var pits = get_sorted_synchronous_pits(notes_with_pit);
+
+                // Initialize pit fingerings to empty string. We will build them
+                // up from scratch.
+                for (i = 0; i < pits.length; i++) {
+                    var pit = pits[i];
+                    for (var j = 0; j < notes_with_pit[pit].length; j++) {
+                        var pit_note = notes_with_pit[pit][j];
+                        pit_note[field_name] = '';
+                    }
+                }
+
+                for (i = 0; i < pits.length; i++) {
+                    var pit = pits[i];
+                    for (var j = 0; j < notes_with_pit[pit].length; j++) {
+                        var pit_note = notes_with_pit[pit][j];
+                        if (pit_note.grace) {
+                            continue;
+                        }
+                        if (!pit_note[field_name]) {
+                            pit_note[field_name] = '';
+                        }
+                        fingering = staff_fingerings.shift();
+                        if (!fingering) {
+                            console.log('Preset fingering MISSING for note:');
+                            print_note('preset pit note', pit_note);
+                        }
+                        fingering = get_handed_fingering(fingering, hand);
+                        hand = get_new_last_hand(fingering, hand);
+                        pit_note[field_name] += fingering;
+                    }
+                }
+            }
+        }
+    }
+
+    function set_preferred_sequence(autosaved, preset) {
         var finger_str = preset.sequence;
+        var preset_finger_str = preset.sequence;
         var presetting = true;
         var setting = get_setting('preset');
         if (!setting || setting === 'none') {
@@ -563,77 +640,8 @@ function AbcDE() {
             restore_metadata(preset);
         }
 
-        if (finger_str) {
-            console.log("Presetting fingers: ", finger_str);
-            var staff_fingerings = {};
-            var staff_lines = finger_str.split('@');
-            var staff_num;
-            var line_num;
-            var fingering;
-            for (staff_num = 0; staff_num < staff_lines.length; staff_num++) {
-                var hand = get_staff_hand(staff_num);
-                staff_fingerings = [];
-                var finger_lines = staff_lines[staff_num].split('&');
-                for (line_num = 0; line_num < finger_lines.length; line_num++) {
-                    var finger_line = finger_lines[line_num];
-                    staff_fingerings = staff_fingerings.concat(get_tokens(PRESET_RE, finger_line));
-                }
-
-                var sorted_staff_note_times = get_sorted_staff_note_times(staff_num);
-                for (var time_index = 0; time_index < sorted_staff_note_times.length; time_index++) {
-                    var time = sorted_staff_note_times[time_index];
-                    var notes = Staff_Notes_At_Time[staff_num][time];
-                    notes.sort(order_notes);
-                    if (notes[0].grace) {
-                        notes[0].fingering = '';
-                        for (var i = 0; i < notes[0].size; i++) {
-                            fingering = staff_fingerings.shift();
-                            if (!fingering) {
-                                console.log('Preset fingering MISSING for note:');
-                                print_note('preset grace note', notes[0]);
-                            }
-                            fingering = get_handed_fingering(fingering, hand);
-                            hand = get_new_last_hand(fingering, hand);
-                            notes[0].fingering += fingering;
-                        }
-                    }
-
-                    var notes_with_pit = get_sorted_synchronous_notes_with_pit(notes);
-                    var pits = get_sorted_synchronous_pits(notes_with_pit);
-
-                    // Initialize pit fingerings to empty string. We will build them
-                    // up from scratch.
-                    for (i = 0; i < pits.length; i++) {
-                        var pit = pits[i];
-                        for (var j = 0; j < notes_with_pit[pit].length; j++) {
-                            var pit_note = notes_with_pit[pit][j];
-                            pit_note.fingering = '';
-                        }
-                    }
-
-                    for (i = 0; i < pits.length; i++) {
-                        var pit = pits[i];
-                        for (var j = 0; j < notes_with_pit[pit].length; j++) {
-                            var pit_note = notes_with_pit[pit][j];
-                            if (pit_note.grace) {
-                                continue;
-                            }
-                            if (!pit_note.fingering) {
-                                pit_note.fingering = '';
-                            }
-                            fingering = staff_fingerings.shift();
-                            if (!fingering) {
-                                console.log('Preset fingering MISSING for note:');
-                                print_note('preset pit note', pit_note);
-                            }
-                            fingering = get_handed_fingering(fingering, hand);
-                            hand = get_new_last_hand(fingering, hand);
-                            pit_note.fingering += fingering;
-                        }
-                    }
-                }
-            }
-        }
+        set_sequence(finger_str, 'fingering');
+        set_sequence(preset_finger_str, 'preset_fingering');
 
         Autosaver = setInterval(function () {
             autosave();
@@ -644,7 +652,7 @@ function AbcDE() {
         var sequence_number = get_current_sequence_number();
         var autosaved = get_autosaved_sequence(sequence_number);
         var preset = get_preset_sequence(sequence_number);
-        set_sequence(autosaved, preset);
+        set_preferred_sequence(autosaved, preset);
     }
 
     function restore_sequence() {
@@ -657,7 +665,7 @@ function AbcDE() {
         if (should_restore) {
             var sequence_number = get_current_sequence_number();
             var preset = get_preset_sequence(sequence_number);
-            set_sequence(undefined, preset);
+            set_preferred_sequence(undefined, preset);
             rerender();
             Current_Note = Notes_On_Line[0][0][0];
             highlight_note(Current_Note);
@@ -2699,14 +2707,18 @@ function AbcDE() {
         var seq = get_current_sequence();
         seq.sequence = abcdf;
         var autosaved = get_autosaved_sequence(seq_number);
-        set_sequence(autosaved, seq);
+        set_preferred_sequence(autosaved, seq);
         rerender();
         highlight_note(Current_Note);
     }
 
     function collect_manual_input() {
         punt_on_input();
-        var prompt = 'Please enter abcD fingering string for the selected note.';
+        var prompt = '';
+        if (Current_Note.preset_fingering) {
+            prompt += "Preset (recommended) fingering: " + Current_Note.preset_fingering + "\n\n";
+        }
+        prompt += 'Please enter abcD fingering string for the selected note.';
         var initial_fingering = Current_Note.fingering;
         var new_fingering = window.prompt(prompt, initial_fingering);
         try {
