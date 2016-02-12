@@ -77,7 +77,10 @@
  */
 function AbcDE() {
     'use strict';
+
     var Options,
+        Redo = [],
+        Undo = [],
         Rendering_Complete = false,
         Magnification = 1,
         Preferences = {},
@@ -160,6 +163,8 @@ function AbcDE() {
     var MAX_MAGNIFICATION = 3.0;
     var MIN_MAGNIFICATION = 0.3;
 
+    var Z_CODE = 90;
+    var Y_CODE = 89;
     var ENTER_CODE = 13;
     var BACKSPACE_CODE = 8;
     var TAB_CODE = 9;
@@ -180,6 +185,8 @@ function AbcDE() {
         if (Autosaver) {
             clearInterval(Autosaver);
         }
+        Redo = [];
+        Undo = [];
         Md5_Key = '';
         Abc_Fname = "noname.abc";
         Grace_Notes_In_Source = undefined;
@@ -1484,37 +1491,46 @@ function AbcDE() {
             " Grace: " + note.grace);
     }
 
-    function store_note_from_symbol(music_types, elem) {
+    function purge_redo_stack() {
+        for (var i = 0; i < Notes.length; i++) {
+            var note = Notes[i];
+            note.undone_fingerings = [];
+        }
+        Redo = [];
+    }
+
+    function Note(music_types, elem) {
         if (music_types[elem.type] != 'note' &&
             music_types[elem.type] != 'grace') {
             return {};
         }
 
-        var note = {};
-        note.line = -1; // Unknown until SVGs are generated.
-        note.grace = false;
-        note.anno_start = elem.istart; // For identifying SVG rects.
+        this.line = -1; // Unknown until SVGs are generated.
+        this.grace = false;
+        this.anno_start = elem.istart; // For identifying SVG rects.
 
-        var size = 0;
-        var pits = [];
+        this.size = 0;
+        this.pitches = [];
+        this.start = -1;
+        this.end = -1;
+        this.starts = [];
+        this.stops = [];
+
         if (music_types[elem.type] === 'note') {
-            size = elem.notes.length;
-            for (var i = 0; i < size; i++) {
-                pits.push(elem.notes[i].pit);
+            this.size = elem.notes.length;
+            for (var i = 0; i < this.size; i++) {
+                this.pitches.push(elem.notes[i].pit);
             }
             // Make sure chord pitches are ordered from low to high.
-            pits.sort(function (a, b) {
+            this.pitches.sort(function (a, b) {
                 return parseInt(a) - parseInt(b);
             });
-            note.start = elem.istart; // For finding position in ABC.
-            note.end = elem.iend;
+            this.start = elem.istart; // For finding position in ABC.
+            this.end = elem.iend;
         } else {
-            var starts = [];
-            var stops = [];
-            note.grace = true;
-            i
-            note.start = elem.extra.istart;
-            size = 1;
+            this.grace = true;
+            this.start = elem.extra.istart;
+            this.size = 1;
             var last_note = elem.extra;
             if (!last_note.notes) {
                 alert("Who turned off the notes?!");
@@ -1529,37 +1545,62 @@ function AbcDE() {
                 // We will need to embed fingering decorations (e.g., "!2!") to prior to
                 // each element of the grace note, and we don't want to parse the abc
                 // string ourselves, so we steal the spans from the abc2svg parse.
-                starts.push(last_note.istart);
-                stops.push(last_note.iend);
+                this.starts.push(last_note.istart);
+                this.stops.push(last_note.iend);
 
-                pits.push(last_note.notes[0].pit);
+                this.pitches.push(last_note.notes[0].pit);
                 if (!last_note.next) {
-                    note.end = last_note.iend;
+                    this.end = last_note.iend;
                     break;
                 }
                 last_note = last_note.next;
                 size++;
             }
-            note.starts = starts;
-            note.stops = stops;
         }
 
-        note.time = elem.time;
-        note.size = size;
-        note.pitches = pits;
-        note.string = Org_Abc_Str.substring(note.start, note.end);
-        note.voice = elem.v;
-        note.staff = elem.st;
-        Notes.push(note);
-        Note_At[elem.istart] = note; // !! We link to the overall order of note.
-        if (!(note.staff in Staff_Notes_At_Time)) {
-            Staff_Notes_At_Time[note.staff] = {};
-        }
-        if (!(note.time in Staff_Notes_At_Time[note.staff])) {
-            Staff_Notes_At_Time[note.staff][note.time] = [];
-        }
-        Staff_Notes_At_Time[note.staff][note.time].push(note);
-        return note;
+        this.istart = elem.istart;
+        this.time = elem.time;
+        this.string = Org_Abc_Str.substring(this.start, this.end);
+        this.voice = elem.v;
+        this.staff = elem.st;
+        this.prior_fingerings = [];
+        this.undone_fingerings = [];
+
+        this.set_fingering = function(fingering_str) {
+            purge_redo_stack();
+            if (this.fingering) {
+                this.prior_fingerings.push(this.fingering);
+            }
+            this.fingering = fingering_str;
+            Undo.push(this);
+        };
+
+        this.undo_fingering_change = function() {
+            if (this.prior_fingerings.length > 0) {
+                this.undone_fingerings.push(this.fingering);
+                this.fingering = this.prior_fingerings.pop();
+            }
+            Redo.push(this);
+        };
+
+        this.redo_fingering_change = function() {
+            if (this.undone_fingerings.length > 0) {
+                if (this.fingering) {
+                    this.prior_fingerings.push(this.fingering);
+                }
+                this.fingering = this.undone_fingerings.pop();
+            }
+            Undo.push(this);
+        };
+
+        this.get_fingering = function() {
+            if (! this.fingering) {
+                return undefined;
+            }
+            return this.fingering;
+        };
+
+        return this;
     }
 
     function get_score_width() {
@@ -1631,7 +1672,18 @@ function AbcDE() {
             }
             var elem = tsfirst;
             while (elem) {
-                store_note_from_symbol(music_types, elem);
+                var note = new Note(music_types, elem);
+                if (note.istart) {
+                    Notes.push(note);
+                    Note_At[note.istart] = note; // !! We link to the overall order of note.
+                    if (!(note.staff in Staff_Notes_At_Time)) {
+                        Staff_Notes_At_Time[note.staff] = {};
+                    }
+                    if (!(note.time in Staff_Notes_At_Time[note.staff])) {
+                        Staff_Notes_At_Time[note.staff][note.time] = [];
+                    }
+                    Staff_Notes_At_Time[note.staff][note.time].push(note);
+                }
                 elem = elem.ts_next;
             }
         };
@@ -2184,7 +2236,7 @@ function AbcDE() {
             Trailing_Characters = [];
             var current_characters = get_unblanked_current_characters();
             if (current_characters.length > 0) {
-                Current_Note.fingering = '';
+                Current_Note.set_fingering('');
                 rerender();
             } else if (Current_Note.prior_note) {
                 Current_Note = Current_Note.prior_note;
@@ -2204,6 +2256,10 @@ function AbcDE() {
             }
         } else if (key_code == ENTER_CODE) {
             collect_manual_input();
+        } else if (key_code == Z_CODE) {
+            undo();
+        } else if (key_code == Y_CODE) {
+            redo();
         } else {
             return false;
         }
@@ -2235,6 +2291,13 @@ function AbcDE() {
                 break;
             case 'pencil':
                 key_code = ENTER_CODE;
+                break;
+            case 'undo':
+                key_code = Z_CODE;
+                break;
+            case 'redo':
+                key_code = Y_CODE;
+                break;
         }
         return handle_key_code(key_code);
     }
@@ -2312,13 +2375,12 @@ function AbcDE() {
     }
 
     function finger_current_from_nodes(new_score_fingerings) {
-        Current_Note.fingering = '';
-
+        var new_fingering = '';
         var current_finger_count = 0;
         while (current_finger_count < Current_Note.size) {
             var score_fingering = new_score_fingerings.shift();
             var abcd = get_abcd_for_score_fingering(score_fingering, Current_Note);
-            Current_Note.fingering += abcd;
+            new_fingering += abcd;
             current_finger_count++;
             if (new_score_fingerings.length === 0) {
                 break;
@@ -2326,12 +2388,15 @@ function AbcDE() {
         }
 
         if (current_finger_count === Current_Note.size) {
+            Current_Note.set_fingering(new_fingering);
             return true; // Move on.
         }
 
         for (; current_finger_count < Current_Note.size; current_finger_count++) {
-            Current_Note.fingering += 'x';
+            new_fingering += 'x';
         }
+
+        Current_Note.set_fingering(new_fingering);
         return false; // Do not move on to next "note."
     }
 
@@ -2712,13 +2777,31 @@ function AbcDE() {
         highlight_note(Current_Note);
     }
 
+    function undo() {
+        var last_note_changed = Undo.pop();
+        if (last_note_changed) {
+            last_note_changed.undo_fingering_change();
+            rerender();
+            highlight_note(last_note_changed);
+        }
+    }
+
+    function redo() {
+        var last_note_undone = Redo.pop();
+        if (last_note_undone) {
+            last_note_undone.redo_fingering_change();
+            rerender();
+            highlight_note(last_note_undone);
+        }
+    }
+
     function collect_manual_input() {
         punt_on_input();
         var prompt = '';
         if (Current_Note.preset_fingering) {
             prompt += "Preset (recommended) fingering: " + Current_Note.preset_fingering + "\n\n";
         }
-        prompt += 'Please enter abcD fingering string for the selected note.';
+        prompt += 'Please enter a fingering string for the selected note.';
         var initial_fingering = Current_Note.fingering;
         var new_fingering = window.prompt(prompt, initial_fingering);
         try {
