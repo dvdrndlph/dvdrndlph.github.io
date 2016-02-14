@@ -1805,28 +1805,29 @@ function AbcDE() {
         return font;
     }
 
+    function get_annotation_position(fingering) {
+        var position = "^";
+        if (/^</.test(fingering)) {
+            position = "_";
+        }
+        return position;
+    }
+
     function get_ornament_annotation_sequence(fingering, staff) {
         var lh_font = get_font_for_hand('<');
         var rh_font = get_font_for_hand('>');
         var cooked_fingering = fingering.replace(/[\)\(]/g, '');
         var fingers = get_tokens(FINGER_RE, cooked_fingering);
-        var position = get_annotation_position(staff);
-        var annotation_str = '"' + position;
+        var annotation_str = '';
         for (var i = 0; i < fingers.length; i++) {
             fingers[i] = fingers[i].replace(LH_REG, lh_font);
             fingers[i] = fingers[i].replace(RH_REG, rh_font);
             annotation_str += fingers[i];
         }
         annotation_str += '"';
+        var position = get_annotation_position(cooked_fingering);
+        annotation_str = '"' + position + annotation_str;
         return annotation_str;
-    }
-
-    function get_annotation_position(staff) {
-        var position = "^";
-        if (staff == 1) {
-            position = "_";
-        }
-        return position;
     }
 
     function get_annotation_sequence(fingers, staff, pad_missing_fingers) {
@@ -1846,9 +1847,9 @@ function AbcDE() {
             if (finger.match(/^\(/)) {
                 annotation = get_ornament_annotation_sequence(finger, staff);
             } else {
+                var position = get_annotation_position(finger);
                 finger = finger.replace(LH_REG, lh_font);
                 finger = finger.replace(RH_REG, rh_font);
-                var position = get_annotation_position(staff);
                 annotation = '"' + position + finger + '"';
             }
             annotations.unshift(annotation);
