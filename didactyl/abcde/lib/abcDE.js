@@ -1843,6 +1843,8 @@ function AbcDE() {
                 finger = fingers[i];
             } else if (!pad_missing_fingers) {
                 break;
+            } else if (!fingers[i] || (fingers[i] && fingers[i] === 'x')) {
+                continue;
             }
             if (finger.match(/^\(/)) {
                 annotation = get_ornament_annotation_sequence(finger, staff);
