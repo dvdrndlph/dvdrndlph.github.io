@@ -1554,7 +1554,7 @@ function AbcDE() {
                     break;
                 }
                 last_note = last_note.next;
-                size++;
+                this.size++;
             }
         }
 
@@ -2492,7 +2492,7 @@ function AbcDE() {
                 Input_Buffer.pop();
             }
         } else {
-            if (Current_Note.fingering.match(/x/)) {
+            if (Current_Note.fingering && Current_Note.fingering.match(/x/)) {
                 buffer_current_fingering();
             }
         }
