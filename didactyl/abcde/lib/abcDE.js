@@ -2447,12 +2447,23 @@ function AbcDE() {
         }
     }
 
+    function are_within_ornament() {
+        for (var i = 0; i < Trailing_Characters.length; i++) {
+            if (Trailing_Characters[i] === '(') {
+                return true;
+            }
+        }
+        return false;
+    }
+
     function flush_buffer() {
         var modifying_prior_note = false;
         if (Trailing_Characters.length > 0) {
             // Insert modifying characters not processed last time.
             Array.prototype.unshift.apply(Input_Buffer, Trailing_Characters);
-            modifying_prior_note = true;
+            if (! are_within_ornament()) {
+                modifying_prior_note = true;
+            }
         }
 
         // Remember any trailing characters entered for next time we flush.
