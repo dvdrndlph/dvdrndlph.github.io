@@ -2236,13 +2236,14 @@ function AbcDE() {
 
         if (key_code === BACKSPACE_CODE) {
             punt_on_input();
-            Trailing_Characters = [];
             var current_characters = get_unblanked_current_characters();
-            if (current_characters.length > 0) {
+            if (current_characters.length > 0 && current_characters[0]) {
                 Current_Note.set_fingering('');
                 rerender();
             } else if (Current_Note.prior_note) {
                 Current_Note = Current_Note.prior_note;
+                Current_Note.set_fingering('');
+                rerender();
             }
             highlight_note(Current_Note);
         } else if (key_code == TAB_CODE || key_code == RIGHT_ARROW_CODE) {
