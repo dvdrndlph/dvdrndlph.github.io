@@ -2793,20 +2793,28 @@ function AbcDE() {
     }
 
     function undo() {
+        punt_on_input();
         var last_note_changed = Undo.pop();
         if (last_note_changed) {
             last_note_changed.undo_fingering_change();
+            Current_Note = last_note_changed;
             rerender();
-            highlight_note(last_note_changed);
+            highlight_note(Current_Note);
         }
     }
 
     function redo() {
+        punt_on_input();
         var last_note_undone = Redo.pop();
         if (last_note_undone) {
             last_note_undone.redo_fingering_change();
+            if (last_note_undone.next_note) {
+                Current_Note = last_note_undone.next_note;
+            } else {
+                Current_Note = last_note_undone;
+            }
             rerender();
-            highlight_note(last_note_undone);
+            highlight_note(Current_Note);
         }
     }
 
