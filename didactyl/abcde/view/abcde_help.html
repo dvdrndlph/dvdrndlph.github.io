@@ -196,15 +196,19 @@ sup {
 
 <p>By default, fingerings entered for notes on the upper staff are assumed to be for the right hand. Similarly, the default hand for notes on the lower staff is the left hand.</p>
 
-<p>To override this behavior, type the &lt;<strong>T</strong>> character. You will notice that the selected note now appears in blue instead of the default red and that the area around the printed score has turned black. This is to remind you that you are in toggle mode. Any fingerings you enter will be assigned to the non-default hand.</p>
+<p>To override this behavior, press the &lt;<strong>T</strong>> key. You will notice that the selected note now appears in blue instead of the default red and that the area around the printed score has turned black. This is to remind you that you are in toggle mode. Any fingerings you enter will be assigned to the non-default hand.</p>
 
-<p>This behavior will persist until you type the &lt;<strong>T</strong>> character again. Doing so will return you to the default hand mode.</p>
+<p>This behavior will persist until you press the &lt;<strong>T</strong>> key again. Doing so will return you to the default hand mode.</p>
+
+<h4>Undoing and Redoing actions</h4>
+
+<p>You can undo your previous actions by pressing the &lt;<strong>Z</strong>> key or clicking <img src="http://dvdrndlph.github.io/didactyl/abcde/image/action-undo.svg" alt="preferences" /> on the on-screen keypad. To redo, press &lt;<strong>Y</strong>> or <img src="http://dvdrndlph.github.io/didactyl/abcde/image/action-redo.svg" alt="preferences" />.</p>
 
 <h3>Advanced entry</h3>
 
 <h4>Chords</h4>
 
-<p>Enter fingerings for chords from the lowest note to the highest. The chord will remain selected until each note has been annotated. To enter a partial annotation for a chord, enter &lt;<strong>TAB</strong>> or &lt;<strong>RIGHT ARROW</strong>>. Such partial annotations, when rendered, should be interpreted as applying the lowest notes of the chord.</p>
+<p>Enter fingerings for chords from the lowest note to the highest. The chord will remain selected until each note has been annotated. To enter a partial annotation for a chord, press &lt;<strong>TAB</strong>> or &lt;<strong>RIGHT ARROW</strong>>. Such partial annotations, when rendered, should be interpreted as applying the lowest notes of the chord.</p>
 
 <h4>Alternate fingerings for repeats</h4>
 
@@ -316,6 +320,10 @@ sup {
 <p>If you are unable to open a file you can otherwise browse to, you can save the file locally and click <strong>Choose file</strong> to load it into abcDE.</p>
 
 <h2>Troubleshooting</h2>
+
+<h3>Cannot click a note</h3>
+
+<p>Other elements may be covering the note you want to select. Try clicking a neighboring note and navigating to the note you want to modify using the the arrow keys.</p>
 
 <h3>Obscured or missing <em>Download</em> button</h3>
 
@@ -485,7 +493,7 @@ V:2
 
 <h2>JavaScript API</h2>
 
-<h3>AbcDE.renderUI(args)</h3>
+<h3>abcDE.renderUI(args)</h3>
 
 <p>Renders an abc Didactyl Editor within the <strong>DIV</strong> element with ID "abcde" on the page.</p>
 
@@ -537,35 +545,35 @@ V:2
 
 <p>If not specified, no validation is performed.</p>
 
-<h3>AbcDE.getAuthority()</h3>
+<h3>abcDE.getAuthority()</h3>
 
 <p>Returns the "Authority" responsible for the entered fingering. Returns the empty string unless <em>include_pii</em> is set to true.</p>
 
-<h3>AbcDE.getComments()</h3>
+<h3>abcDE.getComments()</h3>
 
 <p>Returns user's entered comments about entered fingering data.</p>
 
-<h3>AbcDE.getEnteredCollection()</h3>
+<h3>abcDE.getEnteredCollection()</h3>
 
 <p>Returns the fingering data entered by the user as a string.</p>
 
-<h3>AbcDE.getEnteredAbcD()</h3>
+<h3>abcDE.getEnteredAbcD()</h3>
 
 <p>Returns the complete abcD file, including the user's fingering data.</p>
 
-<h3>AbcDE.getTranscriber()</h3>
+<h3>abcDE.getTranscriber()</h3>
 
 <p>Returns the "Transcriber" responsible for the entered fingering. Returns the empty string unless <em>include_pii</em> is set to true.</p>
 
-<h3>AbcDE.getValidatedCollection()</h3>
+<h3>abcDE.getValidatedCollection()</h3>
 
 <p>Returns the fingering data as a string if and only if the requested validation is successful. Alerts user to the validation problem and returns an empty string if the validation fails.</p>
 
-<h3>AbcDE.getValidatedAbcD()</h3>
+<h3>abcDE.getValidatedAbcD()</h3>
 
 <p>Returns the complete abcD file, including the user's fingering data, if and only if the requested validation is successful. Alerts user to the validation problem and returns an empty string if the validation fails.</p>
 
-<h3>AbcDE.getXValue(abc_string)</h3>
+<h3>abcDE.getXValue(abc_string)</h3>
 
 <p>Returns the ID of the X (tune identifier) field from the input abc string. Convenient for distinguishing exercises posed in Qualtrics.</p>
 

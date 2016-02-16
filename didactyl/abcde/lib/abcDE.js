@@ -112,7 +112,6 @@ function AbcDE() {
         Toggled = false,
         Colcl = [], 		// colorized classes
         Persist_Annotated = true,
-        Show_Metadata = false,
         Ui_In_Place = false;
 
     var DIDACTYL_URL = 'https://dvdrndlph.github.io/didactyl';
@@ -723,15 +722,38 @@ function AbcDE() {
 
     function open_preferences(e) {
         unhandle_keys();
-        var modal_wrapper = document.getElementById('modal_wrapper');
-        var modal_window = document.getElementById('modal_window');
-        modal_wrapper.className = 'overlay';
-        var overflow = modal_window.offsetHeight - document.documentElement.clientHeight;
+        var prefs_modal_wrapper = document.getElementById('prefs_modal_wrapper');
+        var prefs_modal_window = document.getElementById('prefs_modal_window');
+        prefs_modal_wrapper.className = 'overlay';
+        var overflow = prefs_modal_window.offsetHeight - document.documentElement.clientHeight;
         if (overflow > 0) {
-            modal_window.style.maxHeight = (parseInt(window.getComputedStyle(modal_window).height) - overflow) + "px";
+            prefs_modal_window.style.maxHeight =
+                (parseInt(window.getComputedStyle(prefs_modal_window).height) - overflow) + "px";
         }
-        modal_window.style.marginTop = (-modal_window.offsetHeight) / 2 + "px";
-        modal_window.style.marginLeft = (-modal_window.offsetWidth) / 2 + "px";
+        prefs_modal_window.style.marginTop = (-prefs_modal_window.offsetHeight) / 2 + "px";
+        prefs_modal_window.style.marginLeft = (-prefs_modal_window.offsetWidth) / 2 + "px";
+        e.preventDefault ? e.preventDefault() : e.returnValue = false;
+    }
+
+    function open_metadata(e) {
+        unhandle_keys();
+        var metadata_modal_wrapper = document.getElementById('metadata_modal_wrapper');
+        var metadata_modal_window = document.getElementById('metadata_modal_window');
+        metadata_modal_wrapper.className = 'overlay';
+        var overflow = metadata_modal_window.offsetHeight - document.documentElement.clientHeight;
+        if (overflow > 0) {
+            metadata_modal_window.style.maxHeight = (parseInt(window.getComputedStyle(metadata_modal_window).height) - overflow) + "px";
+        }
+        metadata_modal_window.style.marginTop = (-metadata_modal_window.offsetHeight) / 2 + "px";
+        metadata_modal_window.style.marginLeft = (-metadata_modal_window.offsetWidth) / 2 + "px";
+        e.preventDefault ? e.preventDefault() : e.returnValue = false;
+    }
+
+    function close_metadata(e) {
+        var metadata_modal_wrapper = document.getElementById('metadata_modal_wrapper');
+        metadata_modal_wrapper.className = "";
+        show_keypad();
+        handle_keys();
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
     }
 
@@ -757,8 +779,8 @@ function AbcDE() {
         store_preference('default_authority');
         store_preference('default_authority_year');
         store_preference('default_transcriber');
-        var modal_wrapper = document.getElementById('modal_wrapper');
-        modal_wrapper.className = "";
+        var prefs_modal_wrapper = document.getElementById('prefs_modal_wrapper');
+        prefs_modal_wrapper.className = "";
         show_keypad();
         handle_keys();
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
@@ -964,17 +986,6 @@ function AbcDE() {
         }
     }
 
-    function toggle_show_metadata() {
-        if (Show_Metadata) {
-            Show_Metadata = false;
-            handle_keys();
-        } else {
-            Show_Metadata = true;
-            unhandle_keys();
-        }
-        show_metadata();
-    }
-
     function display_kids(container, how) {
         var kids = container.children;
         for (var i = 0; i < kids.length; i++) {
@@ -1008,15 +1019,6 @@ function AbcDE() {
                 keypad_div.style.display = 'none';
             }
 
-        }
-    }
-
-    function show_metadata() {
-        var metadata_div = document.getElementById(METADATA_DIV_ID);
-        if (Show_Metadata) {
-            metadata_div.style.display = 'block';
-        } else {
-            metadata_div.style.display = 'none';
         }
     }
 
@@ -1054,11 +1056,12 @@ function AbcDE() {
         }
     }
 
-    function insert_text_area(container, id, prompt, html_class, row_count) {
+    function insert_text_area(container, id, prompt, html_class, row_count, column_count) {
         var field = document.createElement('textarea');
         field.class = html_class;
         field.id = id;
         field.rows = row_count;
+        field.cols = column_count;
         var label = document.createElement('label');
         label.htmlFor = id;
         label.appendChild(document.createTextNode(prompt));
@@ -1102,44 +1105,70 @@ function AbcDE() {
         }
     }
 
-    function insert_preference_fields() {
-        var prefs_holder = document.getElementById(PREFS_DIV_ID);
+    function insert_metadata_fields() {
+        var metadata_holder = document.getElementById(METADATA_DIV_ID);
         var modal_wrapper = document.createElement('div');
-        modal_wrapper.id = 'modal_wrapper';
-        prefs_holder.appendChild(modal_wrapper);
-
+        modal_wrapper.id = 'metadata_modal_wrapper';
+        metadata_holder.appendChild(modal_wrapper);
         var modal_window = document.createElement('div');
-        modal_window.id = 'modal_window';
+        modal_window.id = 'metadata_modal_window';
         modal_wrapper.appendChild(modal_window);
 
         var close_div = document.createElement('div');
         close_div.style.textAlign = 'right';
         var closer = document.createElement('a');
-        closer.id = 'modal_close';
+        closer.id = 'metadata_modal_close';
+        closer.href = "#";
+        closer.innerHTML = 'Close <b>X</b>';
+        close_div.appendChild(closer);
+        closer.addEventListener("click", close_metadata, false);
+        modal_window.appendChild(close_div);
+
+        insert_text_field(modal_window, 'authority', 'Authority', 'name', undefined, false);
+        insert_text_field(modal_window, 'authority_year', 'Year', 'year', digits_only, true);
+        insert_text_field(modal_window, 'transcriber', 'Transcriber', 'name', undefined, true);
+        // insert_text_field(metadata_div, 'transcription_date', 'Transcription date', 'date', undefined, true);
+        insert_text_area(modal_window, 'comments', 'Comments', 'comments', 10, 55);
+    }
+
+    function insert_preference_fields() {
+        var prefs_holder = document.getElementById(PREFS_DIV_ID);
+        var prefs_modal_wrapper = document.createElement('div');
+        prefs_modal_wrapper.id = 'prefs_modal_wrapper';
+        prefs_holder.appendChild(prefs_modal_wrapper);
+
+        var prefs_modal_window = document.createElement('div');
+        prefs_modal_window.id = 'prefs_modal_window';
+        prefs_modal_wrapper.appendChild(prefs_modal_window);
+
+        var close_div = document.createElement('div');
+        close_div.style.textAlign = 'right';
+        var closer = document.createElement('a');
+        closer.id = 'prefs_modal_close';
         closer.href = "#";
         closer.innerHTML = 'Close <b>X</b>';
         close_div.appendChild(closer);
         closer.addEventListener("click", close_preferences, false);
-        modal_window.appendChild(close_div);
+        prefs_modal_window.appendChild(close_div);
 
         var h = document.createElement('h3');
         h.innerText = 'Preferences';
-        modal_window.appendChild(h);
+        prefs_modal_window.appendChild(h);
 
         var radio_name = 'restore';
         var button_ids = ['always', 'never', 'ask'];
         var button_labels = ['Always', 'Never', 'Ask'];
-        insert_radio_buttons(modal_window, 'Restore Data', radio_name, button_ids, button_labels, 'ask', true);
+        insert_radio_buttons(prefs_modal_window, 'Restore Data', radio_name, button_ids, button_labels, 'ask', true);
 
         var radio_name = 'output';
         var button_ids = ['append', 'replace'];
         var button_labels = ['Append', 'Replace'];
-        insert_radio_buttons(modal_window, 'Output', radio_name, button_ids, button_labels, 'append', true);
+        insert_radio_buttons(prefs_modal_window, 'Output', radio_name, button_ids, button_labels, 'append', true);
 
         radio_name = 'preset';
         var button_ids = ['first', 'last', 'none'];
         var button_labels = ['First', 'Last', 'None'];
-        insert_radio_buttons(modal_window, 'Preset', radio_name, button_ids, button_labels, 'first', true);
+        insert_radio_buttons(prefs_modal_window, 'Preset', radio_name, button_ids, button_labels, 'first', true);
 
         radio_name = 'keypad';
         var button_ids = ['show', 'hide'];
@@ -1149,12 +1178,12 @@ function AbcDE() {
         if (has_touch) {
             default_keypad_setting = 'show';
         }
-        insert_radio_buttons(modal_window, 'Keypad', radio_name, button_ids, button_labels,
+        insert_radio_buttons(prefs_modal_window, 'Keypad', radio_name, button_ids, button_labels,
             default_keypad_setting, true);
 
-        insert_text_field(modal_window, 'default_authority', 'Default Authority', 'name', undefined, true);
-        insert_text_field(modal_window, 'default_authority_year', 'Year', 'year', digits_only, true);
-        insert_text_field(modal_window, 'default_transcriber', 'Transcriber Name', 'name', undefined, true);
+        insert_text_field(prefs_modal_window, 'default_authority', 'Default Authority', 'name', undefined, true);
+        insert_text_field(prefs_modal_window, 'default_authority_year', 'Year', 'year', digits_only, true);
+        insert_text_field(prefs_modal_window, 'default_transcriber', 'Transcriber Name', 'name', undefined, true);
     }
 
     function insert_keypad_button(container, button_id, value) {
@@ -1265,26 +1294,13 @@ function AbcDE() {
         insert_keypad_image_button(symbol_div, 'backspace', 'delete.svg', '<]');
     }
 
-    function insert_metadata_fields() {
-        var metadata_div = document.getElementById(METADATA_DIV_ID);
-        metadata_div.class = 'right_aligned';
-        metadata_div.align = 'center';
-        insert_text_field(metadata_div, 'authority', 'Authority', 'name', undefined, false);
-        insert_text_field(metadata_div, 'authority_year', 'Year', 'year', digits_only, true);
-        insert_text_field(metadata_div, 'transcriber', 'Transcriber', 'name', undefined, true);
-        // insert_text_field(metadata_div, 'transcription_date', 'Transcription date', 'date', undefined, true);
-        insert_text_area(metadata_div, 'comments', 'Comments', 'comments', 5, true);
-    }
-
     function insert_controls() {
         if (Ui_In_Place) {
             return;
         }
 
         insert_preference_fields();
-
         insert_metadata_fields();
-        show_metadata();
 
         var save_button = IMAGE_DIR + '/download_36_x4.png';
         var button_width = '36'; // 16 or 24
@@ -1391,18 +1407,14 @@ function AbcDE() {
             file_input.style.visibility = 'hidden';
         }
 
+        var metadata_button = document.createElement('input');
+        metadata_button.type = 'image';
+        metadata_button.src = IMAGE_DIR + '/tags.svg';
+        metadata_button.alt = 'Metadata...';
+        metadata_button.width = button_width;
+        metadata_button.onclick = open_metadata;
         cell = document.createElement('td');
-        checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.value = 'comment';
-        checkbox.checked = Show_Metadata;
-        checkbox.id = 'show_metadata';
-        checkbox.onclick = toggle_show_metadata;
-        label = document.createElement('label')
-        label.htmlFor = 'show_metadata';
-        label.appendChild(document.createTextNode('Comment'));
-        cell.appendChild(checkbox);
-        cell.appendChild(label);
+        cell.appendChild(metadata_button);
         row.appendChild(cell);
 
         var zoom_out_button = document.createElement('input');
