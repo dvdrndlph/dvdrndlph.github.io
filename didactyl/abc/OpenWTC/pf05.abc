@@ -1,6 +1,7 @@
 X:1
 T:Prelude and Fugue 5
 T:BWV 850
+C: J. S. Bach
 %%score { ( 1 2 3 ) | ( 4 5 6 ) }
 L:1/8
 M:4/4
@@ -34,8 +35,8 @@ V:1
  f2-f/d/e/f/ g2>g2 g2>a2 f2>f2 |$ f3e/^d/ e4- e2>d2 e2>f2 | B3=c/A/ [GB]2>[Ec]2 G4 F4 |$ %51
  E/F/G/A/G/F/G/E/ g2 z2[K:bass] [B,E]2>[G,C]2 [G,C]2>[E,A,]2 | %52
 [K:treble] A/B/c/d/c/B/c/A/ f2 z2[K:bass] [A,D]2>[F,B,]2 [F,B,]2>[D,G,]2 |$ %53
- G/A/B/=c/B/A/B/G/ e2 z2[K:bass] [G,^C]2>[E,A,]2 [E,A,]2>[C,F,]2 |$ %54
- F/G/A/B/A/G/A/F/ d2>d2 d2>e2 Pc3d/e/ |$ f4 babg gfge edec | c4 d2>d2 d2>e2 Pc2>d2 |$ %57
+ [K:treble]G/A/B/=c/B/A/B/G/ e2 z2[K:bass] [G,^C]2>[E,A,]2 [E,A,]2>[C,F,]2 |$ %54
+ [K:treble]F/G/A/B/A/G/A/F/ d2>d2 d2>e2 Pc3d/e/ |$ f4 babg gfge edec | c4 d2>d2 d2>e2 Pc2>d2 |$ %57
  d4 B/c/d/e/d/c/d/B/ e4 A/B/c/d/c/B/c/A/ |$ %58
  d4 G/A/B/=c/B/A/B/G/ ^c/d/e/f/e/d/e/c/ f/g/a/b/a/g/a/f/ |$ b2>c2 d2>e2 f2>F2 G2>A2 | %60
  [GB]2>[DB]2 [Ec]2>[Fd]2 [DF]4 [CE]4 | !fermata![F,A,D]16 |] %62
@@ -71,8 +72,8 @@ V:4
  A,2[K:treble] F/4G/4A/4B/4A/4G/4A/4F/4 B2 E/4F/4G/4A/4G/4F/4G/4E/4 |$ %41
  A2[K:bass] D,,/4E,,/4F,,/4G,,/4F,,/4E,,/4F,,/4D,,/4 B,,>B,, A,,>G,, | z2 D2 C4 |$ %43
  B,2 z2[K:treble] [Bd]>[^GB] [GB]>[EA] |$ %44
- A,,/4B,,/4C,/4D,/4C,/4B,,/4C,/4A,,/4 F, z[K:treble] [A=c]>[FA] [FA]>[DG] |$ %45
- G,,/4A,,/4B,,/4=C,/4B,,/4A,,/4B,,/4G,,/4 E,>D, C,2 D,2 | G,>A, B,>A, G,>E, A,>A,, |$ %47
+ [K:bass]A,,/4B,,/4C,/4D,/4C,/4B,,/4C,/4A,,/4 F, z[K:treble] [A=c]>[FA] [FA]>[DG] |$ %45
+ [K:bass]G,,/4A,,/4B,,/4=C,/4B,,/4A,,/4B,,/4G,,/4 E,>D, C,2 D,2 | G,>A, B,>A, G,>E, A,>A,, |$ %47
  B,,/4C,/4D,/4E,/4D,/4C,/4D,/4B,,/4 B,>A, G,>E, A,>A,, | %48
  z2 G,/4A,/4B,/4=C/4B,/4A,/4B,/4G,/4 E>E D>C |$ %49
  B,2 E,,/4F,,/4G,,/4A,,/4G,,/4F,,/4G,,/4E,,/4 =C,>C, B,,>A,, | G,,>F,, G,,>A,, B,,4 |$ %51
