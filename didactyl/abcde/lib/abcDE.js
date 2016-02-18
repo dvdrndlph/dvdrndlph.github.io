@@ -1461,11 +1461,7 @@ function AbcDE() {
             filename: function () {
                 return Abc_Fname;
             },
-            data: function () {
-                var abc_str = get_fingered_abc_str();
-                var abcd_str = get_abcd(abc_str);
-                return abcd_str;
-            },
+            data: get_persisting_abcd,
             onComplete: function () {
                 alert('Your file has been saved.');
             },
@@ -3108,7 +3104,7 @@ function AbcDE() {
         render_new_sequence();
     }
 
-    function view_source() {
+    function get_persisting_abcd() {
         var abc_str, abcd_str;
 
         if (Persist_Annotated) {
@@ -3117,6 +3113,11 @@ function AbcDE() {
         } else {
             abcd_str = get_abcd(Org_Abc_Str);
         }
+        return abcd_str;
+    }
+
+    function view_source() {
+        var abcd_str = get_persisting_abcd();
         window.open('data:text/vnd.abc;charset=utf-8,' + encodeURI(abcd_str), 'view_window');
     }
 
