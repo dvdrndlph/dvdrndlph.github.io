@@ -1574,12 +1574,26 @@ function AbcDE() {
         this.prior_fingerings = [];
         this.undone_fingerings = [];
 
+
+        this.init_fingering = function() {
+            this.fingering = '';
+            for (var i = 0; i < this.size; i++) {
+                this.fingering += 'x'
+            }
+        }
+
+        this.init_fingering();
+
         this.set_fingering = function(fingering_str) {
             purge_redo_stack();
             if (this.fingering) {
                 this.prior_fingerings.push(this.fingering);
             }
-            this.fingering = fingering_str;
+            if (! fingering_str) {
+                this.init_fingering();
+            } else {
+                this.fingering = fingering_str;
+            }
             Undo.push(this);
         };
 
@@ -2433,8 +2447,10 @@ function AbcDE() {
     }
 
     function get_unblanked_current_characters() {
-        var current_fingerings = Current_Note.fingering.split('');
         var unblanked_chars = [];
+
+        var fingering = Current_Note.get_fingering();
+        var current_fingerings = fingering.split('');
         for (var i = 0; i < current_fingerings.length; i++) {
             var char = current_fingerings[i];
             if (char === 'x') {
