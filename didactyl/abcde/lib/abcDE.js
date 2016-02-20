@@ -109,6 +109,7 @@ function AbcDE() {
         Ref = [],			// source reference array
         Rerender_Count = 0,
         Fonts_Set_In_Source,
+        Numbering_Set_In_Source,
         Toggled = false,
         Colcl = [], 		// colorized classes
         Persist_Annotated = true,
@@ -208,6 +209,7 @@ function AbcDE() {
         Ref = [];			// source reference array
         Rerender_Count = 0;
         Fonts_Set_In_Source = undefined;
+        Numbering_Set_In_Source = undefined;
         Colcl = []; 		// colorized classes
     }
 
@@ -288,9 +290,6 @@ function AbcDE() {
         storage_key = get_storage_key('transcriber', sequence_number);
         var stored_transcriber = localStorage.getItem(storage_key) || '';
         saved_seq.transcriber = stored_transcriber;
-        // storage_key = get_storage_key('transcription_date', sequence_number);
-        // var stored_date = localStorage.getItem(storage_key) || '';
-        // saved_seq.transcription_date = stored_date;
         storage_key = get_storage_key('comments', sequence_number);
         var stored_comments = localStorage.getItem(storage_key) || '';
         saved_seq.comments = stored_comments;
@@ -396,6 +395,10 @@ function AbcDE() {
             return Options[arg];
         }
 
+        if (arg === 'measure_number_interval') {
+            var field = document.getElementById(arg);
+            return field.value;
+        }
         var preference = get_radio_setting(arg);
         if (preference) {
             return preference;
@@ -525,6 +528,7 @@ function AbcDE() {
         set_radio('output', localStorage.getItem('output'));
         set_radio('restore', localStorage.getItem('restore'));
         set_radio('keypad', localStorage.getItem('keypad'));
+        set_field('measure_number_interval', localStorage.getItem('measure_number_interval'));
         set_field('default_authority', localStorage.getItem('default_authority'));
         set_field('default_authority_year', localStorage.getItem('default_authority_year'));
         set_field('default_transcriber', localStorage.getItem('default_transcriber'));
@@ -776,11 +780,16 @@ function AbcDE() {
         store_preference('output');
         store_preference('restore');
         store_preference('keypad');
+        store_preference('measure_number_interval');
         store_preference('default_authority');
         store_preference('default_authority_year');
         store_preference('default_transcriber');
         var prefs_modal_wrapper = document.getElementById('prefs_modal_wrapper');
         prefs_modal_wrapper.className = "";
+        if (Org_Abc_Str) {
+            rerender();
+            highlight_note(Current_Note);
+        }
         show_keypad();
         handle_keys();
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
@@ -1106,6 +1115,28 @@ function AbcDE() {
         return radio_div;
     }
 
+    function insert_spinner(container, prompt, id, min, max, size, value, add_break) {
+        var div = document.createElement('div');
+        div.class = 'spinner_div';
+        insert_label(div, prompt, 'prompt');
+
+        var spinner = document.createElement('input');
+        spinner.id = id;
+        spinner.min = min;
+        spinner.max = max;
+        spinner.size = size;
+        spinner.type = 'number';
+        spinner.value = value;
+        div.appendChild(spinner);
+        container.appendChild(div);
+
+        if (add_break) {
+            container.appendChild(document.createElement('br'));
+        }
+
+        return div;
+    }
+
     function insert_metadata_fields() {
         var metadata_holder = document.getElementById(METADATA_DIV_ID);
         var modal_wrapper = document.createElement('div');
@@ -1188,8 +1219,11 @@ function AbcDE() {
         if (has_touch) {
             default_keypad_setting = 'show';
         }
-        insert_radio_buttons(prefs_modal_window, 'Keypad', radio_name, button_ids, button_labels,
-            default_keypad_setting, true);
+        insert_radio_buttons(prefs_modal_window, 'Keypad', radio_name,
+            button_ids, button_labels, default_keypad_setting, true);
+
+        insert_spinner(prefs_modal_window, 'Measure Number Interval',
+            'measure_number_interval', 0, 20, 2, 5, true);
 
         insert_text_field(prefs_modal_window, 'default_authority', 'Default Authority', 'name', undefined, true);
         insert_text_field(prefs_modal_window, 'default_authority_year', 'Year', 'year', digits_only, true);
@@ -1664,7 +1698,6 @@ function AbcDE() {
             if (str.match(re)) {
                 str = str.replace(re, '<svg id="line_' + Current_Line_Number + '" ');
                 Current_Line_Number++;
-                console.log("SVG: " + str);
             }
 
             Abc_Images += str;
@@ -2118,6 +2151,23 @@ function AbcDE() {
         return Fonts_Set_In_Source;
     }
 
+    function numbering_set_in_source() {
+        if (Numbering_Set_In_Source !== undefined) {
+            return Numbering_Set_In_Source;
+        }
+        Numbering_Set_In_Source = false;
+        var lines = Org_Abc_Str.split("\n");
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            if (line.match(/^%%measurenb\s+\d+/)) {
+                Numbering_Set_In_Source = true;
+                break;
+            }
+        }
+
+        return Numbering_Set_In_Source;
+    }
+
     function grace_notes_in_source() {
         if (Grace_Notes_In_Source !== undefined) {
             return Grace_Notes_In_Source
@@ -2145,6 +2195,13 @@ function AbcDE() {
             fingered_str += SETFONT_COMMANDS + "\n";
             if (grace_notes_in_source()) {
                 fingered_str += GRACE_NOTE_DECORATIONS + "\n";
+            }
+        }
+
+        if (!numbering_set_in_source()) {
+            var numbering_setting = get_setting('measure_number_interval');
+            if (numbering_setting) {
+                fingered_str += '%%measurenb ' + numbering_setting + "\n";
             }
         }
 
