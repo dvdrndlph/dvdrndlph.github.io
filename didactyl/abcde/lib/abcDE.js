@@ -1652,7 +1652,9 @@ function AbcDE() {
         this.img_out = function (str) {
             var re = /<svg /;
             if (str.match(re)) {
+                str = str.replace(re, '<svg id="line_' + Current_Line_Number + '" ');
                 Current_Line_Number++;
+                console.log("SVG: " + str);
             }
 
             Abc_Images += str;
@@ -2940,17 +2942,30 @@ function AbcDE() {
         }
     }
 
-// colorize the selection
     function colorsel(color) {
         var i, n = Colcl.length;
         for (i = 0; i < n; i++)
             setcolor(Colcl[i], color)
     }
 
-// fingering text selection callback
+    function is_fully_visible(elem)
+    {
+        var $elem = $(elem);
+        var $window = $(window);
+
+        var key_pad = document.getElementById(KEYPAD_DIV_ID);
+
+        var doc_top = $window.scrollTop();
+        var doc_bottom = doc_top + $window.height() - key_pad.offsetHeight;
+
+        var elem_top = $elem.offset().top;
+        var elem_bottom = elem_top + $elem.height();
+
+        return ((elem_bottom <= doc_bottom) && (elem_top >= doc_top));
+    }
+
     function highlight_note(note) {
         var note_start = note.fingered_start;
-        console.log("HIGHLIGHT note at " + note_start);
         if (Colcl.length != 0) {
             colorsel("black");
             Colcl = [];
@@ -2961,6 +2976,15 @@ function AbcDE() {
             colorsel("blue");
         } else {
             colorsel("red");
+        }
+
+        var line_key = 'line_' + note.line;
+        var line_svg = document.getElementById(line_key);
+        if (! is_fully_visible(line_svg)) {
+            line_svg.scrollIntoView(false);
+            var key_pad = document.getElementById(KEYPAD_DIV_ID);
+            var y = document.body.scrollTop;
+            window.scrollTo(0, y + key_pad.offsetHeight);
         }
     }
 
