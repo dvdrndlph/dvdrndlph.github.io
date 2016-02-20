@@ -1103,6 +1103,7 @@ function AbcDE() {
         if (add_break) {
             container.appendChild(document.createElement('br'));
         }
+        return radio_div;
     }
 
     function insert_metadata_fields() {
@@ -1158,21 +1159,30 @@ function AbcDE() {
         var radio_name = 'restore';
         var button_ids = ['always', 'never', 'ask'];
         var button_labels = ['Always', 'Never', 'Ask'];
-        insert_radio_buttons(prefs_modal_window, 'Restore Data', radio_name, button_ids, button_labels, 'ask', true);
+        if (!Options || !Options[radio_name]) {
+            insert_radio_buttons(prefs_modal_window, 'Restore Data',
+                radio_name, button_ids, button_labels, 'ask', true);
+        }
 
-        var radio_name = 'output';
-        var button_ids = ['append', 'replace'];
-        var button_labels = ['Append', 'Replace'];
-        insert_radio_buttons(prefs_modal_window, 'Output', radio_name, button_ids, button_labels, 'append', true);
+        radio_name = 'output';
+        if (!Options || !Options[radio_name]) {
+            button_ids = ['append', 'replace'];
+            button_labels = ['Append', 'Replace'];
+            insert_radio_buttons(prefs_modal_window, 'Output',
+                radio_name, button_ids, button_labels, 'append', true);
+        }
 
         radio_name = 'preset';
-        var button_ids = ['first', 'last', 'none'];
-        var button_labels = ['First', 'Last', 'None'];
-        insert_radio_buttons(prefs_modal_window, 'Preset', radio_name, button_ids, button_labels, 'first', true);
+        if (!Options || !Options[radio_name]) {
+            button_ids = ['first', 'last', 'none'];
+            button_labels = ['First', 'Last', 'None'];
+            insert_radio_buttons(prefs_modal_window, 'Preset',
+                radio_name, button_ids, button_labels, 'first', true);
+        }
 
         radio_name = 'keypad';
-        var button_ids = ['show', 'hide'];
-        var button_labels = ['Show', 'Hide'];
+        button_ids = ['show', 'hide'];
+        button_labels = ['Show', 'Hide'];
         var default_keypad_setting = 'hide';
         var has_touch = 'ontouchstart' in window;
         if (has_touch) {
