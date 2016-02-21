@@ -527,7 +527,7 @@ function AbcDE() {
         set_radio('restore', localStorage.getItem('restore'));
         set_radio('keypad', localStorage.getItem('keypad'));
         var numbering_setting = localStorage.getItem('measure_number_interval');
-        if (numbering_setting === undefined && numbering_setting === '') {
+        if (numbering_setting === '') {
             numbering_setting = DEFAULT_NUMBERING_INTERVAL;
         }
         set_field('measure_number_interval', numbering_setting);
