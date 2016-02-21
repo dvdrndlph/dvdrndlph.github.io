@@ -120,11 +120,9 @@ function AbcDE() {
     var HELP_URL = HOME_URL + '/view/abcde_help.html';
     var IMAGE_DIR = HOME_URL + '/image';
     var MEDIA_DIR = HOME_URL + '/lib/media';
-    // var IMAGE_DIR = 'http://nlp.cs.uic.edu/didactyl/abcde/image';
+    var DEFAULT_NUMBERING_INTERVAL = 5;
     // var MEDIA_DIR = '../lib/media';
     // var MEDIA_DIR = 'http://nlp.cs.uic.edu/didactyl/abcde/lib/media';
-    // var MEDIA_DIR =
-    // 'https://0b0f039ba2113bf1c6de76d7ee52555275b0fb18.googledrive.com/host/0B3BgE7P6T9GOd2dEQV9sM2pTTWc';
 
     // FIXME: These regular expresions are too simplistic. Replace them
     // with PEG parser calls.
@@ -528,7 +526,11 @@ function AbcDE() {
         set_radio('output', localStorage.getItem('output'));
         set_radio('restore', localStorage.getItem('restore'));
         set_radio('keypad', localStorage.getItem('keypad'));
-        set_field('measure_number_interval', localStorage.getItem('measure_number_interval'));
+        var numbering_setting = localStorage.getItem('measure_number_interval');
+        if (numbering_setting === undefined) {
+            numbering_setting = DEFAULT_NUMBERING_INTERVAL;
+        }
+        set_field('measure_number_interval', numbering_setting);
         set_field('default_authority', localStorage.getItem('default_authority'));
         set_field('default_authority_year', localStorage.getItem('default_authority_year'));
         set_field('default_transcriber', localStorage.getItem('default_transcriber'));
