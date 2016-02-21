@@ -120,17 +120,38 @@ V:5
 <div id="abcde"></div>
 
 <script type="text/javascript">
+    var abcDE;
     window.onload = function() {
-        var abcDE = new AbcDE();
+        abcDE = new AbcDE();
         abcDE.renderUI({
-            preset:'first',
+            // include_pii: true,
+            // validate: 'complete',
+            preset: 'first',
             output: 'append',
-            preset_select:true,
-            file_input:true,
-            url_input:true});
+            preset_select: true,
+            file_input: true,
+            url_input: true});
+    };
+    function test_pii() {
+        var abcd = abcDE.getEnteredAbcD();
+        console.log(abcd);
+        var transcriber = abcDE.getTranscriber();
+        console.log("Transcriber: " + transcriber);
+        var authority = abcDE.getAuthority();
+        console.log("Authority: " + authority);
+        var year = abcDE.getAuthorityYear();
+        console.log("Year: " + year);
+        var comments = abcDE.getComments();
+        console.log("Comments: " + comments);
+        abcd = abcDE.getValidatedAbcD();
+        console.log("Validated abcD: " + abcd);
+        var abcdf = abcDE.getEnteredCollection();
+        console.log("abcDF: " + abcdf);
+        abcdf = abcDE.getValidatedCollection();
+        console.log("Validated abcDF: " + abcdf);
+        // <input type="button" onclick="test_pii()" value="Test">
     }
 </script>
-
 <p align="center">Copyright &copy; 2015, 2016 David A. Randolph</p>
 </body>
 </html>

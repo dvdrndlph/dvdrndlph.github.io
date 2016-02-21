@@ -303,7 +303,7 @@ function AbcDE() {
         return '';
     }
 
-    function get_current_sequence() {
+    function get_current_sequence(force) {
         var current_date = new Date();
         var date_str = current_date.getFullYear() + '-' +
             sprintf("%02d", (current_date.getMonth() + 1)) + '-' +
@@ -312,11 +312,18 @@ function AbcDE() {
             sprintf("%02d", current_date.getMinutes()) + ":" +
             sprintf("%02d", current_date.getSeconds());
 
+        var authority = '';
+        var transcriber = '';
+        if (force || get_setting('include_pii')) {
+            authority = get_field_value('authority');
+            transcriber = get_field_value('transcriber');
+        }
+
         var sequence = {
             sequence: getEnteredCollection(),
-            authority: get_field_value('authority'),
+            authority: authority,
             authority_year: get_field_value('authority_year'),
-            transcriber: get_field_value('transcriber'),
+            transcriber: transcriber,
             transcription_date: date_str,
             comments: get_field_value('comments')
         };
@@ -2686,7 +2693,7 @@ function AbcDE() {
         return preamble;
     }
 
-    function get_abcd(abc_str) {
+    function get_abcd(abc_str, pii_okay) {
         var body_lines = [];
         var header_lines = [];
         header_lines.push(get_abcd_hdr());
@@ -2718,7 +2725,7 @@ function AbcDE() {
         }
 
         var current_sequence_number = get_current_sequence_number();
-        var current_sequence = get_current_sequence();
+        var current_sequence = get_current_sequence(pii_okay);
 
         if (get_setting('output') === 'replace') {
             var sequence_index = current_sequence_number - 1;
@@ -2879,7 +2886,7 @@ function AbcDE() {
     function setEnteredCollection(abcdf) {
         Current_Note = Notes_On_Line[0][0][0];
         var seq_number = get_current_sequence_number();
-        var seq = get_current_sequence();
+        var seq = get_current_sequence(true);
         seq.sequence = abcdf;
         var autosaved = get_autosaved_sequence(seq_number);
         set_preferred_sequence(autosaved, seq);
@@ -3218,9 +3225,9 @@ function AbcDE() {
 
         if (Persist_Annotated) {
             abc_str = get_fingered_abc_str();
-            abcd_str = get_abcd(abc_str);
+            abcd_str = get_abcd(abc_str, true);
         } else {
-            abcd_str = get_abcd(Org_Abc_Str);
+            abcd_str = get_abcd(Org_Abc_Str, true);
         }
         return abcd_str;
     }
@@ -3233,6 +3240,17 @@ function AbcDE() {
     function getAuthority() {
         if (get_setting('include_pii')) {
             return (get_field_value('authority'));
+        }
+        return '';
+    }
+
+    function getAuthorityYear() {
+        return (get_field_value('authority_year'));
+    }
+
+    function getTranscriber() {
+        if (get_setting('include_pii')) {
+            return (get_field_value('transcriber'));
         }
         return '';
     }
@@ -3265,7 +3283,7 @@ function AbcDE() {
 
         if (missing_count === 1) {
             return 'One note is missing a fingering annotation.';
-        } else {
+        } else if (missing_count > 1) {
             return missing_count + " notes are missing fingering annotations.";
         }
 
@@ -3290,17 +3308,19 @@ function AbcDE() {
     }
 
     function getEnteredAbcD() {
-        return get_abcd(Org_Abc_Str);
+        var abc_str = get_fingered_abc_str();
+        return get_abcd(abc_str, false);
     }
 
     function getValidatedAbcD() {
         var abcdf = current_collection();
         if (is_valid_abcdf(abcdf)) {
-            var abcd = get_abcd();
-            if (!/^\s*X:/g.test(abcd)) {
+            var abc_str = get_fingered_abc_str();
+            var abcd = get_abcd(abc_str, false);
+            if (!/^\s*X:/m.test(abcd)) {
                 alert("File is not valid abc.")
                 return '';
-            } else if (!/^% abcDidactyl/.test(abcd)) {
+            } else if (!/^% abcDidactyl/m.test(abcd)) {
                 alert("File is not valid abcD.")
                 return '';
             }
@@ -3313,6 +3333,8 @@ function AbcDE() {
     AbcDE.prototype.renderUI = renderUI;
     AbcDE.prototype.getXValue = getXValue;
     AbcDE.prototype.getAuthority = getAuthority;
+    AbcDE.prototype.getAuthorityYear = getAuthorityYear;
+    AbcDE.prototype.getTranscriber = getTranscriber;
     AbcDE.prototype.getComments = getComments;
     AbcDE.prototype.getEnteredCollection = getEnteredCollection;
     AbcDE.prototype.getEnteredAbcD = getEnteredAbcD;
