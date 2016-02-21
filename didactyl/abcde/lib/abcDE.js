@@ -547,8 +547,25 @@ function AbcDE() {
         set_field('authority', metadata.authority);
         set_field('authority_year', metadata.authority_year);
         set_field('transcriber', metadata.transcriber);
-        // set_field('transcription_date', metadata.transcription_date);
         set_field('comments', metadata['comments']);
+    }
+
+    function preset_blank_metadata() {
+        var authority = get_field_value('authority');
+        var default_authority = get_field_value('default_authority');
+        if (! authority && default_authority) {
+            set_field('authority', default_authority);
+        }
+        var year = get_field_value('authority_year');
+        var default_year = get_field_value('default_authority_year');
+        if (! year && default_year) {
+            set_field('authority_year', default_year);
+        }
+        var transcriber = get_field_value('transcriber');
+        var default_transcriber = get_field_value('default_transcriber');
+        if (! transcriber && default_transcriber) {
+            set_field('transcriber', default_transcriber);
+        }
     }
 
     function set_sequence(finger_str, field_name) {
@@ -672,6 +689,7 @@ function AbcDE() {
         var autosaved = get_autosaved_sequence(sequence_number);
         var preset = get_preset_sequence(sequence_number);
         set_preferred_sequence(autosaved, preset);
+        preset_blank_metadata();
     }
 
     function restore_sequence() {
@@ -765,6 +783,7 @@ function AbcDE() {
     function close_metadata(e) {
         var metadata_modal_wrapper = document.getElementById('metadata_modal_wrapper');
         metadata_modal_wrapper.className = "";
+        autosave();
         show_keypad();
         handle_keys();
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
