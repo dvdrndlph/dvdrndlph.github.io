@@ -593,18 +593,20 @@ function AbcDE() {
                 var time = sorted_staff_note_times[time_index];
                 var notes = Staff_Notes_At_Time[staff_num][time];
                 notes.sort(order_notes);
-                if (notes[0].grace) {
-                    notes[0][field_name] = '';
-                    for (var i = 0; i < notes[0].size; i++) {
+                var g = 0;
+                while (notes[g].grace) {
+                    notes[g][field_name] = '';
+                    for (var i = 0; i < notes[g].size; i++) {
                         fingering = staff_fingerings.shift();
                         if (!fingering) {
                             console.log('Preset fingering MISSING for note:');
-                            print_note('preset grace note', notes[0]);
+                            print_note('preset grace note', notes[g]);
                         }
                         fingering = get_handed_fingering(fingering, hand);
                         hand = get_new_last_hand(fingering, hand);
-                        notes[0][field_name] += fingering;
+                        notes[g][field_name] += fingering;
                     }
+                    g++;
                 }
 
                 var notes_with_pit = get_sorted_synchronous_notes_with_pit(notes);
@@ -1795,13 +1797,13 @@ function AbcDE() {
 
         // Egads! Voices are speaking at the same time.
         // Grace notes always precede non-grace notes...
-        if (a.grace && b.grace) {
-            alert("Conflicting grace notes.")
-        }
-        if (a.grace) {
+        // if (a.grace && b.grace) {
+            // alert("Conflicting grace notes.")
+        // }
+        if (a.grace && ! b.grace) {
             return -1;
         }
-        if (b.grace) {
+        if (b.grace && ! a.grace) {
             return 1;
         }
 
@@ -2075,10 +2077,15 @@ function AbcDE() {
 
         synchronous_notes.sort(order_notes);
 
+        var i = 0;
         var lowest_note = synchronous_notes[0];
-        if (synchronous_notes[0].grace) {
-            lowest_note = synchronous_notes[1];
+        while (lowest_note.grace) {
+            i++;
+            lowest_note = synchronous_notes[i];
         }
+        //if (synchronous_notes[0].grace) {
+            //lowest_note = synchronous_notes[1];
+        //}
 
         if (note !== lowest_note) {
             // Only annotate first note (as sorted by lowest pitch, then voice).
@@ -2125,7 +2132,9 @@ function AbcDE() {
             if (finger_tokens[token_num]) {
                 var naked_finger = finger_tokens[token_num];
                 naked_finger = naked_finger.replace(RL_REG, '');
-                abc_str += "!" + naked_finger + "!";
+                if (naked_finger !== 'x') {
+                    abc_str += "!" + naked_finger + "!";
+                }
             }
             abc_str += grace_tokens[token_num];
         }
@@ -3132,10 +3141,16 @@ function AbcDE() {
 
         synchronous_notes.sort(order_notes);
 
+        var i = 0;
         var lowest_note = synchronous_notes[0];
-        if (synchronous_notes[0].grace) {
-            lowest_note = synchronous_notes[1];
+        while (lowest_note.grace) {
+            i++;
+            lowest_note = synchronous_notes[i];
         }
+        //var lowest_note = synchronous_notes[0];
+        //if (synchronous_notes[0].grace) {
+            //lowest_note = synchronous_notes[1];
+        //}
 
         if (note !== lowest_note) {
             // Only annotate first note (as sorted by lowest pitch, then voice).
