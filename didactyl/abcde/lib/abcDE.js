@@ -420,6 +420,16 @@ function AbcDE() {
         return number;
     }
 
+    function get_dummy_sequence() {
+        var seq = {};
+        seq.authority = get_field_value('default_authority');
+        seq.authority_year = get_field_value('default_authority_year');
+        seq.transcriber = get_field_value('default_transcriber');
+        seq.sequence = 'x';
+        seq.comments = '';
+        return seq;
+    }
+
     function get_sequences(abcd_str) {
         var lines = abcd_str.split("\n");
         var match;
@@ -487,7 +497,7 @@ function AbcDE() {
     function get_default_sequence() {
         var setting = get_setting('preset');
         if (!setting || setting === 'none') {
-            return '';
+            return get_dummy_sequence();
         } else if (setting === 'first') {
             return Sequences[0];
         } else if (setting === 'last') {
@@ -502,7 +512,7 @@ function AbcDE() {
             if (parseInt(sequence_number) <= Sequences.length) {
                 return Sequences[sequence_index];
             } else {
-                return '';
+                return get_dummy_sequence();
             }
         }
         return get_default_sequence();
