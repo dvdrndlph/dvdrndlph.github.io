@@ -1190,7 +1190,7 @@ function AbcDE() {
         insert_text_field(modal_window, 'authority_year', 'Year', 'year', digits_only, true);
         insert_text_field(modal_window, 'transcriber', 'Transcriber', 'name', undefined, true);
         // insert_text_field(metadata_div, 'transcription_date', 'Transcription date', 'date', undefined, true);
-        insert_text_area(modal_window, 'comments', 'Comments', 'comments', 10, 55);
+        insert_text_area(modal_window, 'comments', 'Comments', 'comments', 10, 50);
     }
 
     function insert_preference_fields() {
@@ -2787,7 +2787,7 @@ function AbcDE() {
                 date_line = '% Transcription date: ' + sequences[i].transcription_date;
                 header_lines.push(date_line);
             }
-            var comments = sequences[i].comments.split("\n");
+            comments = sequences[i].comments.split("\n");
             for (var j = 0; j < comments.length; j++) {
                 if (j !== comments.length - 1 || comments[j]) {
                     header_lines.push('% ' + comments[j]);
@@ -3364,16 +3364,16 @@ function AbcDE() {
     }
 
     // Our illustrious public API.
-    AbcDE.prototype.renderUI = renderUI;
-    AbcDE.prototype.getXValue = getXValue;
-    AbcDE.prototype.getAuthority = getAuthority;
-    AbcDE.prototype.getAuthorityYear = getAuthorityYear;
-    AbcDE.prototype.getTranscriber = getTranscriber;
-    AbcDE.prototype.getComments = getComments;
-    AbcDE.prototype.getEnteredCollection = getEnteredCollection;
-    AbcDE.prototype.getEnteredAbcD = getEnteredAbcD;
-    AbcDE.prototype.getValidatedCollection = getValidatedCollection;
-    AbcDE.prototype.getValidatedAbcD = getValidatedAbcD;
-    AbcDE.prototype.setEnteredCollection = setEnteredCollection;
+    this.renderUI = renderUI;
+    this.getXValue = getXValue;
+    this.getAuthority = getAuthority;
+    this.getAuthorityYear = getAuthorityYear;
+    this.getTranscriber = getTranscriber;
+    this.getComments = getComments;
+    this.getEnteredCollection = getEnteredCollection;
+    this.getEnteredAbcD = getEnteredAbcD;
+    this.getValidatedCollection = getValidatedCollection;
+    this.getValidatedAbcD = getValidatedAbcD;
+    this.setEnteredCollection = setEnteredCollection;
     return this;
 }
