@@ -704,6 +704,20 @@ function AbcDE() {
         preset_blank_metadata();
     }
 
+    function copy_fingerings(trigger) {
+        var fingerings = current_collection();
+        return fingerings;
+    }
+
+    function paste_fingerings() {
+        var prompt = 'Please a fingering string for the current piece.';
+        var new_fingerings = window.prompt(prompt, '');
+        if (new_fingerings !== null) {
+            set_sequence(new_fingerings, 'fingering');
+            rerender();
+        }
+    }
+
     function restore_sequence() {
         if (! Org_Abc_Str) {
             return;
@@ -1466,6 +1480,35 @@ function AbcDE() {
         cell.appendChild(reset_button);
         row.appendChild(cell);
 
+        var copy_button = document.createElement('input');
+        copy_button.id = 'copy_fingerings_button';
+        copy_button.type = 'image';
+        copy_button.src = IMAGE_DIR + '/clipboard.svg';
+        copy_button.width = button_width;
+        copy_button.alt = 'copy';
+        cell = document.createElement('td');
+        cell.appendChild(copy_button);
+        row.appendChild(cell);
+        if (Options.hide_copy) {
+            copy_button.style.display = 'none';
+        } else {
+            new Clipboard('#copy_fingerings_button',
+                {text: copy_fingerings});
+        }
+
+        var paste_button = document.createElement('input');
+        paste_button.type = 'image';
+        paste_button.src = IMAGE_DIR + '/paperclip.svg';
+        paste_button.width = button_width;
+        paste_button.alt = 'paste';
+        paste_button.onclick = paste_fingerings;
+        cell = document.createElement('td');
+        cell.appendChild(paste_button);
+        row.appendChild(cell);
+        if (Options.hide_paste) {
+            paste_button.style.display = 'none';
+        }
+
         var url_button = document.createElement('input');
         url_button.type = 'image';
         url_button.src = IMAGE_DIR + '/globe.svg';
@@ -1476,7 +1519,7 @@ function AbcDE() {
         cell.appendChild(url_button);
         row.appendChild(cell);
         if (!Options.url_input) {
-            url_button.style.visibility = 'hidden';
+            url_button.style.display = 'none';
         }
 
         var file_input = document.createElement('input');
@@ -1488,7 +1531,8 @@ function AbcDE() {
         cell.appendChild(file_input);
         row.appendChild(cell);
         if (!Options.file_input) {
-            file_input.style.visibility = 'hidden';
+            // file_input.style.visibility = 'hidden';
+            file_input.style.display = 'none';
         }
 
         var metadata_button = document.createElement('input');
