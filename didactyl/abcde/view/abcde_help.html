@@ -270,6 +270,12 @@ sup {
 
 <p>You should be familar with the <a href="http://dvdrndlph.github.io/didactyl/abcde/view/bnf_for_abcdf.html">abcDF</a> syntax to get the most out of dialog entry. Indeed, some aspects of fingering can only be expressed via this dialog interface. If, however, waiting for screens to refresh is making standard (blind) entry cumbersome, you may find that dialog entry is more efficient for even the simplest of annotations.</p>
 
+<h3>Copying and pasting</h3>
+
+<p>Entire fingering sequences may be copied to the clipboard via the <strong>Clipboard</strong> (<img src="http://dvdrndlph.github.io/didactyl/abcde/image/clipboard.svg" alt="clipboard" />) button. Note that Safari does not support this functionality.</p>
+
+<p>Fingering sequences may also be applied wholesale to a piece via the <strong>Paper Clip</strong> (<img src="http://dvdrndlph.github.io/didactyl/abcde/image/paperclip.svg" alt="paperclip" />) button.</p>
+
 <h2>Saving your work</h2>
 
 <p>Your fingering input is saved by your browser every five seconds. This mechanism should reduce the chances that you lose any significant amount of work in the event your browser or hardware system crashes.</p>
@@ -341,6 +347,14 @@ sup {
 
 <p>Adobe Flash is not supported on Apple's iOS (for iPhone and iPad). Thus, the <img src="http://dvdrndlph.github.io/didactyl/abcde/image/data-transfer-download.svg" alt="download" /> button is not available. You must use <a href="#two_step_saving">two-step saving</a> in Safari on iOS.</p>
 
+<h3>Qualtrics rendering</h3>
+
+<p>Using abcDE on more than one question in the Qualtrics survey tool under Safari behaves irratically. (Fingerings from previously fingered pieces may appear in later pieces, and privious scores will display on fingering input.) The only known workaround is to use a different browser for a survey that behaves this way in Safari.</p>
+
+<h3>Finger copy fails</h3>
+
+<p>Copy does not work under Safari. Please complain to Cupertino.</p>
+
 <h2>HTML configuration</h2>
 
 <p>AbcDE is deployed as a JavaScript library, which can be easily leveraged within an HTML document to provide a customized editor.</p>
@@ -409,6 +423,8 @@ V:2
 </code></pre>
 
 <h2>Qualtrics configuration</h2>
+
+<p><strong>Important:</strong> Qualtrics support is currently not working under Safari. Please use Chrome if you are using abcDE with Qualtrics.</p>
 
 <p>Working with Qualtric's unofficial, but very useful, <a href="http://www.qualtrics.com/university/researchsuite/developer-tools/custom-programming/survey-javascript-methods/">JavaScript API</a> can be a tedious task. AbcDE provides special features to make this process as easy as possible.</p>
 
@@ -590,6 +606,7 @@ V:2
 <li><a href="https://github.com/dcneiner/Downloadify">Downloadify</a> by Doug Neiner</li>
 <li><a href="http://wim.vree.org/svgParse/xml2abc.html">xml2abc-js</a> by Wim Vree</li>
 <li><a href="https://stuk.github.io/jszip/">JSZip</a> by Stuart Knightley</li>
+<li><a href="https://clipboardjs.com">clipboard.js</a> by Zeno Rocha.</li>
 </ul>
 
 
