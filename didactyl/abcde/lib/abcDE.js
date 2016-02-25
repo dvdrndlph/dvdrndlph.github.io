@@ -81,7 +81,6 @@ function AbcDE() {
     var Options,
         Redo = [],
         Undo = [],
-        Rendering_Complete = false,
         Magnification = 1,
         Preferences = {},
         Sequences = [],
@@ -191,7 +190,6 @@ function AbcDE() {
         Org_Abc_Str = '';
         My_Abc = undefined;				// Abc object
         Input_Buffer = [];
-        Rendering_Complete = false;
         Open_Ornament = false;
         Trailing_Characters = [];
         Current_Note = undefined;
@@ -1327,8 +1325,9 @@ function AbcDE() {
                     "Are you sure you are finished fingering this piece?"
             var game_over = window.confirm(prompt);
             if (game_over) {
-                qualtrics.enableNextButton();
-                qualtrics.enablePreviousButton();
+                // Needed for subsequent screens??
+                // qualtrics.enableNextButton();
+                // qualtrics.enablePreviousButton();
                 // Salt the earth.
                 initialize_globals();
                 rerender();
@@ -1336,8 +1335,9 @@ function AbcDE() {
                 qualtrics.clickNextButton();
             }
         } else {
-            qualtrics.enableNextButton();
-            qualtrics.enablePreviousButton();
+            // Needed for subsequent screens??
+            // qualtrics.enableNextButton();
+            // qualtrics.enablePreviousButton();
             qualtrics.clickPreviousButton();
         }
     }
@@ -2940,18 +2940,14 @@ function AbcDE() {
     }
 
     function renderUI(options) {
-        if (! Rendering_Complete) {
             process_options(options);
             render_ui();
-        }
+
         var qualtrics = get_setting('qualtrics');
         if (qualtrics) {
             qualtrics.disableNextButton();
             qualtrics.disablePreviousButton();
         }
-        // Ignore subseqquent calls (from Qualtrics) to render the UI.
-        // Once is enough.
-        // Rendering_Complete = true;
     }
 
     function render_new_sequence() {
