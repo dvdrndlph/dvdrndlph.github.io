@@ -1325,7 +1325,7 @@ function AbcDE() {
         if (button_id === 'q_next') {
             var prompt = "You will not be allowed to return to this screen to make changes.\n\n" +
                     "Are you sure you are finished fingering this piece?"
-            var game_over = window.prompt(prompt, initial_fingering);
+            var game_over = window.confirm(prompt);
             if (game_over) {
                 qualtrics.enableNextButton();
                 qualtrics.enablePreviousButton();
