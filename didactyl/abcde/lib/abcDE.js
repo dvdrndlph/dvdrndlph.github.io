@@ -1296,6 +1296,20 @@ function AbcDE() {
         container.appendChild(button);
     }
 
+    function tear_down_ui() {
+        // Tear down the UI and hide from the incessant
+        // Qualtrics.SurveyEngine.addOnload calls.
+        var abcde_div = document.getElementById(ABCDE_DIV_ID);
+        while (abcde_div.firstChild) {
+            abcde_div.removeChild(abcde_div.firstChild);
+        }
+        abcde_div.remove();
+        Ui_In_Place = false;
+        if (Autosaver) {
+            clearInterval(Autosaver);
+        }
+    }
+
     function handle_qualtrics_click(button_id) {
         var qualtrics = get_setting('qualtrics');
         var x_val = getXValue(Org_Abc_Str);
@@ -1308,24 +1322,22 @@ function AbcDE() {
 
         autosave();
 
-        // Tear down the UI and hide from the incessant
-        // Qualtrics.SurveyEngine.addOnload calls.
-        var abcde_div = document.getElementById(ABCDE_DIV_ID);
-        while (abcde_div.firstChild) {
-            abcde_div.removeChild(abcde_div.firstChild);
-        }
-        abcde_div.remove();
-        Ui_In_Place = false;
-        if (Autosaver) {
-            clearInterval(Autosaver);
-        }
-
-        qualtrics.enableNextButton();
-        qualtrics.enablePreviousButton();
-
         if (button_id === 'q_next') {
-            qualtrics.clickNextButton();
+            var prompt = "You will not be allowed to return to this screen to make changes.\n\n" +
+                    "Are you sure you are finished fingering this piece?"
+            var game_over = window.prompt(prompt, initial_fingering);
+            if (game_over) {
+                qualtrics.enableNextButton();
+                qualtrics.enablePreviousButton();
+                initialize_globals();
+                rerender();
+                tear_down_ui();
+                qualtrics.clickNextButton();
+            }
         } else {
+            qualtrics.enableNextButton();
+            qualtrics.enablePreviousButton();
+            tear_down_ui();
             qualtrics.clickPreviousButton();
         }
     }
