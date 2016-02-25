@@ -1323,12 +1323,13 @@ function AbcDE() {
         autosave();
 
         if (button_id === 'q_next') {
-            var prompt = "You will not be allowed to return to this screen to make changes.\n\n" +
+            var prompt = "You will not be allowed to return to this screen to make further changes.\n\n" +
                     "Are you sure you are finished fingering this piece?"
             var game_over = window.confirm(prompt);
             if (game_over) {
                 qualtrics.enableNextButton();
                 qualtrics.enablePreviousButton();
+                // Salt the earth.
                 initialize_globals();
                 rerender();
                 tear_down_ui();
@@ -1337,7 +1338,6 @@ function AbcDE() {
         } else {
             qualtrics.enableNextButton();
             qualtrics.enablePreviousButton();
-            tear_down_ui();
             qualtrics.clickPreviousButton();
         }
     }
