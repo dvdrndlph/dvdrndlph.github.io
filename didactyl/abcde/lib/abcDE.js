@@ -81,6 +81,7 @@ function AbcDE() {
     var Options,
         Redo = [],
         Undo = [],
+        Toggling_Background = false,
         Magnification = 1,
         Preferences = {},
         Sequences = [],
@@ -185,6 +186,7 @@ function AbcDE() {
         Redo = [];
         Undo = [];
         Md5_Key = '';
+        Toggling_Background = false;
         Abc_Fname = "noname.abc";
         Grace_Notes_In_Source = undefined;
         Org_Abc_Str = '';
@@ -1321,23 +1323,13 @@ function AbcDE() {
         autosave();
 
         if (button_id === 'q_next') {
-            var prompt = "You will not be allowed to return to this screen to make further changes.\n\n" +
-                    "Are you sure you are finished fingering this piece?"
-            var game_over = window.confirm(prompt);
-            if (game_over) {
-                // Needed for subsequent screens??
-                // qualtrics.enableNextButton();
-                // qualtrics.enablePreviousButton();
-                // Salt the earth.
-                initialize_globals();
-                rerender();
-                tear_down_ui();
-                qualtrics.clickNextButton();
-            }
+            // Salt the earth.
+            initialize_globals();
+            rerender();
+            tear_down_ui();
+            Toggling_Background = false;
+            qualtrics.clickNextButton();
         } else {
-            // Needed for subsequent screens??
-            // qualtrics.enableNextButton();
-            // qualtrics.enablePreviousButton();
             qualtrics.clickPreviousButton();
         }
     }
@@ -1391,7 +1383,9 @@ function AbcDE() {
         insert_keypad_image_button(number_div, 'pencil', 'target.svg', '...');
         var using_qualtrics = get_setting('qualtrics');
         if (using_qualtrics) {
-            insert_qualtrics_button(number_div, 'q_back', 'BACK');
+            if (get_setting('qualtrics_back')) {
+                insert_qualtrics_button(number_div, 'q_back', 'BACK');
+            }
             insert_qualtrics_button(number_div, 'q_next', 'NEXT');
         }
         insert_keypad_image_button(symbol_div, 'previous', 'arrow-circle-left.svg', '<-');
@@ -2503,10 +2497,14 @@ function AbcDE() {
     function toggle_hand() {
         if (Toggled) {
             Toggled = false;
-            document.body.style.backgroundColor = "white";
+            if (Toggling_Background) {
+                document.body.style.backgroundColor = "white";
+            }
         } else {
             Toggled = true;
-            document.body.style.backgroundColor = "black";
+            if (Toggling_Background) {
+                document.body.style.backgroundColor = "black";
+            }
         }
         highlight_note(Current_Note);
     }
@@ -2928,6 +2926,7 @@ function AbcDE() {
         insert_controls();
         preset_preferences();
         Org_Abc_Str = document.getElementById(SOURCE_ID).value;
+        Toggling_Background = true;
         if (Org_Abc_Str) {
             Sequences = get_sequences(Org_Abc_Str);
             set_default_sequence();
