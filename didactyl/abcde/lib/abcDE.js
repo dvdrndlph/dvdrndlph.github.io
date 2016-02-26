@@ -2499,11 +2499,13 @@ function AbcDE() {
     function toggle_hand() {
         if (Toggled) {
             Toggled = false;
+            document.body.style.backgroundColor = "white";
             if (Toggling_Background) {
                 document.body.style.backgroundColor = "white";
             }
         } else {
             Toggled = true;
+            document.body.style.backgroundColor = "black";
             if (Toggling_Background) {
                 document.body.style.backgroundColor = "black";
             }
