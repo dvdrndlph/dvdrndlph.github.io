@@ -1075,7 +1075,9 @@ function AbcDE() {
                 var next_button = document.getElementById('q_next');
                 next_button.style.display = 'inline';
                 var back_button = document.getElementById('q_back');
-                back_button.style.display = 'inline';
+                if (back_button) {
+                    back_button.style.display = 'inline';
+                }
             } else {
                 number_div.style.display = 'block';
                 symbol_div.style.display = 'block';
