@@ -2346,6 +2346,7 @@ function AbcDE() {
     }
 
     function rerender() {
+        Toggling_Background = true;
         Rerender_Count++;
         console.log("RERENDERING NUMBER " + Rerender_Count);
         var start_time = new Date().getTime();
@@ -2499,13 +2500,11 @@ function AbcDE() {
     function toggle_hand() {
         if (Toggled) {
             Toggled = false;
-            document.body.style.backgroundColor = "white";
             if (Toggling_Background) {
                 document.body.style.backgroundColor = "white";
             }
         } else {
             Toggled = true;
-            document.body.style.backgroundColor = "black";
             if (Toggling_Background) {
                 document.body.style.backgroundColor = "black";
             }
@@ -2943,8 +2942,8 @@ function AbcDE() {
     }
 
     function renderUI(options) {
-            process_options(options);
-            render_ui();
+        process_options(options);
+        render_ui();
 
         var qualtrics = get_setting('qualtrics');
         if (qualtrics) {
