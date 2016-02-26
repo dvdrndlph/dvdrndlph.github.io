@@ -180,7 +180,7 @@ sup {
 
 <p>The vast majority of fingering entry you do will likely be accomplished by these few actions.</p>
 
-<p>If you are using a touch-capable device, a keypad should display at the bottom of your screen. If you do not see the keypad, click <strong>Preferences</strong> (<img src="http://dvdrndlph.github.io/didactyl/abcde/image/cog.svg" alt="preferences" />) and ensure that <strong>Keypad</strong> is set to <strong>Show</strong>. Navigation using the keypad is via the arrow buttons.</p>
+<p>If you are using a touch-capable device, a keypad should display at the bottom of your screen. If you do not see the keypad, click <strong>Preferences</strong> (<img src="http://dvdrndlph.github.io/didactyl/abcde/image/cog.svg" alt="preferences" />) and ensure that <strong>Keypad</strong> is set to <strong>Show</strong>.</p>
 
 <h4>Note sequencing</h4>
 
@@ -190,7 +190,7 @@ sup {
 
 <p>AbcDE renders all fingering annotations for the right hand in a serif font (Bookman). For contrast, it renders all left hand annotations in a bold non-serif font (Helvetica-Bold). This typesetting convention is adopted for conciseness over more traditional <em>RH:</em> or <em>LH:</em> markings. (It should also make it easier to distinguish fingering annotations from tuplet decorations, which are typically rendered in an italic serif font.)</p>
 
-<p>All right-hand annotations are also rendered above this note. All annotations for the left hand are rendered below the note.</p>
+<p>All right-hand annotations are also rendered above the note. All annotations for the left hand are rendered below the note.</p>
 
 <h4>Toggling hands</h4>
 
@@ -208,7 +208,7 @@ sup {
 
 <h4>Chords</h4>
 
-<p>Enter fingerings for chords from the lowest note to the highest. The chord will remain selected until each note has been annotated. To enter a partial annotation for a chord, press &lt;<strong>TAB</strong>> or &lt;<strong>RIGHT ARROW</strong>>. Such partial annotations, when rendered, should be interpreted as applying the lowest notes of the chord.</p>
+<p>Enter fingerings for chords from the lowest note to the highest. The chord will remain selected until each note has been annotated. To enter a partial annotation for a chord, press &lt;<strong>TAB</strong>> or &lt;<strong>RIGHT ARROW</strong>>. Such partial annotations, when rendered, should be interpreted as applying to the lowest notes of the chord.</p>
 
 <h4>Finger shifts</h4>
 
@@ -216,11 +216,13 @@ sup {
 
 <ol>
 <li>Select the note by clicking or navigating to it.</li>
-<li>Enter the striking finger digit (1-5).</li>
-<li>Enter a comma (","). This will move the note selection back to the note requiring the reposition fingering.</li>
+<li>Enter the striking finger digit (1-5). This will move the note selection to the next note. Ignore this.</li>
+<li>Enter a comma (",").</li>
 <li>Enter the release fingering digit (1-5).</li>
 </ol>
 
+
+<p>You may also use <a href="#dialog_entry">dialog entry</a> to perform this infrequent task.</p>
 
 <h4>Alternate fingerings for repeats</h4>
 
@@ -236,7 +238,7 @@ sup {
 
 <h4>Grace notes</h4>
 
-<p>Grace note fingerings must be entered from low to high and left to right. Only single finger annotations are each element of a grace note. No alternate fingerings or re-positionings are currently allowed.</p>
+<p>Grace note fingerings must be entered from low to high and left to right. Only single finger annotations are allowed for each element of a grace note. No alternate fingerings or re-positionings are currently allowed.</p>
 
 <h4>Ornamentation</h4>
 
@@ -262,9 +264,9 @@ sup {
 
 <p>On touch-screen devices in particular, we recommend using the <strong>Zoom In</strong> (<img src="http://dvdrndlph.github.io/didactyl/abcde/image/zoom-in.svg" alt="zoom_in" />) and <strong>Zoom Out</strong> (<img src="http://dvdrndlph.github.io/didactyl/abcde/image/zoom-out.svg" alt="zoom_out" />) buttons in the control bar to change the size of the displayed music. Pinching or double-tapping will resize the entire window and may render the keypad inaccessible. Using <img src="http://dvdrndlph.github.io/didactyl/abcde/image/zoom-in.svg" alt="zoom_in" /> and <img src="http://dvdrndlph.github.io/didactyl/abcde/image/zoom-out.svg" alt="zoom_out" />, you can resize the score from 30% to 300%.</p>
 
-<h3>Dialog entry</h3>
+<h3><a name="dialog_entry"></a> Dialog entry</h3>
 
-<p>In lieu of the "blind entry" methods described above, you may enter fingerings via a popup window. If you are working with a mouse or other pointing device, simply double-click a note to open its dialog window. You may also press the &lt;<strong>ENTER</strong>> key to work on the currently selected note or equivalently click the button on the display keypad.</p>
+<p>In lieu of the "blind entry" methods described above, you may enter fingerings via a popup window. If you are working with a mouse or other pointing device, simply double-click a note to open its dialog window. You may also press the &lt;<strong>ENTER</strong>> key to work on the currently selected note or equivalently click the <strong>Target</strong> (<img src="http://dvdrndlph.github.io/didactyl/abcde/image/target.svg" alt="zoom_in" />) button on the display keypad.</p>
 
 <p>Note that you can enter fingerings for a sequence of notes in a single dialog.</p>
 
@@ -355,243 +357,9 @@ sup {
 
 <p>Copy does not work under Safari. Please complain to Cupertino.</p>
 
-<h2>HTML configuration</h2>
+<h2>Administration guide</h2>
 
-<p>AbcDE is deployed as a JavaScript library, which can be easily leveraged within an HTML document to provide a customized editor.</p>
-
-<p>The following HTML provides an abcDE editor with all features enabled and no constraints placed on user preferences.</p>
-
-<pre><code>&lt;html&gt;
-   &lt;head profile="http://www.w3.org/2005/10/profile"&gt;
-      &lt;link rel="stylesheet" type="text/css" href="https://dvdrndlph.github.io/didactyl/abcde/css/abcDE.css"&gt;
-      &lt;script src="https://dvdrndlph.github.io/didactyl/abcde/lib/abcDE_full.js" type="text/javascript"&gt;&lt;/script&gt;
-   &lt;/head&gt;
-
-   &lt;body&gt;
-      &lt;div id="abcde"&gt;&lt;/div&gt;
-      &lt;script type="text/javascript"&gt;
-         window.onload = function() {
-            var abcDE = new AbcDE();
-            abcDE.renderUI({
-               file_input:true,
-               url_input:true,
-               preset_select:true
-            });
-         }
-   &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-<p>A call like the following to <code>AbcDE.render()</code> would be suitable for a controlled experiment where users must provide complete fingering data for a specific piece:</p>
-
-<pre><code>abcDE.renderUI({
-   preset:'first',
-   output:'append',
-   validate:'complete',
-   url:'http://dvdrndlph.github.io/didactyl/mxl/OpenWTC/pf24.mxl'
-});
-</code></pre>
-
-<p>You may also initialize the editor to specific abc (or abcd) content by including a <strong>TEXTAREA</strong> element with ID "abc_source" above the "abcde" <strong>DIV</strong> tag, like so:</p>
-
-<pre><code>   &lt;body&gt;
-      &lt;textarea id="abc_source"&gt;X:1
-T:Fragment A
-C:Czerny
-M:C
-L:1/16
-Q:"Allegro"
-K:C
-V:1 treble
-V:2 treble
-V:1
-!p!egfg efde cc'bc' abga|]
-V:2
-[GC]4 z4 [GE]4 z4|]
-      &lt;/textarea&gt;
-      &lt;div id="abcde"&gt;&lt;/div&gt;
-      &lt;script type="text/javascript"&gt;
-         window.onload = function() {
-            var abcDE = new AbcDE();
-            abcDE.renderUI({
-               file_input:true,
-               url_input:true,
-               preset_select:true
-            });
-         }
-   &lt;/body&gt;
-</code></pre>
-
-<h2>Qualtrics configuration</h2>
-
-<p><strong>Important:</strong> Qualtrics support is currently not working under Safari. Please use Chrome if you are using abcDE with Qualtrics.</p>
-
-<p>Working with Qualtric's unofficial, but very useful, <a href="http://www.qualtrics.com/university/researchsuite/developer-tools/custom-programming/survey-javascript-methods/">JavaScript API</a> can be a tedious task. AbcDE provides special features to make this process as easy as possible.</p>
-
-<h3>Emedded data</h3>
-
-<p>To use these features, however, you must adopt naming conventions for the embedded data elements used to save fingering data. Full abcD output will be written to variables like this:</p>
-
-<pre><code>abcD_1
-</code></pre>
-
-<p>Fingering data in abcDF format will be written to variables like this:</p>
-
-<pre><code>abcDF_1
-</code></pre>
-
-<p>You must add appropriately named embedded data elements in a block at the end of your survey. The digits included in the element names must correspond to the X identifier in the corresponding abc input for a question.</p>
-
-<h3>Look and feel configuration</h3>
-
-<p>In the <strong>Look &amp; Feel</strong> window for your survey, click the <strong>Advanced</strong> tab. Enter the following URL in the <strong>External CSS</strong> field:</p>
-
-<pre><code>https://dvdrndlph.github.io/didactyl/abcde/css/abcDE.css
-</code></pre>
-
-<p>(Note that it is important to use secure HTTP (https) URLs when working with Qualtrics to avoid access errors.)</p>
-
-<p>Enter text like the following in the <strong>Header</strong> field:</p>
-
-<pre><code>   &lt;script src="https://dvdrndlph.github.io/didactyl/abcde/lib/abcDE_full.js" type="text/javascript"&gt;&lt;/script&gt;
-   &lt;script type="text/javascript"&gt;
-      Qualtrics.SurveyEngine.addOnload(function () {
-         var sourceField = document.getElementById('abc_source');
-         if (! sourceField) {
-            return;
-         }
-         var abc = sourceField.value;
-         if (! abc) {
-            return;
-         }
-
-         var abcDE = new AbcDE();
-         abcDE.renderUI({output:'append',
-                         preset:'first',
-                         restore:'always',
-                         validate:'complete',
-                         qualtrics:this});
-         return true;
-      });
-   &lt;/script&gt;
-</code></pre>
-
-<h3>Question definitions</h3>
-
-<p>Finally, add <strong>Text</strong> questions with HTML formatted like the following:</p>
-
-<pre><code>   &lt;textarea id="abc_source" style="display:none;"&gt;
-% abcDidactyl v5
-% abcD fingering 1: 35xx3x2x15xx3x2x@xxxx
-% Authority: Carl Czerny (1839)
-% Transcriber: David Randolph
-% Transcription date: 2016-01-22 12:58:01
-% Test of Qualtrics integration.
-% abcDidactyl END
-X:3
-T:A
-C:Czerny
-M:C
-L:1/16
-Q:"Allegro"
-K:C
-V:1 treble
-V:2 treble
-V:1
-!p!egfg efde cc'bc' abga|]
-V:2
-[GC]4 z4 [GE]4 z4|]
-   &lt;/textarea&gt;
-   &lt;div id="abcde"&lt;/div&gt;
-</code></pre>
-
-<p>Here the exercise displayed in the survey (thanks to the <code>preset:'first'</code> option to <code>abcDE.renderUI()</code>) would be initialized to the "fingering 1" abcDF specification. Results would be written to the <code>abcD_3</code> and <code>abcDF_3</code> embedded data elements, as dictated by the <code>X:3</code> setting in the "abc_source" input.</p>
-
-<h2>JavaScript API</h2>
-
-<h3>abcDE.renderUI(args)</h3>
-
-<p>Renders an abc Didactyl Editor within the <strong>DIV</strong> element with ID "abcde" on the page.</p>
-
-<p>Assumes such a <strong>DIV</strong> exists on the page.</p>
-
-<p>Accepts a hash of arguments to determine the specific behaviors of the editor, as specified below.</p>
-
-<h4>restore:'always'|'never'|'ask'</h4>
-
-<p>Determine when previously entered work saved by the browser should be restored. If <em>ask</em> is specified, prompt user to learn if data should be restored.</p>
-
-<p>If not specified, defer to user preference.</p>
-
-<p>(If integrating with Qualtrics, set to <em>always</em> both to ensure that data is retained and to avoid multiple prompts from being issued. Qualtrics appears to be doing some reloading of content under the covers.)</p>
-
-<h4>file_input:true|false</h4>
-
-<p>Allow user to select a file from the local file system to edit. Defaults to false.</p>
-
-<h4>include_pii:true|false</h4>
-
-<p>Include the <strong>Transcriber</strong> and <strong>Authority</strong> names in the abcD content returned through the JavaScript API. By default, such information is suppressed.</p>
-
-<h4>output:'append'|'replace'</h4>
-
-<p>Control how fingering data entered by the user is recorded in any saved or viewed abcD content. A new fingering block may be <em>append</em>ed to the abcD block, or it may <em>replace</em> the fingering block used to initiate the session.</p>
-
-<p>If not specified, defer to user preference.</p>
-
-<h4>preset:'first'|'last'|'none'</h4>
-
-<p>Parse any input abcD content and load either the <em>first</em> fingering sequence specified or the <em>last</em> sequence. If not specified, defer to user preference on the matter.</p>
-
-<h4>preset_select:true|false</h4>
-
-<p>Allow the user to browse different fingering sequences specified in an abcD input file. Defaults to false.</p>
-
-<h4>url:'&lt;URL>'</h4>
-
-<p>Initialize the editor with the abc content provided at the specified <em>URL</em>.</p>
-
-<h4>url_input:true|false</h4>
-
-<p>Allow the user to load abc content from a URL to edit. Defaults to false.</p>
-
-<h4>validate:'complete'|'auto'|'none'</h4>
-
-<p>Control how fingering input is validated. A <em>complete</em> validation requires that a fingering be provided for each note (pitch) in the input abc. An <em>auto</em>matic validation first applies heuristics in an attempt to infer a complete fingering.</p>
-
-<p>If not specified, no validation is performed.</p>
-
-<h3>abcDE.getAuthority()</h3>
-
-<p>Returns the "Authority" responsible for the entered fingering. Returns the empty string unless <em>include_pii</em> is set to true.</p>
-
-<h3>abcDE.getComments()</h3>
-
-<p>Returns user's entered comments about entered fingering data.</p>
-
-<h3>abcDE.getEnteredCollection()</h3>
-
-<p>Returns the fingering data entered by the user as a string.</p>
-
-<h3>abcDE.getEnteredAbcD()</h3>
-
-<p>Returns the complete abcD file, including the user's fingering data.</p>
-
-<h3>abcDE.getTranscriber()</h3>
-
-<p>Returns the "Transcriber" responsible for the entered fingering. Returns the empty string unless <em>include_pii</em> is set to true.</p>
-
-<h3>abcDE.getValidatedCollection()</h3>
-
-<p>Returns the fingering data as a string if and only if the requested validation is successful. Alerts user to the validation problem and returns an empty string if the validation fails.</p>
-
-<h3>abcDE.getValidatedAbcD()</h3>
-
-<p>Returns the complete abcD file, including the user's fingering data, if and only if the requested validation is successful. Alerts user to the validation problem and returns an empty string if the validation fails.</p>
-
-<h3>abcDE.getXValue(abc_string)</h3>
-
-<p>Returns the ID of the X (tune identifier) field from the input abc string. Convenient for distinguishing exercises posed in Qualtrics.</p>
+<p>AbcDE is available for your use <a href="http://dvdrndlph.github.io/didactyl/abcde/view/abcDEpf1.html">online</a>. But if you want to configure and host your own instance or otherwise leverage the <a href="http://dvdrndlph.github.io/didactyl/abcde/lib/abcDE_full.js">abcDE JavaScript library</a>, please see the <a href="http://dvdrndlph.github.io/didactyl/abcde/view/abcde_administration_guide.html">administration guide</a>.</p>
 
 <h2>Acknowledgements</h2>
 
