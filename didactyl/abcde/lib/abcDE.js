@@ -1382,6 +1382,7 @@ function AbcDE() {
         insert_keypad_button(number_div, 'three', '3');
         insert_keypad_button(number_div, 'four', '4');
         insert_keypad_button(number_div, 'five', '5');
+        insert_keypad_button(number_div, 'toggle', 'T');
         insert_keypad_image_button(number_div, 'pencil', 'target.svg', '...');
         var using_qualtrics = get_setting('qualtrics');
         if (using_qualtrics) {
@@ -1396,7 +1397,12 @@ function AbcDE() {
         insert_keypad_button(symbol_div, 'slash', '/');
         insert_keypad_button(symbol_div, 'open_paren', '(');
         insert_keypad_button(symbol_div, 'close_paren', ')');
-        insert_keypad_button(symbol_div, 'toggle', 'T');
+        var phrasing = get_setting('phrasing');
+        if (phrasing) {
+            insert_keypad_button(symbol_div, 'short_phrase', 'S');
+            insert_keypad_button(symbol_div, 'medium_phrase', 'M');
+            insert_keypad_button(symbol_div, 'long_phrase', 'L');
+        }
         insert_keypad_image_button(symbol_div, 'backspace', 'delete.svg', '<]');
     }
 
@@ -1659,6 +1665,7 @@ function AbcDE() {
         this.end = -1;
         this.starts = [];
         this.stops = [];
+        this.phrase_break = 'X';
 
         if (music_types[elem.type] === 'note') {
             this.size = elem.notes.length;
@@ -2745,6 +2752,10 @@ function AbcDE() {
         highlight_note(Current_Note);
     }
 
+    function mark_phrase(char) {
+        Current_Note.phrase_break = char.toUpperCase();
+    }
+
     function buffer_character_input(char) {
         clearTimeout(Timer);
 
@@ -2756,6 +2767,13 @@ function AbcDE() {
         if (char === 't' || char === 'T') {
             flush_buffer();
             toggle_hand();
+            character_processed = true;
+        }
+        if (char === 's' || char === 'S' ||
+            char === 'm' || char === 'M' ||
+            char === 'l' || char === 'L') {
+            flush_buffer();
+            mark_phrase(char);
             character_processed = true;
         }
         Timer = setTimeout(flush_buffer, TIMEOUT_MS);
@@ -3141,9 +3159,17 @@ function AbcDE() {
 
         Colcl.push('e_' + note_start);
         if (Toggled) {
-            colorsel("blue");
+            if (note.staff === 0) {
+                colorsel("blue");
+            } else {
+                colorsel("red");
+            }
         } else {
-            colorsel("red");
+            if (note.staff === 1) {
+                colorsel("blue");
+            } else {
+                colorsel("red");
+            }
         }
 
         var line_key = 'line_' + note.line;
