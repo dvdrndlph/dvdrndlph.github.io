@@ -31,7 +31,7 @@
  * This is a WYSIWYG utility to collect fingering data for abc input.
  *
  * The user will enter a string of digits 1-5, parentheses,
- * commas, and slashes to convey the fingering for a given note
+ * hyphens, and slashes to convey the fingering for a given note
  * according to the following rules:
  *
  *     1. All black note heads (including grace notes) may be assigned either
@@ -57,7 +57,7 @@
  *
  *     4. All chord fingerings should be entered from low to high (left to right).
  *
- *     5. A comma is used to indicate that a different finger is used to release
+ *     5. A hyphen is used to indicate that a different finger is used to release
  *        the key than the one that struck it. That is, a note that is struck with
  *        the ring finger but released with the thumb, would be annotated like this:
  *
@@ -66,7 +66,7 @@
  *     6. All notes in a tied sequence must have a fingering assigned.
  *
  *     7. Finger shifts or alternative fingerings within an ornamented note
- *        (slashes or commas within parentheses) are not allowed.
+ *        (slashes or hyphens within parentheses) are not allowed.
  *
  *     8. Unless otherwise specified, fingerings for the upper staff are assumed
  *        to be for the right hand and those for the lower staff are assumed to
@@ -126,8 +126,8 @@ function AbcDE() {
 
     // FIXME: These regular expresions are too simplistic. Replace them
     // with PEG parser calls.
-    var FINGER_RE = /\(([<>]\d)+\)|[<>]\d,[<>]\d\/[<>]\d,[<>]\d|[<>]\d\/[<>]\d,[<>]\d|[<>]\d,[<>]\d\/[<>]\d|[<>]\d,[<>]\d|[<>]\d\/[<>]\d|[<>]\d|x/g;
-    var PRESET_RE = /\(([<>]?\d)+\)|[<>]?\d,[<>]?\d\/[<>]?\d,[<>]?\d|[<>]?\d\/[<>]?\d,[<>]?\d|[<>]?\d,[<>]?\d\/[<>]?\d|[<>]?\d,[<>]?\d|[<>]?\d\/[<>]?\d|[<>]?\d|x/g;
+    var FINGER_RE = /\(([<>]\d)+\)|[<>]\d-[<>]\d\/[<>]\d-[<>]\d|[<>]\d\/[<>]\d-[<>]\d|[<>]\d-[<>]\d\/[<>]\d|[<>]\d-[<>]\d|[<>]\d\/[<>]\d|[<>]\d|x/g;
+    var PRESET_RE = /\(([<>]?\d)+\)|[<>]?\d-[<>]?\d\/[<>]?\d-[<>]?\d|[<>]?\d\/[<>]?\d-[<>]?\d|[<>]?\d-[<>]?\d\/[<>]?\d|[<>]?\d-[<>]?\d|[<>]?\d\/[<>]?\d|[<>]?\d|x/g;
 
     var SPACE_RE = /\s/g;
     var LH_REG = /</g;
@@ -135,7 +135,7 @@ function AbcDE() {
     var RL_REG = /[><]/g;
     var LAST_HAND_RE = (/.*([<>])[^<>]+$/);
     var ABCD_HDR_RE = /^% abcDidactyl v([\d\.]+)$/;
-    var ABCD_FINGERING_RE = /^% abcD fingering (\d+): ([<>1-5,\/\(\)@&x]+)$/;
+    var ABCD_FINGERING_RE = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x]+)$/;
     var ABCD_TERMINAL_RE = /^% abcDidactyl END$/;
     var ABCD_AUTHORITY_RE = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/;
     var ABCD_TRANSCRIBER_RE = /^% Transcriber: (.*)$/;
@@ -1393,7 +1393,7 @@ function AbcDE() {
         }
         insert_keypad_image_button(symbol_div, 'previous', 'arrow-circle-left.svg', '<-');
         insert_keypad_image_button(symbol_div, 'next', 'arrow-circle-right.svg', '->');
-        insert_keypad_button(symbol_div, 'comma', ',');
+        insert_keypad_button(symbol_div, 'hyphen', '-');
         insert_keypad_button(symbol_div, 'slash', '/');
         insert_keypad_button(symbol_div, 'open_paren', '(');
         insert_keypad_button(symbol_div, 'close_paren', ')');
@@ -2190,7 +2190,7 @@ function AbcDE() {
         var abc_str = '{';
         var grace_tokens = get_grace_note_tokens(note);
         // Only single digits are allowed for each grace note token
-        // (no slashes, commas, or ornaments).
+        // (no slashes, hyphens, or ornaments).
         // FIXME: This should be enforced in the UI.
         var finger_tokens = [];
         if (note.fingering) {
@@ -2543,7 +2543,7 @@ function AbcDE() {
         var str = hand + leaf_node.fingering.strike.digit;
         if (leaf_node.fingering.release) {
             hand = leaf_node.fingering.release.hand || current_hand;
-            str += ',' + hand + leaf_node.fingering.release.digit;
+            str += '-' + hand + leaf_node.fingering.release.digit;
         }
         return str;
     }
@@ -2674,7 +2674,7 @@ function AbcDE() {
         // Remember any trailing characters entered for next time we flush.
         Trailing_Characters = [];
         for (var i = Input_Buffer.length - 1; i >= 0; i--) {
-            if (/[,\/\(]/.test(Input_Buffer[i])) {
+            if (/[\-\/\(]/.test(Input_Buffer[i])) {
                 Trailing_Characters.unshift(Input_Buffer.pop());
             } else {
                 break;
@@ -2685,7 +2685,7 @@ function AbcDE() {
             return;
         }
 
-        if (/[,\/]/.test(Input_Buffer[0])) {
+        if (/[\-\/]/.test(Input_Buffer[0])) {
             modifying_prior_note = true;
         }
         if (Open_Ornament) {
@@ -2760,7 +2760,7 @@ function AbcDE() {
         clearTimeout(Timer);
 
         var character_processed = false;
-        if (/[\(\)\/,1-5]/.test(char)) {
+        if (/[\(\)\/\-1-5]/.test(char)) {
             Input_Buffer.push(char);
             character_processed = true;
         }

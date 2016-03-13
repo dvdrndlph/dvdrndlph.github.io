@@ -176,7 +176,7 @@ sup {
                      | &lt;fingering&gt; &lt;damper&gt;
                      | &lt;fingering&gt;
 
-&lt;fingering&gt; := &lt;finger&gt; "," &lt;finger&gt;
+&lt;fingering&gt; := &lt;finger&gt; "-" &lt;finger&gt;
              | &lt;finger&gt;
 
 &lt;finger&gt; := &lt;hand&gt; &lt;digit&gt; | &lt;digit&gt;
@@ -210,7 +210,7 @@ pedaling := (soft)+ "x" (damper)+
 
 pedaled_fingering := (soft)? fingering (damper)?
 
-fingering := finger ("," finger)?
+fingering := finger ("-" finger)?
 
 finger := (hand)? digit
 
@@ -233,7 +233,7 @@ score_fingering = ornamental "/" ornamental)?
 ornamental = "(" pedaled_fingering+ ")"
 pedaled_fingering = soft? fingering damper?
 pedaling = soft? "x" damper?
-fingering = finger ("," finger)?
+fingering = finger ("-" finger)?
 finger = hand? digit
 damper = [_^]
 soft = [pf]
@@ -271,7 +271,7 @@ pedaling = soft:soft? "x" damper:damper? {
     var fingering = {strike:null, release:null};
     return {soft:soft, fingering:fingering, damper:damper};
 }
-fingering = strike:finger release:(("," finger)?) {
+fingering = strike:finger release:(("-" finger)?) {
     var map = {strike:strike, release:null};
     if (release) {
         map['release'] = release[1];

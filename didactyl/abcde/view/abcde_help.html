@@ -168,7 +168,7 @@ sup {
 
 <h3>Basic entry</h3>
 
-<p>To finger a note, first select it by clicking it. When selected, the note turns red or blue. You may then do one of the following:</p>
+<p>To finger a note, first select it by clicking it. When selected, the note turns red or blue. (If the note is red, you are specifying a fingering for the right hand. If the note is blue, the fingering will be for the left hand.) You may then do one of the following:</p>
 
 <ul>
 <li>Enter a fingering by typing a digit 1-5.</li>
@@ -196,7 +196,7 @@ sup {
 
 <p>By default, fingerings entered for notes on the upper staff are assumed to be for the right hand. Similarly, the default hand for notes on the lower staff is the left hand.</p>
 
-<p>To override this behavior, press the &lt;<strong>T</strong>> key. You will notice that the selected note now appears in blue instead of the default red and that the area around the printed score has turned black. This is to remind you that you are in toggle mode. Any fingerings you enter will be assigned to the non-default hand.</p>
+<p>To override this behavior, press the &lt;<strong>T</strong>> key. You will notice that the selected note has changed color. If the note is red, you are specifying a fingering for the right hand. If the note is blue, you mean the left hand. Also note that the area around the printed score has turned black. This is to remind you that you are in toggle mode: any fingerings you enter will be assigned to the non-default hand for the staff.</p>
 
 <p>This behavior will persist until you press the &lt;<strong>T</strong>> key again. Doing so will return you to the default hand mode.</p>
 
@@ -210,14 +210,14 @@ sup {
 
 <p>Enter fingerings for chords from the lowest note to the highest. The chord will remain selected until each note has been annotated. To enter a partial annotation for a chord, press &lt;<strong>TAB</strong>> or &lt;<strong>RIGHT ARROW</strong>>. Such partial annotations, when rendered, should be interpreted as applying to the lowest notes of the chord.</p>
 
-<h4>Finger shifts</h4>
+<h4>Finger substitutions</h4>
 
-<p>In some situations, you may use a different finger to release a key from the one you used to strike it. AbcDE supports annotating such finger repositioning like this:</p>
+<p>In some situations, you may use a different finger to release a key from the one you used to strike it. AbcDE supports annotating such finger substitutions like this:</p>
 
 <ol>
 <li>Select the note by clicking or navigating to it.</li>
 <li>Enter the striking finger digit (1-5). This will move the note selection to the next note. Ignore this.</li>
-<li>Enter a comma (",").</li>
+<li>Enter a hyphen ("-").</li>
 <li>Enter the release fingering digit (1-5).</li>
 </ol>
 

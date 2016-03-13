@@ -40,10 +40,10 @@ var Abcdf_Parser = (function() {
         peg$c1 = { type: "literal", value: "@", description: "\"@\"" },
         peg$c2 = function(upper, lower) {
             var map = {upper:upper};
-            if (lower) {
-                map['lower'] = lower[1];
-            }
-            return map;
+        if (lower) {
+            map['lower'] = lower[1];
+        }
+        return map;
         },
         peg$c3 = "&",
         peg$c4 = { type: "literal", value: "&", description: "\"&\"" },
@@ -72,10 +72,10 @@ var Abcdf_Parser = (function() {
         peg$c19 = { type: "literal", value: "x", description: "\"x\"" },
         peg$c20 = function(soft, damper) {
             var fingering = {strike:null, release:null};
-            return {soft:soft, fingering:fingering, damper:damper};
+        return {soft:soft, fingering:fingering, damper:damper};
         },
-        peg$c21 = ",",
-        peg$c22 = { type: "literal", value: ",", description: "\",\"" },
+        peg$c21 = "-",
+        peg$c22 = { type: "literal", value: "-", description: "\"-\"" },
         peg$c23 = function(strike, release) {
             var map = {strike:strike, release:null};
             if (release) {
@@ -649,7 +649,7 @@ var Abcdf_Parser = (function() {
       s1 = peg$parsefinger();
       if (s1 !== peg$FAILED) {
         s2 = peg$currPos;
-        if (input.charCodeAt(peg$currPos) === 44) {
+        if (input.charCodeAt(peg$currPos) === 45) {
           s3 = peg$c21;
           peg$currPos++;
         } else {

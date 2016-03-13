@@ -14,7 +14,7 @@ table {
 }
 
 #one, #two, #three, #four, #five,
-#comma, #slash, #open_paren, #close_paren, #toggle,
+#hyphen, #slash, #open_paren, #close_paren, #toggle,
 #short_phrase, #medium_phrase, #long_phrase {
     margin-left: 1px;
     margin-right: 1px;
