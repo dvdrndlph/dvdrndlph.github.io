@@ -815,6 +815,29 @@ function AbcDE() {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
     }
 
+    // Function lifted from https://gist.github.com/johan/2047491.
+    // jQuery no-double-tap-zoom plugin
+    // Triple-licensed: Public Domain, MIT and WTFPL license - share and enjoy!
+    (function($) {
+        var IS_IOS = /iphone|ipad/i.test(navigator.userAgent);
+        $.fn.nodoubletapzoom = function() {
+            if (IS_IOS)
+                $(this).bind('touchstart', function preventZoom(e) {
+                    var t2 = e.timeStamp
+                        , t1 = $(this).data('lastTouch') || t2
+                        , dt = t2 - t1
+                        , fingers = e.originalEvent.touches.length;
+                    $(this).data('lastTouch', t2);
+                    if (!dt || dt > 500 || fingers > 1) return; // not double-tap
+
+                    e.preventDefault(); // double tap - prevent the zoom
+                    // also synthesize click events we just swallowed up
+                    $(this).trigger('click').trigger('click');
+                });
+        };
+    })(jQuery);
+    // End of lifted code.
+
     function zoom_out() {
         if (Magnification > MIN_MAGNIFICATION) {
             Magnification -= MAGNIFICATION_INCREMENT;
@@ -1338,7 +1361,7 @@ function AbcDE() {
 
     /* Since our keypad can/will cover the Qualtrics NEXT and BACK
      buttons, we need to include our own on the keypad and mimic
-     their behaivior.
+     their behavior.
      */
     function insert_qualtrics_button(container, button_id, value) {
         var button = document.createElement('input');
@@ -2957,6 +2980,7 @@ function AbcDE() {
             handle_keys();
         }
         show_keypad();
+        $(KEYPAD_DIV_ID).nodoubletapzoom();
     }
 
     function renderUI(options) {
