@@ -144,6 +144,7 @@ function AbcDE() {
     var ABCD_COMMENT_RE = /^% (.*)$/;
 
     var TIMEOUT_MS = 300;
+    var DOUBLE_TAP_MS = 500;
     var AUTOSAVE_MS = 4000;
 
     var ABCDE_DIV_ID = 'abcde';
@@ -828,7 +829,7 @@ function AbcDE() {
                         , dt = t2 - t1
                         , fingers = e.originalEvent.touches.length;
                     $(this).data('lastTouch', t2);
-                    if (!dt || dt > 500 || fingers > 1) return; // not double-tap
+                    if (!dt || dt > DOUBLE_TAP_MS || fingers > 1) return; // not double-tap
 
                     e.preventDefault(); // double tap - prevent the zoom
                     // also synthesize click events we just swallowed up
@@ -2524,7 +2525,11 @@ function AbcDE() {
                 key_code = Y_CODE;
                 break;
         }
-        return handle_key_code(key_code);
+        var event_handled = handle_key_code(key_code);
+        if (event_handled) {
+            e.preventDefault();
+        }
+        return event_handled;
     }
 
     function toggle_hand() {
@@ -2980,7 +2985,7 @@ function AbcDE() {
             handle_keys();
         }
         show_keypad();
-        $(KEYPAD_DIV_ID).nodoubletapzoom();
+        // $(KEYPAD_DIV_ID).nodoubletapzoom();
     }
 
     function renderUI(options) {
