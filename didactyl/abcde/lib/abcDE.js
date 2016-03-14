@@ -2985,12 +2985,12 @@ function AbcDE() {
             handle_keys();
         }
         show_keypad();
-        $('backspace').nodoubletapzoom();
-        $('pencil').nodoubletapzoom();
-        $('previous').nodoubletapzoom();
-        $('next').nodoubletapzoom();
-        $('undo').nodoubletapzoom();
-        $('redo').nodoubletapzoom();
+        // $('backspace').nodoubletapzoom();
+        // $('pencil').nodoubletapzoom();
+        // $('previous').nodoubletapzoom();
+        // $('next').nodoubletapzoom();
+        // $('undo').nodoubletapzoom();
+        // $('redo').nodoubletapzoom();
         // $(KEYPAD_DIV_ID).nodoubletapzoom();
     }
 
