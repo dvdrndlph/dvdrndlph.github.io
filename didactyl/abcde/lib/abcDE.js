@@ -816,29 +816,6 @@ function AbcDE() {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
     }
 
-    // Function lifted from https://gist.github.com/johan/2047491.
-    // jQuery no-double-tap-zoom plugin
-    // Triple-licensed: Public Domain, MIT and WTFPL license - share and enjoy!
-    (function($) {
-        var IS_IOS = /iphone|ipad/i.test(navigator.userAgent);
-        $.fn.nodoubletapzoom = function() {
-            if (IS_IOS)
-                $(this).bind('touchstart', function preventZoom(e) {
-                    var t2 = e.timeStamp
-                        , t1 = $(this).data('lastTouch') || t2
-                        , dt = t2 - t1
-                        , fingers = e.originalEvent.touches.length;
-                    $(this).data('lastTouch', t2);
-                    if (!dt || dt > DOUBLE_TAP_MS || fingers > 1) return; // not double-tap
-
-                    e.preventDefault(); // double tap - prevent the zoom
-                    // also synthesize click events we just swallowed up
-                    $(this).trigger('click').trigger('click');
-                });
-        };
-    })(jQuery);
-    // End of lifted code.
-
     function zoom_out() {
         if (Magnification > MIN_MAGNIFICATION) {
             Magnification -= MAGNIFICATION_INCREMENT;
@@ -2985,13 +2962,6 @@ function AbcDE() {
             handle_keys();
         }
         show_keypad();
-        // $('backspace').nodoubletapzoom();
-        // $('pencil').nodoubletapzoom();
-        // $('previous').nodoubletapzoom();
-        // $('next').nodoubletapzoom();
-        // $('undo').nodoubletapzoom();
-        // $('redo').nodoubletapzoom();
-        // $(KEYPAD_DIV_ID).nodoubletapzoom();
     }
 
     function renderUI(options) {
@@ -3156,10 +3126,10 @@ function AbcDE() {
     function setcolor(cl, color) {
         var elts = document.getElementsByClassName(cl),
             i = elts.length,
-            elt
+            elt;
         while (--i >= 0) {
             elt = elts[i];
-            elt.setAttribute("color", color)
+            elt.setAttribute("color", color);
         }
     }
 
@@ -3169,20 +3139,29 @@ function AbcDE() {
             setcolor(Colcl[i], color)
     }
 
-    function is_fully_visible(elem)
-    {
-        var $elem = $(elem);
-        var $window = $(window);
-
+    function keep_in_view(elem) {
+        var topOfPage = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        var heightOfPage = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         var key_pad = document.getElementById(KEYPAD_DIV_ID);
-
-        var doc_top = $window.scrollTop();
-        var doc_bottom = doc_top + $window.height() - key_pad.offsetHeight;
-
-        var elem_top = $elem.offset().top;
-        var elem_bottom = elem_top + $elem.height();
-
-        return ((elem_bottom <= doc_bottom) && (elem_top >= doc_top));
+        heightOfPage -= key_pad.offsetHeight;
+        var y = 0;
+        var h = 0;
+        if (document.layers) { // NS4
+            y = elem.y;
+            h = elem.height;
+        }
+        else {
+            for(var p=elem; p&&p.tagName!='BODY'; p=p.offsetParent){
+                y += p.offsetTop;
+            }
+            h = elem.offsetHeight;
+        }
+        if ((topOfPage + heightOfPage) < (y + h)) {
+            elem.scrollIntoView(false);
+        }
+        else if (y < topOfPage) {
+            elem.scrollIntoView(true);
+        }
     }
 
     function highlight_note(note) {
@@ -3209,12 +3188,7 @@ function AbcDE() {
 
         var line_key = 'line_' + note.line;
         var line_svg = document.getElementById(line_key);
-        if (! is_fully_visible(line_svg)) {
-            line_svg.scrollIntoView(false);
-            var key_pad = document.getElementById(KEYPAD_DIV_ID);
-            var y = document.body.scrollTop;
-            window.scrollTo(0, y + key_pad.offsetHeight);
-        }
+        keep_in_view(line_svg);
     }
 
     function getXValue(abc_str) {
