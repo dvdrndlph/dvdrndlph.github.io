@@ -1331,8 +1331,12 @@ function AbcDE() {
             rerender();
             tear_down_ui();
             Toggling_Background = false;
+            qualtrics.enableNextButton();
+            qualtrics.enablePreviousButton();
             qualtrics.clickNextButton();
         } else {
+            qualtrics.enableNextButton();
+            qualtrics.enablePreviousButton();
             qualtrics.clickPreviousButton();
         }
     }
@@ -2858,7 +2862,7 @@ function AbcDE() {
             try {
                 Abcdf_Parser.parse(sequences[i].sequence);
             } catch (e) {
-                alert("Bad abcDF parse of fingering string: " + e.message + e.stack);
+                alert("Bad abcDF parse of fingering string: " + e.message);
             }
             fingering_line = get_abcd_fingering_preamble(sequence_number) + sequences[i].sequence;
             header_lines.push(fingering_line);
@@ -2962,6 +2966,9 @@ function AbcDE() {
             handle_keys();
         }
         show_keypad();
+        $(function() {
+            FastClick.attach(document.body);
+        });
     }
 
     function renderUI(options) {
@@ -3115,7 +3122,7 @@ function AbcDE() {
                 alert('bad line number');
                 idx = s.value.length - 1;
                 c = 0;
-                break
+                break;
             }
         }
         c = Number(c) + idx;
@@ -3136,33 +3143,25 @@ function AbcDE() {
     function colorsel(color) {
         var i, n = Colcl.length;
         for (i = 0; i < n; i++)
-            setcolor(Colcl[i], color)
+            setcolor(Colcl[i], color);
     }
 
-    function keep_in_view(elem) {
-        var topOfPage = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-        var heightOfPage = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    function is_fully_visible(elem) {
+        var $elem = $(elem);
+        var $window = $(window);
+
         var key_pad = document.getElementById(KEYPAD_DIV_ID);
-        heightOfPage -= key_pad.offsetHeight;
-        var y = 0;
-        var h = 0;
-        if (document.layers) { // NS4
-            y = elem.y;
-            h = elem.height;
-        }
-        else {
-            for(var p=elem; p&&p.tagName!='BODY'; p=p.offsetParent){
-                y += p.offsetTop;
-            }
-            h = elem.offsetHeight;
-        }
-        if ((topOfPage + heightOfPage) < (y + h)) {
-            elem.scrollIntoView(false);
-        }
-        else if (y < topOfPage) {
-            elem.scrollIntoView(true);
-        }
+
+        var doc_top = $window.scrollTop();
+        var doc_bottom = doc_top + $window.height() - key_pad.offsetHeight;
+
+        var elem_top = $elem.offset().top;
+        var elem_bottom = elem_top + $elem.height();
+
+        return ((elem_bottom <= doc_bottom) && (elem_top >= doc_top));
     }
+
+    // function keep_in_view(elem) {
 
     function highlight_note(note) {
         var note_start = note.fingered_start;
@@ -3188,7 +3187,12 @@ function AbcDE() {
 
         var line_key = 'line_' + note.line;
         var line_svg = document.getElementById(line_key);
-        keep_in_view(line_svg);
+        if (! is_fully_visible(line_svg)) {
+            line_svg.scrollIntoView(false);
+            var key_pad = document.getElementById(KEYPAD_DIV_ID);
+            var y = document.body.scrollTop;
+            window.scrollTo(0, y + key_pad.offsetHeight);
+        }
     }
 
     function getXValue(abc_str) {
