@@ -2548,6 +2548,9 @@ function AbcDE() {
 
     function get_pitch_fingering(leaf_node, note) {
         var current_hand = get_current_hand(note);
+        if (! leaf_node.fingering.strike) {
+            return 'x';
+        }
         var hand = leaf_node.fingering.strike.hand || current_hand;
         var str = hand + leaf_node.fingering.strike.digit;
         if (leaf_node.fingering.release) {
