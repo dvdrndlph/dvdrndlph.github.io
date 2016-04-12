@@ -81,6 +81,7 @@ function AbcDE() {
     var Options,
         Redo = [],
         Undo = [],
+        Previous_Url = '',
         Toggling_Background = false,
         Magnification = 1,
         Preferences = {},
@@ -711,7 +712,7 @@ function AbcDE() {
     }
 
     function paste_fingerings() {
-        var prompt = 'Please a fingering string for the current piece.';
+        var prompt = 'Please enter a fingering string for the current piece.';
         var new_fingerings = window.prompt(prompt, '');
         if (new_fingerings !== null) {
             set_sequence(new_fingerings, 'fingering');
@@ -955,6 +956,7 @@ function AbcDE() {
                 }
             }
             if (content) {
+                Previous_Url = url;
                 document.getElementById(SOURCE_ID).value = content;
                 render_ui();
             }
@@ -969,7 +971,15 @@ function AbcDE() {
 
     function import_url() {
         var prompt = 'Please enter URL for file to open.';
-        var default_url = DIDACTYL_URL + '/abc/OpenWTC/pf02.abc';
+        var default_url = DIDACTYL_URL + '/wtc/prelude02.abc';
+        if (Previous_Url) {
+            default_url = Previous_Url;
+        } else {
+            var preferred_url = get_setting('default_url');
+            if (preferred_url) {
+                default_url = preferred_url;
+            }
+        }
         var url = window.prompt(prompt, default_url);
         if (url !== null) {
             make_cors_request(url);
