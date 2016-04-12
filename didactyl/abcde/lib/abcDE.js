@@ -981,7 +981,7 @@ function AbcDE() {
             }
         }
         var url = window.prompt(prompt, default_url);
-        if (url !== null) {
+        if (url) {
             make_cors_request(url);
         }
     }
