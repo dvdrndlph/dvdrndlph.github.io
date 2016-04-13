@@ -22,12 +22,14 @@
 <div id="abcde"></div>
 
 <script type="text/javascript">
+    var settings = {
+        default_url: "https://dvdrndlph.github.io/didactyl/wtc/prelude01.abc",
+        file_input: true,
+        url_input: true};
+
     window.onload = function() {
         var abcDE = new AbcDE();
-        abcDE.renderUI({
-            default_url:"https://dvdrndlph.github.io/didactyl/wtc/fugue01.abc",
-            file_input:true,
-            url_input:true});
+        abcDE.renderUI(settings);
     }
 </script>
 

@@ -970,7 +970,7 @@ function AbcDE() {
     }
 
     function import_url() {
-        var prompt = 'Please enter URL for file to open.';
+        var prompt = 'Please enter URL to open.';
         var default_url = DIDACTYL_URL + '/wtc/prelude02.abc';
         if (Previous_Url) {
             default_url = Previous_Url;
@@ -1076,12 +1076,13 @@ function AbcDE() {
             keypad_div.style.display = 'block';
             number_div.style.display = 'block';
             symbol_div.style.display = 'block';
-            display_kids(number_div, 'inline')
-            display_kids(symbol_div, 'inline')
+            display_kids(number_div, 'inline');
+            display_kids(symbol_div, 'inline');
         } else {
             display_kids(symbol_div, 'none');
             display_kids(number_div, 'none');
-            var qualtrics = get_setting('qualtrics')
+            var qualtrics = get_setting('qualtrics');
+            var submit_button_id = get_setting('submit_button_id');
             if (qualtrics) {
                 var next_button = document.getElementById('q_next');
                 next_button.style.display = 'inline';
@@ -1089,12 +1090,15 @@ function AbcDE() {
                 if (back_button) {
                     back_button.style.display = 'inline';
                 }
-            } else {
+            } else if (submit_button_id) {
+                var button = document.getElementById(submit_button_id);
+                button.style.display = 'inline';
+            }
+            else {
                 number_div.style.display = 'block';
                 symbol_div.style.display = 'block';
                 keypad_div.style.display = 'none';
             }
-
         }
     }
 
@@ -1367,6 +1371,19 @@ function AbcDE() {
         container.appendChild(button);
     }
 
+    /* The caller may need a SUBMIT button, so we make sure it
+       is positioned nicely.
+     */
+    function insert_submit_button(container, button_id, value) {
+        var button = document.createElement('input');
+        button.type = 'button';
+        button.class = 'keypad-button';
+        button.id = button_id;
+        button.value = value;
+        container.appendChild(button);
+    }
+
+
     function insert_keypad_image_button(container, button_id, file_name, alt) {
         var button = document.createElement('input');
         button.id = button_id;
@@ -1405,6 +1422,14 @@ function AbcDE() {
                 insert_qualtrics_button(number_div, 'q_back', 'BACK');
             }
             insert_qualtrics_button(number_div, 'q_next', 'NEXT');
+        }
+        var submit_button_id = get_setting('submit_button_id');
+        if (submit_button_id) {
+            var submit_button_label = get_setting('submit_button_label');
+            if (! submit_button_label) {
+                submit_button_label = 'NEXT';
+            }
+            insert_submit_button(number_div, submit_button_id, submit_button_label);
         }
         insert_keypad_image_button(symbol_div, 'previous', 'arrow-circle-left.svg', '<-');
         insert_keypad_image_button(symbol_div, 'next', 'arrow-circle-right.svg', '->');
@@ -2969,6 +2994,13 @@ function AbcDE() {
         insert_controls();
         preset_preferences();
         Org_Abc_Str = document.getElementById(SOURCE_ID).value;
+        if (! Org_Abc_Str) {
+            var url = get_setting('default_url');
+            if (url) {
+                make_cors_request(url);
+                Org_Abc_Str = document.getElementById(SOURCE_ID).value;
+            }
+        }
         Toggling_Background = true;
         if (Org_Abc_Str) {
             Sequences = get_sequences(Org_Abc_Str);
