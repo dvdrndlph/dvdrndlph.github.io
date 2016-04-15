@@ -9,366 +9,11 @@
     <script src="http://surveyjs.org/js/survey.min.js"></script>
     <link rel="stylesheet" href="http://surveyjs.org/css/survey.css" />
     <script src="../lib/survey.js" type="text/javascript"></script>
+    <script src="../lib/surveyor.js" type="text/javascript"></script>
 </head>
 <body>
-<script type="text/javascript">
-    var preliminaryJson = {
-        pages: [
-            {
-                name: "Contact info",
-                questions: [
-                    {
-                        type: "text",
-                        name: "First name",
-                        isRequired: true,
-                        size: "40"
-                    },
-                    {
-                        type: "text",
-                        name: "Last name",
-                        isRequired: true,
-                        size: "40"
-                    },
-                    {
-                        type: "text",
-                        name: "Email",
-                        isRequired: true,
-                        size: "60"
-                    }
-                ]
-            },
-            {
-                name: "Selections",
-                questions: [
-                    {
-                        type: "checkbox",
-                        choices: [
-                            {
-                                value: "11",
-                                text: "Prelude 1 in C Major"
-                            },
-                            {
-                                value: "12",
-                                text: "Fugue 1 in C Major"
-                            },
-                            {
-                                value: "21",
-                                text: "Prelude 2 in C Minor"
-                            },
-                            {
-                                value: "22",
-                                text: "Fugue 2 in C Minor"
-                            },
-                            {
-                                value: "31",
-                                text: "Prelude 3 in C-Sharp Major"
-                            },
-                            {
-                                value: "32",
-                                text: "Fugue 3 in C-Sharp Major"
-                            },
-                            {
-                                value: "51",
-                                text: "Prelude 5 in D Major"
-                            },
-                            {
-                                value: "52",
-                                text: "Fugue 5 in D Major"
-                            },
-                            {
-                                value: "61",
-                                text: "Prelude 6 in D Minor"
-                            },
-                            {
-                                value: "62",
-                                text: "Fugue 6 in D Minor"
-                            },
-                            {
-                                value: "91",
-                                text: "Prelude 9 in E Major"
-                            },
-                            {
-                                value: "92",
-                                text: "Fugue 9 in E Major"
-                            },
-                            {
-                                value: "151",
-                                text: "Prelude 15 in G Major"
-                            },
-                            {
-                                value: "152",
-                                text: "Fugue 15 in G Major"
-                            },
-                            {
-                                value: "171",
-                                text: "Prelude 17 in A-Flat Major"
-                            },
-                            {
-                                value: "172",
-                                text: "Fugue 17 in A-Flat Major"
-                            },
-                            {
-                                value: "211",
-                                text: "Prelude 21 in B-Flat Major"
-                            },
-                            {
-                                value: "212",
-                                text: "Fugue 21 in B-Flat Major"
-                            }
-                        ],
-                        colCount: 2,
-                        name: "selections",
-                        title: "Please indicate the pieces from Book 1 of Bach's Well Tempered Clavier for which you have worked out fingerings available."
-                    }
-                ]
-            },
-            {
-                name: "Primary source",
-                questions: [
-                    {
-                        type: "radiogroup",
-                        choices: [
-                            {
-                                value: "Béla Bartók",
-                                text: "Béla Bartók"
-                            },
-                            {
-                                value: "Ferruccio Busoni",
-                                text: "Ferruccio Busoni"
-                            },
-                            {
-                                value: "Alfredo Casella",
-                                text: "Alfredo Casella"
-                            },
-                            {
-                                value: "Carl Czerny",
-                                text: "Carl Czerny"
-                            },
-                            {
-                                value: "Eugene d'Albert",
-                                text: "Eugene d'Albert"
-                            },
-                            {
-                                value: "Ernst-Günter Heinemann (fingerings by András Schiff)",
-                                text: "Ernst-Günter Heinemann (fingerings by András Schiff)"
-                            },
-                            {
-                                value: "Edwin Hughes",
-                                text: "Edwin Hughes"
-                            },
-                            {
-                                value: "Richard Jones",
-                                text: "Richard Jones"
-                            },
-                            {
-                                value: "Bruno Mugellini",
-                                text: "Bruno Mugellini"
-                            },
-                            {
-                                value: "Willard A. Palmer",
-                                text: "Willard A. Palmer"
-                            },
-                            {
-                                value: "Carl Reinecke",
-                                text: "Carl Reinecke"
-                            },
-                            {
-                                value: "Hugo Riemann",
-                                text: "Hugo Riemann"
-                            },
-                            {
-                                value: "Edouard Risler",
-                                text: "Edouard Risler"
-                            },
-                            {
-                                value: "Julius Röntgen",
-                                text: "Julius Röntgen"
-                            },
-                            {
-                                value: "Keith Snell",
-                                text: "Keith Snell"
-                            },
-                            {
-                                value: "Carl Tausig",
-                                text: "Carl Tausig"
-                            },
-                            {
-                                value: "Donald Francis Tovey (fingerings by Harold Samuel)",
-                                text: "Donald Francis Tovey (fingerings by Harold Samuel)"
-                            }
-                        ],
-                        hasOther: true,
-                        name: "primary",
-                        otherErrorText: "Please describe your primary source in the space provided.",
-                        title: "Whose edition of The Well Tempered Clavier, Book I, is your primary source?"
-                    }
-                ]
-            },
-            {
-                name: "Influence",
-                questions: [
-                    {
-                        type: "matrix",
-                        columns: [
-                            {
-                                value: "1",
-                                text: "Not at all influential"
-                            },
-                            {
-                                value: "2",
-                                text: "Slightly influential"
-                            },
-                            {
-                                value: "3",
-                                text: "Somewhat influential"
-                            },
-                            {
-                                value: "4",
-                                text: "Very influential"
-                            },
-                            {
-                                value: "5",
-                                text: "Extremely influential"
-                            }
-                        ],
-                        name: "influence",
-                        rows: [
-                            {
-                                value: "Tempo",
-                                text: "Tempo"
-                            },
-                            {
-                                value: "Articulation",
-                                text: "Articulation"
-                            },
-                            {
-                                value: "Dynamics",
-                                text: "Dynamics"
-                            },
-                            {
-                                value: "Phrasing",
-                                text: "Phrasing"
-                            },
-                            {
-                                value: "General character of piece",
-                                text: "General character of piece"
-                            },
-                            {
-                                value: "Fingering",
-                                text: "Fingering"
-                            }
-                        ],
-                        title: "Describe the influence of your primary score on the following aspects of your performance."
-                    }
-                ]
-            },
-            {
-                name: "Other sources",
-                questions: [
-                    {
-                        type: "radiogroup",
-                        choices: [
-                            {
-                                value: "yes_practical",
-                                text: "Yes, practical (interpretive) editions"
-                            },
-                            {
-                                value: "yes_urtext",
-                                text: "Yes, urtext editions"
-                            },
-                            {
-                                value: "yes_both",
-                                text: "Yes, both practical and urtext editions"
-                            },
-                            {
-                                value: "no",
-                                text: "No"
-                            }
-                        ],
-                        name: "secondary",
-                        title: "In addition to your primary source, do you consult other editions?"
-                    },
-                    {
-                        type: "comment",
-                        name: "recordings",
-                        title: "List any recordings that have influenced your interpretation of The Well Tempered Clavier, Book I."
-                    }
-                ]
-            },
-            {
-                name: "Lotteries",
-                questions: [
-                    {
-                        type: "radiogroup",
-                        choices: [
-                            {
-                                value: "yes",
-                                text: "Yes"
-                            },
-                            {
-                                value: "no",
-                                text: "No"
-                            }
-                        ],
-                        isRequired: true,
-                        name: "lottery",
-                        title: "By completing each of the following fingering activities, you will earn a chance to win one of ten $100 Amazon gift cards that will be awarded for this survey. $1000 in total will be awarded. The drawings will be held on 30 May 2016. Do you wish to be entered in these drawings?"
-                    }
-                ]
-            }
-        ]
-    };
-
-    function processConsent() {
-        var formality = document.getElementById('consent');
-        var setting = formality["consent"].value;
-        if (setting === "yes") {
-            console.log("He said YES!!");
-            formality.style.display = 'none';
-            return true;
-        } else if (setting === "no") {
-            console.log("NO soup for you.");
-            alert("Please close your browser window if you do not wish to participate. Thank you for your time.");
-        } else {
-            console.log("He is on the fence.")
-        }
-        return false;
-    }
-
-    // Following function borrowed from http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript.
-    function getQueryVariable(variable) {
-        var query = window.location.search.substring(1);
-        var vars = query.split('&');
-        for (var i = 0; i < vars.length; i++) {
-            var pair = vars[i].split('=');
-            if (decodeURIComponent(pair[0]) == variable) {
-                return decodeURIComponent(pair[1]);
-            }
-        }
-        console.log('Query variable %s not found', variable);
-    }
-
-    window.onload = function() {
-        var consenting = getQueryVariable('consent');
-        var id = getQueryVariable('id');
-        if (consenting === 'yes') {
-            var formality = document.getElementById('consent');
-            formality.style.display = 'none';
-            var survey = new Survey.Survey(preliminaryJson, 'preliminary_survey');
-            survey.onComplete.add(function (s) {
-                survey.sendResult('6e89d69e-1cda-4aad-a88a-eaadb4c07e57');
-            });
-            survey.render('preliminary_survey');
-        } else if (id && ! selection) {
-
-        } else if (id && selection) {
-
-        }
-    }
-</script>
 
 <div id="preliminary_survey"></div>
-
 <form id="consent" onsubmit="return processConsent()">
     <div style="text-align: center;"><strong>University of Illinois at Chicago</strong></div>
 
@@ -488,7 +133,31 @@
     </label>
     <input type="radio" name="consent" value="no"> I decline to participate.<br><br>
     <input type="submit" id="consent_button" value="SUBMIT">
+    <br><br>
 </form>
 
+<form id="simplified_instructions" style="display:none;" onsubmit="return startAnnotating()">
+    For each of the following preludes and fugues, please add fingering annotations to specify your performance completely. While it is not necessary for you to annotate every note, the intended fingering for each note should be clear from the context.<br />
+    <br />
+    We have created a new editor to make this task as easy as possible.
+    <ul>
+        <li>Click a note or use the arrow keys to navigate.</li>
+        <li>To enter most annotations, simply enter a digit (1-5) when a note is highlighted (red or blue).</li>
+        <li>Red highlighting indicates the right hand is in use. Blue indicates the left. Type&nbsp;<strong>T&nbsp;</strong>to&nbsp;<strong>t</strong>oggle the hand assignment. You will notice different positioning and typeface&nbsp;for annotations assigned to different hands.</li>
+        <li>To indicate a note has&nbsp;different striking and releasing fingers (i.e., a finger <em>substitution</em>), enter two digits separated by a hyphen.</li>
+        <li>Detailed help is available via the&nbsp;<span style="font-family: georgia, serif;"><span style="font-size: 19px;"><em><strong>i</strong></em></span></span>&nbsp;button on the right of the tool bar at the top of the page.</li>
+    </ul>
+    <input type="submit" id="start_annotating" value="NEXT">
+    <br/><br/>
+</form>
+
+<div id="abcde"></div>
+
+<div id="all_done" style="display:none;">
+    <h2>All done!</h2>
+    <p>
+        Thank you for your participation in this phase of our study. Your contributions are much appreciated.
+    </p>
+</div>
 </body>
 </html>
