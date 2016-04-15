@@ -348,6 +348,7 @@ function processConsent() {
     var setting = formality["consent"].value;
     if (setting === "yes") {
         console.log("He said YES!!");
+        localStorage.setItem(SURVEYOR_CONSENT_KEY, 'yes');
         formality.style.display = 'none';
         return true;
     } else if (setting === "no") {
@@ -377,14 +378,12 @@ function getQueryVariable(variable) {
 }
 
 window.onload = function() {
-    var consenting = localStorage.getItem('SURVEYOR_CONSENT_KEY');
-    var email = localStorage.getItem('SURVEYOR_EMAIL_KEY');
-    var selection_str = localStorage.getItem('SURVEYOR_SELECTIONS_KEY');
-    var completed_str = localStorage.getItem('SURVEYOR_COMPLETED_KEY');
+    var consenting = localStorage.getItem(SURVEYOR_CONSENT_KEY);
+    var email = localStorage.getItem(SURVEYOR_EMAIL_KEY);
+    var selection_str = localStorage.getItem(SURVEYOR_SELECTIONS_KEY);
+    var completed_str = localStorage.getItem(SURVEYOR_COMPLETED_KEY);
 
-    var selection = getQueryVariable('selection');
     if (consenting === 'yes') {
-        localStorage.setItem('SURVEYOR_CONSENT_KEY', 'yes');
         var formality = document.getElementById('consent');
         formality.style.display = 'none';
         if (!email) {
@@ -442,8 +441,8 @@ window.onload = function() {
                         file_input: false,
                         url_input: false
                     };
-
                     abcDE.renderUI(settings);
+                    break;
                 }
             }
         }
