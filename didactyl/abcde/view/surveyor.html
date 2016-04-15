@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../css/abcDE.css">
+    <script src="../lib/jquery-1.12.0.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+    <script src="http://surveyjs.org/js/survey.min.js"></script>
+    <link rel="stylesheet" href="http://surveyjs.org/css/survey.css" />
+    <script src="../lib/survey.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var preliminaryJson = {
+        pages: [
+            {
+                name: "Contact info",
+                questions: [
+                    {
+                        type: "text",
+                        name: "First name",
+                        isRequired: true,
+                        size: "40"
+                    },
+                    {
+                        type: "text",
+                        name: "Last name",
+                        isRequired: true,
+                        size: "40"
+                    },
+                    {
+                        type: "text",
+                        name: "Email",
+                        isRequired: true,
+                        size: "60"
+                    }
+                ]
+            },
+            {
+                name: "Selections",
+                questions: [
+                    {
+                        type: "checkbox",
+                        choices: [
+                            {
+                                value: "11",
+                                text: "Prelude 1 in C Major"
+                            },
+                            {
+                                value: "12",
+                                text: "Fugue 1 in C Major"
+                            },
+                            {
+                                value: "21",
+                                text: "Prelude 2 in C Minor"
+                            },
+                            {
+                                value: "22",
+                                text: "Fugue 2 in C Minor"
+                            },
+                            {
+                                value: "31",
+                                text: "Prelude 3 in C-Sharp Major"
+                            },
+                            {
+                                value: "32",
+                                text: "Fugue 3 in C-Sharp Major"
+                            },
+                            {
+                                value: "51",
+                                text: "Prelude 5 in D Major"
+                            },
+                            {
+                                value: "52",
+                                text: "Fugue 5 in D Major"
+                            },
+                            {
+                                value: "61",
+                                text: "Prelude 6 in D Minor"
+                            },
+                            {
+                                value: "62",
+                                text: "Fugue 6 in D Minor"
+                            },
+                            {
+                                value: "91",
+                                text: "Prelude 9 in E Major"
+                            },
+                            {
+                                value: "92",
+                                text: "Fugue 9 in E Major"
+                            },
+                            {
+                                value: "151",
+                                text: "Prelude 15 in G Major"
+                            },
+                            {
+                                value: "152",
+                                text: "Fugue 15 in G Major"
+                            },
+                            {
+                                value: "171",
+                                text: "Prelude 17 in A-Flat Major"
+                            },
+                            {
+                                value: "172",
+                                text: "Fugue 17 in A-Flat Major"
+                            },
+                            {
+                                value: "211",
+                                text: "Prelude 21 in B-Flat Major"
+                            },
+                            {
+                                value: "212",
+                                text: "Fugue 21 in B-Flat Major"
+                            }
+                        ],
+                        colCount: 2,
+                        name: "selections",
+                        title: "Please indicate the pieces from Book 1 of Bach's Well Tempered Clavier for which you have worked out fingerings available."
+                    }
+                ]
+            },
+            {
+                name: "Primary source",
+                questions: [
+                    {
+                        type: "radiogroup",
+                        choices: [
+                            {
+                                value: "Béla Bartók",
+                                text: "Béla Bartók"
+                            },
+                            {
+                                value: "Ferruccio Busoni",
+                                text: "Ferruccio Busoni"
+                            },
+                            {
+                                value: "Alfredo Casella",
+                                text: "Alfredo Casella"
+                            },
+                            {
+                                value: "Carl Czerny",
+                                text: "Carl Czerny"
+                            },
+                            {
+                                value: "Eugene d'Albert",
+                                text: "Eugene d'Albert"
+                            },
+                            {
+                                value: "Ernst-Günter Heinemann (fingerings by András Schiff)",
+                                text: "Ernst-Günter Heinemann (fingerings by András Schiff)"
+                            },
+                            {
+                                value: "Edwin Hughes",
+                                text: "Edwin Hughes"
+                            },
+                            {
+                                value: "Richard Jones",
+                                text: "Richard Jones"
+                            },
+                            {
+                                value: "Bruno Mugellini",
+                                text: "Bruno Mugellini"
+                            },
+                            {
+                                value: "Willard A. Palmer",
+                                text: "Willard A. Palmer"
+                            },
+                            {
+                                value: "Carl Reinecke",
+                                text: "Carl Reinecke"
+                            },
+                            {
+                                value: "Hugo Riemann",
+                                text: "Hugo Riemann"
+                            },
+                            {
+                                value: "Edouard Risler",
+                                text: "Edouard Risler"
+                            },
+                            {
+                                value: "Julius Röntgen",
+                                text: "Julius Röntgen"
+                            },
+                            {
+                                value: "Keith Snell",
+                                text: "Keith Snell"
+                            },
+                            {
+                                value: "Carl Tausig",
+                                text: "Carl Tausig"
+                            },
+                            {
+                                value: "Donald Francis Tovey (fingerings by Harold Samuel)",
+                                text: "Donald Francis Tovey (fingerings by Harold Samuel)"
+                            }
+                        ],
+                        hasOther: true,
+                        name: "primary",
+                        otherErrorText: "Please describe your primary source in the space provided.",
+                        title: "Whose edition of The Well Tempered Clavier, Book I, is your primary source?"
+                    }
+                ]
+            },
+            {
+                name: "Influence",
+                questions: [
+                    {
+                        type: "matrix",
+                        columns: [
+                            {
+                                value: "1",
+                                text: "Not at all influential"
+                            },
+                            {
+                                value: "2",
+                                text: "Slightly influential"
+                            },
+                            {
+                                value: "3",
+                                text: "Somewhat influential"
+                            },
+                            {
+                                value: "4",
+                                text: "Very influential"
+                            },
+                            {
+                                value: "5",
+                                text: "Extremely influential"
+                            }
+                        ],
+                        name: "influence",
+                        rows: [
+                            {
+                                value: "Tempo",
+                                text: "Tempo"
+                            },
+                            {
+                                value: "Articulation",
+                                text: "Articulation"
+                            },
+                            {
+                                value: "Dynamics",
+                                text: "Dynamics"
+                            },
+                            {
+                                value: "Phrasing",
+                                text: "Phrasing"
+                            },
+                            {
+                                value: "General character of piece",
+                                text: "General character of piece"
+                            },
+                            {
+                                value: "Fingering",
+                                text: "Fingering"
+                            }
+                        ],
+                        title: "Describe the influence of your primary score on the following aspects of your performance."
+                    }
+                ]
+            },
+            {
+                name: "Other sources",
+                questions: [
+                    {
+                        type: "radiogroup",
+                        choices: [
+                            {
+                                value: "yes_practical",
+                                text: "Yes, practical (interpretive) editions"
+                            },
+                            {
+                                value: "yes_urtext",
+                                text: "Yes, urtext editions"
+                            },
+                            {
+                                value: "yes_both",
+                                text: "Yes, both practical and urtext editions"
+                            },
+                            {
+                                value: "no",
+                                text: "No"
+                            }
+                        ],
+                        name: "secondary",
+                        title: "In addition to your primary source, do you consult other editions?"
+                    },
+                    {
+                        type: "comment",
+                        name: "recordings",
+                        title: "List any recordings that have influenced your interpretation of The Well Tempered Clavier, Book I."
+                    }
+                ]
+            },
+            {
+                name: "Lotteries",
+                questions: [
+                    {
+                        type: "radiogroup",
+                        choices: [
+                            {
+                                value: "yes",
+                                text: "Yes"
+                            },
+                            {
+                                value: "no",
+                                text: "No"
+                            }
+                        ],
+                        isRequired: true,
+                        name: "lottery",
+                        title: "By completing each of the following fingering activities, you will earn a chance to win one of ten $100 Amazon gift cards that will be awarded for this survey. $1000 in total will be awarded. The drawings will be held on 30 May 2016. Do you wish to be entered in these drawings?"
+                    }
+                ]
+            }
+        ]
+    };
+
+    function processConsent() {
+        var formality = document.getElementById('consent');
+        var setting = formality["consent"].value;
+        if (setting === "yes") {
+            console.log("He said YES!!");
+            formality.style.display = 'none';
+            return true;
+        } else if (setting === "no") {
+            console.log("NO soup for you.");
+            alert("Please close your browser window if you do not wish to participate. Thank you for your time.");
+        } else {
+            console.log("He is on the fence.")
+        }
+        return false;
+    }
+
+    // Following function borrowed from http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript.
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split('&');
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split('=');
+            if (decodeURIComponent(pair[0]) == variable) {
+                return decodeURIComponent(pair[1]);
+            }
+        }
+        console.log('Query variable %s not found', variable);
+    }
+
+    window.onload = function() {
+        var consenting = getQueryVariable('consent');
+        var id = getQueryVariable('id');
+        if (consenting === 'yes') {
+            var formality = document.getElementById('consent');
+            formality.style.display = 'none';
+            var survey = new Survey.Survey(preliminaryJson, 'preliminary_survey');
+            survey.onComplete.add(function (s) {
+                survey.sendResult('6e89d69e-1cda-4aad-a88a-eaadb4c07e57');
+            });
+            survey.render('preliminary_survey');
+        } else if (id && ! selection) {
+
+        } else if (id && selection) {
+
+        }
+    }
+</script>
+
+<div id="preliminary_survey"></div>
+
+<form id="consent" onsubmit="return processConsent()">
+    <div style="text-align: center;"><strong>University of Illinois at Chicago</strong></div>
+
+    <div style="text-align: center;"><strong>Research Information and Consent for Participation in Social Behavioral Research</strong><br />
+        <strong>Piano Fingering Study</strong></div>
+    &nbsp;<br />
+    You are being asked to participate in a research study. Researchers are required to provide a consent form such as this one to tell you about the research, to explain that taking part is voluntary, to describe the risks and benefits of participation, and to help you to make an informed decision. You should feel free to ask the researchers any questions you may have.<br />
+    &nbsp;<br />
+    Principal Investigator: David Randolph, PhD Student<br />
+    Affiliation: Department of Computer Science, University of Illinois at Chicago<br />
+    Contact Information: 940 SEO, 851 S. Morgan St., Chicago, Illinois;&nbsp;<a href="mailto:drando2@uic.edu">drando2@uic.edu</a><br />
+    &nbsp;<br />
+    <strong><u>Why am I being asked?</u></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+    You are being asked to be a subject in a research study about piano fingering.<br />
+    &nbsp;<br />
+    You have been asked to participate in the research because you are over the age of 18, have considerable experience and expertise as a pianist, and may be eligible to participate.<br />
+    &nbsp;<br />
+    Your participation in this research is voluntary. Your decision whether or not to participate will not affect your current or future dealings with the University of Illinois at Chicago.<strong>&nbsp;If you decide to participate, you are free to withdraw at any time without affecting that relationship.</strong><br />
+    &nbsp;<br />
+    Approximately 100 subjects may be involved in this research online and at UIC.<br />
+    &nbsp;<br />
+    <strong><u>What is the purpose of this research?</u></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+    A core competency in piano performance is determining optimal fingerings for a given musical passage. The purpose of this research is to develop methods to predict and/or recommend piano fingerings for eventual integration in a piano tutorial or practice support system.<br />
+    &nbsp;<br />
+    <strong><u>What procedures are involved?</u></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+    Most participants will complete all activities online in less than one hour.<br />
+    &nbsp;<br />
+    If convenient for you and if you are requested to do so, you may also complete additional activities online or in person at the University of Illinois at Chicago (in Science and Engineering Laboratories, Suite 1228). Each of these subsequent sessions may take up to two hours.&nbsp;You may be asked to come to the study site at most twice over the next 12 months.<br />
+    &nbsp;<br />
+    You will be asked to perform one or more of the following:<br />
+    <br />
+    1.&nbsp;Initial online activities
+    <ul>
+        <li>Manually document&nbsp;the fingerings you would use to perform a number of short musical examples. (This should take about 30 minutes.)&nbsp;</li>
+        <li>Answer survey questions regarding attitudes,&nbsp;experiences, and practices with respect to piano fingering&nbsp;and your&nbsp;perceptions about your own hand physiology. (This should take about 15&nbsp;minutes.)</li>
+    </ul>
+    2.&nbsp;Optional online activities (<strong>These are the activities you are doing now.</strong>)
+
+    <ul>
+        <li>Manually annotate&nbsp;longer musical selections. (This should take one to two hours.)</li>
+        <li>Provide additional information about personal fingering preferences.</li>
+    </ul>
+    3.&nbsp;Optional&nbsp;in-person activities conducted at UIC
+
+    <ul>
+        <li>Submit to detailed hand measurements by way of a computer vision system. (This should take no more than a few minutes.)</li>
+        <li>Submit to the application of color markers (paint, lacquer, or stickers) to their fingers. (This should take only a&nbsp;few minutes.)</li>
+        <li>Submit to the attachment of a non-invasive sensor assembly to one or both hands and lower arms. (This should take no more than a few minutes.)</li>
+        <li>Submit to the use of these sensors along with one or more cameras to collect fingering data as you play the piano. (This will take one to two hours.)</li>
+        <li>Review and correct fingerings detected automatically. (This should take about thirty minutes.)</li>
+    </ul>
+    &nbsp;<br />
+    All participants must complete the initial online activities before proceeding to the &quot;optional&quot; ones, as data collected in this first step will be tied to data collected in any subsequent activities. Your total time of participation will be between 30 minutes and several hours, depending on your availability. You may stop participating at any time, electing to have the data collected from you destroyed. We do not expect all participants to complete all activities. Data from the initial online activities alone will be valuable for our research purposes.<br />
+    &nbsp;<br />
+    <strong><u>What are the potential risks and discomforts?</u></strong><br />
+    You may be asked to complete an online survey, to describe how you would finger various music, to hold your hands in several poses, and to play the piano with or without color markers and/or lightweight, non-invasive sensors attached to your hands and lower arms. Participation poses no other risks than one would expect from playing the piano and using an electronic device.<br />
+    &nbsp;<br />
+    <strong><u>Will I be told about new information that may affect my decision to participate?</u></strong><br />
+    During the course of the study, you will be informed of any significant new research information (either good or bad), such as changes in the risks or benefits resulting from participation in the research or new alternatives to participation, that might cause you to change your mind about continuing in the research. If new information is provided to you, your consent to continue participating in this research may be re-obtained.<br />
+    &nbsp;<br />
+    <strong><u>Are there benefits to taking part in the research?&nbsp;</u></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+    You may directly benefit from consciously examining your fingering process and choices. On request, we will share your data with you, so you may study it further. However, no such benefits are guaranteed. This study is primarily designed to learn more about how pianists determine the best fingerings to use. The study results may be used to help other people in the future.<br />
+    &nbsp;<br />
+    <strong><u>What other options are there?</u></strong><br />
+    You have the option not to participate in this study or to stop participating at any time. At any time, you may also request that all data collected from you be destroyed.<br />
+    &nbsp;<br />
+    <strong><u>What about privacy and confidentiality?</u></strong><br />
+    The people who will know that you are a research subject are members of the research team. Otherwise information about you will only be disclosed to others with your written permission, or if necessary to protect your rights or welfare (for example, if you are injured and need emergency care or when the UIC Office for the Protection of Research Subjects monitors the research or consent process) or if required by law.<br />
+    &nbsp;<br />
+    A possible risk of the research is that individuals outside the research might learn of your participation in the research or information about you. To mitigate this risk, your data will be assigned an arbitrary label.<br />
+    &nbsp;<br />
+    Any information that is obtained in connection with this study that can be used to identify you will remain confidential and will be disclosed only with your permission or as required by law. The only key linking your identity to you data will be stored on secure servers in records accessible only to the principal investigator and faculty supervisor. Other researchers affiliated with the project will have access only to anonymized data. Moreover, when the data from this research are shared publicly or discussed in conferences, the data will be similarly anonymized: no information will be included to reveal your identity. The key linking data to your identity will be destroyed within five years of the completion of the study. While cameras may be used to capture data, these cameras will be directed at the keyboard and your hands, and pains will be taken to avoid capturing faces. Any footage that inadvertently captures your face will be destroyed upon discovery.<br />
+    &nbsp;<br />
+    <strong><u>What are the costs for participating in this research?</u></strong>&nbsp; &nbsp;<br />
+    There are no costs to you for participating in this research<br />
+    &nbsp;<br />
+    <strong><u>Will I be reimbursed for any of my expenses or paid for my participation in this research?</u></strong><br />
+    You will earn a chance to win a separate $100 Amazon gift card for completing each online activity. At the end of any in-person session, you will receive either $50 in cash or an Amazon gift card of equal value. All Amazon gift cards will be delivered by email. You remain eligible for compensation for any in-person session, even if you terminate it early. You may also decline to accept any incentives.&nbsp;No more than $500 in cash or gift cards will be provided to any individual in a calendar year.In some cases, for tax reasons, we may be required to pay you by check instead of by cash or gift card.<br />
+    &nbsp;<br />
+    Note that all such payments are considered to be taxable income by the United States Internal Revenue Service and that for income reporting purposes we will collect your name and address before making any payment to you. In the event that your receipts from various research studies at the University of Illinois will total $600 or more in a given calendar year, you will be required to provide your Social Security or Individual Taxpayer Identification Number before payment will be processed.<br />
+    &nbsp;<br />
+    All sensitive data required for these financial transactions will be stored exclusively on the Qualtrics online survey system (within artifacts controlled by the researchers) and a secure system within the University of Illinois Office of Business and Financial Services. These data will be transmitted between these two systems by the principal investigator via secure email to ensure your privacy.<br />
+    &nbsp;<br />
+    <strong><u>Can I withdraw or be removed from the study?&nbsp;</u></strong><br />
+    If you decide to participate, you are free to withdraw your consent and discontinue participation at any time without penalty. To withdraw from an online session, simply close your browser window. If you do not return to complete the session within two weeks, your data will be deleted. To withdraw from an in-person session, simply notify the attending researcher.<br />
+    &nbsp;<br />
+    With the exception of the fingering problems and questions used to determine your eligibility and consent to participate, you may refuse to answer any questions you don&rsquo;t want to answer and still remain in the study.&nbsp;<br />
+    &nbsp;<br />
+    The researchers may also stop your participation in this study without your consent if they believe it is in your best interests.<br />
+    &nbsp;<br />
+    In the event you withdraw or are asked to leave the study, you will still be compensated as described above.<br />
+    &nbsp;<br />
+    <strong><u>Who should I contact if I have questions?</u></strong><br />
+    Contact the researchers David Randolph (PhD Student, UIC) at&nbsp;<a href="mailto:drando2@uic.edu">drando2@uic.edu</a>&nbsp;or Barbara Di Eugenio (Professor, UIC) at&nbsp;<a href="mailto:bdieugen@uic.edu">bdieugen@uic.edu</a><br />
+    &nbsp;
+    <ul>
+        <li>if you have any questions about this study or your part in it, or&nbsp;</li>
+        <li>if you have concerns or complaints about the research.</li>
+    </ul>
+    &nbsp;<br />
+    <strong><u>What are my rights as a research subject?</u></strong><br />
+    If you feel you have not been treated according to the descriptions in this form, or if you have any questions about your rights as a research subject, including questions, concerns, complaints, or to offer input, you may call the Office for the Protection of Research Subjects (OPRS) at 312-996-1711 or 1-866-789-6215 (toll-free) or e-mail OPRS at&nbsp;<a href="mailto:uicirb@uic.edu">uicirb@uic.edu</a>.<br />
+    &nbsp;<br />
+    <strong><u>What if I am a UIC student?</u></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+    You may choose not to participate or to stop your participation in this research at any time. This will not affect your class standing or grades at UIC. The investigator may also end your participation in the research. If this happens, your class standing or grades will not be affected. You will not be offered or receive any special consideration if you participate in this research.<br />
+    &nbsp;<br />
+    <strong><u>What if I am a UIC employee?</u></strong>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+    Your participation in this research is in no way a part of your university duties, and your refusal to participate will not in any way affect your employment with the university, or the benefits, privileges, or opportunities associated with your employment at UIC. You will not be offered or receive any special consideration if you participate in this research.<br />
+    &nbsp;<br />
+    <strong><u>Remember</u></strong>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+    Your participation in this research is voluntary. Your decision whether or not to participate will not affect your current or future relations with UIC. If you decide to participate, you are free to withdraw at any time without affecting that relationship.<br />
+    &nbsp;<br />
+    <b><u>Consent agreement</u></b> <br><br>
+    <label style="display:block; margin-left: 20px;">
+        <input type="radio" style="float:left; margin-left:-20px; margin-right:7px;" name="consent" value="yes">
+        I have read (or someone has read to me) the above information. I have been given an opportunity to ask questions, and my questions have been answered to my satisfaction. I am over the age of 18 and agree to participate in this research. I will be emailed a dated copy of this consent form.<br><br>
+    </label>
+    <input type="radio" name="consent" value="no"> I decline to participate.<br><br>
+    <input type="submit" id="consent_button" value="SUBMIT">
+</form>
+
+</body>
+</html>
