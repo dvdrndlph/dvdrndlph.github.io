@@ -3241,6 +3241,9 @@ function AbcDE() {
     }
 
     function getXValue(abc_str) {
+        if (! abc_str) {
+            abc_str = Org_Abc_Str;
+        }
         var lines = abc_str.split("\n");
         for (var i = 0; i < lines.length; i++) {
             var line = lines[i];
@@ -3519,9 +3522,13 @@ function AbcDE() {
     this.getTranscriber = getTranscriber;
     this.getComments = getComments;
     this.getEnteredCollection = getEnteredCollection;
+    this.getEnteredAbcDF = getEnteredCollection;
     this.getEnteredAbcD = getEnteredAbcD;
     this.getValidatedCollection = getValidatedCollection;
     this.getValidatedAbcD = getValidatedAbcD;
     this.setEnteredCollection = setEnteredCollection;
+    this.handleKeys = handle_keys;
+    this.unhandleKeys = unhandle_keys;
+
     return this;
 }

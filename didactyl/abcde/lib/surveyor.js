@@ -1,7 +1,7 @@
 var SURVEYOR_CONSENT_KEY = 'didactyl_survey_iii_consent';
 var SURVEYOR_EMAIL_KEY = 'didactyl_survey_iii_email_address';
 var SURVEYOR_SELECTIONS_KEY = 'didactyl_survey_iii_selections';
-var SURVEYOR_COMPLETED_KEY = 'didactyl_survey_iii_completed';
+var SURVEYOR_COMPLETIONS_KEY = 'didactyl_survey_iii_completions';
 var SORTED_SELECTION_IDS = [
     '171', '172', '91', '92', '151', '152', '31', '32', '61', '62',
     '211', '212', '51', '52', '21', '22', '11', '12'
@@ -28,12 +28,20 @@ var FILE_FOR_ID = {
     212: "fugue21.abc"
 }
 
+var abcDE;
+var consenting;
+var email;
+var selection_str = '[]';
+var completion_str = '[]';
+var selections = [];
+var completions = [];
+
 function urlForId(id) {
     var url = DEFAULT_URL_DIR + FILE_FOR_ID[id];
     return url;
 }
 
-var preliminaryJson = {
+var PRELIM_JSON = {
     pages: [
         {
             name: "Contact info",
@@ -377,44 +385,150 @@ function getQueryVariable(variable) {
     console.log('Query variable %s not found', variable);
 }
 
+var EXIT_JSON = {
+    pages: [
+        {
+            name: "Satisfaction",
+            questions: [
+                {
+                    type: "matrix",
+                    columns: [
+                        {
+                            value: "1",
+                            text: "Strongly disagree"
+                        },
+                        {
+                            value: "2",
+                            text: "Disagree"
+                        },
+                        {
+                            value: "3",
+                            text: "Not sure"
+                        },
+                        {
+                            value: "4",
+                            text: "Agree"
+                        },
+                        {
+                            value: "5",
+                            text: "Strongly agree"
+                        }
+                    ],
+                    name: "reflection",
+                    rows: [
+                        {
+                            value: "best_for_me",
+                            text: "The fingerings I entered are the best for me."
+                        },
+                        {
+                            value: "bad_for_others",
+                            text: "The fingerings I entered may not be good for other people."
+                        },
+                        {
+                            value: "bad_ui",
+                            text: "The survey tool did not allow me to enter the fingerings that I would use."
+                        }
+                    ],
+                    title: "Please reflect on your fingerings for this piece."
+                }
+            ]
+        },
+        {
+            name: "Problems",
+            questions: [
+                {
+                    type: "comment",
+                    name: "problems",
+                    title: "Please describe any problems you encountered in annotating this piece, including any inconsistencies between the notes on your score and the notes presented in the survey."
+                }
+            ]
+        },
+        {
+            name: "Performance",
+            questions: [
+                {
+                    type: "radiogroup",
+                    name: "performed",
+                    title: "Have you performed this piece in public?",
+                    choices: [
+                        {
+                            value: "yes",
+                            text: "Yes"
+                        },
+                        {
+                            value: "no",
+                            text: "No"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+};
+
+function submit_annotation() {
+    var selection_id = abcDE.getXValue();
+    var abcDF = abcDE.getEnteredAbcDF();
+    abcDE.unhandleKeys();
+    var abcde_div = document.getElementById('abcde');
+    abcde_div.style.display = 'none';
+    var survey = new Survey.Survey(EXIT_JSON, 'exit_survey');
+    survey.render('exit_survey');
+    // var survey_window = new Survey.SurveyWindow(EXIT_JSON);
+    // survey_window.show();
+    survey.onComplete.add(function(s) {
+        var result = $.extend({email: email, selection_id: selection_id, abcDF: abcDF}, survey.data);
+        var result_str = JSON.stringify(result);
+        alert(result_str);
+        completions.push(selection_id);
+        completion_str = JSON.stringify(completions);
+        localStorage.setItem(SURVEYOR_COMPLETIONS_KEY, completion_str);
+        survey.sendResult('976afcbd-fc95-4223-9dd2-eb0171e0cb74');
+        location.reload(true);
+    });
+}
+
 window.onload = function() {
-    var consenting = localStorage.getItem(SURVEYOR_CONSENT_KEY);
-    var email = localStorage.getItem(SURVEYOR_EMAIL_KEY);
-    var selection_str = localStorage.getItem(SURVEYOR_SELECTIONS_KEY);
-    var completed_str = localStorage.getItem(SURVEYOR_COMPLETED_KEY);
+    consenting = localStorage.getItem(SURVEYOR_CONSENT_KEY);
+    email = localStorage.getItem(SURVEYOR_EMAIL_KEY);
+    selection_str = localStorage.getItem(SURVEYOR_SELECTIONS_KEY);
+    completion_str = localStorage.getItem(SURVEYOR_COMPLETIONS_KEY);
 
     if (consenting === 'yes') {
         var formality = document.getElementById('consent');
         formality.style.display = 'none';
         if (!email) {
-            var survey = new Survey.Survey(preliminaryJson, 'preliminary_survey');
+            var survey = new Survey.Survey(PRELIM_JSON, 'preliminary_survey');
             survey.onComplete.add(function (s) {
                 survey.sendResult('6e89d69e-1cda-4aad-a88a-eaadb4c07e57');
                 // ASSERT something is selected. The survey should guarantee this.
                 selection_str = JSON.stringify(survey.data.selections);
                 localStorage.setItem(SURVEYOR_SELECTIONS_KEY, selection_str);
-                completed_str = '[]';
-                localStorage.setItem(SURVEYOR_COMPLETED_KEY, completed_str);
+                completion_str = '[]';
+                localStorage.setItem(SURVEYOR_COMPLETIONS_KEY, completion_str);
 
                 localStorage.setItem(SURVEYOR_EMAIL_KEY, survey.data.email);
-                var resultAsString = JSON.stringify(survey.data);
+                var result_str = JSON.stringify(survey.data);
 
                 var preliminaries = document.getElementById('preliminary_survey');
                 preliminaries.style.display = 'none';
 
-                alert(resultAsString); //send Ajax request to your web server.
+                alert(result_str); //send Ajax request to your web server.
 
                 var instructions = document.getElementById('simplified_instructions');
                 instructions.style.display = 'block';
             });
             survey.render('preliminary_survey');
         } else {
-            var selections = JSON.parse(selection_str);
-            var completed = JSON.parse(completed_str);
-            if (selections.length === completed.length) {
+            selections = JSON.parse(selection_str);
+            completions = JSON.parse(completion_str);
+            if (! completions) {
+                completions = [];
+            }
+            if (selections.length === completions.length) {
                 // Hide editor.
-                var abcde = document.getElementById('abcde');
-                abcde.style.display = 'none';
+                var abcde_div = document.getElementById('abcde');
+                abcde_div.style.display = 'none';
 
                 // All done.
                 var instructions = document.getElementById('all_done');
@@ -422,7 +536,7 @@ window.onload = function() {
             } else {
                 for (var i = 0; i < SORTED_SELECTION_IDS.length; i++) {
                     var selection_id = SORTED_SELECTION_IDS[i];
-                    if ($.inArray(selection_id, completed) > -1) {
+                    if ($.inArray(selection_id, completions) > -1) {
                         // Already did it.
                         continue;
                     }
@@ -431,7 +545,6 @@ window.onload = function() {
                         continue;
                     }
                     var url = urlForId(selection_id);
-                    var abcDE = new AbcDE();
                     var settings = {
                         experiment_id: 'didactyl_iii',
                         submit_button_id: 'didactyl_iii_submit',
@@ -441,7 +554,10 @@ window.onload = function() {
                         file_input: false,
                         url_input: false
                     };
+                    abcDE = new AbcDE();
                     abcDE.renderUI(settings);
+                    var next_button = document.getElementById('didactyl_iii_submit');
+                    next_button.onclick = submit_annotation;
                     break;
                 }
             }
