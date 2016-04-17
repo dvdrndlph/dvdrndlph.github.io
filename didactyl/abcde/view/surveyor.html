@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Surveyor: Didactyl III</title>
     <link rel="icon" type="image/ico" href="http://dvdrndlph.github.io/didactyl/abcde/image/favicon.ico">
-    <link rel="stylesheet" href="http://surveyjs.org/css/survey.css" />
+    <link rel="stylesheet" href="http://surveyjs.org/css/survey.css">
     <link rel="stylesheet" type="text/css" href="../css/abcDE.css">
     <script src="../lib/jquery-1.12.0.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
@@ -28,6 +28,7 @@
 
 <div id="preliminary_survey"></div>
 <div id="exit_survey"></div>
+<input id="abort_submission" value="CHANGE FINGERINGS" type="button" onclick="abort_submission();" style="display:none;">
 
 <form id="consent" onsubmit="return processConsent()">
     <div style="text-align: center;"><strong>University of Illinois at Chicago</strong></div>
@@ -165,6 +166,23 @@
     <input type="submit" id="start_annotating" value="NEXT">
     <br/><br/>
 </form>
+
+<div id="submission_complete" style="display:none;">
+    <h2>Thank you!</h2>
+    <p>
+        Thank you for completing this fingering
+        activity. Your responses have been finalized
+        and included in our data. Your contribution
+        is very much appreciated.
+    </p>
+    <p>
+        Please click NEXT to complete
+        additional activities now, or you may
+        return to this survey at any time prior to
+        30 May 2016 to do so.
+    </p>
+    <input type="button" id="complete_submission" value="NEXT" onclick="location.reload(true);">
+</div>
 
 <div id="all_done" style="display:none;">
     <h2>All done!</h2>

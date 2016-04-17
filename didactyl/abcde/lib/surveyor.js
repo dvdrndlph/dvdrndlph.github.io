@@ -1,3 +1,4 @@
+// localStorage.clear();
 var SURVEYOR_CONSENT_KEY = 'didactyl_survey_iii_consent';
 var SURVEYOR_EMAIL_KEY = 'didactyl_survey_iii_email_address';
 var SURVEYOR_SELECTIONS_KEY = 'didactyl_survey_iii_selections';
@@ -466,16 +467,29 @@ var EXIT_JSON = {
     ]
 };
 
+function abort_submission() {
+    location.reload(true);
+}
+
 function submit_annotation() {
+    var survey_div = document.getElementById('exit_survey');
+    var thank_you_div = document.getElementById('submission_complete');
+
+    var abort_button = document.getElementById('abort_submission');
+    abort_button.style.display = 'block';
+
     var selection_id = abcDE.getXValue();
     var abcDF = abcDE.getEnteredAbcDF();
     abcDE.unhandleKeys();
     var abcde_div = document.getElementById('abcde');
     abcde_div.style.display = 'none';
     var survey = new Survey.Survey(EXIT_JSON, 'exit_survey');
-    survey.render('exit_survey');
-    // var survey_window = new Survey.SurveyWindow(EXIT_JSON);
-    // survey_window.show();
+    survey.showTitle = true;
+    survey.pagePrevText = 'BACK';
+    survey.pageNextText = 'NEXT';
+    survey.completeText = 'SUBMIT';
+    survey.showQuestionNumbers = 'off';
+    survey.showPageTitles = true;
     survey.onComplete.add(function(s) {
         var result = $.extend({email: email, selection_id: selection_id, abcDF: abcDF}, survey.data);
         var result_str = JSON.stringify(result);
@@ -484,8 +498,12 @@ function submit_annotation() {
         completion_str = JSON.stringify(completions);
         localStorage.setItem(SURVEYOR_COMPLETIONS_KEY, completion_str);
         survey.sendResult('976afcbd-fc95-4223-9dd2-eb0171e0cb74');
-        location.reload(true);
+        // location.reload(true);
+        survey_div.style.display = 'none';
+        abort_button.style.display = 'none';
+        thank_you_div.style.display = 'block';
     });
+    survey.render('exit_survey');
 }
 
 window.onload = function() {
@@ -499,6 +517,12 @@ window.onload = function() {
         formality.style.display = 'none';
         if (!email) {
             var survey = new Survey.Survey(PRELIM_JSON, 'preliminary_survey');
+            survey.showTitle = true;
+            survey.pagePrevText = 'BACK';
+            survey.pageNextText = 'NEXT';
+            survey.completeText = 'SUBMIT';
+            survey.showQuestionNumbers = 'off';
+            survey.showPageTitles = true;
             survey.onComplete.add(function (s) {
                 survey.sendResult('6e89d69e-1cda-4aad-a88a-eaadb4c07e57');
                 // ASSERT something is selected. The survey should guarantee this.
