@@ -30,7 +30,7 @@
 <div id="exit_survey"></div>
 <input id="abort_submission" value="CHANGE FINGERINGS" type="button" onclick="abort_submission();" style="display:none;">
 
-<form id="consent" onsubmit="return processConsent()">
+<form id="consent_form" style="display:none">
     <div style="text-align: center;"><strong>University of Illinois at Chicago</strong></div>
 
     <div style="text-align: center;"><strong>Research Information and Consent for Participation in Social Behavioral Research</strong><br />
@@ -148,11 +148,11 @@
         I have read (or someone has read to me) the above information. I have been given an opportunity to ask questions, and my questions have been answered to my satisfaction. I am over the age of 18 and agree to participate in this research. I will be emailed a dated copy of this consent form.<br><br>
     </label>
     <input type="radio" name="consent" value="no"> I decline to participate.<br><br>
-    <input type="submit" id="consent_button" value="SUBMIT">
+    <input type="button" id="consent_button" value="SUBMIT" onclick="processConsent()">
     <br><br>
 </form>
 
-<form id="simplified_instructions" style="display:none;" onsubmit="return startAnnotating()">
+<form id="simplified_instructions" style="display:none;">
     For each of the following preludes and fugues, please add fingering annotations to specify your performance completely. While it is not necessary for you to annotate every note, the intended fingering for each note should be clear from the context.<br />
     <br />
     We have created a new editor to make this task as easy as possible.
@@ -163,7 +163,7 @@
         <li>To indicate a note has&nbsp;different striking and releasing fingers (i.e., a finger <em>substitution</em>), enter two digits separated by a hyphen.</li>
         <li>Detailed help is available via the&nbsp;<span style="font-family: georgia, serif;"><span style="font-size: 19px;"><em><strong>i</strong></em></span></span>&nbsp;button on the right of the tool bar at the top of the page.</li>
     </ul>
-    <input type="submit" id="start_annotating" value="NEXT">
+    <input type="button" id="start_annotating" value="NEXT" onclick="startAnnotating()">
     <br/><br/>
 </form>
 

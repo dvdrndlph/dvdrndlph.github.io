@@ -353,24 +353,23 @@ var PRELIM_JSON = {
 };
 
 function processConsent() {
-    var formality = document.getElementById('consent');
-    var setting = formality["consent"].value;
+    var formality = document.getElementById('consent_form');
+    var setting = document.forms["consent_form"].elements["consent"].value;
     if (setting === "yes") {
         console.log("He said YES!!");
         localStorage.setItem(SURVEYOR_CONSENT_KEY, 'yes');
         formality.style.display = 'none';
-        return true;
     } else if (setting === "no") {
         console.log("NO soup for you.");
         alert("Please close your browser window if you do not wish to participate. Thank you for your time.");
     } else {
         console.log("He is on the fence.")
     }
-    return false;
+    location.reload(true);
 }
 
 function startAnnotating() {
-    return true;
+    location.reload(true);
 }
 
 // Following function borrowed from http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript.
@@ -513,8 +512,6 @@ window.onload = function() {
     completion_str = localStorage.getItem(SURVEYOR_COMPLETIONS_KEY);
 
     if (consenting === 'yes') {
-        var formality = document.getElementById('consent');
-        formality.style.display = 'none';
         if (!email) {
             var survey = new Survey.Survey(PRELIM_JSON, 'preliminary_survey');
             survey.showTitle = true;
@@ -586,5 +583,8 @@ window.onload = function() {
                 }
             }
         }
+    } else {
+        var consent_div = document.getElementById('consent_form');
+        consent_div.style.display = 'block';
     }
 };
