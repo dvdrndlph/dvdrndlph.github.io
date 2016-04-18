@@ -3494,7 +3494,10 @@ function AbcDE() {
 
     function getEnteredAbcD() {
         var abc_str = get_fingered_abc_str();
+        var persistence_setting = Persist_Annotated;
+        Persist_Annotated = false;
         return get_abcd(abc_str, false);
+        Persist_Annotated = persistence_setting;
     }
 
     function getValidatedAbcD() {

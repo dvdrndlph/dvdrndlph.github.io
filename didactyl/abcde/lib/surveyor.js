@@ -3,6 +3,7 @@ var SURVEYOR_CONSENT_KEY = 'didactyl_survey_iii_consent';
 var SURVEYOR_EMAIL_KEY = 'didactyl_survey_iii_email_address';
 var SURVEYOR_SELECTIONS_KEY = 'didactyl_survey_iii_selections';
 var SURVEYOR_COMPLETIONS_KEY = 'didactyl_survey_iii_completions';
+var SURVEYOR_CLIENT_ID_KEY = 'didactyl_survey_iii_user_id';
 var SORTED_SELECTION_IDS = [
     '171', '172', '91', '92', '151', '152', '31', '32', '61', '62',
     '211', '212', '51', '52', '21', '22', '11', '12'
@@ -470,6 +471,23 @@ function abort_submission() {
     location.reload(true);
 }
 
+function get_current_date_string() {
+    var current_date = new Date();
+    var date_str = current_date.getFullYear() + '-' +
+        sprintf("%02d", (current_date.getMonth() + 1)) + '-' +
+        sprintf("%02d", current_date.getDate()) + ' ' +
+        sprintf("%02d", current_date.getHours()) + ":" +
+        sprintf("%02d", current_date.getMinutes()) + ":" +
+        sprintf("%02d", current_date.getSeconds());
+    return date_str;
+}
+
+function generate_client_id() {
+    var date_str = get_current_date_string();
+    var key = md5(date_str);
+    return key;
+}
+
 function submit_annotation() {
     var survey_div = document.getElementById('exit_survey');
     var thank_you_div = document.getElementById('submission_complete');
@@ -479,6 +497,7 @@ function submit_annotation() {
 
     var selection_id = abcDE.getXValue();
     var abcDF = abcDE.getEnteredAbcDF();
+    var abcD = abcDE.getEnteredAbcD();
     abcDE.unhandleKeys();
     var abcde_div = document.getElementById('abcde');
     abcde_div.style.display = 'none';
@@ -490,8 +509,12 @@ function submit_annotation() {
     survey.showQuestionNumbers = 'off';
     survey.showPageTitles = true;
     survey.onComplete.add(function(s) {
-        var result = $.extend({email: email, selection_id: selection_id, abcDF: abcDF}, survey.data);
-        var result_str = JSON.stringify(result);
+        // var result = $.extend({email: email, selection_id: selection_id, abcDF: abcDF}, survey.data);
+        survey.setValue("email", email);
+        survey.setValue("selection_id", selection_id);
+        survey.setValue("abcDF", abcDF);
+        survey.setValue("abcD", abcD);
+        var result_str = JSON.stringify(survey.data);
         alert(result_str);
         completions.push(selection_id);
         completion_str = JSON.stringify(completions);
@@ -510,9 +533,11 @@ window.onload = function() {
     email = localStorage.getItem(SURVEYOR_EMAIL_KEY);
     selection_str = localStorage.getItem(SURVEYOR_SELECTIONS_KEY);
     completion_str = localStorage.getItem(SURVEYOR_COMPLETIONS_KEY);
+    client_id_str = localStorage.getItem(SURVEYOR_CLIENT_ID_KEY);
 
     if (consenting === 'yes') {
         if (!email) {
+            // var client_id = generate_client_id();
             var survey = new Survey.Survey(PRELIM_JSON, 'preliminary_survey');
             survey.showTitle = true;
             survey.pagePrevText = 'BACK';

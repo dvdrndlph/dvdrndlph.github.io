@@ -2,7 +2,7 @@ body, html {height: 90%;}
 body {background-color:#FFFFFF;}
 svg {display:block}
 text tspan {white-space:pre; fill:currentColor}
-table {
+table, th, td {
     border-collapse: separate;
     border-spacing: 10px 4px;
 }
@@ -117,7 +117,4 @@ table {
     left:0px;
     bottom:0px;
     margin-bottom:0px;
-}
-
-#symbol_div, #number_div {
 }
