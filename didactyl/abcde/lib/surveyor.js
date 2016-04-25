@@ -1,6 +1,7 @@
-// localStorage.clear();
+var DB_BASE_URL = 'https://52.9.186.114';
+var DB_SUBJECT_URL = DB_BASE_URL + '/subject.php';
+var DB_ANNOTATION_URL = DB_BASE_URL + '/annotation.php';
 var SURVEYOR_CONSENT_KEY = 'didactyl_survey_iii_consent';
-var SURVEYOR_EMAIL_KEY = 'didactyl_survey_iii_email_address';
 var SURVEYOR_SELECTIONS_KEY = 'didactyl_survey_iii_selections';
 var SURVEYOR_COMPLETIONS_KEY = 'didactyl_survey_iii_completions';
 var SURVEYOR_CLIENT_ID_KEY = 'didactyl_survey_iii_user_id';
@@ -33,10 +34,19 @@ var FILE_FOR_ID = {
 var abcDE;
 var consenting;
 var email;
+var client_id;
 var selection_str = '[]';
 var completion_str = '[]';
 var selections = [];
 var completions = [];
+
+function start_over() {
+    localStorage.removeItem(SURVEYOR_CONSENT_KEY);
+    localStorage.removeItem(SURVEYOR_SELECTIONS_KEY);
+    localStorage.removeItem(SURVEYOR_COMPLETIONS_KEY);
+    localStorage.removeItem(SURVEYOR_CLIENT_ID_KEY);
+    window.location = window.location.pathname;
+}
 
 function urlForId(id) {
     var url = DEFAULT_URL_DIR + FILE_FOR_ID[id];
@@ -50,14 +60,14 @@ var PRELIM_JSON = {
             questions: [
                 {
                     type: "text",
-                    name: "first_name",
+                    name: "firstName",
                     title: "First name",
                     isRequired: true,
                     size: "40"
                 },
                 {
                     type: "text",
-                    name: "last_name",
+                    name: "lastName",
                     title: "Last name",
                     isRequired: true,
                     size: "40"
@@ -232,7 +242,7 @@ var PRELIM_JSON = {
                         }
                     ],
                     hasOther: true,
-                    name: "primary",
+                    name: "primarySrc",
                     otherErrorText: "Please describe your primary source in the space provided.",
                     title: "Whose edition of The Well Tempered Clavier, Book I, is your primary source?"
                 }
@@ -268,27 +278,27 @@ var PRELIM_JSON = {
                     name: "influence",
                     rows: [
                         {
-                            value: "Tempo",
+                            value: "tempo",
                             text: "Tempo"
                         },
                         {
-                            value: "Articulation",
+                            value: "articulation",
                             text: "Articulation"
                         },
                         {
-                            value: "Dynamics",
+                            value: "dynamics",
                             text: "Dynamics"
                         },
                         {
-                            value: "Phrasing",
+                            value: "phrasing",
                             text: "Phrasing"
                         },
                         {
-                            value: "General character of piece",
+                            value: "character",
                             text: "General character of piece"
                         },
                         {
-                            value: "Fingering",
+                            value: "fingering",
                             text: "Fingering"
                         }
                     ],
@@ -319,7 +329,7 @@ var PRELIM_JSON = {
                             text: "No"
                         }
                     ],
-                    name: "secondary",
+                    name: "secondarySrc",
                     title: "In addition to your primary source, do you consult other editions?"
                 },
                 {
@@ -357,14 +367,14 @@ function processConsent() {
     var formality = document.getElementById('consent_form');
     var setting = document.forms["consent_form"].elements["consent"].value;
     if (setting === "yes") {
-        console.log("He said YES!!");
+        console.log("He or she said YES!!");
         localStorage.setItem(SURVEYOR_CONSENT_KEY, 'yes');
         formality.style.display = 'none';
     } else if (setting === "no") {
         console.log("NO soup for you.");
         alert("Please close your browser window if you do not wish to participate. Thank you for your time.");
     } else {
-        console.log("He is on the fence.")
+        console.log("He or (more likely) she is on the fence.")
     }
     location.reload(true);
 }
@@ -418,15 +428,15 @@ var EXIT_JSON = {
                     name: "reflection",
                     rows: [
                         {
-                            value: "best_for_me",
+                            value: "bestForMe",
                             text: "The fingerings I entered are the best for me."
                         },
                         {
-                            value: "bad_for_others",
+                            value: "badForOthers",
                             text: "The fingerings I entered may not be good for other people."
                         },
                         {
-                            value: "bad_ui",
+                            value: "badUi",
                             text: "The survey tool did not allow me to enter the fingerings that I would use."
                         }
                     ],
@@ -488,10 +498,47 @@ function generate_client_id() {
     return key;
 }
 
-function submit_annotation() {
+function post_annotation(survey_data) {
     var survey_div = document.getElementById('exit_survey');
     var thank_you_div = document.getElementById('submission_complete');
+    var abort_button = document.getElementById('abort_submission');
 
+    var url = DB_ANNOTATION_URL;
+    var data_str = JSON.stringify(survey_data);
+    console.log("POSTing: " + data_str);
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        data: data_str,
+        dataType: "json",
+        url: url,
+        success: function (data) {
+            if (data.status !== 0) {
+                var error_msg = "Attempt to save your data failed. " +
+                    "Please contact the survey coordinator at drando2@uic.edu.\n\n" +
+                    "Thank you.\n\n" + data.msg;
+                alert(error_msg);
+                console.log(error_msg);
+                console.log(JSON.stringify(data));
+            } else {
+                completions.push(survey_data.selectionId);
+                completion_str = JSON.stringify(completions);
+                localStorage.setItem(SURVEYOR_COMPLETIONS_KEY, completion_str);
+                survey_div.style.display = 'none';
+                abort_button.style.display = 'none';
+                thank_you_div.style.display = 'block';
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("The database could not be reached.\n\n" +
+                "Status: " + textStatus + "\n\n" +
+                "Error: " + errorThrown);
+        }
+    });
+}
+
+
+function submit_annotation() {
     var abort_button = document.getElementById('abort_submission');
     abort_button.style.display = 'block';
 
@@ -509,35 +556,81 @@ function submit_annotation() {
     survey.showQuestionNumbers = 'off';
     survey.showPageTitles = true;
     survey.onComplete.add(function(s) {
-        // var result = $.extend({email: email, selection_id: selection_id, abcDF: abcDF}, survey.data);
-        survey.setValue("email", email);
-        survey.setValue("selection_id", selection_id);
+        survey.setValue("clientId", client_id);
+        survey.setValue("selectionId", selection_id);
         survey.setValue("abcDF", abcDF);
         survey.setValue("abcD", abcD);
-        var result_str = JSON.stringify(survey.data);
-        alert(result_str);
-        completions.push(selection_id);
-        completion_str = JSON.stringify(completions);
-        localStorage.setItem(SURVEYOR_COMPLETIONS_KEY, completion_str);
-        survey.sendResult('976afcbd-fc95-4223-9dd2-eb0171e0cb74');
-        // location.reload(true);
-        survey_div.style.display = 'none';
-        abort_button.style.display = 'none';
-        thank_you_div.style.display = 'block';
+        post_annotation(survey.data);
     });
     survey.render('exit_survey');
 }
 
+// The following function was swiped from
+// http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function post_subject(survey_data) {
+    var url = DB_SUBJECT_URL;
+    var data_str = JSON.stringify(survey_data);
+    console.log("POSTing: " + data_str);
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        data: data_str,
+        dataType: "json",
+        url: url,
+        success: function (data) {
+            if (data.status !== 0) {
+                var error_msg = "Attempt to save your data failed. " +
+                    "Please contact the survey coordinator at drando2@uic.edu.\n\n" +
+                    "Thank you.\n\n" + data.msg;
+                alert(error_msg);
+                console.log(error_msg);
+                console.log(JSON.stringify(data));
+            } else {
+                // ASSERT something is selected. The survey should guarantee this.
+                selection_str = JSON.stringify(survey_data.selections);
+                localStorage.setItem(SURVEYOR_SELECTIONS_KEY, selection_str);
+                completion_str = '[]';
+                localStorage.setItem(SURVEYOR_COMPLETIONS_KEY, completion_str);
+                localStorage.setItem(SURVEYOR_CLIENT_ID_KEY, survey_data.clientId);
+                var preliminaries = document.getElementById('preliminary_survey');
+                preliminaries.style.display = 'none';
+                var instructions = document.getElementById('simplified_instructions');
+                instructions.style.display = 'block';
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("The database could not be reached.\n\n" +
+                "Status: " + textStatus + "\n\n" +
+                "Error: " + errorThrown);
+        }
+    });
+}
+
 window.onload = function() {
     consenting = localStorage.getItem(SURVEYOR_CONSENT_KEY);
-    email = localStorage.getItem(SURVEYOR_EMAIL_KEY);
     selection_str = localStorage.getItem(SURVEYOR_SELECTIONS_KEY);
     completion_str = localStorage.getItem(SURVEYOR_COMPLETIONS_KEY);
-    client_id_str = localStorage.getItem(SURVEYOR_CLIENT_ID_KEY);
+    client_id = localStorage.getItem(SURVEYOR_CLIENT_ID_KEY);
+
+    var resetting = getParameterByName('reset');
+    if (resetting) {
+        start_over();
+        return;
+    }
 
     if (consenting === 'yes') {
-        if (!email) {
-            // var client_id = generate_client_id();
+        if (!client_id) {
+            client_id = generate_client_id();
             var survey = new Survey.Survey(PRELIM_JSON, 'preliminary_survey');
             survey.showTitle = true;
             survey.pagePrevText = 'BACK';
@@ -546,23 +639,8 @@ window.onload = function() {
             survey.showQuestionNumbers = 'off';
             survey.showPageTitles = true;
             survey.onComplete.add(function (s) {
-                survey.sendResult('6e89d69e-1cda-4aad-a88a-eaadb4c07e57');
-                // ASSERT something is selected. The survey should guarantee this.
-                selection_str = JSON.stringify(survey.data.selections);
-                localStorage.setItem(SURVEYOR_SELECTIONS_KEY, selection_str);
-                completion_str = '[]';
-                localStorage.setItem(SURVEYOR_COMPLETIONS_KEY, completion_str);
-
-                localStorage.setItem(SURVEYOR_EMAIL_KEY, survey.data.email);
-                var result_str = JSON.stringify(survey.data);
-
-                var preliminaries = document.getElementById('preliminary_survey');
-                preliminaries.style.display = 'none';
-
-                alert(result_str); //send Ajax request to your web server.
-
-                var instructions = document.getElementById('simplified_instructions');
-                instructions.style.display = 'block';
+                survey.setValue("clientId", client_id);
+                post_subject(survey.data);
             });
             survey.render('preliminary_survey');
         } else {
