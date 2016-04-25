@@ -492,9 +492,10 @@ function get_current_date_string() {
     return date_str;
 }
 
-function generate_client_id() {
+function generate_client_id(email) {
     var date_str = get_current_date_string();
-    var key = md5(date_str);
+    var str_to_hash = date_str + email;
+    var key = md5(str_to_hash);
     return key;
 }
 
@@ -630,7 +631,6 @@ window.onload = function() {
 
     if (consenting === 'yes') {
         if (!client_id) {
-            client_id = generate_client_id();
             var survey = new Survey.Survey(PRELIM_JSON, 'preliminary_survey');
             survey.showTitle = true;
             survey.pagePrevText = 'BACK';
@@ -639,6 +639,8 @@ window.onload = function() {
             survey.showQuestionNumbers = 'off';
             survey.showPageTitles = true;
             survey.onComplete.add(function (s) {
+                var email = survey.data.email;
+                client_id = generate_client_id(email);
                 survey.setValue("clientId", client_id);
                 post_subject(survey.data);
             });
