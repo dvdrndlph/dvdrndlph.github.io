@@ -3493,18 +3493,18 @@ function AbcDE() {
     }
 
     function getEnteredAbcD() {
-        var abc_str = get_fingered_abc_str();
+        var abcd_str = '';
         var persistence_setting = Persist_Annotated;
         Persist_Annotated = false;
-        return get_abcd(abc_str, false);
+        abcd_str = get_persisting_abcd();
         Persist_Annotated = persistence_setting;
+        return abcd_str;
     }
 
     function getValidatedAbcD() {
         var abcdf = current_collection();
         if (is_valid_abcdf(abcdf)) {
-            var abc_str = get_fingered_abc_str();
-            var abcd = get_abcd(abc_str, false);
+            var abcd = get_persisting_abcd();
             if (!/^\s*X:/m.test(abcd)) {
                 alert("File is not valid abc.")
                 return '';
