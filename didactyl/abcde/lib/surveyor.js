@@ -357,7 +357,7 @@ var PRELIM_JSON = {
                     ],
                     isRequired: true,
                     name: "lottery",
-                    title: "By completing each of the following fingering activities, you will earn a chance to win one of ten $100 Amazon gift cards that will be awarded for this survey. $1000 in total will be awarded. The drawings will be held on 30 May 2016. Do you wish to be entered in these drawings?"
+                    title: "By completing each of the following fingering activities, you will earn a chance to win one of ten $100 Amazon gift cards that will be awarded for this survey. $1000 in total will be awarded. The drawings will be held on 15 May 2016. Do you wish to be entered in these drawings?"
                 }
             ]
         }
