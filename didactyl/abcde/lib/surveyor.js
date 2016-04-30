@@ -1,7 +1,7 @@
-// var DB_BASE_URL = 'https://52.9.186.114'; // Amazon
-var DB_BASE_URL = 'https://131.193.40.165'; // UIC
-var DB_SUBJECT_URL = DB_BASE_URL + '/subject.php';
-var DB_ANNOTATION_URL = DB_BASE_URL + '/annotation.php';
+// var DB_BASE_URL = 'https://52.9.186.114/'; // Amazon
+var DB_BASE_URL = '/'; // UIC
+var DB_SUBJECT_URL = DB_BASE_URL + 'subject.php';
+var DB_ANNOTATION_URL = DB_BASE_URL + 'annotation.php';
 var SURVEYOR_CONSENT_KEY = 'didactyl_survey_iii_consent';
 var SURVEYOR_SELECTIONS_KEY = 'didactyl_survey_iii_selections';
 var SURVEYOR_COMPLETIONS_KEY = 'didactyl_survey_iii_completions';
