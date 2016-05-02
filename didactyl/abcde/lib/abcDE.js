@@ -3218,13 +3218,13 @@ function AbcDE() {
         Colcl.push('e_' + note_start);
         if (Toggled) {
             if (note.staff === 0) {
-                colorsel("steelblue");
+                colorsel("dodgerblue");
             } else {
                 colorsel("red");
             }
         } else {
             if (note.staff === 1) {
-                colorsel("steelblue");
+                colorsel("dodgerblue");
             } else {
                 colorsel("red");
             }
