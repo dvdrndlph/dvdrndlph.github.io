@@ -1,0 +1,46 @@
+X:63
+T:Sonatina 6.3
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:6/8
+Q:1/4=104
+I:linebreak $
+K:D
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+"^Allegretto spiritoso""^Rondo"!p! .A2.A2.A2 | %1042
+ (B4 A2) (d2A2F2) | (A2G2F2)!<(! x6!<)! | %1044
+!>(! ([fa]2[eg]2).[eg]2!>)! ([df]2[ce]2).[df]2 | %1045
+ .[ce]2 z2 z2!pp! .A2.A2.A2 | (B4 A2) (d2A2F2) |$ %1047
+ (A2G2F2) (agfedc | .B2).B2.B2{/d} (c2B2c2 | %1049
+ .d2)(fdfd .A2)!f!.[FA]2.[FA]2 | B4 A2 (dAdA.F2) | %1051
+ (A2G2F2) ([df]2[eg]2[fa]2) |$ %1052
+ ([fa]2.[eg]2).[eg]2 ([df]2.[ce]2).[df]2 | %1053
+ .[ce]2 z2 z2 .[FA]2.[FA]2.[FA]2 |!ff! (([GB]4 [FA]2)) (d2A2F2) | %1055
+ (A2G2F2) (agfedc |$ .B2).B2.B2{/d} (c2B2c2 | .d2)(agfe!>(! dcBAGF!>)! | %1058
+!p! .E2).E2.E2({GA)} (B2A2G2 | .F2) z2 z2 dcBAGF |$ .E2.E2.E2({GA)} (B2A2G2 | %1061
+!f! (F)dFdFd F^dFdFd | EeEeEe) ^c(acaca | %1063
+ !wedge!d2) (afge !wedge!d2) (afge |$ %1064
+ !wedge!d2) .[fd']2.[fd']2 .[fd']2.[fd']2.[fd']2 | [fd']4 z2!fine! || %1066
+V:2
+FFF | (G2 F) x3 | E2 D ([df][eg][fa]) | x6 | x3 FFF | (G2 F) x3 |$ %1047
+ E2 D x3 | x6 | x6 | (G2 F) x3 | E2 D x3 |$ x6 | x6 | x6 | E2 D x3 |$ x6 | x6 | x6 | x6 |$ x6 | %1061
+ x6 | x6 | x6 |$ x6 | x3 ||
+V:3
+[K:bass] z2 z | %1042
+!p! .D,.D,.D, z2 z | .D,.D,.D, z2 z |[K:treble] .G.G.G .^G.G.G | %1045
+ .A.A.A z2 z |[K:bass]!pp! .D,.D,.D, z2 z |$ .D,.D,.D, z2 z | %1048
+[K:treble] .G.G.G .[A,EG].[A,EG].[A,EG] | [DF]2 z z2 z |[K:bass] (D,,.D,).D, z2 z | %1051
+ (D,,.D,).D, z2 z |$ (G,[I:staff -1].G).G[I:staff +1] (^G,[I:staff -1].^G).G | %1053
+[I:staff +1] (A,[I:staff -1].A).A[I:staff +1] z2 z | (D,,/D,/C,/D,/C,/D,/ .D,,) z z | %1055
+ (D,,/D,/C,/D,/C,/D,/ .D,,) z z |$ (G,,/G,/E,/G,/E,/G,/) ([A,,E,]/G,/[A,,E,]/G,/[A,,E,]/G,/ | %1057
+ F,) z z z2 z | [G,D][G,D][G,D] [A,C][A,C][A,C] | %1059
+ [B,D][B,D][B,D] [F,D][F,D][F,D] |$ [G,D][G,D][G,D] [A,C][A,C][A,C] | %1061
+ [B,D][B,D][B,D] [A,=C][A,C][A,C] | [G,B,][G,B,][G,B,]!f! [A,,A,][A,,A,][A,,A,] | %1063
+ .[D,F,] z .[A,,A,] .[D,F,] z .[A,,A,] |$ [D,F,] .D,.A,, .F,,.A,,.F,, | D,,2 z || %1066

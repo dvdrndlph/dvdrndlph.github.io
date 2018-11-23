@@ -1,0 +1,25 @@
+X:11
+T:Sonatina 1.1
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { 1 | 2 }
+L:1/8
+Q:1/4=180
+M:2/2
+I:linebreak $
+K:C
+% U:s=!stemless!
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 bass 
+V:1
+!f!"^Spiritoso." (c4 e2c2 .G4) .G4 | (c4 e2c2 .G4) .g4 | %2
+ (f2e2d2c2 B2c2B2c2 | d2c2B2A2 G4) z4 |!p! (c4 e2c2 .G4) .G4 |$ %5
+ (e4 g2e2 .c4) (e2c2 | d2B2c2A2 B2G2A2^F2 | %7
+!f! (G2)A2B2c2 d2e2^f2g2) | (A4 .a4) .a4 .a4 | (B2c2d2e2 ^f2g2a2b2) |$ %10
+ (c4 .c'4) .c'4 .c'4 | (d2g2b2d'2 c'2b2a2g2 | %12
+ ^f2e2g2f2 a2g2f2e2) | (e2d2c2B2 d2c2B2A2 | G8) z8 ||$
+V:2
+ C,2 z2 z4 | C,2 z2 z4 | C,2 z2 C,2 z2 | G,,2 z2 (G,F,E,D, | C,2) z2 z4 |$ C2 z2 z2 ^F,2 | %6
+ G,2 C,2 D,2 D,,2 | G,,2 z2 z4 | (^F,DA,D F,DA,D) | G,2 z2 z4 |$ A,DCD A,DCD | %11
+ B,2 z2 z4 | C2 z2 C,2 z2 | D,2 z2 D,,2 z2 | (G,,B,,D,G, G,,2) z2||

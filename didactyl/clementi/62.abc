@@ -1,0 +1,63 @@
+X:62
+T:Sonatina 6.2
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:4/4
+Q:1/4=101
+I:linebreak $
+K:D
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+!p! (ABcd | .e2) z2 .[Ac]2 z2 .[Bd]2 z2 .[ce]2 z2 | %990
+ ([Bd]6 [ce]2 .[df]4) (Bcde | .f2) z2 .[Bd]2 z2 .[ce]2 z2 .[df]2 z2 | %992
+ ([ce]6 [df]2 .[eg]4)!f! (gaba) |$ %993
+ (gafg efde cdBc ABGA | F4) z4 z4 (defg | %995
+ .a2) z2 .[df]2 z2 .[eg]2 z2 .[fa]2 z2 | ([eg]6 [fa]2 [gb]4) (efga |$ %997
+!<(! .b2) z2 .[eg]2 z2 .[fa]2 z2 .[gb]2 z2!<)! | %998
+!f! ([fa]2.=c'2).[fa]2.[fa]2!p! ([fa]2.c'2).[fa]2.[fa]2 | %999
+ ([fa]2.b2).[eg]2.[eg]2 ([eg]2._b2).[eg]2.[eg]2 | %1000
+ ([eg]2.a2).[d^f]2.[df]2!<(! ([df]2.g2).[ce]2.[ce]2 | %1001
+ ([ce]2.f2).[Bd]2.[Bd]2!<)!!f! ([Bd]2.e2).[A=c]2.[Ac]2 |$ %1002
+ (BDBD FDFD GDGD ADAD) | (BDBD G^CGC FDFD =FDFD) | %1004
+!ff! (E^CEC .A2) z2 (=FDFD .A2) z2 |$ (E^CEC .A2) z2!>(! (^GDGD .B2) z2!>)! | %1006
+!p! =G(EGE !fermata!c4) !fermata!z4"_dolce." (BAGA | [^Fd]6 A2 F2A2d2f2 | %1008
+{/A} a6!p! fd .A2) z2 (dedc |$ .B2) z2 (dedc .B2) z2 (d'bd'b | %1010
+ ad'c'b agfe .d2) z2 z2 (F2 | .G2).G2 (AGFG e6!p! G2 |$ %1012
+ .F2).F2 (GFEF d6!p! F2) | (F2E2G2B2) (B2C2E2A2) | %1014
+ (G8 [DF]4) z2 F2 | (GEFG ABcd edcB AGFE |$!f! FDEF GABc defg abc'd') | %1017
+ z (Beg bagf edcB AGFE |!ff! D6) (D2 C2D2=C2F2 |$ %1019
+ B,2G2) (AGFG B2G2E2^c2 | [Fd]6) (d2 c2d2=c2f2 | %1021
+ Bgfg agfg b2g2e2^c'2 | d')(def gabc' d')(def gabc' |$ %1023
+ d')(def gabc' d'2d2) (edcd | .[cea]4) .[cea]4 .[cea]4!p! (g2f2 | %1025
+"_dolce." e4) (e4 a4 c4 | e8 d4) (e2f2 |$ g4 g4 f4 f4 | %1028
+ e4 a8) (g2f2 | e4 e4 a4 c4 | e8 d4) (d'2a2 | f4) (f6 a2g2e2 |$ %1032
+ (d)ede .f2).d2 (BdBd cece | dede .f2).d2 (BdBd cece | %1034
+ defg abc'd')!ff! (defg abc'd' |$ bagf edcB .A2) z2 .[GAc]2 z2 | %1036
+ (df!p!ag fedc BdBd cece | dfag fedc BdBd cece |$ %1038
+ dfag fedc BAGF EDCB, | %1039
+!f! A,2).[DF]2.[DF]2.[DF]2 ([DF]2.[EG]2).[CE]2.[CE]2 | %1040
+ .D2 z2 .[DFAd]2 z2 .[DFAd]2 z2 |]$ %1041
+V:3
+ z2 | A,A,A,A, A,A,A,A, | A,A,A,A, A,A,A,A, | %991
+ A,A,A,A, A,A,A,A, | A,A,A,A, A,A,A,A, |$ A,2 z2 z4 | (D,D)DD DDDD | DDDD DDDD | %996
+ DDDD DDDD |$ DDDD DDDD | D2 z2 ^D2 D2 | E2 z2 ^C2 C2 | _D2 z2 ^A,2 A,2 | %1001
+ B,2 B,2 [F,,F,]2 [F,,F,]2 |$ [G,,G,]2 [=C,=C]2 [B,,B,]2 [F,,F,]2 | %1003
+ [G,,G,]2 [E,,E,]2 [D,,D,]2 [^G,,,^G,,]2 | [A,,,A,,]2 z [A,,,A,,] [A,,,A,,]2 z [A,,,A,,] |$ %1005
+ [A,,,A,,]2 z [A,,,A,,] [A,,,A,,]2 z [A,,,A,,] | !fermata![A,,,A,,]4 !fermata!z4 | %1007
+ (D,A,F,A, D,A,F,A,) | D,A,F,A, D,A,F,A, |$ D,B,G,B, D,B,G,B, | D,A,F,A, F,A,D,A, | %1011
+ C,A,E,A, C,A,E,A, |$ D,A,F,A, D,A,F,A, | [G,,G,]4 [A,,A,]2- [A,,A,]2 | %1014
+ z (D,,F,,A,, D,A,,D,,D,) | (C,A,E,A, C,A,E,A,) |$ D,A,F,A, D,A,F,A, | %1017
+ [G,,G,]4 [A,,A,]2 [A,,A,]2 | D,,F,,A,,D, D,,D,D,,D, |$ D,,D,D,,D, D,,D,D,,D, | %1020
+ D,,F,,A,,D, D,,D,D,,D, | D,,D,D,,D, D,,D,D,,D, | D,,D,D,,D, C,,C,C,,C, |$ %1023
+ B,,,B,,B,,,B,, ^G,,,^G,,G,,,G,, | .[A,,,A,,]2 .[A,,A,]2 .[A,,A,]2 z2 | %1025
+[K:treble] =GAGA GAGA | FAFA FAFA |$ EAA,A DAA,A | CAA,A CAEA | GAGA GAGA | %1030
+ FAFA FAFA | A,ADA A,ACA |$ [DF]2 z2 [DG]2 [DE]2 | [DF]2 z2 [DG]2 [DE]2 | %1034
+ [DF]2 z2[K:bass] [B,,B,] z [B,,B,] z |$ [G,,G,] z [G,,G,] z [A,,A,] z [A,,A,] z | %1036
+ [D,D]2 z2[K:treble] [DG]2 [DE]2 | [DF]2 z2 [DG]2 [DE]2 |$ [DF]2 z2[K:bass] (G,,,G,,G,,,G,, | %1039
+ A,,,A,,A,,,A,, A,,,A,,A,,,A,,) | (D,,D,A,,F,, .D,,) z |]$

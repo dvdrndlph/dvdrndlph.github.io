@@ -1,0 +1,38 @@
+X:31
+T:Sonatina 3.1
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:4
+I:linebreak $
+K:C
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+!f! (g6 e2 c2.G2).G2.G2 | (g6 e2 (c)def gabc' | %336
+ b2.a2).a2.a2 (ba^ga .c'2).a2 | (^f2=g2).g2.g2 g4 z4 |$ %338
+!p! .[d=f]2.[df]2.[ce]2.[ce]2 [Bd]4 z4 | .[eg]2.[eg]2.[df]2.[df]2 [ce]4 z4 | %340
+ (afed afed egec dfdB | .c2).c2.[Bd]2.[Bd]2 .[ce]4 z4 | %342
+!<(! .[DF]2.[DF]2.[CE]2.[CE]2 [B,D]4 z4 |$ %343
+ .[EG]2.[EG]2.[FB]2.[FB]2 .[Ec]2.[Ec]2.[G^c]2.[Gc]2!<)! | %344
+!f! .[Ad]2.[Ad]2.[df]2.[df]2 .[ce]2.[ce]2.[Bd]2.[Bd]2 | %345
+ .c4 .[egc']4 .[egc']4 z4 |"_dolce" (g4 ag^fe d4 edcB | %347
+ .A2){/B}(A^G .A2).B2 .c2 z2 z2 (c'b |$ abab c'bab c'bag ^fedc | %349
+ B2) z2 z (GAB cde^f gaba | g2) z2 z (GAB!<(! cde^f gabc'!<)! |$ %351
+!f! .d'2).d'2 (c'bab) .g2.g2.^d2.d2 | .e2.e2 (dcBc .A2).A2.E2.E2 | %353
+ .D2.D2 (dBAG TA8{GA)} |!p! z2 .d'2 z2 .b2 z2 .g2 z2 .^d2 |$ %355
+!<(! z2 (e^d e^fgf e=dcB AG^FE!<)! |!f! DGBd cBAG TA8{GA} | %357
+ G2) z2 .D2.D2 .[B,G]2 z2 .D2.D2 | %358
+ .[CA]2 z2!p! .D2.D2!<(! .[A,^F]2 z2 .D2.D2!<)! |!f! [B,G]4 [B,G]4 [B,G]4 z4 |]$ %360
+V:3
+[K:treble] (ECEC ECEC) | ECEC ECEC | FCFC FCFC | ECEC ECEC |$ G2 z2 .G.G.F.F | %339
+ E2 z2 .A.A.G.G | F z z .F .G z[K:bass] .G, z | .C z .G, z (CG,E,C, | %342
+ G,2) z2 .G,.G,.F,.F, |$ .E, z .^G, z .A, z .E, z | .F,.F,.D,.D, .=G,.G,.G,,.G,, | %345
+ .C,2 .[C,,C,]2 .[C,,C,]2 z2 | (G,B, D) z (G,B, D) z | (G,C E) z (G,C E) z |$ %348
+ (^F,A, D) z (F,A, D) z | (G,B, D) z z4 | (E,G, B,) z z4 |$ (B,,G,B,,G, B,,G,B,,G,) | %352
+ C,G,C,G, C,G,C,G, | D,G,D,G, D,^F,D,F, | B,,G,B,,G, B,,G,B,,G, |$ C,G,C,G, C,G,C,G, | %356
+ D,G,D,G, D,^F,D,F, | .G,,.G, z2 .G,,.G, z2 | .G,,.G, z2 .G,,.G, z2 | (G,,G,D,B,, G,,2) z2 |]$ %360

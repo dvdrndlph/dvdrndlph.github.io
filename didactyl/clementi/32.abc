@@ -1,0 +1,61 @@
+X:32
+T:Sonatina 3.2
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:4
+I:linebreak $
+K:C
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+!p! (G6 B2 d2.g2).g2.g2 | (ABcB ABcB A2) z2 z4 | %362
+ (B6 d2!<(! =f2.b2).b2.b2!<)! |!f! (c2de fgab c'2) z2 z4 | %364
+!f! .d'2.d'2.b2.b2 .g2.g2 (gabg |$ %365
+ .c'2).c'2.g2.g2 ._e2.e2 (cdec | %366
+!>(! .B2).B2._A2.A2!>)!!>(! .G2.G2.^F2.F2 | %367
+ .G2.G2.^F2.F2 .G2.G2.F2.F2!>)! | %368
+!pp! .G2.G2.^F2.F2 .G2.G2.F2.F2 | %369
+!f! (G6 E2 C2.G,2).G,2.G,2 |$ (G6 E2 (C)DEF GABc | %371
+ B2.A2).A2.A2 (BA^GA .c2).A2 | (^F2.G2).G2.G2 G4 z4 | %373
+!p! .[D=F]2.[DF]2.[CE]2.[CE]2 [B,D]4 z4 | .[EG]2.[EG]2.[DF]2.[DF]2 [CE]4 z4 |$ %375
+ .A2.A2.^c2.c2!<(! .d2.d2.=c2.c2 | .B2.B2.^d2.d2 .e2.e2.e2.e2!<)! | %377
+!f! .e2.e2.e2.e2 .e2.e2!ff!.e2.e2 | .=f2.f2.g2.g2 (a2g2f2e2 | %379
+ !wedge!d2) z2 .f2.f2 !wedge!e2 z2 .c2.c2 |$ %380
+ !wedge!B2 z2 .[B,=F]2.[B,F]2 !wedge![CE]2 z2[I:staff +1] .[^F,C]2.[F,C]2 | %381
+ !wedge![G,B,]2[I:staff -1] z2 .[B,DG]2 z2 .[B,DG]2 z2 z4 | %382
+"_dolce" (c'4 d'c'ba g4 agfe | .d2){/e}(d^c .d2).e2 f2 z2 z2 (f'e' |$ %384
+ d'e'd'e' f'e'd'e' f'e'd'c' bagf | e2) z2 z (cde fgab c'd'e'd' | %386
+ c'2) z2 z!<(! (cde fgab c'd'e'd'!<)! | %387
+!f! .c'2).c'2.g2.g2 .e2.e2 (dcBc |$ %388
+ .A2).A2.F2.F2 .D2.D2.A2.A2 | .G2.G2 (AGFE T!2 3!D8{CD} | %390
+ E2) z2 z (CDE FGAB cded | .c2) z2 z (CDE FGAB cdef | %392
+!p! .g2).g2 z2 .e2 z2 .c2 z2 .^G2 |$!<(! z2 (A^G ABcB A=GFE DCB,A,!<)! | %394
+ G,CEG FEDC D8{CD} | C2) z2[K:bass]!p! .G,2.G,2 .[E,C]2 z2 .G,2.G,2 | %396
+ .[F,D]2 z2 .G,2.G,2!<(! .[D,B,]2 z2 .G,2.G,2!<)! |!f! .[E,C]4 .[E,C]4 .[E,C]4 z4 |]$ %398
+V:2
+x8 | %361
+ x8 | x8 | x8 | x8 |$ x8 | x8 | x8 | x8 | x8 |$ x8 | x8 | x8 | x8 | x8 |$ FFGG FF^FF | %376
+ GGAA ^GG[GB][GB] | [Ac][Ac][Bd][Bd] cc^cc | ddee fedc | B x BB c x ^FF |$ G x7 | x8 | %382
+ x8 | x8 |$ x8 | x8 | x8 | x8 |$ x8 | x8 | x8 | x8 | x8 |$ x8 | x8 | x2[K:bass] x6 | x8 | x8 |]$ %398
+V:3
+ (B,G,B,G, B,G,B,G,) | CG,CG, CG,CG, | DG,DG, DG,DG, | EG,EG, EG,EG, | =FG,FG, FG,FG, |$ %365
+ _EG,EG, EG,EG, | DG,CG, =B,G,CG, | (B,2 C2 B,2 C2 | B,2) z2 z4 | (=E,C,E,C, E,C,E,C,) |$ %370
+ E,C,E,C, E,C,E,C, | F,C,F,C, F,C,F,C, | E,C,E,C, E,C,E,C, | G,2 z2 .G,.G,.F,.F, | %374
+ E,2 z2 .A,.A,.G,.G, |$ .F,.F,.E,.E, D,2 z2 | .G,.G,.=F,.F, .E,.E,.=D,.D, | %377
+ .C,.C,.B,,.B,, .A,,.A,,.=G,,.G,, | .=F,,.F,,.E,,.E,, (D,,E,,F,,^F,, | %379
+ G,,)G,,G,,G,, G,,G,,G,,G,, |$ G,,G,,G,,G,, G,,G,,G,,G,, | %381
+ !wedge!G,, z .[G,,G,] z .[G,,G,] z z2 |[K:treble] (CE G) z (CE G) z | (CF A) z (CF A) z |$ %384
+ (B,D G) z (B,D G) z | (CE G) z z4 | (A,C E) z z4 |[K:bass] E,CE,C E,CE,C |$ %388
+ F,CF,C F,CF,C | G,CG,C G,B,G,B, | (C,E, G,) z z4 | (A,,C, E,) z z4 | %392
+ E,,C,E,,C, E,,C,E,,C, |$ F,,C,F,,C, F,,C,F,,C, |!f! G,,C,G,,C, G,,C,G,,C, | %395
+ .C,,.C, z2 .C,,.C, z2 | .C,,.C, z2 .C,,.C, z2 | .[C,,C,]2 .[C,,C,]2 .[C,,C,]2 z2 |]$ %398
+V:4
+ x8 | x8 | x8 | x8 | %364
+ x8 |$ x8 | x8 | G,8- | G,2 x6 | x8 |$ x8 | x8 | x8 | x8 | x8 |$ x8 | x8 | x8 | x8 | x8 |$ x8 | %381
+ x8 |[K:treble] x8 | x8 |$ x8 | x8 | x8 |[K:bass] x8 |$ x8 | x8 | x8 | x8 | x8 |$ x8 | x8 | x8 | %396
+ x8 | x8 |]$

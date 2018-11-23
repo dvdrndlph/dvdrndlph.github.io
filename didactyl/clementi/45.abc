@@ -1,0 +1,37 @@
+X:45
+T:Sonatina 4.5
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:2/4
+Q:1/4=80
+I:linebreak $
+K:F
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+"_dolce"!p! (3agf(3agf | c'2(c'2 a2f2 | ^f2.g2) (3(e'd'c'(3=bag | %644
+ g3e/f/ T!4 3!f3e/f/ |$!<(! (3e)(gf(3edc (3fag(3fed | %646
+ (3e)(gf(3edc (3fag(3fed!<)! | (3e)(gf(3edc)!f! (3(_bd'c'(3bag |$ %648
+ (3a=bc'(3bag (3fed(3c=BA | G3)(c/d/ T!4 3!d3c/d/ | %650
+!p! (3efg(3cde .f2) z2 |$ (3(efg(3cde .f2) z2 | %652
+!<(! (3(ege(3cec (3AcA(3FAF!<)! | (3EGF(3EDC TD3C/D/ | %654
+ (3EFG(3CDE .F2) z2 |$ (3(EFG(3CDE .F2) z2 |!f! (3(EGc(3ecG) (3(EAc(3ecA) | %657
+ (3(DFA(3dAF) (3(DFG(3=BGF) |$!ff! (3EGc(3ecG (3EAc(3ecA | %659
+ (3Adf(3afd (3G=Bd(3gdB | (3(c=Bc(3edc (3BAG(3FED |$ %661
+ (3C=B,C(3EDC[I:staff +1] (3B,A,G,(3F,E,D,) | %662
+[I:staff -1] z4!>(! (3(EDC(3GFE | ._B2) z2 (3(edc(3gfe!>)! | %664
+ ._b2) z2 !fermata!z4 | !fermata!z4!D.C.! |]$ %666
+V:3
+[K:treble] z2 | (3(F/A/c/(3F/A/c/ (3F/A/c/(3F/A/c/) | (3E/G/c/(3E/G/c/ (3E/G/c/(3E/G/c/ | %644
+ (3D/G/=B/(3D/G/B/ (3D/G/B/(3D/G/B/ |$ .C z[K:bass] .=B,.B, | .C z .=B,.B, | %647
+ .C z .[E,C].[E,C] |$ .[F,C] z F,^F, | (3(G,/C/E/(3G,/C/E/ (3G,/=B,/D/(3G,/B,/D/ | %650
+ .C) z (3(=B,/C/D/(3G,/A,/B,/ |$ .C) z (3(=B,/C/D/(3G,/A,/B,/ | %652
+ C)((E,F,))(F, |!f! .G,).G, .G,,.G,, | .C, z (3(=B,,/C,/D,/(3G,,/A,,/B,,/ |$ %655
+ .C,) z (3=B,,/C,/D,/(3G,,/A,,/B,,/ | .C,.[C,,C,] z .[A,,A,] | z .[F,,F,] z .[G,,G,] |$ %658
+ z .[C,C] z .[A,,A,] | .[F,,F,].[F,,F,] .[G,,G,].[G,,G,] | [C,,C,]4 |$ [C,,C,]4 | %662
+ .[C,,C,].[C,,C,] z2 | .[C,,C,].[C,,C,] z2 |[K:treble] .[CEG].[CEG] !fermata!z2 | !fermata!z2 |]$ %666

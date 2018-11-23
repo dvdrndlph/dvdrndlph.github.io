@@ -1,0 +1,39 @@
+X:41
+T:Sonatina 4.1
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:3/4
+Q:1/4=120
+I:linebreak $
+K:F
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+"^Con spirito." F8 (A2>F2 | c8) (BAGF | %498
+ E2G2B2d2c2B2 | [E^G]4 [FA]4) z4 | (f6 gf e2d2) |$ %501
+ (c6 dc B2A2) | (GAG^F GABc d2=F2) | (F2E2PD2C2D2E2) | [A,F]8 (AFAF | %505
+ c8) (BAGF | E2G2B2d2c2B2 |$ [E^G]4 [FA]4) z4 |!p! (f6 af e2g2) | %509
+ (=B6 dBc2G2) | (fgfe fagf egec | =BcBA BdcB cegc') |$ %512
+ z (afd) z (gec) z (fd=B) | z2 (cd .e2).[ce]2.[ce]2.[ce]2 | ([eg]4 [d=f]8) | %515
+ z2!<(! (cd .e2).[ce]2.[ce]2.[ce]2!<)! | ([eg]4 [d=f]8) |$ ([ce]2>[df]2 [ce]4 [=Bd]4) | %518
+"_dolce" z2 (cG .E2).[CE]2.[CE]2.[CE]2 | ([EG]4 [D=F]8) | %520
+ z2 (cG .E2).[CE]2.[CE]2.[CE]2 | ([EG]4 [D=F]8) | %522
+ (ECFD .[CE]2).[CE]2.[=B,D]2.[B,D]2 |$ C6 (DE FGA=B | %524
+ c6) (de fga=b | .c'4) .[EGc]4 z4 |]
+V:2
+ x6 | x6 | x6 | x6 | d4 cB |$ %501
+ A4 GF | x6 | x6 | x6 | x6 | x6 |$ x6 | x6 | x6 | x6 | x6 |$ x6 | x6 | x6 | x6 | x6 |$ x6 | x6 | %519
+ x6 | x6 | x6 | x6 |$ x6 | x6 | x6 |]
+V:3
+[K:F][M:3/4]!f! (F,,F,F,,F,F,,F,) | (F,,F,F,,F,F,,F,) | (F,,F,F,,F,F,,F,) | (F,,F,F,,F,F,,F,) | %500
+ (F,,F,) F,2 z2 |$ (F,,F,) F,2 z2 | (B,,4 =B,,2) | (C,2 C,,2) z2 | (F,,F,F,,F,F,,F,) | %505
+ F,,F,F,,F,F,,F, | F,,F,F,,F,F,,F, |$ F,,F,F,,F,F,,F, | (=B,G,B,G,CG,) | FG,FG,EG, | %510
+ =B,G,B,G,CG, | FG,FG,EC |$ .F z .G z .G, z | [CE]2 z2 z2 | z (G/^F/ .G).G,.A,.=B, | %515
+ C2 z2 z2 | z G/-^F/ .G.G,.A,.=B, |$ (C>F, G,2) (G,,2 | C,2) z2 z2 | %519
+ z G,/-^F,/ .G,.G,,.A,,.=B,, | C,2 z2 z2 | z G,/-^F,/ .G,.G,,.A,,.=B,, | (C,F,, G,,2) G,,2 |$ %523
+!f! (C,,C,) C,2 z2 | (C,,C,) C,2 z2 | .[C,,C,]2 .[C,,C,]2 z2 |]

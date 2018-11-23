@@ -1,0 +1,40 @@
+X:23
+T:Sonatina 2.3
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:2/2
+I:linebreak $
+K:C
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+[M:3/4]"_dolce"[Q:1/4=52]"^Allegretto" (E2>G2 c2>A2G2>F2 | %196
+ E2>G2 c2>A2G2>F2 | E2>G2A2>F2 D2>C2 | B,2>D2 C4) z4 | %199
+ ([DF]8 [CE]4) |$ ([DF]8 [CE]4) | x12 | x12 || (E2>e2 d2>B2c2>A2 | %204
+ ^G2>B2 E2>G2A2>c2) | (D2>d2 c2>A2B2>=G2 |$ ^F2>!<(!d2 G2>d2 A2>d2) | %207
+ (B2>g2!<)!!f! c2>g2 d2>g2 | e2>c'2 ^f2>a2 g2>)[Bd]2 | %209
+ ([Bd]2>[Ac]2 [GB]4 [^FA]4 |!>(! (G4) ^F4) =F4!>)! | %211
+!p! (E2>G2 c2>A2G2>F2 |$ E2>G2 c2>A2G2>F2 | E2>G2A2>F2 D2>C2 | %214
+ B,2>D2 C4) z4 | ([DF]8 [CE]4) | ([DF]8 [CE]4) |$ %217
+[I:staff +1] (A,2>D2 G,2>C2 F,2>B,2 |[I:staff -1] C2>)(c2 B2>)A2 G2>^F2 | %219
+ ([DF]8 [CE]4) | ([DF]8 [CE]4) |[I:staff +1] (A,2>D2 G,2>C2 F,2>B,2) | %222
+ (([F,B,D]8 [E,C]4)) |]$ %223
+V:3
+[M:3/4]"_legato" (C4 B,2 | C4 B,2 | C2 F,4 | G,2 E,>)(G,E,>C, | %199
+ B,,>D,!p! G,,>B,,C,>E,) |$ (B,,>D,!p! G,,>B,,C,>E, | %201
+ (A,>)D G,>C F,>B,) | (([F,B,D]4 [E,C]2)) || (^G,4 A,2 | D4 C2) | %205
+ (^F,4 =G,2 |$ C2 B,2 ^F,2) | (G,2 A,2 B,2 | C2 A,2 B,2) | (C,2 D,2 D,,2) | %210
+ (G,,>G, A,,>G, B,,>G,) | (C,4 B,,2 |$ C,4 B,,2 | C,2 F,4 | %214
+ G,2 E,>)(G,E,>C, | B,,>D,!p! G,,>B,,C,>E,) | %216
+ (B,,>D,!p! G,,>B,,C,>E,) |$ F,2 [G,,E,]2 (([G,,D,]2 | [C,E,]2)) z2 z2 | %219
+ (B,,>D,!p! G,,>B,,C,>E,) | B,,>D,!p! G,,>B,,C,>E, | %221
+ F,,2 [G,,E,]2 [G,,D,]2 | (C,2 G,,2 C,,2) |]$
+V:4
+[K:C][M:3/4] x6 | x6 | %197
+ x6 | x6 | x6 |$ x6 | F,2 [G,,E,]2 [G,,D,]2 | (C,2 G,,2 C,,2) || x6 | x6 | x6 |$ %206
+ x6 | x6 | x6 | x6 | x6 | x6 |$ x6 | x6 | x6 | x6 | x6 |$ x6 | x6 | x6 | x6 | x6 | x6 |]$ %223
