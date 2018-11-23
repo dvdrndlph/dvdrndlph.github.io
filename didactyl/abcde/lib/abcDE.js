@@ -116,8 +116,9 @@ function AbcDE() {
         Persist_Annotated = true,
         Ui_In_Place = false;
 
-    var DIDACTYL_URL = 'https://dvdrndlph.github.io/didactyl';
-    var HOME_URL = DIDACTYL_URL + '/abcde';
+    // var DIDACTYL_URL = 'https://dvdrndlph.github.io/didactyl';
+    var DIDACTYL_URL = '..';
+    var HOME_URL = DIDACTYL_URL; // + '/abcde';
     var HELP_URL = HOME_URL + '/view/abcde_help.html';
     var IMAGE_DIR = HOME_URL + '/image';
     var MEDIA_DIR = HOME_URL + '/lib/media';
@@ -125,18 +126,15 @@ function AbcDE() {
     // var MEDIA_DIR = '../lib/media';
     // var MEDIA_DIR = 'http://nlp.cs.uic.edu/didactyl/abcde/lib/media';
 
-    // FIXME: These regular expresions are too simplistic. Replace them
-    // with PEG parser calls.
-    var FINGER_RE = /\(([<>]\d)+\)|[<>]\d-[<>]\d\/[<>]\d-[<>]\d|[<>]\d\/[<>]\d-[<>]\d|[<>]\d-[<>]\d\/[<>]\d|[<>]\d-[<>]\d|[<>]\d\/[<>]\d|[<>]\d|x/g;
-    var PRESET_RE = /\(([<>]?\d)+\)|[<>]?\d-[<>]?\d\/[<>]?\d-[<>]?\d|[<>]?\d\/[<>]?\d-[<>]?\d|[<>]?\d-[<>]?\d\/[<>]?\d|[<>]?\d-[<>]?\d|[<>]?\d\/[<>]?\d|[<>]?\d|x/g;
-
     var SPACE_RE = /\s/g;
-    var LH_REG = /</g;
-    var RH_REG = />/g;
-    var RL_REG = /[><]/g;
+    var LH_RE = /</g;
+    var RH_RE = />/g;
+    var RL_RE = /[><]/g;
+    var PHRASE_RE = /([,;\.])/;
+    var LINE_RE = /&/g;
     var LAST_HAND_RE = (/.*([<>])[^<>]+$/);
     var ABCD_HDR_RE = /^% abcDidactyl v([\d\.]+)$/;
-    var ABCD_FINGERING_RE = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x]+)$/;
+    var ABCD_FINGERING_RE = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/;
     var ABCD_TERMINAL_RE = /^% abcDidactyl END$/;
     var ABCD_AUTHORITY_RE = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/;
     var ABCD_TRANSCRIBER_RE = /^% Transcriber: (.*)$/;
@@ -145,7 +143,6 @@ function AbcDE() {
     var ABCD_COMMENT_RE = /^% (.*)$/;
 
     var TIMEOUT_MS = 300;
-    var DOUBLE_TAP_MS = 500;
     var AUTOSAVE_MS = 4000;
 
     var ABCDE_DIV_ID = 'abcde';
@@ -433,6 +430,7 @@ function AbcDE() {
     }
 
     function get_sequences(abcd_str) {
+        // FIXME: This does not find any sequences, ever.
         var lines = abcd_str.split("\n");
         var match;
         var within_abcd_block = false;
@@ -580,7 +578,26 @@ function AbcDE() {
         }
     }
 
+    function array_contains_object(array, obj) {
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] === obj) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function index_of_object(array, obj) {
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] === obj) {
+                return i;
+            }
+        }
+        return null;
+    }
+
     function set_sequence(finger_str, field_name) {
+        // finger_str is a complete abcDF string.
         if (! finger_str) {
             return;
         }
@@ -597,7 +614,9 @@ function AbcDE() {
             var finger_lines = staff_lines[staff_num].split('&');
             for (line_num = 0; line_num < finger_lines.length; line_num++) {
                 var finger_line = finger_lines[line_num];
-                staff_fingerings = staff_fingerings.concat(get_tokens(PRESET_RE, finger_line));
+                // var tokens = get_tokens(PRESET_RE, finger_line);
+                var tokens = get_abcdf_note_tokens(finger_line);
+                staff_fingerings = staff_fingerings.concat(tokens);
             }
 
             var sorted_staff_note_times = get_sorted_staff_note_times(staff_num);
@@ -607,16 +626,22 @@ function AbcDE() {
                 notes.sort(order_notes);
                 var g = 0;
                 while (notes[g].grace) {
+                    var grace_note_fingering = '';
                     notes[g][field_name] = '';
                     for (var i = 0; i < notes[g].size; i++) {
                         fingering = staff_fingerings.shift();
                         if (!fingering) {
-                            console.log('Preset fingering MISSING for note:');
-                            print_note('preset grace note', notes[g]);
+                            console.log(field_name + ' MISSING for grace note:');
+                            print_note(field_name + ' grace note', notes[g]);
                         }
                         fingering = get_handed_fingering(fingering, hand);
                         hand = get_new_last_hand(fingering, hand);
-                        notes[g][field_name] += fingering;
+                        grace_note_fingering += fingering;
+                    }
+                    if (field_name === 'fingering') {
+                        notes[g].set_fingering(grace_note_fingering);
+                    } else if (field_name === 'preset_fingering') {
+                        notes[g].set_preset_fingering(grace_note_fingering);
                     }
                     g++;
                 }
@@ -624,34 +649,43 @@ function AbcDE() {
                 var notes_with_pit = get_sorted_synchronous_notes_with_pit(notes);
                 var pits = get_sorted_synchronous_pits(notes_with_pit);
 
-                // Initialize pit fingerings to empty string. We will build them
-                // up from scratch.
-                for (i = 0; i < pits.length; i++) {
-                    var pit = pits[i];
-                    for (var j = 0; j < notes_with_pit[pit].length; j++) {
-                        var pit_note = notes_with_pit[pit][j];
-                        pit_note[field_name] = '';
-                    }
-                }
+                var note_fingerings = [];
+                var notes_to_finger = [];
+                var pit_note = null;
 
                 for (i = 0; i < pits.length; i++) {
                     var pit = pits[i];
                     for (var j = 0; j < notes_with_pit[pit].length; j++) {
-                        var pit_note = notes_with_pit[pit][j];
+                        pit_note = notes_with_pit[pit][j];
                         if (pit_note.grace) {
                             continue;
                         }
-                        if (!pit_note[field_name]) {
-                            pit_note[field_name] = '';
+
+                        if (! array_contains_object(notes_to_finger, pit_note)) {
+                            note_fingerings.push('');
+                            notes_to_finger.push(pit_note);
                         }
+
+                        var note_index = index_of_object(notes_to_finger, pit_note);
+
                         fingering = staff_fingerings.shift();
                         if (!fingering) {
-                            console.log('Preset fingering MISSING for note:');
-                            print_note('preset pit note', pit_note);
+                            console.log(field_name + ' MISSING for note:');
+                            print_note(field_name + ' pit note', pit_note);
                         }
                         fingering = get_handed_fingering(fingering, hand);
                         hand = get_new_last_hand(fingering, hand);
-                        pit_note[field_name] += fingering;
+                        note_fingerings[note_index] += fingering;
+                    }
+                }
+                for (i = 0; i <  note_fingerings.length; i++) {
+                    fingering = note_fingerings[i];
+                    console.log("FingerING " + fingering)
+                    pit_note = notes_to_finger[i];
+                    if (field_name === 'fingering') {
+                        pit_note.set_fingering(fingering);
+                    } else if (field_name === 'preset_fingering') {
+                        pit_note.set_preset_fingering(fingering);
                     }
                 }
             }
@@ -676,7 +710,7 @@ function AbcDE() {
             } else if (restore_setting === 'never') {
                 should_restore = false;
             } else {
-                should_restore = confirm('You have previously entered data for this piece. ' +
+                should_restore = confirm('You have previously entered data for this piece (or sequence). ' +
                     'Do you want to restore them?');
             }
             if (should_restore) {
@@ -726,7 +760,7 @@ function AbcDE() {
         }
 
         var should_restore = confirm("All changes you have made to this fingering sequence will be discarded, " +
-                "and the initial sequence will be restored. Are you sure you want to proceed?");
+            "and the initial sequence will be restored. Are you sure you want to proceed?");
         if (should_restore) {
             var sequence_number = get_current_sequence_number();
             var preset = get_preset_sequence(sequence_number);
@@ -737,8 +771,70 @@ function AbcDE() {
         }
     }
 
-// We return an array of strings that start with the regex re
-// and extend through the beginning of the next match.
+    function parse_to_abcdf_tokens(parsimony, tokens) {
+        if (parsimony == null) {
+            return tokens;
+        }
+
+        for (var i = 0; i < parsimony.length; i++) {
+            if (parsimony[i] instanceof Array) {
+                parse_to_abcdf_tokens(parsimony[i], tokens)
+            } else if (parsimony[i]) {
+                tokens.push(parsimony[i]);
+            }
+        }
+        return tokens;
+    }
+
+    function parse_to_abcdf(parsimony) {
+        var tokens = parse_to_abcdf_tokens(parsimony, []);
+        return tokens.join("");
+    }
+
+    function get_separated_abcdf_note_tokens(parsimony, staff_num=0, lined=false) {
+        var tokens = [];
+        if (lined) {
+            for (var line_num = 0; line_num < parsimony[staff_num].length; line_num++) {
+                for (var note_num = 0; note_num < parsimony[staff_num][line_num].length; note_num++) {
+                    var parse_part = parsimony[staff_num][line_num][note_num];
+                    if (parse_part instanceof Array) {
+                        var token = parse_to_abcdf(parse_part);
+                        // console.log("TOKEN : " + token);
+                        tokens.push(token);
+                        // console.log("TOKENS: " + tokens.join("\t"));
+                    }
+                }
+            }
+        } else {
+            for (var note_num = 0; note_num < parsimony[staff_num].length; note_num++) {
+                var parse_part = parsimony[staff_num][note_num];
+                if (parse_part instanceof Array) {
+                    var token = parse_to_abcdf(parse_part);
+                    // console.log("TOKEN : " + token);
+                    tokens.push(token);
+                    // console.log("TOKENS: " + tokens.join("\t"));
+                }
+            }
+        }
+        return tokens;
+    }
+
+    function get_abcdf_note_tokens(abcdf_str, staff_num=0) {
+        if (! abcdf_str) {
+            return [];
+        }
+        console.log("abcdf string: " + abcdf_str)
+        var parsimony = AbcdfRaw_Parser.parse(abcdf_str);
+        var lined = LINE_RE.exec(line);
+        var tokens = get_separated_abcdf_note_tokens(parsimony, staff_num, lined);
+        tokens = tokens.filter(function(elem) {
+            return elem != "&" && elem != "@";
+        });
+        return tokens;
+    }
+
+    // We return an array of strings that start with the regex re
+    // and extend through the beginning of the next match.
     function get_tokens(re, line) {
         if (!line) {
             return [];
@@ -1415,7 +1511,8 @@ function AbcDE() {
         insert_keypad_button(number_div, 'four', '4');
         insert_keypad_button(number_div, 'five', '5');
         insert_keypad_button(number_div, 'toggle', 'T');
-        insert_keypad_image_button(number_div, 'pencil', 'target.svg', '...');
+        insert_keypad_image_button(number_div, 'previous', 'arrow-circle-left.svg', '<-');
+        insert_keypad_image_button(number_div, 'next', 'arrow-circle-right.svg', '->');
         var using_qualtrics = get_setting('qualtrics');
         if (using_qualtrics) {
             if (get_setting('qualtrics_back')) {
@@ -1431,18 +1528,14 @@ function AbcDE() {
             }
             insert_submit_button(number_div, submit_button_id, submit_button_label);
         }
-        insert_keypad_image_button(symbol_div, 'previous', 'arrow-circle-left.svg', '<-');
-        insert_keypad_image_button(symbol_div, 'next', 'arrow-circle-right.svg', '->');
+        insert_keypad_image_button(symbol_div, 'pencil', 'target.svg', '...');
         insert_keypad_button(symbol_div, 'hyphen', '-');
         insert_keypad_button(symbol_div, 'slash', '/');
         insert_keypad_button(symbol_div, 'open_paren', '(');
         insert_keypad_button(symbol_div, 'close_paren', ')');
-        var phrasing = get_setting('phrasing');
-        if (phrasing) {
-            insert_keypad_button(symbol_div, 'short_phrase', 'S');
-            insert_keypad_button(symbol_div, 'medium_phrase', 'M');
-            insert_keypad_button(symbol_div, 'long_phrase', 'L');
-        }
+        insert_keypad_button(symbol_div, 'short_phrase', ',');
+        insert_keypad_button(symbol_div, 'medium_phrase', ';');
+        insert_keypad_button(symbol_div, 'long_phrase', '.');
         insert_keypad_image_button(symbol_div, 'backspace', 'delete.svg', '<]');
     }
 
@@ -1455,7 +1548,7 @@ function AbcDE() {
         insert_metadata_fields();
 
         var save_button = IMAGE_DIR + '/download_36_x4.png';
-        var button_width = '36'; // 16 or 24
+        var button_width = '36'; // 16 or 24 or 36
 
         var control_div = document.getElementById(CONTROLS_DIV_ID);
         var table = document.createElement('table');
@@ -1695,6 +1788,10 @@ function AbcDE() {
             return {};
         }
 
+        this.fingering = '';
+        this.preset_fingering = '';
+        this.prior_note = null;
+        this.next_note = null;
         this.line = -1; // Unknown until SVGs are generated.
         this.grace = false;
         this.anno_start = elem.istart; // For identifying SVG rects.
@@ -1705,7 +1802,8 @@ function AbcDE() {
         this.end = -1;
         this.starts = [];
         this.stops = [];
-        this.phrase_break = 'X';
+        this.phrase_break = '';
+        this.preset_phrase_break = '';
 
         if (music_types[elem.type] === 'note') {
             this.size = elem.notes.length;
@@ -1757,15 +1855,23 @@ function AbcDE() {
         this.prior_fingerings = [];
         this.undone_fingerings = [];
 
-
-        this.init_fingering = function() {
+        this.init = function() {
             this.fingering = '';
             for (var i = 0; i < this.size; i++) {
-                this.fingering += 'x'
+                this.fingering += 'x';
             }
-        }
+            this.phrase_break = '';
+        };
 
-        this.init_fingering();
+        this.preset_init = function() {
+            this.preset_fingering = '';
+            for (var i = 0; i < this.size; i++) {
+                this.fingering += 'x';
+            }
+            this.preset_phrase_break = '';
+        };
+
+        this.init();
 
         this.set_fingering = function(fingering_str) {
             purge_redo_stack();
@@ -1773,11 +1879,112 @@ function AbcDE() {
                 this.prior_fingerings.push(this.fingering);
             }
             if (! fingering_str) {
-                this.init_fingering();
+                this.init();
             } else {
-                this.fingering = fingering_str;
+                var match = PHRASE_RE.exec(fingering_str);
+                if (match) {
+                    this.phrase_break = match[1];
+                    this.fingering = fingering_str.replace(PHRASE_RE, '');
+
+                } else {
+                    this.fingering = fingering_str;
+                }
             }
             Undo.push(this);
+        };
+
+        this.set_preset_fingering = function(fingering_str) {
+            if (! fingering_str) {
+                this.preset_init();
+            } else {
+                var match = PHRASE_RE.exec(fingering_str);
+                if (match) {
+                    this.preset_phrase_break = match[1];
+                    this.preset_fingering = fingering_str.replace(PHRASE_RE, '');
+
+                } else {
+                    this.preset_fingering = fingering_str;
+                }
+            }
+        };
+
+        this.get_pitch_fingering = function(leaf_node) {
+            var current_hand = get_current_hand(this);
+            if (! leaf_node.fingering.strike) {
+                return 'x';
+            }
+            var hand = leaf_node.fingering.strike.hand || current_hand;
+            var str = hand + leaf_node.fingering.strike.digit;
+            if (leaf_node.fingering.release) {
+                hand = leaf_node.fingering.release.hand || current_hand;
+                str += '-' + hand + leaf_node.fingering.release.digit;
+            }
+            return str;
+        };
+
+        // Return the abcDF defining the fingering part of the annotation alone.
+        // Omit any phrase segmenter if present.
+        this.get_fingering_from_score_fingering = function(score_fingering) {
+            var str = '';
+            var elements = [];
+            var element_fingering;
+            var i;
+            if (score_fingering.first.ornaments) {
+                elements = score_fingering.first.ornaments;
+                str += '(';
+                for (i = 0; i < elements.length; i++) {
+                    element_fingering = elements[i];
+                    str += this.get_pitch_fingering(element_fingering);
+                }
+                str += ')';
+            } else {
+                str += this.get_pitch_fingering(score_fingering.first);
+            }
+            if (score_fingering.last && score_fingering.last.ornaments) {
+                elements = score_fingering.last.ornaments;
+                str += '(';
+                for (i = 0; i < elements.length; i++) {
+                    element_fingering = score_fingering.last.ornaments[i];
+                    str += '/' + this.get_pitch_fingering(element_fingering);
+                }
+                str += ')';
+            } else if (score_fingering.last) {
+                str += '/' + this.get_pitch_fingering(score_fingering.last);
+            }
+            return str;
+        };
+
+        // Update this note according to array of "score_fingering" elements
+        // from "cooked" abcDF parse.
+        this.update_from_score_fingerings = function(new_score_fingerings) {
+            this.init();
+            var new_fingering = '';
+            var finger_count = 0;
+
+            while (finger_count < this.size) {
+                var score_fingering = new_score_fingerings.shift();
+                var abcdf = this.get_fingering_from_score_fingering(score_fingering);
+                if (score_fingering.segmenter) {
+                    this.phrase_break = score_fingering.segmenter || '';
+                }
+                new_fingering += abcdf;
+                finger_count++;
+                if (new_score_fingerings.length === 0) {
+                    break;
+                }
+            }
+
+            if (finger_count === this.size) {
+                this.set_fingering(new_fingering);
+                return true; // Move on.
+            }
+
+            for (; finger_count < this.size; finger_count++) {
+                new_fingering += 'x';
+            }
+
+            this.set_fingering(new_fingering);
+            return false; // Note is not fully fingered. Do not move on to next "note."
         };
 
         this.undo_fingering_change = function() {
@@ -1798,11 +2005,56 @@ function AbcDE() {
             Undo.push(this);
         };
 
+        // Return the fingering part of the abcDF string stored for this note,
         this.get_fingering = function() {
             if (! this.fingering) {
                 return undefined;
             }
             return this.fingering;
+        };
+
+        // Return the fingering part of the abcDF string stored for this note,
+        this.get_preset_fingering = function() {
+            if (! this.preset_fingering) {
+                return undefined;
+            }
+            return this.preset_fingering;
+        };
+
+        // Return the full abcDF segment associated with this note, suitable for
+        // embedding in an abcD header.
+        this.get_abcdf = function() {
+            if (! this.phrase_break) {
+                return this.fingering;
+            }
+            if (! this.fingering) {
+                return "x" + this.phrase_break;
+            }
+            return this.fingering + this.phrase_break;
+        };
+
+        this.get_preset_abcdf = function() {
+            if (! this.preset_phrase_break) {
+                return this.preset_fingering;
+            }
+            if (! this.preset_fingering) {
+                return "x" + this.preset_phrase_break;
+            }
+            return this.preset_fingering + this.preset_phrase_break;
+        };
+
+        this.get_phrase_break = function() {
+            // if (! this.phrase_break) {
+                // return undefined;
+            // }
+            return this.phrase_break;
+        };
+
+        this.get_preset_phrase_break = function() {
+            // if (! this.phrase_break) {
+            // return undefined;
+            // }
+            return this.preset_phrase_break;
         };
 
         return this;
@@ -1844,7 +2096,7 @@ function AbcDE() {
         this.anno_start = function (type, start, stop, x, y, w, h) {
             if (!Preprocessing_Completed && start in Note_At) {
                 Note_At[start].line = Current_Line_Number;
-                // print_note('anno_start', note_at[start]);
+                // print_note('anno_start', Note_At[start]);
             } else if (type === 'grace') {
                 console.log(type + " ANNO_START start: " + start + " stop: " + stop);
             }
@@ -2002,10 +2254,10 @@ function AbcDE() {
         // distinguish RH from LH fingerings. Color seems like a better choice,
         // but I don't see a way to set color.
         var font = '$1'; // Times-Roman for RH fingerings.
-        if (hand.match(RH_REG)) {
+        if (hand.match(RH_RE)) {
             font = '$1';
         }
-        if (hand.match(LH_REG)) {
+        if (hand.match(LH_RE)) {
             font = '$2'; // Helvetica-Bold font for LH fingerings.
         }
         return font;
@@ -2019,15 +2271,16 @@ function AbcDE() {
         return position;
     }
 
-    function get_ornament_annotation_sequence(fingering, staff) {
+    function get_ornament_annotation_str(fingering) {
         var lh_font = get_font_for_hand('<');
         var rh_font = get_font_for_hand('>');
         var cooked_fingering = fingering.replace(/[\)\(]/g, '');
-        var fingers = get_tokens(FINGER_RE, cooked_fingering);
+        // var fingers = get_tokens(FINGER_RE, cooked_fingering);
+        var fingers = get_abcdf_note_tokens(cooked_fingering);
         var annotation_str = '';
         for (var i = 0; i < fingers.length; i++) {
-            fingers[i] = fingers[i].replace(LH_REG, lh_font);
-            fingers[i] = fingers[i].replace(RH_REG, rh_font);
+            fingers[i] = fingers[i].replace(LH_RE, lh_font);
+            fingers[i] = fingers[i].replace(RH_RE, rh_font);
             annotation_str += fingers[i];
         }
         annotation_str += '"';
@@ -2036,7 +2289,7 @@ function AbcDE() {
         return annotation_str;
     }
 
-    function get_annotation_sequence(fingers, staff, pad_missing_fingers) {
+    function get_annotation_str(fingers, staff, pad_missing_fingers) {
         var actual_finger_seen = false;
         var lh_font = get_font_for_hand('<');
         var rh_font = get_font_for_hand('>');
@@ -2053,13 +2306,14 @@ function AbcDE() {
                 continue;
             }
             if (finger.match(/^\(/)) {
-                annotation = get_ornament_annotation_sequence(finger, staff);
+                annotation = get_ornament_annotation_str(finger);
             } else {
                 var position = get_annotation_position(finger);
-                finger = finger.replace(LH_REG, lh_font);
-                finger = finger.replace(RH_REG, rh_font);
+                finger = finger.replace(LH_RE, lh_font);
+                finger = finger.replace(RH_RE, rh_font);
                 annotation = '"' + position + finger + '"';
             }
+            annotation = annotation.replace(PHRASE_RE, '');
             annotations.unshift(annotation);
         }
 
@@ -2077,9 +2331,10 @@ function AbcDE() {
             return '';
         }
         finger_str = finger_str.replace(SPACE_RE, '');
-        var fingers = get_tokens(FINGER_RE, finger_str);
+        // var fingers = get_tokens(FINGER_RE, finger_str);
+        var fingers = get_abcdf_note_tokens(finger_str);
 
-        var note_annotation = get_annotation_sequence(fingers, note.staff, false);
+        var note_annotation = get_annotation_str(fingers, note.staff, false);
         return note_annotation;
     }
 
@@ -2123,9 +2378,9 @@ function AbcDE() {
         return notes_with_pit;
     }
 
-// Return an array of fingering strings with one element for each pitch
-// in the input array of synchronous notes. Empty strings are returned for each
-// pit that has no fingering specified.
+    // Return an array of fingering strings with one element for each pitch
+    // in the input array of synchronous notes. Empty strings are returned for each
+    // pit that has no fingering specified.
     function get_synchronous_fingering_array(synchronous_notes) {
         var notes_with_pit = get_sorted_synchronous_notes_with_pit(synchronous_notes);
 
@@ -2141,7 +2396,8 @@ function AbcDE() {
             for (var j = 0; j < notes_with_pit[pit].length; j++) {
                 var pit_note = notes_with_pit[pit][j];
                 var note_finger_str = pit_note.fingering;
-                var fingers = get_tokens(FINGER_RE, note_finger_str);
+                // var fingers = get_tokens(FINGER_RE, note_finger_str);
+                var fingers = get_abcdf_note_tokens(note_finger_str);
                 for (var k = 0; k < pit_note.pitches.length; k++) {
                     var pn_pit = pit_note.pitches[k];
                     if (pn_pit === parseInt(pit)) {
@@ -2202,7 +2458,7 @@ function AbcDE() {
         }
 
         var ordered_fingers = get_synchronous_fingering_array(synchronous_notes);
-        return get_annotation_sequence(ordered_fingers, note.staff, true);
+        return get_annotation_str(ordered_fingers, note.staff, true);
     }
 
     function get_grace_note_tokens(note) {
@@ -2234,13 +2490,14 @@ function AbcDE() {
         // FIXME: This should be enforced in the UI.
         var finger_tokens = [];
         if (note.fingering) {
-            finger_tokens = get_tokens(FINGER_RE, note.fingering);
+            // finger_tokens = get_tokens(FINGER_RE, note.fingering);
+            finger_tokens = get_abcdf_note_tokens(note.fingering);
         }
 
         for (var token_num = 0; token_num < grace_tokens.length; token_num++) {
             if (finger_tokens[token_num]) {
                 var naked_finger = finger_tokens[token_num];
-                naked_finger = naked_finger.replace(RL_REG, '');
+                naked_finger = naked_finger.replace(RL_RE, '');
                 if (naked_finger !== 'x') {
                     abc_str += "!" + naked_finger + "!";
                 }
@@ -2330,12 +2587,30 @@ function AbcDE() {
         return Grace_Notes_In_Source;
     }
 
+    function get_abc_phrase_annotation(note) {
+        var abcDF_mark = note.get_phrase_break();
+        var abc_mark = '';
+        switch (abcDF_mark) {
+            case ',':
+                abc_mark = '!shortphrase!';
+                break;
+            case ';':
+                abc_mark = '!mediumphrase!';
+                break;
+            case '.':
+                abc_mark = '!longphrase!';
+                break;
+        }
+        return abc_mark;
+    }
+
     function get_fingered_abc_str() {
-        // Loop over note_at in numeric order and add each annotation we know about.
+        // Loop over Note_At in numeric order and add each abc annotation we know about,
+        // so rendered notation includes all the right marks.
 
-        var fingered_str = ''
+        var fingered_str = '';
 
-        // If we see fonts, we assume put them there, so we don't want
+        // If we see fonts, we assume we put them there, so we don't want
         // to add any of our special macros ("hackros"). Otherwise, we do.
         if (!fonts_set_in_source()) {
             fingered_str += SETFONT_COMMANDS + "\n";
@@ -2370,7 +2645,8 @@ function AbcDE() {
                 if (note.fingering && note.fingering !== 'x') {
                     // Each fingering annotation takes exactly three characters, since
                     // only one digit may be assigned to a grace-note element.
-                    var finger_tokens = get_tokens(FINGER_RE, note.fingering);
+                    // var finger_tokens = get_tokens(FINGER_RE, note.fingering);
+                    var finger_tokens = get_abcdf_note_tokens(note.fingering);
                     note.fingered_start += 3 * finger_tokens.length;
                 }
                 fingered_str += get_fingered_grace_note(note);
@@ -2378,6 +2654,7 @@ function AbcDE() {
                 var start_loc = parseInt(note.start);
                 var end_loc = parseInt(note.end);
                 prologue = Org_Abc_Str.substring(parseInt(prior_loc), start_loc);
+                prologue += get_abc_phrase_annotation(note);
                 fingered_str += prologue;
                 prior_loc = end_loc;
                 if (is_epoch_fingered(note)) {
@@ -2477,6 +2754,7 @@ function AbcDE() {
             var current_characters = get_unblanked_current_characters();
             if (current_characters.length > 0 && current_characters[0]) {
                 Current_Note.set_fingering('');
+                Current_Note.phrase_break = '';
                 rerender();
             } else if (Current_Note.prior_note) {
                 Current_Note = Current_Note.prior_note;
@@ -2581,82 +2859,13 @@ function AbcDE() {
         return '<';
     }
 
-    function get_pitch_fingering(leaf_node, note) {
-        var current_hand = get_current_hand(note);
-        if (! leaf_node.fingering.strike) {
-            return 'x';
-        }
-        var hand = leaf_node.fingering.strike.hand || current_hand;
-        var str = hand + leaf_node.fingering.strike.digit;
-        if (leaf_node.fingering.release) {
-            hand = leaf_node.fingering.release.hand || current_hand;
-            str += '-' + hand + leaf_node.fingering.release.digit;
-        }
-        return str;
-    }
-
-    function get_abcd_for_score_fingering(score_fingering, note) {
-        var str = '';
-        var elements = [];
-        var element_fingering;
-        var i;
-        if (score_fingering.first.ornaments) {
-            // FIXME: #119
-            elements = score_fingering.first.ornaments[0];
-            str += '(';
-            for (i = 0; i < elements.length; i++) {
-                element_fingering = elements[i];
-                str += get_pitch_fingering(element_fingering, note);
-            }
-            str += ')';
-        } else {
-            str += get_pitch_fingering(score_fingering.first, note);
-        }
-        if (score_fingering.last && score_fingering.last.ornaments) {
-            // FIXME: #119
-            elements = score_fingering.last.ornaments[0];
-            str += '(';
-            for (i = 0; i < elements.length; i++) {
-                element_fingering = score_fingering.last.ornaments[i];
-                str += '/' + get_pitch_fingering(element_fingering, note);
-            }
-            str += ')';
-        } else if (score_fingering.last) {
-            str += '/' + get_pitch_fingering(score_fingering.last, note);
-        }
-        return str;
-    }
-
-    function finger_current_from_nodes(new_score_fingerings) {
-        var new_fingering = '';
-        var current_finger_count = 0;
-        while (current_finger_count < Current_Note.size) {
-            var score_fingering = new_score_fingerings.shift();
-            var abcd = get_abcd_for_score_fingering(score_fingering, Current_Note);
-            new_fingering += abcd;
-            current_finger_count++;
-            if (new_score_fingerings.length === 0) {
-                break;
-            }
-        }
-
-        if (current_finger_count === Current_Note.size) {
-            Current_Note.set_fingering(new_fingering);
-            return true; // Move on.
-        }
-
-        for (; current_finger_count < Current_Note.size; current_finger_count++) {
-            new_fingering += 'x';
-        }
-
-        Current_Note.set_fingering(new_fingering);
-        return false; // Do not move on to next "note."
-    }
-
+    // Update sequence of Notes, starting with Current_Note,
+    // according to the provided abcDF parse.
     function finger_notes_from_parse(parse) {
         var new_score_fingerings = parse.upper.score_fingerings;
         while (new_score_fingerings.length > 0) {
-            if (finger_current_from_nodes(new_score_fingerings) && Current_Note.next_note) {
+            if (Current_Note.update_from_score_fingerings(new_score_fingerings) &&
+                Current_Note.next_note) {
                 Current_Note = Current_Note.next_note;
             }
         }
@@ -2686,6 +2895,12 @@ function AbcDE() {
                 unblanked_chars.push(char);
             }
         }
+        // if (Current_Note.phrase_break) {
+            // if (unblanked_chars.length == 0) {
+                // unblanked_chars.push('x')
+            // }
+            // unblanked_chars.push(Current_Note.phrase_break)
+        // }
         return unblanked_chars;
     }
 
@@ -2800,7 +3015,7 @@ function AbcDE() {
     }
 
     function mark_phrase(char) {
-        Current_Note.phrase_break = char.toUpperCase();
+        Current_Note.phrase_break = char;
     }
 
     function buffer_character_input(char) {
@@ -2816,11 +3031,10 @@ function AbcDE() {
             toggle_hand();
             character_processed = true;
         }
-        if (char === 's' || char === 'S' ||
-            char === 'm' || char === 'M' ||
-            char === 'l' || char === 'L') {
+        if (char === ',' || char === ';' || char === '.') {
             flush_buffer();
             mark_phrase(char);
+            rerender();
             character_processed = true;
         }
         Timer = setTimeout(flush_buffer, TIMEOUT_MS);
@@ -2840,7 +3054,7 @@ function AbcDE() {
     }
 
     function get_abcd_version() {
-        return 5;
+        return 6;
     }
 
     function get_abcd_hdr() {
@@ -3091,7 +3305,7 @@ function AbcDE() {
         punt_on_input();
         var prompt = '';
         if (Current_Note.preset_fingering) {
-            prompt += "Preset (recommended) fingering: " + Current_Note.preset_fingering + "\n\n";
+            prompt += "Preset (recommended) fingering: " + Current_Note.get_preset_fingering() + "\n\n";
         }
         prompt += 'Please enter a fingering string for the selected note.';
         var initial_fingering = Current_Note.fingering;
@@ -3155,24 +3369,6 @@ function AbcDE() {
             alert(e.message + '\nabc2svg image bug - abort:\n' + e.stack);
             return;
         }
-    }
-
-// select a source ABC element
-    function gotoabc(l, c) {
-        var s = document.getElementById(SOURCE_ID),
-            idx = 0;
-        while (--l >= 0) {
-            idx = s.value.indexOf('\n', idx) + 1;
-            if (idx <= 0) {
-                alert('bad line number');
-                idx = s.value.length - 1;
-                c = 0;
-                break;
-            }
-        }
-        c = Number(c) + idx;
-        s.focus();
-        s.setSelectionRange(c, c + 1);
     }
 
     function setcolor(cl, color) {
@@ -3259,35 +3455,34 @@ function AbcDE() {
         return '';
     }
 
-    function get_verbose_note_fingering(note, all_or_nothing) {
+    // Note abcdf is the complete annotation for a note in an abcD header.
+    // A note fingering is the string to include in the "comment" annotation
+    // in the rendered score.
+    function get_verbose_note_abcdf(note) {
         var finger_tokens = [];
         if (note.fingering) {
-            finger_tokens = get_tokens(FINGER_RE, note.fingering);
-        } else if (all_or_nothing) {
-            return "";
-        }
-
-        if (all_or_nothing && finger_tokens.length != note.size) {
-            return "";
+            // finger_tokens = get_tokens(FINGER_RE, note.fingering);
+            finger_tokens = get_abcdf_note_tokens(note.fingering);
         }
 
         var finger_str = note.fingering || "";
         for (var i = finger_tokens.length; i < note.size; i++) {
             finger_str += "x";
         }
+        finger_str += note.phrase_break;
         return finger_str;
     }
 
-    function get_note_fingering_for_output(note, all_or_nothing) {
+    function get_note_abcdf(note) {
         if (note.grace) {
-            return get_verbose_note_fingering(note, all_or_nothing);
+            return get_verbose_note_abcdf(note);
         }
 
         var synchronous_notes = Staff_Notes_At_Time[note.staff][note.time];
         var grace_note_count = get_grace_note_count(synchronous_notes);
         var big_note_count = synchronous_notes.length - grace_note_count;
         if (big_note_count < 2) {
-            return get_verbose_note_fingering(note, all_or_nothing);
+            return get_verbose_note_abcdf(note);
         }
 
         synchronous_notes.sort(order_notes);
@@ -3320,13 +3515,13 @@ function AbcDE() {
         return finger_str;
     }
 
-    function clean_fingering_line(fingering, last_hand) {
+    function clean_abcdf(fingering, last_hand) {
         var clean_tokens = [];
         var current_hand = last_hand;
         var tokens = fingering.split('');
         for (var i = 0; i < tokens.length; i++) {
             var token = tokens[i];
-            if (!token.match(RL_REG)) {
+            if (!token.match(RL_RE)) {
                 clean_tokens.push(token);
             } else if (token !== current_hand) {
                 clean_tokens.push(token);
@@ -3336,21 +3531,21 @@ function AbcDE() {
         return clean_tokens.join('');
     }
 
-    function get_fingerings_for_output(staff_number, line_number, last_hand) {
+    function get_abcdf(staff_number, line_number) {
         var sl_notes = Notes_On_Line[line_number][staff_number];
 
-        var fingerings = '';
+        var all_abcdf = '';
         for (var i = 0; i < sl_notes.length; i++) {
             var note = sl_notes[i];
-            var fingering = get_note_fingering_for_output(note, false);
-            fingerings += fingering;
+            var abcdf = get_note_abcdf(note);
+            all_abcdf += abcdf;
         }
 
-        return fingerings;
+        return all_abcdf;
     }
 
     function get_new_last_hand(finger_str, old_last_hand) {
-        var match = LAST_HAND_RE.exec(finger_str);
+        let match = LAST_HAND_RE.exec(finger_str);
         if (match && match[1]) {
             return match[1];
         }
@@ -3358,35 +3553,36 @@ function AbcDE() {
     }
 
     function current_collection() {
-        var all_treble_fingers = '';
-        var all_bass_fingers = '';
+        var all_abcdf;
+        var all_treble_abcdf = '';
+        var all_bass_abcdf = '';
         var last_treble_hand = get_staff_hand(0); // upper
         var last_bass_hand = get_staff_hand(1); // lower
         for (var i = 0; i < Notes_On_Line.length; i++) {
-            var treble_fingerings = get_fingerings_for_output(0, i);
-            if (treble_fingerings) {
-                treble_fingerings = clean_fingering_line(treble_fingerings, last_treble_hand);
-                last_treble_hand = get_new_last_hand(treble_fingerings, last_treble_hand);
-                all_treble_fingers += treble_fingerings;
+            var treble_abcdf = get_abcdf(0, i);
+            if (treble_abcdf) {
+                treble_abcdf = clean_abcdf(treble_abcdf, last_treble_hand);
+                last_treble_hand = get_new_last_hand(treble_abcdf, last_treble_hand);
+                all_treble_abcdf += treble_abcdf;
                 if (i < Notes_On_Line.length - 1) {
-                    all_treble_fingers += '&';
+                    all_treble_abcdf += '&';
                 }
             }
             if (Notes_On_Line[i][1]) {
-                var bass_fingerings = get_fingerings_for_output(1, i);
-                if (bass_fingerings) {
-                    bass_fingerings = clean_fingering_line(bass_fingerings, last_bass_hand);
-                    last_bass_hand = get_new_last_hand(bass_fingerings, last_bass_hand);
-                    all_bass_fingers += bass_fingerings;
+                var bass_abcdf = get_abcdf(1, i);
+                if (bass_abcdf) {
+                    bass_abcdf = clean_abcdf(bass_abcdf, last_bass_hand);
+                    last_bass_hand = get_new_last_hand(bass_abcdf, last_bass_hand);
+                    all_bass_abcdf += bass_abcdf;
                     if (i < Notes_On_Line.length - 1) {
-                        all_bass_fingers += '&';
+                        all_bass_abcdf += '&';
                     }
                 }
             }
         }
 
-        var all_fingers = all_treble_fingers + '@' + all_bass_fingers;
-        return all_fingers;
+        all_abcdf = all_treble_abcdf + '@' + all_bass_abcdf;
+        return all_abcdf;
     }
 
     function print_score() {
@@ -3419,7 +3615,10 @@ function AbcDE() {
 
     function view_source() {
         var abcd_str = get_persisting_abcd();
-        window.open('data:text/vnd.abc;charset=utf-8,' + encodeURI(abcd_str), 'view_window');
+        // window.open('data:text/vnd.abc;charset=utf-8,' + encodeURI(abcd_str), 'view_window');
+        // window.open('data:text/text;charset=utf-8,hello', '_blank');
+        var w = window.open()
+        w.document.write('<pre>' + abcd_str + '</pre>')
     }
 
     function getAuthority() {
@@ -3452,7 +3651,7 @@ function AbcDE() {
         try {
             Abcdf_Parser.parse(abcdf_str);
         } catch (e) {
-            return "Bad abcDF parse of fingering string: " + e.message + e.stack;
+            return "Bad abcDF parse of string: " + e.message + e.stack;
         }
 
         var missing_count = 0;
@@ -3463,7 +3662,6 @@ function AbcDE() {
             missing_count = 0;
         } else if (required_validation === 'auto') {
             return 'Validation of autofill is not yet implemented.';
-            return 9999;
         }
 
         if (missing_count === 1) {
@@ -3493,10 +3691,9 @@ function AbcDE() {
     }
 
     function getEnteredAbcD() {
-        var abcd_str = '';
         var persistence_setting = Persist_Annotated;
         Persist_Annotated = false;
-        abcd_str = get_persisting_abcd();
+        var abcd_str = get_persisting_abcd();
         Persist_Annotated = persistence_setting;
         return abcd_str;
     }
