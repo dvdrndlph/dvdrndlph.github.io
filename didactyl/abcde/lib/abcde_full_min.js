@@ -1,4 +1,4 @@
-/* abcDE_full_min.js v6.0.8 */
+/* abcDE_full_min.js v6.0.15 */
 !function(e, t) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function(e) {
   if (!e.document) throw new Error("jQuery requires a window with a document");
@@ -10972,101 +10972,7 @@ var Abcdf_Parser = function() {
  };
 }();
 
-Downloadify = window.Downloadify = {
- queue: {},
- uid: new Date().getTime(),
- getTextForSave: function(e) {
-  var t = Downloadify.queue[e];
-  return t ? t.getData() : "";
- },
- getFileNameForSave: function(e) {
-  var t = Downloadify.queue[e];
-  return t ? t.getFilename() : "";
- },
- getDataTypeForSave: function(e) {
-  var t = Downloadify.queue[e];
-  return t ? t.getDataType() : "";
- },
- saveComplete: function(e) {
-  var t = Downloadify.queue[e];
-  return t && t.complete(), !0;
- },
- saveCancel: function(e) {
-  var t = Downloadify.queue[e];
-  return t && t.cancel(), !0;
- },
- saveError: function(e) {
-  var t = Downloadify.queue[e];
-  return t && t.error(), !0;
- },
- addToQueue: function(e) {
-  Downloadify.queue[e.queue_name] = e;
- },
- getUID: function(e) {
-  return "" == e.id && (e.id = "downloadify_" + Downloadify.uid++), e.id;
- }
-}, Downloadify.create = function(e, t) {
- var n = "string" == typeof e ? document.getElementById(e) : e;
- return new Downloadify.Container(n, t);
-}, Downloadify.Container = function(e, t) {
- var n = this;
- n.el = e, n.enabled = !0, n.dataCallback = null, n.filenameCallback = null, n.data = null, 
- n.filename = null, n.enable = function() {
-  document.getElementById(n.flashContainer.id).setEnabled(!0), n.enabled = !0;
- }, n.disable = function() {
-  document.getElementById(n.flashContainer.id).setEnabled(!1), n.enabled = !1;
- }, n.getData = function() {
-  return n.enabled ? n.dataCallback ? n.dataCallback() : n.data ? n.data : "" : "";
- }, n.getFilename = function() {
-  return n.filenameCallback ? n.filenameCallback() : n.filename ? n.filename : "";
- }, n.getDataType = function() {
-  return n.options.dataType ? n.options.dataType : "string";
- }, n.complete = function() {
-  "function" == typeof n.options.onComplete && n.options.onComplete();
- }, n.cancel = function() {
-  "function" == typeof n.options.onCancel && n.options.onCancel();
- }, n.error = function() {
-  "function" == typeof n.options.onError && n.options.onError();
- }, function() {
-  n.options = t, n.options.append || (n.el.innerHTML = ""), n.flashContainer = document.createElement("span"), 
-  n.el.appendChild(n.flashContainer), n.queue_name = Downloadify.getUID(n.flashContainer), 
-  "function" == typeof n.options.filename ? n.filenameCallback = n.options.filename : n.options.filename && (n.filename = n.options.filename), 
-  "function" == typeof n.options.data ? n.dataCallback = n.options.data : n.options.data && (n.data = n.options.data);
-  var e = {
-   queue_name: n.queue_name,
-   width: n.options.width,
-   height: n.options.height
-  }, r = {
-   allowScriptAccess: "always"
-  }, i = {
-   id: n.flashContainer.id,
-   name: n.flashContainer.id
-  };
-  !1 === n.options.enabled && (n.enabled = !1), !0 === n.options.transparent && (r.wmode = "transparent"), 
-  n.options.downloadImage && (e.downloadImage = n.options.downloadImage), swfobject.embedSWF(n.options.swf, n.flashContainer.id, n.options.width, n.options.height, "10", null, e, r, i), 
-  Downloadify.addToQueue(n);
- }();
-}, Downloadify.defaultOptions = {
- swf: "media/downloadify.swf",
- downloadImage: "images/download.png",
- width: 100,
- height: 30,
- transparent: !0,
- append: !1,
- dataType: "string"
-}, "undefined" != typeof jQuery && function(e) {
- e.fn.downloadify = function(t) {
-  return this.each(function() {
-   t = e.extend({}, Downloadify.defaultOptions, t);
-   var n = Downloadify.create(this, t);
-   e(this).data("Downloadify", n);
-  });
- };
-}(jQuery), "undefined" != typeof MooTools && Element.implement({
- downloadify: function(e) {
-  return e = $merge(Downloadify.defaultOptions, e), this.store("Downloadify", Downloadify.create(this, e));
- }
-}), function(e) {
+!function(e) {
  if ("object" == typeof exports && "undefined" != typeof module) module.exports = e(); else if ("function" == typeof define && define.amd) define([], e); else {
   var t;
   "undefined" != typeof window ? t = window : "undefined" != typeof global ? t = global : "undefined" != typeof self && (t = self), 
