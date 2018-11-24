@@ -116,8 +116,8 @@ function AbcDE() {
         Persist_Annotated = true,
         Ui_In_Place = false;
 
-    var DIDACTYL_URL = 'https://dvdrndlph.github.io/didactyl';
-    # var DIDACTYL_URL = '..';
+    // var DIDACTYL_URL = 'https://dvdrndlph.github.io/didactyl';
+    var DIDACTYL_URL = '..';
     var HOME_URL = DIDACTYL_URL; // + '/abcde';
     var HELP_URL = HOME_URL + '/view/abcde_help.html';
     var IMAGE_DIR = HOME_URL + '/image';
