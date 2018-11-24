@@ -118,10 +118,10 @@ function AbcDE() {
 
     // var DIDACTYL_URL = 'https://dvdrndlph.github.io/didactyl';
     var DIDACTYL_URL = '..';
-    var HOME_URL = DIDACTYL_URL; // + '/abcde';
-    var HELP_URL = HOME_URL + '/view/abcde_help.html';
-    var IMAGE_DIR = HOME_URL + '/image';
-    var MEDIA_DIR = HOME_URL + '/lib/media';
+    var HOME_URL = DIDACTYL_URL + '/abcde';
+    var HELP_URL = './abcde_help.html';
+    var IMAGE_DIR = DIDACTYL_URL + '/image';
+    var MEDIA_DIR = DIDACTYL_URL + '/lib/media';
     var DEFAULT_NUMBERING_INTERVAL = 5;
     // var MEDIA_DIR = '../lib/media';
     // var MEDIA_DIR = 'http://nlp.cs.uic.edu/didactyl/abcde/lib/media';
