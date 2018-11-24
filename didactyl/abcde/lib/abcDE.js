@@ -116,9 +116,8 @@ function AbcDE() {
         Persist_Annotated = true,
         Ui_In_Place = false;
 
-    // var DIDACTYL_URL = 'https://dvdrndlph.github.io/didactyl';
     var DIDACTYL_URL = '..';
-    var HOME_URL = DIDACTYL_URL + '/abcde';
+    var CORPORA_URL = DIDACTYL_URL + '/../corpora';
     var HELP_URL = './abcde_help.html';
     var IMAGE_DIR = DIDACTYL_URL + '/image';
     var MEDIA_DIR = DIDACTYL_URL + '/lib/media';
@@ -1067,7 +1066,7 @@ function AbcDE() {
 
     function import_url() {
         var prompt = 'Please enter URL to open.';
-        var default_url = DIDACTYL_URL + '/wtc/prelude02.abc';
+        var default_url = CORPORA_URL + '/wtc/prelude01.abc';
         if (Previous_Url) {
             default_url = Previous_Url;
         } else {
