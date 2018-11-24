@@ -1,5 +1,1346 @@
-/* abcDE_min.js v5.0.156 */
-function AbcDE(){"use strict";function t(){dn&&clearInterval(dn),rn=[],an=[],fn="",sn=!1,pn="noname.abc",Zt=void 0,Jt="",Qt=void 0,hn=[],mn=!1,vn=[],en=void 0,yn=0,_n=[],bn=[],En={},wn={},Cn=[],In=!1,xn={},kn={},Bn=[],Tn=0,tn=void 0,nn=void 0,Sn=[]}function n(e){var t,n=xn[e],r=[];for(t in n)n.hasOwnProperty(t)&&r.push(t);return r.sort(function(e,t){return parseInt(e)-parseInt(t)}),r}function r(e,t){if(!e)return console.log("MISSING fingers have no hands."),"";if("x"===e)return e;for(var n=t,r=[],i=e.split(""),a=0;a<i.length;a++){var o=i[a];"<"===o||">"===o?n=o:r.push(o.match(/\d/)?n+o:o)}return r.join("")}function i(){return"undefined"==typeof Storage?!1:!0}function a(e,t){fn||(fn=md5(Jt));var n=e+"_"+t+"_"+fn;return n}function o(e){if(!i())return{};var t={sequence:""},n=a("sequence",e),r=localStorage.getItem(n)||"";r.match(/[^x&@]/)&&(t.sequence=r),n=a("authority",e);var o=localStorage.getItem(n)||"";t.authority=o,n=a("authority_year",e);var s=localStorage.getItem(n)||"";t.authority_year=s,n=a("transcriber",e);var c=localStorage.getItem(n)||"";t.transcriber=c,n=a("comments",e);var l=localStorage.getItem(n)||"";return t.comments=l,t}function s(e){var t=document.getElementById(e);return t.value?t.value:""}function c(e){var t=new Date,n=t.getFullYear()+"-"+sprintf("%02d",t.getMonth()+1)+"-"+sprintf("%02d",t.getDate())+" "+sprintf("%02d",t.getHours())+":"+sprintf("%02d",t.getMinutes())+":"+sprintf("%02d",t.getSeconds()),r="",i="";(e||g("include_pii"))&&(r=s("authority"),i=s("transcriber"));var a={sequence:Ot(),authority:r,authority_year:s("authority_year"),transcriber:i,transcription_date:n,comments:s("comments")};return a}function l(e,t){var n=document.getElementById(e),r=n.value,i=a(e,t);localStorage.setItem(i,r)}function u(e){for(var t=document.getElementsByName(e),n=0;n<t.length;n++){var r=t[n];if(r.checked)return r.id}return void 0}function d(e){var t="";if("preset"===e||"output"===e||"keypad"===e||"restore"==e)t=u(e);else{var n=document.getElementById(e);t=n.value}ln[e]=t,localStorage.setItem(e,t)}function f(){var e=document.getElementById("sequence_spinner");return e?e.value:(alert("Sequence DOM element has gone missing."),"1")}function p(){if(!i())return void clearInterval(dn);var e=document.getElementById("sequence_spinner");if(!e)return void clearInterval(dn);var t=f(),n=a("sequence",t),r=Ot();localStorage.setItem(n,r),l("authority",t),l("authority_year",t),l("transcriber",t),l("comments",t)}function g(e){if(Kt&&Kt[e])return Kt[e];if("measure_number_interval"===e){var t=document.getElementById(e);return t.value}var n=u(e);return n?n:""}function h(){var e=g("preset"),t=1;return"last"===e&&(t=un.length||1),t}function m(){var e={};return e.authority=s("default_authority"),e.authority_year=s("default_authority_year"),e.transcriber=s("default_transcriber"),e.sequence="x",e.comments="",e}function v(e){for(var t,n=e.split("\n"),r=!1,i={},a=[],o="",s=0;s<n.length;s++){var c=n[s];if(!o&&(t=Gn.exec(c),t&&t[1]))o=t[1],r=!0;else if(r)if(t=jn.exec(c),t&&t[1]&&t[2])i={sequence:t[2],comments:""},a.push(i);else{if(t=Yn.exec(c))break;if(t=Kn.exec(c),t&&t[1]){i.authority=t[1],t[2]&&(i.authority_year=t[2]);continue}if(t=Zn.exec(c),t&&t[1]){i.transcriber=t[1];continue}if(t=Wn.exec(c),t&&t[1]){i.transcription_date=t[1];continue}t=Jn.exec(c),t&&t[1]&&(i.comments+=t[1]+"\n")}}return a}function y(){var e=document.getElementById("sequence_spinner");e.min=1,e.max=un.length||1;var t=h();e.value=t}function _(){var e=g("preset");return e&&"none"!==e?"first"===e?un[0]:"last"===e?un[un.length-1]:"":m()}function b(e){if(e){var t=e-1;return parseInt(e)<=un.length?un[t]:m()}return _()}function E(e,t){for(var n=document.getElementsByName(e),r=0;r<n.length;r++){var i=n[r];i.id===t&&(i.checked=!0)}}function w(e,t){var n=document.getElementById(e);n.value=void 0!==t?t:""}function C(){E("preset",localStorage.getItem("preset")),E("output",localStorage.getItem("output")),E("restore",localStorage.getItem("restore")),E("keypad",localStorage.getItem("keypad"));var e=localStorage.getItem("measure_number_interval");(void 0===e||""===e)&&(e=Hn),w("measure_number_interval",e),w("default_authority",localStorage.getItem("default_authority")),w("default_authority_year",localStorage.getItem("default_authority_year")),w("default_transcriber",localStorage.getItem("default_transcriber"))}function I(e){w("authority",e.authority),w("authority_year",e.authority_year),w("transcriber",e.transcriber),w("comments",e.comments)}function x(){var e=s("authority"),t=s("default_authority");!e&&t&&w("authority",t);var n=s("authority_year"),r=s("default_authority_year");!n&&r&&w("authority_year",r);var i=s("transcriber"),a=s("default_transcriber");!i&&a&&w("transcriber",a)}function k(e,t){if(e){console.log("Setting fingers: ",e);var i,a,o,s={},c=e.split("@");for(i=0;i<c.length;i++){var l=je(i);s=[];var u=c[i].split("&");for(a=0;a<u.length;a++){var d=u[a];s=s.concat(q(Rn,d))}for(var f=n(i),p=0;p<f.length;p++){var g=f[p],h=xn[i][g];h.sort(be);for(var m=0;h[m].grace;){h[m][t]="";for(var v=0;v<h[m].size;v++)o=s.shift(),o||(console.log("Preset fingering MISSING for note:"),he("preset grace note",h[m])),o=r(o,l),l=Nt(o,l),h[m][t]+=o;m++}var y=De(h),_=Te(y);for(v=0;v<_.length;v++)for(var b=_[v],E=0;E<y[b].length;E++){var w=y[b][E];w[t]=""}for(v=0;v<_.length;v++)for(var b=_[v],E=0;E<y[b].length;E++){var w=y[b][E];w.grace||(w[t]||(w[t]=""),o=s.shift(),o||(console.log("Preset fingering MISSING for note:"),he("preset pit note",w)),o=r(o,l),l=Nt(o,l),w[t]+=o)}}}}}function B(e,t){var n=t.sequence,r=t.sequence,i=!0,a=g("preset");a&&"none"!==a||(i=!1,n="");var o=!1;if(e&&e.sequence&&e.sequence!==n){var s=g("restore");o="always"===s?!0:"never"===s?!1:confirm("You have previously entered data for this piece. Do you want to restore them?"),o&&(n=e.sequence)}o?I(e):i&&I(t),k(n,"fingering"),k(r,"preset_fingering"),dn=setInterval(function(){p()},er)}function T(){var e=f(),t=o(e),n=b(e);B(t,n),x()}function D(){var e=Lt();return e}function S(){var e="Please enter a fingering string for the current piece.",t=window.prompt(e,"");null!==t&&(k(t,"fingering"),Re())}function A(){if(Jt){var e=confirm("All changes you have made to this fingering sequence will be discarded, and the initial sequence will be restored. Are you sure you want to proceed?");if(e){var t=f(),n=b(t);B(void 0,n),Re(),en=bn[0][0][0],Bt(en)}}}function q(e,t){if(!t)return[];for(var n,r=[],i=0,a=0;null!=(n=e.exec(t));){a=e.lastIndex;var o;o=i===a?t.substr(i):t.substr(i,a-i),r.push(o),i=e.lastIndex}var s=t.substr(i);if(s){var c="";r.length>0&&(c=r.pop()),c+=s,r.push(c)}return r}function N(){var e=window.open(Fn,"_blank");e.focus()}function L(e){ft();var t=document.getElementById("prefs_modal_wrapper"),n=document.getElementById("prefs_modal_window");t.className="overlay";var r=n.offsetHeight-document.documentElement.clientHeight;r>0&&(n.style.maxHeight=parseInt(window.getComputedStyle(n).height)-r+"px"),n.style.marginTop=-n.offsetHeight/2+"px",n.style.marginLeft=-n.offsetWidth/2+"px",e.preventDefault?e.preventDefault():e.returnValue=!1}function F(e){ft();var t=document.getElementById("metadata_modal_wrapper"),n=document.getElementById("metadata_modal_window");t.className="overlay";var r=n.offsetHeight-document.documentElement.clientHeight;r>0&&(n.style.maxHeight=parseInt(window.getComputedStyle(n).height)-r+"px"),n.style.marginTop=-n.offsetHeight/2+"px",n.style.marginLeft=-n.offsetWidth/2+"px",e.preventDefault?e.preventDefault():e.returnValue=!1}function M(e){var t=document.getElementById("metadata_modal_wrapper");t.className="",p(),J(),dt(),e.preventDefault?e.preventDefault():e.returnValue=!1}function P(){cn>pr&&(cn-=dr,Re())}function H(){fr>cn&&(cn+=dr,Re())}function z(e){d("preset"),d("output"),d("restore"),d("keypad"),d("measure_number_interval"),d("default_authority"),d("default_authority_year"),d("default_transcriber");var t=document.getElementById("prefs_modal_wrapper");t.className="",Jt&&(Re(),Bt(en)),J(),dt(),e.preventDefault?e.preventDefault():e.returnValue=!1}function R(e){var t=e.slice(0,100);if(-1==t.indexOf("<?xml"))return!1;var n=t.match(/encoding="([^"]+)"/),r="utf-8";return n&&2==n.length&&(r=n[1]),r}function X(e){var t={},n=$.parseXML(e),r=vertaal(n,t),i=r[0],a=r[1];return a&&console.log("xml2abc ERROR: "+a),i||alert("Unable to open MusicXML file: "+a),i}function O(e,t){var n=new XMLHttpRequest;return"withCredentials"in n?n.open(e,t,!0):"undefined"!=typeof XDomainRequest?(n=new XDomainRequest,n.open(e,t)):n=null,n}function U(e){var t=e.split(".");return t[t.length-1]}function V(e){var t="";try{var n=new JSZip(e);$.each(n.files,function(e,n){t=n.asText()})}catch(r){return alert("Could not open compressed MusicXML file: "+r.message),""}var i=R(t);return"UTF-8"!==i?(alert("Input mxl is not UTF-8 encoded. Cannot open."),""):t=X(t)}function G(e){var t=U(e),n='The server hosting file does not allow access from this domain. Please download the file outside abcDE and then "Choose file" to work with it.',r=O("GET",e);return r?("mxl"===t&&(r.responseType="arraybuffer"),r.onload=function(){console.log("File has been retrieved.");var n="";if("mxl"===t){if(n=V(r.response),!n)return}else{n=r.responseText;var i=R(n);if(i){if(!/^utf/i.test(i))return void alert("Input xml is not UTF-8 encoded. Cannot open.");n=X(n)}}n&&(on=e,document.getElementById(nr).value=n,gt())},r.onerror=function(){alert(n)},void r.send()):void alert(n)}function j(){var e="Please enter URL to open.",t=Nn+"/wtc/prelude02.abc";if(on)t=on;else{var n=g("default_url");n&&(t=n)}var r=window.prompt(e,t);r&&G(r)}function Y(e){var t=new FileReader,n="";t.onload=function(e){try{var t=new JSZip(e.target.result);$.each(t.files,function(e,t){n=t.asText()})}catch(e){return void alert("Could not open compressed MusicXML file: "+e.message)}var r=R(n);return"UTF-8"!==r?void alert("Input xml is not UTF-8 encoded. Cannot open."):(n=X(n),document.getElementById(nr).value=n,gt(),void 0)},t.readAsArrayBuffer(e)}function K(){var e=document.getElementById("file_input"),t=e.files;if(!t.length)return void alert("Please select a valid abc file.");var n=t[0],r=U(n.name);if("mxl"===r)return void Y(n);var i=!1,a=new FileReader;a.onload=function(){var e=R(a.result),t=new FileReader;e?i=!0:e="UTF-8",t.onload=function(e){var n="";n=i?X(t.result):e.target.result,document.getElementById(nr).value=n,gt()},t.readAsText(n,e)},a.readAsText(n,"UTF-8")}function Z(){An=An?!1:!0}function W(e,t){for(var n=e.children,r=0;r<n.length;r++)n[r].style.display=t}function J(){var e=document.getElementById(sr),t=document.getElementById("number_div"),n=document.getElementById("symbol_div"),r=g("keypad");if("show"===r)e.style.display="block",t.style.display="block",n.style.display="block",W(t,"inline"),W(n,"inline");else{W(n,"none"),W(t,"none");var i=g("qualtrics"),a=g("submit_button_id");if(i){var o=document.getElementById("q_next");o.style.display="inline";var s=document.getElementById("q_back");s&&(s.style.display="inline")}else if(a){var c=document.getElementById(a);c.style.display="inline"}else t.style.display="block",n.style.display="block",e.style.display="none"}}function Q(e){var t=e.keyCode||e.which;t=String.fromCharCode(t);var n=/[0-9]/;n.test(t)||(e.returnValue=!1,e.preventDefault&&e.preventDefault())}function ee(e,t,n,r,i,a){var o=document.createElement("input");o.type="text",o["class"]=r,o.id=t,i&&(o.onkeypress=i),"year"===r&&(o.size="4");var s=document.createElement("label");s.htmlFor=t,s.appendChild(document.createTextNode(n)),e.appendChild(s),e.appendChild(o),a&&e.appendChild(document.createElement("br"))}function te(e,t,n,r,i,a){var o=document.createElement("textarea");o["class"]=r,o.id=t,o.rows=i,o.cols=a;var s=document.createElement("label");s.htmlFor=t,s.appendChild(document.createTextNode(n)),e.appendChild(s),e.appendChild(o)}function ne(e,t,n){var r=document.createElement("label");r["class"]=n;var i=document.createTextNode(t);r.appendChild(i),e.appendChild(r)}function re(e,t,n,r,i,a,o){var s=document.createElement("div");s["class"]="radio_div",ne(e,t,"prompt");for(var c=0;c<r.length;c++){var l=document.createElement("input");l.type="radio",l.id=r[c],l.id===a&&(l.checked=!0),l.name=n,s.appendChild(l),ne(s,i[c],"radio_label");var u=document.createElement("span");u.innerHTML="&nbsp;&nbsp",s.appendChild(u)}return e.appendChild(s),o&&e.appendChild(document.createElement("br")),s}function ie(e,t,n,r,i,a,o,s){var c=document.createElement("div");c["class"]="spinner_div",ne(c,t,"prompt");var l=document.createElement("input");return l.id=n,l.min=r,l.max=i,l.size=a,l.type="number",l.value=o,c.appendChild(l),e.appendChild(c),s&&e.appendChild(document.createElement("br")),c}function ae(){var e=document.getElementById(or),t=document.createElement("div");t.id="metadata_modal_wrapper",e.appendChild(t);var n=document.createElement("div");n.id="metadata_modal_window",t.appendChild(n);var r=document.createElement("div");r.style.textAlign="right";var i=document.createElement("a");i.id="metadata_modal_close",i.href="#",i.innerHTML="Close <b>X</b>",r.appendChild(i),i.addEventListener("click",M,!1),n.appendChild(r),ee(n,"authority","Authority","name",void 0,!1),ee(n,"authority_year","Year","year",Q,!0),ee(n,"transcriber","Transcriber","name",void 0,!0),te(n,"comments","Comments","comments",10,50)}function oe(){var e=document.getElementById(ir),t=document.createElement("div");t.id="prefs_modal_wrapper",e.appendChild(t);var n=document.createElement("div");n.id="prefs_modal_window",t.appendChild(n);var r=document.createElement("div");r.style.textAlign="right";var i=document.createElement("a");i.id="prefs_modal_close",i.href="#",i.innerHTML="Close <b>X</b>",r.appendChild(i),i.addEventListener("click",z,!1),n.appendChild(r);var a=document.createElement("h3");a.innerText="Preferences",n.appendChild(a);var o="restore",s=["always","never","ask"],c=["Always","Never","Ask"];Kt&&Kt[o]||re(n,"Restore Data",o,s,c,"ask",!0),o="output",Kt&&Kt[o]||(s=["append","replace"],c=["Append","Replace"],re(n,"Output",o,s,c,"append",!0)),o="preset",Kt&&Kt[o]||(s=["first","last","none"],c=["First","Last","None"],re(n,"Preset",o,s,c,"first",!0)),o="keypad",s=["show","hide"],c=["Show","Hide"];var l="hide",u="ontouchstart"in window;u&&(l="show"),re(n,"Keypad",o,s,c,l,!0),ie(n,"Measure Number Interval","measure_number_interval",0,20,2,5,!0),ee(n,"default_authority","Default Authority","name",void 0,!0),ee(n,"default_authority_year","Year","year",Q,!0),ee(n,"default_transcriber","Transcriber Name","name",void 0,!0)}function se(e,t,n){var r=document.createElement("input");r.type="button",r["class"]="keypad-button",r.id=t,r.value=n,r.onclick=function(){it(n)},e.appendChild(r)}function ce(){for(var e=document.getElementById(tr);e.firstChild;)e.removeChild(e.firstChild);e.remove(),qn=!1,dn&&clearInterval(dn)}function le(e){var n=g("qualtrics"),r=Tt(Jt),i="abcDF_"+r,a="abcD_"+r,o=Ot();Qualtrics.SurveyEngine.setEmbeddedData(i,o);var s=jt();Qualtrics.SurveyEngine.setEmbeddedData(a,s),p(),"q_next"===e?(t(),Re(),ce(),sn=!1,n.enableNextButton(),n.enablePreviousButton(),n.clickNextButton()):(n.enableNextButton(),n.enablePreviousButton(),n.clickPreviousButton())}function ue(e,t,n){var r=document.createElement("input");r.type="button",r["class"]="keypad-button",r.id=t,r.value=n,r.onclick=function(){le(t)},e.appendChild(r)}function de(e,t,n){var r=document.createElement("input");r.type="button",r["class"]="keypad-button",r.id=t,r.value=n,e.appendChild(r)}function fe(e,t,n,r){var i=document.createElement("input");i.id=t,i["class"]="keypad_button",i.type="image",i.src=Mn+"/"+n,i.alt=r,i.onclick=function(){Ue(t)},e.appendChild(i)}function pe(){var e=document.getElementById(sr),t=document.createElement("number_div");t.id="number_div";var n=document.createElement("symbol_div");n.id="symbol_div",e.appendChild(n),e.appendChild(document.createElement("br")),e.appendChild(t),fe(t,"undo","action-undo.svg","undo"),fe(t,"redo","action-redo.svg","redo"),se(t,"one","1"),se(t,"two","2"),se(t,"three","3"),se(t,"four","4"),se(t,"five","5"),se(t,"toggle","T"),fe(t,"pencil","target.svg","...");var r=g("qualtrics");r&&(g("qualtrics_back")&&ue(t,"q_back","BACK"),ue(t,"q_next","NEXT"));var i=g("submit_button_id");if(i){var a=g("submit_button_label");a||(a="NEXT"),de(t,i,a)}fe(n,"previous","arrow-circle-left.svg","<-"),fe(n,"next","arrow-circle-right.svg","->"),se(n,"hyphen","-"),se(n,"slash","/"),se(n,"open_paren","("),se(n,"close_paren",")");var o=g("phrasing");o&&(se(n,"short_phrase","S"),se(n,"medium_phrase","M"),se(n,"long_phrase","L")),fe(n,"backspace","delete.svg","<]")}function ge(){if(!qn){oe(),ae();var e=Mn+"/download_36_x4.png",t="36",n=document.getElementById(ar),r=document.createElement("table"),i=document.createElement("tbody"),a=document.createElement("tr");n.appendChild(r),r.appendChild(i),r.style.backgroundColor="LightGray",r.align="center",i.appendChild(a);var o=document.createElement("p");o.setAttribute("id","downloadify");var s=document.createElement("td");s.appendChild(o),a.appendChild(s);var c=document.createElement("input");c.id="sequence_spinner",c.min="1",c.max="999",c.size=3,c.type="number",c.alt="fingering_number",c.value=1,c.onchange=Mt,s=document.createElement("td"),ne(s,"Sequence","sequence_prompt"),s.appendChild(c),a.appendChild(s),Kt.preset_select||(s.style.display="none");var l=document.createElement("input");l.type="image",l.src=Mn+"/eye.svg",l.width=t,l.alt="View",l.onclick=Ht,s=document.createElement("td"),s.appendChild(l),a.appendChild(s);var u=document.createElement("input");u.type="image",u.src=Mn+"/print.svg",u.width=t,u.alt="Print...",u.onclick=Ft;var s=document.createElement("td");s.appendChild(u),a.appendChild(s),s=document.createElement("td");var d=document.createElement("input");d.type="checkbox",d.value="annotated",d.checked=An,d.id="view_annotated",d.onclick=Z;var f=document.createElement("label");f.htmlFor="view_annotated",f.appendChild(document.createTextNode("Annotated")),s.appendChild(d),s.appendChild(f),a.appendChild(s);var p=document.createElement("input");p.type="image",p.src=Mn+"/reload.svg",p.width=t,p.alt="reset",p.onclick=A,s=document.createElement("td"),s.appendChild(p),a.appendChild(s);var g=document.createElement("input");g.id="copy_fingerings_button",g.type="image",g.src=Mn+"/clipboard.svg",g.width=t,g.alt="copy",s=document.createElement("td"),s.appendChild(g),a.appendChild(s),Kt.hide_copy?g.style.display="none":new Clipboard("#copy_fingerings_button",{text:D});var h=document.createElement("input");h.type="image",h.src=Mn+"/paperclip.svg",h.width=t,h.alt="paste",h.onclick=S,s=document.createElement("td"),s.appendChild(h),a.appendChild(s),Kt.hide_paste&&(h.style.display="none");var m=document.createElement("input");m.type="image",m.src=Mn+"/globe.svg",m.width=t,m.alt="URL",m.onclick=j,s=document.createElement("td"),s.appendChild(m),a.appendChild(s),Kt.url_input||(m.style.display="none");var v=document.createElement("input");v.setAttribute("type","file"),v.setAttribute("accept","text/vnd.abc"),v.onchange=K,v.setAttribute("id","file_input"),s=document.createElement("td"),s.appendChild(v),a.appendChild(s),Kt.file_input||(v.style.display="none");var y=document.createElement("input");y.type="image",y.src=Mn+"/tags.svg",y.alt="Metadata...",y.width=t,y.onclick=F,s=document.createElement("td"),s.appendChild(y),a.appendChild(s);var _=document.createElement("input");_.type="image",_.src=Mn+"/zoom-out.svg",_.alt="Zoom In",_.width=t,_.onclick=P,s=document.createElement("td"),s.appendChild(_),a.appendChild(s);var b=document.createElement("input");b.type="image",b.src=Mn+"/zoom-in.svg",b.alt="Zoom In",b.width=t,b.onclick=H,s=document.createElement("td"),s.appendChild(b),a.appendChild(s);var E=document.createElement("input");E.type="image",E.src=Mn+"/cog.svg",E.alt="Preferences...",E.width=t,E.onclick=L,s=document.createElement("td"),s.appendChild(E),a.appendChild(s);var w=document.createElement("input");w.type="image",w.src=Mn+"/info.svg",w.alt="Help",w.width=t,w.onclick=N,s=document.createElement("td"),s.appendChild(w),a.appendChild(s),Downloadify.create("downloadify",{filename:function(){return pn},data:Pt,onComplete:function(){alert("Your file has been saved.")},onCancel:function(){alert("File save has been cancelled.")},onError:function(){alert("File save failed!")},transparent:!1,swf:Pn+"/downloadify.swf",downloadImage:e,width:t,height:t,append:!1}),pe(),qn=!0}}function he(e,t){console.log(e+" Line: "+t.line+" Start: "+t.start+" Time: "+t.time+" String: "+t.string+" Size: "+t.size+" Pitch: "+t.pitches.join(",")+" Voice: "+t.voice+" Staff: "+t.staff+" Grace: "+t.grace)}function me(){for(var e=0;e<_n.length;e++){var t=_n[e];t.undone_fingerings=[]}rn=[]}function ve(e,t){if("note"!=e[t.type]&&"grace"!=e[t.type])return{};if(this.line=-1,this.grace=!1,this.anno_start=t.istart,this.size=0,this.pitches=[],this.start=-1,this.end=-1,this.starts=[],this.stops=[],this.phrase_break="X","note"===e[t.type]){this.size=t.notes.length;for(var n=0;n<this.size;n++)this.pitches.push(t.notes[n].pit);this.pitches.sort(function(e,t){return parseInt(e)-parseInt(t)}),this.start=t.istart,this.end=t.iend}else{this.grace=!0,this.start=t.extra.istart,this.size=1;var r=t.extra;if(!r.notes)return alert("Who turned off the notes?!"),{};for(;;){if(r.notes.length>1&&alert('Chords not supported in a grace "note."'),this.starts.push(r.istart),this.stops.push(r.iend),this.pitches.push(r.notes[0].pit),!r.next){this.end=r.iend;break}r=r.next,this.size++}}return this.istart=t.istart,this.time=t.time,this.string=Jt.substring(this.start,this.end),this.voice=t.v,this.staff=t.st,this.prior_fingerings=[],this.undone_fingerings=[],this.init_fingering=function(){this.fingering="";for(var e=0;e<this.size;e++)this.fingering+="x"},this.init_fingering(),this.set_fingering=function(e){me(),this.fingering&&this.prior_fingerings.push(this.fingering),e?this.fingering=e:this.init_fingering(),an.push(this)},this.undo_fingering_change=function(){this.prior_fingerings.length>0&&(this.undone_fingerings.push(this.fingering),this.fingering=this.prior_fingerings.pop()),rn.push(this)},this.redo_fingering_change=function(){this.undone_fingerings.length>0&&(this.fingering&&this.prior_fingerings.push(this.fingering),this.fingering=this.undone_fingerings.pop()),an.push(this)},this.get_fingering=function(){return this.fingering?this.fingering:void 0},this}function ye(){var e=8.5;1!==cn&&(e*=cn);var t='width="'+e+'in"';return t}function _e(){this.read_file=function(){return""},this.errmsg=function(e,t,n){var r=document.getElementById(ur);r.innerHTML+=t?'<b onclick="gotoabc('+t+","+n+')" style="cursor: pointer; display: inline-block">'+e+"</b><br/>\n":e+"<br/>\n"},this.img_out=function(e){var t=/<svg /;e.match(t)&&(e=e.replace(t,'<svg id="line_'+yn+'" '),yn++),Wt+=e},this.anno_start=function(e,t,n){!In&&t in En?En[t].line=yn:"grace"===e&&console.log(e+" ANNO_START start: "+t+" stop: "+n),Bn.push([t,n]),Qt.out_svg('<g class="e_'+t+'">\n')},this.anno_stop=function(e,t,n,r,i,a,o){"grace"===e&&console.log(e+" ANNO_STOP start: "+t+" stop: "+n),Qt.out_svg("</g>\n"),Qt.out_svg('<rect class="abcr _'+t+'" x="'),Qt.out_sxsy(r,'" y="',i),Qt.out_svg('" width="'+a.toFixed(2)+'" height="'+o.toFixed(2)+'"/>\n')},this.get_abcmodel=function(e,t,n){if(!In){console.log(n);for(var r=0;r<t.length;r++){console.log("Voice: "+r);var i=t[r].st;kn[r]=i}for(var a=e;a;){var o=new ve(n,a);o.istart&&(_n.push(o),En[o.istart]=o,o.staff in xn||(xn[o.staff]={}),o.time in xn[o.staff]||(xn[o.staff][o.time]=[]),xn[o.staff][o.time].push(o)),a=a.ts_next}}},this.page_format=!1,this.imagesize=ye()}function be(e,t){var n=parseInt(e.time)-parseInt(t.time);return 0!==n?n:e.grace&&!t.grace?-1:t.grace&&!e.grace?1:e.pitches[e.pitches.length-1]<t.pitches[0]?-1:e.pitches[0]>t.pitches[t.pitches.length-1]?1:e.voice<t.voice?(console.log("NOTES SORTED BY VOICE!"),-1):1}function Ee(){for(var e,t,n,r=0;r<_n.length;r++)e=_n[r],t=e.line,n=e.staff,t in bn||(bn[t]=[],bn[t][0]=[],bn[t][1]=[]),bn[t][n].push(e);for(t=0;t<bn.length;t++)for(n=0;2>n;n++){var i=bn[t][n];i.sort(be)}var a,o;for(n=0;2>n;n++)for(t=0;t<bn.length;t++){var i=bn[t][n];for(r=0;r<i.length;r++)a=i[r],o?(o.next_note=a,a.prior_note=o,o=a):(o=a,a.prior_note=void 0)}a.next_note=void 0}function we(){var e;for(e in En)En.hasOwnProperty(e)&&Cn.push(e);Cn.sort(function(e,t){return parseInt(e)-parseInt(t)})}function Ce(e){var t="$1";return e.match(On)&&(t="$1"),e.match(Xn)&&(t="$2"),t}function Ie(e){var t="^";return/^</.test(e)&&(t="_"),t}function xe(e){for(var t=Ce("<"),n=Ce(">"),r=e.replace(/[\)\(]/g,""),i=q(zn,r),a="",o=0;o<i.length;o++)i[o]=i[o].replace(Xn,t),i[o]=i[o].replace(On,n),a+=i[o];a+='"';var s=Ie(r);return a='"'+s+a}function ke(e,t,n){for(var r=!1,i=Ce("<"),a=Ce(">"),o=[],s=0;s<e.length;s++){var c="",l="x";if(e[s]&&"x"!==e[s])r=!0,l=e[s];else{if(!n)break;if(!e[s]||e[s]&&"x"===e[s])continue}if(l.match(/^\(/))c=xe(l,t);else{var u=Ie(l);l=l.replace(Xn,i),l=l.replace(On,a),c='"'+u+l+'"'}o.unshift(c)}var d="";return r&&(d=o.join("")),d}function Be(e){var t=e.fingering;if("x"===t)return"";t=t.replace($n,"");var n=q(zn,t),r=ke(n,e.staff,!1);return r}function Te(e){var t=[];for(var n in e)e.hasOwnProperty(n)&&t.push(n);return t.sort(function(e,t){return parseInt(e)-parseInt(t)}),t}function De(e){for(var t=[],n={},r=0;r<e.length;r++){var i=e[r];if(!i.grace)for(var a=0;a<i.pitches.length;a++){var o=i.pitches[a];t.push(o),o in n||(n[o]=[]),n[o].push(i)}}for(r=0;r<n.length;r++)n[r].sort(be);return n}function Se(e){for(var t=De(e),n=Te(t),r=[],i=0;i<n.length;i++)for(var a=n[i],o=0;o<t[a].length;o++)for(var s=t[a][o],c=s.fingering,l=q(zn,c),u=0;u<s.pitches.length;u++){var d=s.pitches[u];d===parseInt(a)&&r.push("x"!==l[u]?l[u]:"")}return r}function Ae(e){for(var t=0,n=0;n<e.length;n++)e[n].grace&&t++;return t}function qe(e){if(e.size>1&&console.log("BIGGIE"),e.grace)return Be(e);var t=xn[e.staff][e.time],n=Ae(t),r=t.length-n;if(2>r)return Be(e);t.sort(be);for(var i=0,a=t[0];a.grace;)i++,a=t[i];if(e!==a)return"";var o=Se(t);return ke(o,e.staff,!0)}function Ne(e){for(var t=[],n=e.string,r=e.starts,i=e.stops,a=[],o=[],s=0;s<r.length;s++)a.push(r[s]-r[0]),o.push(i[s]-r[0]);for(var c=0;c<a.length;c++){var l=n.substring(a[c],o[c]);t.push(l)}return t}function Le(e){var t="{",n=Ne(e),r=[];e.fingering&&(r=q(zn,e.fingering));for(var i=0;i<n.length;i++){if(r[i]){var a=r[i];a=a.replace(Un,""),"x"!==a&&(t+="!"+a+"!")}t+=n[i]}return t+="}"}function Fe(e){if(e.fingering)return!0;for(var t=xn[e.staff][e.time],n=0;n<t.length;n++)if(!t[n].grace&&t[n].fingering)return!0;return!1}function Me(){if(void 0!==tn)return tn;tn=!1;for(var e=!1,t=!1,n=Jt.split("\n"),r=0;r<n.length;r++){var i=n[r];if(i.match(/^%%setfont-1/)&&(e=!0),i.match(/^%%setfont-2/)&&(t=!0),e&&t){tn=!0;break}}return tn}function Pe(){if(void 0!==nn)return nn;nn=!1;for(var e=Jt.split("\n"),t=0;t<e.length;t++){var n=e[t];if(n.match(/^%%measurenb\s+\d+/)){nn=!0;break}}return nn}function He(){if(void 0!==Zt)return Zt;Zt=!1;for(var e=0;e<Cn.length;e++){var t=Cn[e],n=En[t];if(n.grace){Zt=!0;break}}return Zt}function ze(){var e="";if(Me()||(e+=Er+"\n",He()&&(e+=wr+"\n")),!Pe()){var t=g("measure_number_interval");t&&(e+="%%measurenb "+t+"\n")}for(var n=0,r=0;r<Cn.length;r++){var i=Cn[r],a=En[i],o="";if(a.grace){if(o=Jt.substring(parseInt(n),parseInt(a.start-1)),n=a.end+1,e+=o,a.fingered_start=e.length+a.anno_start-a.start+1,a.fingering&&"x"!==a.fingering){var s=q(zn,a.fingering);a.fingered_start+=3*s.length}e+=Le(a)}else{var c=parseInt(a.start),l=parseInt(a.end);o=Jt.substring(parseInt(n),c),e+=o,n=l,Fe(a)&&(e+=qe(a)),a.fingered_start=e.length,e+=a.string}wn[a.fingered_start]=a}return e+=Jt.substring(n)}function Re(){sn=!0,Tn++,console.log("RERENDERING NUMBER "+Tn);var e=(new Date).getTime(),t=document.getElementById(lr),n=document.getElementById(ur),r=new _e;Qt=new Abc(r);var i=ze(),a=(new Date).getTime(),o=a-e;console.log("MY LAG: "+o),document.getElementById(nr).value=i,e=(new Date).getTime(),Wt="",Qt.tosvg("edit",'%%bgcolor white\n%%beginsvg\n<style type="text/css">\n	rect.abcr {fill:#a08000; fill-opacity:0}\n	rect.abcr:hover {fill-opacity:0.3}\n</style>\n%%endsvg\n'),yn=0,n.innerHTML="",Bn=[];try{Qt.tosvg(pn,document.getElementById(nr).value)}catch(s){return void alert(s.message+"\nabc2svg tosvg bug - stack:\n"+s.stack)}try{t.innerHTML=Wt}catch(s){return void alert(s.message+"\nabc2svg image bug - abort:\n"+s.stack)}setTimeout(function(){for(var e,t=document.getElementsByClassName("abcr"),n=t.length;--n>=0;)e=t[n],e.onclick=function(){vt(this)},e.ondblclick=function(){wt(this)}},300),a=(new Date).getTime(),o=a-e,console.log("LIB LAG: "+o),J()}function $e(e){return null==e.which?String.fromCharCode(e.keyCode):0!=e.which&&0!=e.charCode?String.fromCharCode(e.which):null}function Xe(e){if(console.log(String.fromCharCode(e)+" --> "+e),e===vr){Je();var t=Qe();t.length>0&&t[0]?(en.set_fingering(""),Re()):en.prior_note&&(en=en.prior_note,en.set_fingering(""),Re()),Bt(en)}else if(e==yr||e==br)nt(),vn=[],en.next_note&&(en=en.next_note);else if(e==_r)nt(),vn=[],en.prior_note&&(en=en.prior_note);else if(e==mr)Et();else if(e==gr)_t();else{if(e!=hr)return!1;bt()}return Bt(en),!0}function Oe(e){var t=e.keyCode,n=Xe(t);return n&&e.preventDefault(),n}function Ue(t){var n=yr;switch(t){case"previous":n=_r;break;case"next":n=br;break;case"backspace":n=vr;break;case"pencil":n=mr;break;case"undo":n=gr;break;case"redo":n=hr}var r=Xe(n);return r&&e.preventDefault(),r}function Ve(){Dn?(Dn=!1,sn&&(document.body.style.backgroundColor="white")):(Dn=!0,sn&&(document.body.style.backgroundColor="black")),Bt(en)}function Ge(e){return Dn?0==e.staff?"<":">":je(e.staff)}function je(e){return 0==e?">":"<"}function Ye(e,t){var n=Ge(t);if(!e.fingering.strike)return"x";var r=e.fingering.strike.hand||n,i=r+e.fingering.strike.digit;return e.fingering.release&&(r=e.fingering.release.hand||n,i+="-"+r+e.fingering.release.digit),i}function Ke(e,t){var n,r,i="",a=[];if(e.first.ornaments){for(a=e.first.ornaments[0],i+="(",r=0;r<a.length;r++)n=a[r],i+=Ye(n,t);i+=")"}else i+=Ye(e.first,t);if(e.last&&e.last.ornaments){for(a=e.last.ornaments[0],i+="(",r=0;r<a.length;r++)n=e.last.ornaments[r],i+="/"+Ye(n,t);i+=")"}else e.last&&(i+="/"+Ye(e.last,t));return i}function Ze(e){for(var t="",n=0;n<en.size;){var r=e.shift(),i=Ke(r,en);if(t+=i,n++,0===e.length)break}if(n===en.size)return en.set_fingering(t),!0;for(;n<en.size;n++)t+="x";return en.set_fingering(t),!1}function We(e){for(var t=e.upper.score_fingerings;t.length>0;)Ze(t)&&en.next_note&&(en=en.next_note);mn&&(en=en.prior_note)}function Je(){mn=!1,hn=[],vn=[],Re(),Bt(en)}function Qe(){for(var e=[],t=en.get_fingering(),n=t.split(""),r=0;r<n.length;r++){var i=n[r];e.push("x"===i?"":i)}return e}function et(){for(var e=Qe();e.length;){var t=e.pop();t&&hn.unshift(t)}}function tt(){for(var e=0;e<vn.length;e++)if("("===vn[e])return!0;return!1}function nt(){var e=!1;vn.length>0&&(Array.prototype.unshift.apply(hn,vn),tt()||(e=!0)),vn=[];for(var t=hn.length-1;t>=0&&/[\-\/\(]/.test(hn[t]);t--)vn.unshift(hn.pop());if(0!==hn.length){if(/[\-\/]/.test(hn[0])&&(e=!0),mn){var n=Qe();")"===n[n.length-1]?n.pop():(alert("Something wonky with parentheses."),Je()),Array.prototype.unshift.apply(hn,n),mn=!1}e?en.prior_note?(en=en.prior_note,et()):hn.pop():en.fingering&&en.fingering.match(/x/)&&et();for(var r=hn.join(""),i=0,a=1;;)try{var o=Abcdf_parser.parse(r);mn=!1,2===a&&(mn=!0),We(o);break}catch(s){if(1===a?hn.push(")"):2===a?(hn.pop(),hn.pop(),i++):3===a&&(a=0),0==hn.length)break;r=hn.join(""),a++}hn=[],Re(),Bt(en)}}function rt(e){en.phrase_break=e.toUpperCase()}function it(e){clearTimeout(gn);var t=!1;return/[\(\)\/\-1-5]/.test(e)&&(hn.push(e),t=!0),("t"===e||"T"===e)&&(nt(),Ve(),t=!0),("s"===e||"S"===e||"m"===e||"M"===e||"l"===e||"L"===e)&&(nt(),rt(e),t=!0),gn=setTimeout(nt,Qn),console.log("Done "+gn),t}function at(e){var t=$e(e).toLowerCase();return it(t)}function ot(e){Kt||(Kt=e)}function st(){return 5}function ct(){var e="% abcDidactyl v"+st();return e}function lt(e){var t="% abcD fingering "+e+": ";return t}function ut(e, t){var n=[],r=[];r.push(ct());
+/* abcDE_min.js v6.0.3 */
+/** @license
+ *
+ * Copyright (c) 2015, 2016 David A. Randolph.
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ****************************************************************************
+ * Created by David A. Randolph on 8/18/15, on top of the abc2svg
+ * example script by Jef Moine.
+ */
+function AbcDE() {
+ "use strict";
+ var t, n, r, i, a, o, s, c, l = [], u = [], d = "", f = !1, g = 1, p = {}, h = [], m = void 0, v = "", _ = "noname.abc", y = 0, b = [], E = !1, w = [], k = 0, C = [], I = [], x = {}, B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, L = !1, F = [], P = !0, M = !1, H = "..", z = "./abcde_help.html", R = H + "/image", O = H + "/lib/media", V = 5, X = /\s/g, G = /</g, U = />/g, j = /[><]/g, Y = /([,;\.])/, K = /&/g, Z = /.*([<>])[^<>]+$/, W = /^% abcDidactyl v([\d\.]+)$/, J = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Q = /^% abcDidactyl END$/, ee = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, ae = 4e3, oe = "abcde", se = "abc_source", ce = "source", le = "abcde_prefs", ue = "abcde_controls", de = "abcde_metadata", fe = "abcde_keypad", ge = "abcde_rendering", pe = "abcde_target", he = "abcde_error", me = .1, ve = 3, _e = .3, ye = 90, be = 89, Ee = 13, we = 8, ke = 9, Ce = 37, Ie = 39, xe = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Be = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
+ function Te() {
+  m && clearInterval(m), l = [], u = [], v = "", f = !1, _ = "noname.abc", n = void 0, 
+  i = "", a = void 0, b = [], E = !1, w = [], o = void 0, k = 0, C = [], I = [], x = {}, 
+  B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, s = void 0, c = void 0, F = [];
+ }
+ function De(e) {
+  var t, n = S[e], r = [];
+  for (t in n) n.hasOwnProperty(t) && r.push(t);
+  return r.sort(function(e, t) {
+   return parseInt(e) - parseInt(t);
+  }), r;
+ }
+ function Se(e, t) {
+  if (!e) return console.log("MISSING fingers have no hands."), "";
+  if ("x" === e) return e;
+  for (var n = t, r = [], i = e.split(""), a = 0; a < i.length; a++) {
+   var o = i[a];
+   "<" === o || ">" === o ? n = o : o.match(/\d/) ? r.push(n + o) : r.push(o);
+  }
+  return r.join("");
+ }
+ function Ae() {
+  return "undefined" != typeof Storage;
+ }
+ function qe(e, t) {
+  return v || (v = md5(i)), e + "_" + t + "_" + v;
+ }
+ function Ne(e) {
+  if (!Ae()) return {};
+  var t = {
+   sequence: ""
+  }, n = qe("sequence", e), r = localStorage.getItem(n) || "";
+  r.match(/[^x&@]/) && (t.sequence = r), n = qe("authority", e);
+  var i = localStorage.getItem(n) || "";
+  t.authority = i, n = qe("authority_year", e);
+  var a = localStorage.getItem(n) || "";
+  t.authority_year = a, n = qe("transcriber", e);
+  var o = localStorage.getItem(n) || "";
+  t.transcriber = o, n = qe("comments", e);
+  var s = localStorage.getItem(n) || "";
+  return t.comments = s, t;
+ }
+ function Le(e) {
+  var t = document.getElementById(e);
+  return t.value ? t.value : "";
+ }
+ function Fe(e) {
+  var t = new Date(), n = t.getFullYear() + "-" + sprintf("%02d", t.getMonth() + 1) + "-" + sprintf("%02d", t.getDate()) + " " + sprintf("%02d", t.getHours()) + ":" + sprintf("%02d", t.getMinutes()) + ":" + sprintf("%02d", t.getSeconds()), r = "", i = "";
+  return (e || $e("include_pii")) && (r = Le("authority"), i = Le("transcriber")), 
+  {
+   sequence: Sn(),
+   authority: r,
+   authority_year: Le("authority_year"),
+   transcriber: i,
+   transcription_date: n,
+   comments: Le("comments")
+  };
+ }
+ function Pe(e, t) {
+  var n = document.getElementById(e).value, r = qe(e, t);
+  localStorage.setItem(r, n);
+ }
+ function Me(e) {
+  for (var t = document.getElementsByName(e), n = 0; n < t.length; n++) {
+   var r = t[n];
+   if (r.checked) return r.id;
+  }
+ }
+ function He(e) {
+  var t = "";
+  "preset" === e || "output" === e || "keypad" === e || "restore" == e ? t = Me(e) : t = document.getElementById(e).value;
+  p[e] = t, localStorage.setItem(e, t);
+ }
+ function ze() {
+  var e = document.getElementById("sequence_spinner");
+  return e ? e.value : (alert("Sequence DOM element has gone missing."), "1");
+ }
+ function Re() {
+  if (Ae()) if (document.getElementById("sequence_spinner")) {
+   var e = ze(), t = qe("sequence", e), n = Sn();
+   localStorage.setItem(t, n), Pe("authority", e), Pe("authority_year", e), Pe("transcriber", e), 
+   Pe("comments", e);
+  } else clearInterval(m); else clearInterval(m);
+ }
+ function $e(e) {
+  if (t && t[e]) return t[e];
+  if ("measure_number_interval" === e) return document.getElementById(e).value;
+  var n = Me(e);
+  return n || "";
+ }
+ function Oe() {
+  var e = {};
+  return e.authority = Le("default_authority"), e.authority_year = Le("default_authority_year"), 
+  e.transcriber = Le("default_transcriber"), e.sequence = "x", e.comments = "", e;
+ }
+ function Ve(e) {
+  for (var t, n = e.split("\n"), r = !1, i = {}, a = [], o = "", s = 0; s < n.length; s++) {
+   var c = n[s];
+   if (!o && (t = W.exec(c)) && t[1]) o = t[1], r = !0; else if (r) if ((t = J.exec(c)) && t[1] && t[2]) i = {
+    sequence: t[2],
+    comments: ""
+   }, a.push(i); else {
+    if (t = Q.exec(c)) break;
+    if ((t = ee.exec(c)) && t[1]) {
+     i.authority = t[1], t[2] && (i.authority_year = t[2]);
+     continue;
+    }
+    if ((t = te.exec(c)) && t[1]) {
+     i.transcriber = t[1];
+     continue;
+    }
+    if ((t = ne.exec(c)) && t[1]) {
+     i.transcription_date = t[1];
+     continue;
+    }
+    (t = re.exec(c)) && t[1] && (i.comments += t[1] + "\n");
+   }
+  }
+  return a;
+ }
+ function Xe() {
+  var e = document.getElementById("sequence_spinner");
+  e.min = 1, e.max = h.length || 1;
+  var t, n = (t = 1, "last" === $e("preset") && (t = h.length || 1), t);
+  e.value = n;
+ }
+ function Ge(e) {
+  if (e) {
+   var t = e - 1;
+   return parseInt(e) <= h.length ? h[t] : Oe();
+  }
+  return (n = $e("preset")) && "none" !== n ? "first" === n ? h[0] : "last" === n ? h[h.length - 1] : "" : Oe();
+  var n;
+ }
+ function Ue(e, t) {
+  for (var n = document.getElementsByName(e), r = 0; r < n.length; r++) {
+   var i = n[r];
+   i.id === t && (i.checked = !0);
+  }
+ }
+ function je(e, t) {
+  var n = document.getElementById(e);
+  n.value = void 0 !== t ? t : "";
+ }
+ function Ye(e) {
+  je("authority", e.authority), je("authority_year", e.authority_year), je("transcriber", e.transcriber), 
+  je("comments", e.comments);
+ }
+ function Ke(e, t) {
+  for (var n = 0; n < e.length; n++) if (e[n] === t) return !0;
+  return !1;
+ }
+ function Ze(e, t) {
+  for (var n = 0; n < e.length; n++) if (e[n] === t) return n;
+  return null;
+ }
+ function We(e, t) {
+  if (e) {
+   console.log("Setting fingers: ", e);
+   var n, r, i, a = {}, o = e.split("@");
+   for (n = 0; n < o.length; n++) {
+    var s = Qt(n);
+    a = [];
+    var c = o[n].split("&");
+    for (r = 0; r < c.length; r++) {
+     var l = it(c[r]);
+     a = a.concat(l);
+    }
+    for (var u = De(n), d = 0; d < u.length; d++) {
+     var f = u[d], g = S[n][f];
+     g.sort(Ft);
+     for (var p = 0; g[p].grace; ) {
+      var h = "";
+      g[p][t] = "";
+      for (var m = 0; m < g[p].size; m++) (i = a.shift()) || (console.log(t + " MISSING for grace note:"), 
+      qt(t + " grace note", g[p])), s = Cn(i = Se(i, s), s), h += i;
+      "fingering" === t ? g[p].set_fingering(h) : "preset_fingering" === t && g[p].set_preset_fingering(h), 
+      p++;
+     }
+     var v = Ot(g), _ = $t(v), y = [], b = [], E = null;
+     for (m = 0; m < _.length; m++) for (var w = _[m], k = 0; k < v[w].length; k++) if (!(E = v[w][k]).grace) {
+      Ke(b, E) || (y.push(""), b.push(E));
+      var C = Ze(b, E);
+      (i = a.shift()) || (console.log(t + " MISSING for note:"), qt(t + " pit note", E)), 
+      s = Cn(i = Se(i, s), s), y[C] += i;
+     }
+     for (m = 0; m < y.length; m++) i = y[m], console.log("FingerING " + i), E = b[m], 
+     "fingering" === t ? E.set_fingering(i) : "preset_fingering" === t && E.set_preset_fingering(i);
+    }
+   }
+  }
+ }
+ function Je(e, t) {
+  var n = t.sequence, r = t.sequence, i = !0, a = $e("preset");
+  a && "none" !== a || (i = !1, n = "");
+  var o = !1;
+  if (e && e.sequence && e.sequence !== n) {
+   var s = $e("restore");
+   (o = "always" === s || "never" !== s && confirm("You have previously entered data for this piece (or sequence). Do you want to restore them?")) && (n = e.sequence);
+  }
+  o ? Ye(e) : i && Ye(t), We(n, "fingering"), We(r, "preset_fingering"), m = setInterval(function() {
+   Re();
+  }, ae);
+ }
+ function Qe() {
+  var e = ze();
+  Je(Ne(e), Ge(e)), function() {
+   var e = Le("authority"), t = Le("default_authority");
+   !e && t && je("authority", t);
+   var n = Le("authority_year"), r = Le("default_authority_year");
+   !n && r && je("authority_year", r);
+   var i = Le("transcriber"), a = Le("default_transcriber");
+   !i && a && je("transcriber", a);
+  }();
+ }
+ function et(e) {
+  return In();
+ }
+ function tt() {
+  var e = window.prompt("Please enter a fingering string for the current piece.", "");
+  null !== e && (We(e, "fingering"), Zt());
+ }
+ function nt() {
+  i && (confirm("All changes you have made to this fingering sequence will be discarded, and the initial sequence will be restored. Are you sure you want to proceed?") && (Je(void 0, Ge(ze())), 
+  Zt(), _n(o = I[0][0][0])));
+ }
+ function rt(e) {
+  return function e(t, n) {
+   if (null == t) return n;
+   for (var r = 0; r < t.length; r++) t[r] instanceof Array ? e(t[r], n) : t[r] && n.push(t[r]);
+   return n;
+  }(e, []).join("");
+ }
+ function it(e, t = 0) {
+  if (!e) return [];
+  console.log("abcdf string: " + e);
+  var n = function(e, t = 0, n = !1) {
+   var r = [];
+   if (n) {
+    for (var i = 0; i < e[t].length; i++) for (var a = 0; a < e[t][i].length; a++) if ((s = e[t][i][a]) instanceof Array) {
+     var o = rt(s);
+     r.push(o);
+    }
+   } else for (a = 0; a < e[t].length; a++) {
+    var s;
+    (s = e[t][a]) instanceof Array && (o = rt(s), r.push(o));
+   }
+   return r;
+  }(AbcdfRaw_Parser.parse(e), t, K.exec(line));
+  return n = n.filter(function(e) {
+   return "&" != e && "@" != e;
+  });
+ }
+ function at() {
+  window.open(z, "_blank").focus();
+ }
+ function ot(e) {
+  un();
+  var t = document.getElementById("prefs_modal_wrapper"), n = document.getElementById("prefs_modal_window");
+  t.className = "overlay";
+  var r = n.offsetHeight - document.documentElement.clientHeight;
+  r > 0 && (n.style.maxHeight = parseInt(window.getComputedStyle(n).height) - r + "px"), 
+  n.style.marginTop = -n.offsetHeight / 2 + "px", n.style.marginLeft = -n.offsetWidth / 2 + "px", 
+  e.preventDefault ? e.preventDefault() : e.returnValue = !1;
+ }
+ function st(e) {
+  un();
+  var t = document.getElementById("metadata_modal_wrapper"), n = document.getElementById("metadata_modal_window");
+  t.className = "overlay";
+  var r = n.offsetHeight - document.documentElement.clientHeight;
+  r > 0 && (n.style.maxHeight = parseInt(window.getComputedStyle(n).height) - r + "px"), 
+  n.style.marginTop = -n.offsetHeight / 2 + "px", n.style.marginLeft = -n.offsetWidth / 2 + "px", 
+  e.preventDefault ? e.preventDefault() : e.returnValue = !1;
+ }
+ function ct(e) {
+  document.getElementById("metadata_modal_wrapper").className = "", Re(), bt(), ln(), 
+  e.preventDefault ? e.preventDefault() : e.returnValue = !1;
+ }
+ function lt() {
+  g > _e && (g -= me, Zt());
+ }
+ function ut() {
+  g < ve && (g += me, Zt());
+ }
+ function dt(e) {
+  He("preset"), He("output"), He("restore"), He("keypad"), He("measure_number_interval"), 
+  He("default_authority"), He("default_authority_year"), He("default_transcriber"), 
+  document.getElementById("prefs_modal_wrapper").className = "", i && (Zt(), _n(o)), 
+  bt(), ln(), e.preventDefault ? e.preventDefault() : e.returnValue = !1;
+ }
+ function ft(e) {
+  var t = e.slice(0, 100);
+  if (-1 == t.indexOf("<?xml")) return !1;
+  var n = t.match(/encoding="([^"]+)"/), r = "utf-8";
+  return n && 2 == n.length && (r = n[1]), r;
+ }
+ function gt(e) {
+  var t = $.parseXML(e), n = vertaal(t, {}), r = n[0], i = n[1];
+  return i && console.log("xml2abc ERROR: " + i), r || alert("Unable to open MusicXML file: " + i), 
+  r;
+ }
+ function pt(e) {
+  var t = e.split(".");
+  return t[t.length - 1];
+ }
+ function ht(e) {
+  var t = pt(e), n = 'The server hosting file does not allow access from this domain. Please download the file outside abcDE and then "Choose file" to work with it.', r = function(e, t) {
+   var n = new XMLHttpRequest();
+   return "withCredentials" in n ? n.open(e, t, !0) : "undefined" != typeof XDomainRequest ? (n = new XDomainRequest()).open(e, t) : n = null, 
+   n;
+  }("GET", e);
+  r ? ("mxl" === t && (r.responseType = "arraybuffer"), r.onload = function() {
+   console.log("File has been retrieved.");
+   var n = "";
+   if ("mxl" === t) {
+    if (!(n = function(e) {
+     var t = "";
+     try {
+      var n = new JSZip(e);
+      $.each(n.files, function(e, n) {
+       t = n.asText();
+      });
+     } catch (e) {
+      return alert("Could not open compressed MusicXML file: " + e.message), "";
+     }
+     return "UTF-8" !== ft(t) ? (alert("Input mxl is not UTF-8 encoded. Cannot open."), 
+     "") : t = gt(t);
+    }(r.response))) return;
+   } else {
+    var i = ft(n = r.responseText);
+    if (i) {
+     if (!/^utf/i.test(i)) return void alert("Input xml is not UTF-8 encoded. Cannot open.");
+     n = gt(n);
+    }
+   }
+   n && (d = e, document.getElementById(se).value = n, dn());
+  }, r.onerror = function() {
+   alert(n);
+  }, r.send()) : alert(n);
+ }
+ function mt() {
+  var e = H + "/wtc/prelude02.abc";
+  if (d) e = d; else {
+   var t = $e("default_url");
+   t && (e = t);
+  }
+  var n = window.prompt("Please enter URL to open.", e);
+  n && ht(n);
+ }
+ function vt() {
+  var e = document.getElementById("file_input").files;
+  if (e.length) {
+   var t = e[0];
+   if ("mxl" !== pt(t.name)) {
+    var n = !1, r = new FileReader();
+    r.onload = function(e) {
+     var i = ft(r.result), a = new FileReader();
+     i ? n = !0 : i = "UTF-8", a.onload = function(e) {
+      var t = "";
+      t = n ? gt(a.result) : e.target.result, document.getElementById(se).value = t, dn();
+     }, a.readAsText(t, i);
+    }, r.readAsText(t, "UTF-8");
+   } else !function(e) {
+    var t = new FileReader(), n = "";
+    t.onload = function(e) {
+     try {
+      var t = new JSZip(e.target.result);
+      $.each(t.files, function(e, t) {
+       n = t.asText();
+      });
+     } catch (e) {
+      return void alert("Could not open compressed MusicXML file: " + e.message);
+     }
+     "UTF-8" === ft(n) ? (n = gt(n), document.getElementById(se).value = n, dn()) : alert("Input xml is not UTF-8 encoded. Cannot open.");
+    }, t.readAsArrayBuffer(e);
+   }(t);
+  } else alert("Please select a valid abc file.");
+ }
+ function _t() {
+  P = !P;
+ }
+ function yt(e, t) {
+  for (var n = e.children, r = 0; r < n.length; r++) n[r].style.display = t;
+ }
+ function bt() {
+  var e = document.getElementById(fe), t = document.getElementById("number_div"), n = document.getElementById("symbol_div");
+  if ("show" === $e("keypad")) e.style.display = "block", t.style.display = "block", 
+  n.style.display = "block", yt(t, "inline"), yt(n, "inline"); else {
+   yt(n, "none"), yt(t, "none");
+   var r = $e("qualtrics"), i = $e("submit_button_id");
+   if (r) {
+    document.getElementById("q_next").style.display = "inline";
+    var a = document.getElementById("q_back");
+    a && (a.style.display = "inline");
+   } else if (i) {
+    document.getElementById(i).style.display = "inline";
+   } else t.style.display = "block", n.style.display = "block", e.style.display = "none";
+  }
+ }
+ function Et(e) {
+  var t = e.keyCode || e.which;
+  t = String.fromCharCode(t);
+  /[0-9]/.test(t) || (e.returnValue = !1, e.preventDefault && e.preventDefault());
+ }
+ function wt(e, t, n, r, i, a) {
+  var o = document.createElement("input");
+  o.type = "text", o.class = r, o.id = t, i && (o.onkeypress = i), "year" === r && (o.size = "4");
+  var s = document.createElement("label");
+  s.htmlFor = t, s.appendChild(document.createTextNode(n)), e.appendChild(s), e.appendChild(o), 
+  a && e.appendChild(document.createElement("br"));
+ }
+ function kt(e, t, n) {
+  var r = document.createElement("label");
+  r.class = n;
+  var i = document.createTextNode(t);
+  r.appendChild(i), e.appendChild(r);
+ }
+ function Ct(e, t, n, r, i, a, o) {
+  var s = document.createElement("div");
+  s.class = "radio_div", kt(e, t, "prompt");
+  for (var c = 0; c < r.length; c++) {
+   var l = document.createElement("input");
+   l.type = "radio", l.id = r[c], l.id === a && (l.checked = !0), l.name = n, s.appendChild(l), 
+   kt(s, i[c], "radio_label");
+   var u = document.createElement("span");
+   u.innerHTML = "&nbsp;&nbsp", s.appendChild(u);
+  }
+  return e.appendChild(s), o && e.appendChild(document.createElement("br")), s;
+ }
+ function It() {
+  var e = document.getElementById(de), t = document.createElement("div");
+  t.id = "metadata_modal_wrapper", e.appendChild(t);
+  var n = document.createElement("div");
+  n.id = "metadata_modal_window", t.appendChild(n);
+  var r = document.createElement("div");
+  r.style.textAlign = "right";
+  var i = document.createElement("a");
+  i.id = "metadata_modal_close", i.href = "#", i.innerHTML = "Close <b>X</b>", r.appendChild(i), 
+  i.addEventListener("click", ct, !1), n.appendChild(r), wt(n, "authority", "Authority", "name", void 0, !1), 
+  wt(n, "authority_year", "Year", "year", Et, !0), wt(n, "transcriber", "Transcriber", "name", void 0, !0), 
+  function(e, t, n, r, i, a) {
+   var o = document.createElement("textarea");
+   o.class = r, o.id = t, o.rows = i, o.cols = a;
+   var s = document.createElement("label");
+   s.htmlFor = t, s.appendChild(document.createTextNode(n)), e.appendChild(s), e.appendChild(o);
+  }(n, "comments", "Comments", "comments", 10, 50);
+ }
+ function xt() {
+  var e = document.getElementById(le), n = document.createElement("div");
+  n.id = "prefs_modal_wrapper", e.appendChild(n);
+  var r = document.createElement("div");
+  r.id = "prefs_modal_window", n.appendChild(r);
+  var i = document.createElement("div");
+  i.style.textAlign = "right";
+  var a = document.createElement("a");
+  a.id = "prefs_modal_close", a.href = "#", a.innerHTML = "Close <b>X</b>", i.appendChild(a), 
+  a.addEventListener("click", dt, !1), r.appendChild(i);
+  var o = document.createElement("h3");
+  o.innerText = "Preferences", r.appendChild(o);
+  var s = "restore", c = [ "always", "never", "ask" ], l = [ "Always", "Never", "Ask" ];
+  t && t[s] || Ct(r, "Restore Data", s, c, l, "ask", !0), s = "output", t && t[s] || Ct(r, "Output", s, c = [ "append", "replace" ], l = [ "Append", "Replace" ], "append", !0), 
+  s = "preset", t && t[s] || Ct(r, "Preset", s, c = [ "first", "last", "none" ], l = [ "First", "Last", "None" ], "first", !0), 
+  s = "keypad", c = [ "show", "hide" ], l = [ "Show", "Hide" ];
+  var u = "hide";
+  "ontouchstart" in window && (u = "show"), Ct(r, "Keypad", s, c, l, u, !0), function(e, t, n, r, i, a, o, s) {
+   var c = document.createElement("div");
+   c.class = "spinner_div", kt(c, t, "prompt");
+   var l = document.createElement("input");
+   l.id = n, l.min = r, l.max = i, l.size = a, l.type = "number", l.value = o, c.appendChild(l), 
+   e.appendChild(c), s && e.appendChild(document.createElement("br"));
+  }(r, "Measure Number Interval", "measure_number_interval", 0, 20, 2, 5, !0), wt(r, "default_authority", "Default Authority", "name", void 0, !0), 
+  wt(r, "default_authority_year", "Year", "year", Et, !0), wt(r, "default_transcriber", "Transcriber Name", "name", void 0, !0);
+ }
+ function Bt(e, t, n) {
+  var r = document.createElement("input");
+  r.type = "button", r.class = "keypad-button", r.id = t, r.value = n, r.onclick = function() {
+   on(n);
+  }, e.appendChild(r);
+ }
+ function Tt(e) {
+  var t = $e("qualtrics"), n = yn(i), r = "abcDF_" + n, a = "abcD_" + n, o = Sn();
+  Qualtrics.SurveyEngine.setEmbeddedData(r, o);
+  var s = qn();
+  Qualtrics.SurveyEngine.setEmbeddedData(a, s), Re(), "q_next" === e ? (Te(), Zt(), 
+  function() {
+   for (var e = document.getElementById(oe); e.firstChild; ) e.removeChild(e.firstChild);
+   e.remove(), M = !1, m && clearInterval(m);
+  }(), f = !1, t.enableNextButton(), t.enablePreviousButton(), t.clickNextButton()) : (t.enableNextButton(), 
+  t.enablePreviousButton(), t.clickPreviousButton());
+ }
+ function Dt(e, t, n) {
+  var r = document.createElement("input");
+  r.type = "button", r.class = "keypad-button", r.id = t, r.value = n, r.onclick = function() {
+   Tt(t);
+  }, e.appendChild(r);
+ }
+ function St(t, n, r, i) {
+  var a = document.createElement("input");
+  a.id = n, a.class = "keypad_button", a.type = "image", a.src = R + "/" + r, a.alt = i, 
+  a.onclick = function() {
+   !function(t) {
+    var n = ke;
+    switch (t) {
+    case "previous":
+     n = Ce;
+     break;
 
-for(var i,a=v(e),o=e.split("\n"),s="",l=!1,u=0;u<o.length;u++){var d=o[u];s?l?n.push(d):(i=Yn.exec(d),i&&(l=!0)):(i=Gn.exec(d),i&&i[1]?s=i[1]:n.push(d))}var p=f(),h=c(t);if("replace"===g("output")){var m=p-1;a[m]=h}else a.push(h);for(var y,_,b,E,w,u=0;u<a.length;u++){var C=u+1;try{Abcdf_parser.parse(a[u].sequence)}catch(I){alert("Bad abcDF parse of fingering string: "+I.message)}y=lt(C)+a[u].sequence,r.push(y),a[u].authority&&(_="% Authority: "+a[u].authority,a[u].authority_year&&(_+=" ("+a[u].authority_year+")"),r.push(_)),a[u].transcriber&&(b="% Transcriber: "+a[u].transcriber,r.push(b)),a[u].transcription_date&&(E="% Transcription date: "+a[u].transcription_date,r.push(E)),w=a[u].comments.split("\n");for(var x=0; x<w.length; x++)(x!==w.length-1||w[x])&&r.push("% "+w[x])}r.push("% abcDidactyl END");var k=r.join("\n"),B=n.join("\n");return k+"\n"+B}function dt(){document.body.addEventListener("keydown",Oe),document.body.addEventListener("keypress",at)}function ft(){document.body.removeEventListener("keydown",Oe),document.body.removeEventListener("keypress",at)}function pt(){if(!qn){var e=document.getElementById(tr);e.align="center";var t=document.getElementById(nr);t||(t=document.createElement("div"),t.id=nr,t.style.display="none",e.appendChild(t)),t["class"]=rr;var n=document.createElement(ir);n.id=ir,e.appendChild(n);var r=document.createElement(ar);r.id=ar,e.appendChild(r);var i=document.createElement(or);i.id=or,e.appendChild(i);var a=document.createElement(cr);a.id=cr,e.appendChild(a);var o=document.createElement(lr);o.id=lr,a.appendChild(o);var s=document.createElement(ur);s.id=ur,a.appendChild(s);for(var c=0;7>c;c++)a.appendChild(document.createElement("br"));var l=document.createElement(sr);l.id=sr,e.appendChild(l)}}function gt(){if(pt(),t(),ge(),C(),Jt=document.getElementById(nr).value,!Jt){var e=g("default_url");e&&(G(e),Jt=document.getElementById(nr).value)}sn=!0,Jt&&(un=v(Jt),y(),Ct(),en=bn[0][0][0],Bt(en),dt()),J(),$(function(){FastClick.attach(document.body)})}function ht(e){ot(e),gt();var t=g("qualtrics");t&&(t.disableNextButton(),t.disablePreviousButton())}function mt(){t(),Jt=document.getElementById(nr).value,Ct(),en=bn[0][0][0],Bt(en),dt()}function vt(e){console.log("Processing note click....");var t=e.getAttribute("class");console.log("Click "+t);var n=t.split("_"),r=n[1];if(r in wn){var i=wn[r];he("process_note_click",i),Bt(i),en=i}}function yt(e){en=bn[0][0][0];var t=f(),n=c(!0);n.sequence=e;var r=o(t);B(r,n),Re(),Bt(en)}function _t(){Je();var e=an.pop();e&&(e.undo_fingering_change(),en=e,Re(),Bt(en))}function bt(){Je();var e=rn.pop();e&&(e.redo_fingering_change(),en=e.next_note?e.next_note:e,Re(),Bt(en))}function Et(){Je();var e="";en.preset_fingering&&(e+="Preset (recommended) fingering: "+en.preset_fingering+"\n\n"),e+="Please enter a fingering string for the selected note.";var t=en.fingering,n=window.prompt(e,t);try{if(null===n)return;var r=Abcdf_parser.parse(n);We(r),Re(),Bt(en)}catch(i){alert("Bad abcDF parse of fingering string: "+i.message+i.stack)}}function wt(e){console.log("Processing note double-click...."),vt(e),Et()}function Ct(){var e=new _e,t=document.getElementById(lr),n=document.getElementById(ur);t.align="center",Qt=new Abc(e),Wt="",Qt.tosvg("edit",'%%bgcolor white\n%%beginsvg\n<style type="text/css">\n	rect.abcr {fill:#a08000; fill-opacity:0}\n	rect.abcr:hover {fill-opacity:0.3}\n</style>\n%%endsvg\n'),n.innerHTML="",Bn=[];try{Jt&&Qt.tosvg(pn,Jt)}catch(r){return void alert(r.message+"\nabc2svg tosvg bug - stack:\n"+r.stack)}try{Jt&&(t.innerHTML=Wt,Ee(),we(),In=!0,yn=0,T(),Re())}catch(r){return void alert(r.message+"\nabc2svg image bug - abort:\n"+r.stack)}}function It(e,t){for(var n,r=document.getElementsByClassName(e),i=r.length;--i>=0;)n=r[i],n.setAttribute("color",t)}function xt(e){var t,n=Sn.length;for(t=0;n>t;t++)It(Sn[t],e)}function kt(e){var t=$(e),n=$(window),r=document.getElementById(sr),i=n.scrollTop(),a=i+n.height()-r.offsetHeight,o=t.offset().top,s=o+t.height();return a>=s&&o>=i}function Bt(e){var t=e.fingered_start;0!=Sn.length&&(xt("black"),Sn=[]),Sn.push("e_"+t),xt(Dn?0===e.staff?"dodgerblue":"red":1===e.staff?"dodgerblue":"red");var n="line_"+e.line,r=document.getElementById(n);if(!kt(r)){r.scrollIntoView(!1);var i=document.getElementById(sr),a=document.body.scrollTop;window.scrollTo(0,a+i.offsetHeight)}}function Tt(e){e||(e=Jt);for(var t=e.split("\n"),n=0;n<t.length;n++){var r=t[n];if(/^\s*X:/.test(r)){var i=r.split(":");if(2!=i.length)return"";var a=i[1].trim();return a}}return""}function Dt(e,t){var n=[];if(e.fingering)n=q(zn,e.fingering);else if(t)return"";if(t&&n.length!=e.size)return"";for(var r=e.fingering||"",i=n.length;i<e.size;i++)r+="x";return r}function St(e,t){if(e.grace)return Dt(e,t);var n=xn[e.staff][e.time],r=Ae(n),i=n.length-r;if(2>i)return Dt(e,t);n.sort(be);for(var a=0,o=n[0];o.grace;)a++,o=n[a];if(e!==o)return"";for(var s=Se(n),c="",a=0;a<s.length;a++)c+=s[a]?s[a]:"x";return c}function At(e,t){for(var n=[],r=t,i=e.split(""),a=0;a<i.length;a++){var o=i[a];o.match(Un)?o!==r&&(n.push(o),r=o):n.push(o)}return n.join("")}function qt(e,t){for(var n=bn[t][e],r="",i=0;i<n.length;i++){var a=n[i],o=St(a,!1);r+=o}return r}function Nt(e,t){var n=Vn.exec(e);return n&&n[1]?n[1]:t}function Lt(){for(var e="",t="",n=je(0),r=je(1),i=0;i<bn.length;i++){var a=qt(0,i);if(a&&(a=At(a,n),n=Nt(a,n),e+=a,i<bn.length-1&&(e+="&")),bn[i][1]){var o=qt(1,i);o&&(o=At(o,r),r=Nt(o,r),t+=o,i<bn.length-1&&(t+="&"))}}var s=e+"@"+t;return s}function Ft(){console.log("Print that score.");var e=window.open("","print_window");e.document.write(Wt),e.document.close(),e.focus(),e.print(),e.close()}function Mt(){var e=document.getElementById(nr);e.value=Jt,mt()}function Pt(){var e,t;return An?(e=ze(),t=ut(e,!0)):t=ut(Jt,!0),t}function Ht(){var e=Pt();window.open("data:text/vnd.abc;charset=utf-8,"+encodeURI(e),"view_window")}function zt(){return g("include_pii")?s("authority"):""}function Rt(){return s("authority_year")}function $t(){return g("include_pii")?s("transcriber"):""}function Xt(){return s("comments")}function Ot(){return Lt()}function Ut(e){try{Abcdf_parser.parse(e)}catch(t){return"Bad abcDF parse of fingering string: "+t.message+t.stack}var n=0,r=g("validate");if("complete"===r)n=e.split("x").length-1;else if("none"===r)n=0;else if("auto"===r)return"Validation of autofill is not yet implemented.";return 1===n?"One note is missing a fingering annotation.":n>1?n+" notes are missing fingering annotations.":""}function Vt(e){var t=Ut(e);return t?(alert(t),!1):!0}function Gt(){var e=Lt();return Vt(e)?e:""}function jt(){var e="",t=An;return An=!1,e=Pt(),An=t,e}function Yt(){var e=Lt();if(Vt(e)){var t=Pt();return/^\s*X:/m.test(t)?/^% abcDidactyl/m.test(t)?t:(alert("File is not valid abcD."),""):(alert("File is not valid abc."),"")}return""}var Kt,Zt,Wt,Jt,Qt,en,tn,nn,rn=[],an=[],on="",sn=!1,cn=1,ln={},un=[],dn=void 0,fn="",pn="noname.abc",gn=0,hn=[],mn=!1,vn=[],yn=0,_n=[],bn=[],En={},wn={},Cn=[],In=!1,xn={},kn={},Bn=[],Tn=0,Dn=!1,Sn=[],An=!0,qn=!1,Nn="https://dvdrndlph.github.io/didactyl",Ln=Nn+"/abcde",Fn=Ln+"/view/abcde_help.html",Mn=Ln+"/image",Pn=Ln+"/lib/media",Hn=5,zn=/\(([<>]\d)+\)|[<>]\d-[<>]\d\/[<>]\d-[<>]\d|[<>]\d\/[<>]\d-[<>]\d|[<>]\d-[<>]\d\/[<>]\d|[<>]\d-[<>]\d|[<>]\d\/[<>]\d|[<>]\d|x/g,Rn=/\(([<>]?\d)+\)|[<>]?\d-[<>]?\d\/[<>]?\d-[<>]?\d|[<>]?\d\/[<>]?\d-[<>]?\d|[<>]?\d-[<>]?\d\/[<>]?\d|[<>]?\d-[<>]?\d|[<>]?\d\/[<>]?\d|[<>]?\d|x/g,$n=/\s/g,Xn=/</g,On=/>/g,Un=/[><]/g,Vn=/.*([<>])[^<>]+$/,Gn=/^% abcDidactyl v([\d\.]+)$/,jn=/^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x]+)$/,Yn=/^% abcDidactyl END$/,Kn=/^% Authority: (.*)\s+\((\d\d\d\d)\)$/,Zn=/^% Transcriber: (.*)$/,Wn=/^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/,Jn=/^% (.*)$/,Qn=300,er=4e3,tr="abcde",nr="abc_source",rr="source",ir="abcde_prefs",ar="abcde_controls",or="abcde_metadata",sr="abcde_keypad",cr="abcde_rendering",lr="abcde_target",ur="abcde_error",dr=.1,fr=3,pr=.3,gr=90,hr=89,mr=13,vr=8,yr=9,_r=37,br=39,Er="%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11",wr="%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";return this.renderUI=ht,this.getXValue=Tt,this.getAuthority=zt,this.getAuthorityYear=Rt,this.getTranscriber=$t,this.getComments=Xt,this.getEnteredCollection=Ot,this.getEnteredAbcDF=Ot,this.getEnteredAbcD=jt,this.getValidatedCollection=Gt,this.getValidatedAbcD=Yt,this.setEnteredCollection=yt,this.handleKeys=dt,this.unhandleKeys=ft,this}
-//# sourceMappingURL=http://nlp.cs.uic.edu/didactyl/abcde/lib
+    case "next":
+     n = Ie;
+     break;
+
+    case "backspace":
+     n = we;
+     break;
+
+    case "pencil":
+     n = Ee;
+     break;
+
+    case "undo":
+     n = ye;
+     break;
+
+    case "redo":
+     n = be;
+    }
+    var r = Wt(n);
+    r && e.preventDefault();
+   }(n);
+  }, t.appendChild(a);
+ }
+ function At() {
+  var e = document.getElementById(fe), t = document.createElement("number_div");
+  t.id = "number_div";
+  var n = document.createElement("symbol_div");
+  n.id = "symbol_div", e.appendChild(n), e.appendChild(document.createElement("br")), 
+  e.appendChild(t), St(t, "undo", "action-undo.svg", "undo"), St(t, "redo", "action-redo.svg", "redo"), 
+  Bt(t, "one", "1"), Bt(t, "two", "2"), Bt(t, "three", "3"), Bt(t, "four", "4"), Bt(t, "five", "5"), 
+  Bt(t, "toggle", "T"), St(t, "previous", "arrow-circle-left.svg", "<-"), St(t, "next", "arrow-circle-right.svg", "->"), 
+  $e("qualtrics") && ($e("qualtrics_back") && Dt(t, "q_back", "BACK"), Dt(t, "q_next", "NEXT"));
+  var r, i, a, o, s = $e("submit_button_id");
+  if (s) {
+   var c = $e("submit_button_label");
+   c || (c = "NEXT"), r = t, i = s, a = c, (o = document.createElement("input")).type = "button", 
+   o.class = "keypad-button", o.id = i, o.value = a, r.appendChild(o);
+  }
+  St(n, "pencil", "target.svg", "..."), Bt(n, "hyphen", "-"), Bt(n, "slash", "/"), 
+  Bt(n, "open_paren", "("), Bt(n, "close_paren", ")"), Bt(n, "short_phrase", ","), 
+  Bt(n, "medium_phrase", ";"), Bt(n, "long_phrase", "."), St(n, "backspace", "delete.svg", "<]");
+ }
+ function qt(e, t) {
+  console.log(e + " Line: " + t.line + " Start: " + t.start + " Time: " + t.time + " String: " + t.string + " Size: " + t.size + " Pitch: " + t.pitches.join(",") + " Voice: " + t.voice + " Staff: " + t.staff + " Grace: " + t.grace);
+ }
+ function Nt(e, t) {
+  if ("note" != e[t.type] && "grace" != e[t.type]) return {};
+  if (this.fingering = "", this.preset_fingering = "", this.prior_note = null, this.next_note = null, 
+  this.line = -1, this.grace = !1, this.anno_start = t.istart, this.size = 0, this.pitches = [], 
+  this.start = -1, this.end = -1, this.starts = [], this.stops = [], this.phrase_break = "", 
+  this.preset_phrase_break = "", "note" === e[t.type]) {
+   this.size = t.notes.length;
+   for (var n = 0; n < this.size; n++) this.pitches.push(t.notes[n].pit);
+   this.pitches.sort(function(e, t) {
+    return parseInt(e) - parseInt(t);
+   }), this.start = t.istart, this.end = t.iend;
+  } else {
+   this.grace = !0, this.start = t.extra.istart, this.size = 1;
+   var r = t.extra;
+   if (!r.notes) return alert("Who turned off the notes?!"), {};
+   for (;;) {
+    if (r.notes.length > 1 && alert('Chords not supported in a grace "note."'), this.starts.push(r.istart), 
+    this.stops.push(r.iend), this.pitches.push(r.notes[0].pit), !r.next) {
+     this.end = r.iend;
+     break;
+    }
+    r = r.next, this.size++;
+   }
+  }
+  return this.istart = t.istart, this.time = t.time, this.string = i.substring(this.start, this.end), 
+  this.voice = t.v, this.staff = t.st, this.prior_fingerings = [], this.undone_fingerings = [], 
+  this.init = function() {
+   this.fingering = "";
+   for (var e = 0; e < this.size; e++) this.fingering += "x";
+   this.phrase_break = "";
+  }, this.preset_init = function() {
+   this.preset_fingering = "";
+   for (var e = 0; e < this.size; e++) this.fingering += "x";
+   this.preset_phrase_break = "";
+  }, this.init(), this.set_fingering = function(e) {
+   if (function() {
+    for (var e = 0; e < C.length; e++) C[e].undone_fingerings = [];
+    l = [];
+   }(), this.fingering && this.prior_fingerings.push(this.fingering), e) {
+    var t = Y.exec(e);
+    t ? (this.phrase_break = t[1], this.fingering = e.replace(Y, "")) : this.fingering = e;
+   } else this.init();
+   u.push(this);
+  }, this.set_preset_fingering = function(e) {
+   if (e) {
+    var t = Y.exec(e);
+    t ? (this.preset_phrase_break = t[1], this.preset_fingering = e.replace(Y, "")) : this.preset_fingering = e;
+   } else this.preset_init();
+  }, this.get_pitch_fingering = function(e) {
+   var t = function(e) {
+    if (L) return 0 == e.staff ? "<" : ">";
+    return Qt(e.staff);
+   }(this);
+   if (!e.fingering.strike) return "x";
+   var n = e.fingering.strike.hand || t, r = n + e.fingering.strike.digit;
+   return e.fingering.release && (r += "-" + (n = e.fingering.release.hand || t) + e.fingering.release.digit), 
+   r;
+  }, this.get_fingering_from_score_fingering = function(e) {
+   var t, n, r = "", i = [];
+   if (e.first.ornaments) {
+    for (i = e.first.ornaments, r += "(", n = 0; n < i.length; n++) t = i[n], r += this.get_pitch_fingering(t);
+    r += ")";
+   } else r += this.get_pitch_fingering(e.first);
+   if (e.last && e.last.ornaments) {
+    for (i = e.last.ornaments, r += "(", n = 0; n < i.length; n++) t = e.last.ornaments[n], 
+    r += "/" + this.get_pitch_fingering(t);
+    r += ")";
+   } else e.last && (r += "/" + this.get_pitch_fingering(e.last));
+   return r;
+  }, this.update_from_score_fingerings = function(e) {
+   this.init();
+   for (var t = "", n = 0; n < this.size; ) {
+    var r = e.shift(), i = this.get_fingering_from_score_fingering(r);
+    if (r.segmenter && (this.phrase_break = r.segmenter || ""), t += i, n++, 0 === e.length) break;
+   }
+   if (n === this.size) return this.set_fingering(t), !0;
+   for (;n < this.size; n++) t += "x";
+   return this.set_fingering(t), !1;
+  }, this.undo_fingering_change = function() {
+   this.prior_fingerings.length > 0 && (this.undone_fingerings.push(this.fingering), 
+   this.fingering = this.prior_fingerings.pop()), l.push(this);
+  }, this.redo_fingering_change = function() {
+   this.undone_fingerings.length > 0 && (this.fingering && this.prior_fingerings.push(this.fingering), 
+   this.fingering = this.undone_fingerings.pop()), u.push(this);
+  }, this.get_fingering = function() {
+   if (this.fingering) return this.fingering;
+  }, this.get_preset_fingering = function() {
+   if (this.preset_fingering) return this.preset_fingering;
+  }, this.get_abcdf = function() {
+   return this.phrase_break ? this.fingering ? this.fingering + this.phrase_break : "x" + this.phrase_break : this.fingering;
+  }, this.get_preset_abcdf = function() {
+   return this.preset_phrase_break ? this.preset_fingering ? this.preset_fingering + this.preset_phrase_break : "x" + this.preset_phrase_break : this.preset_fingering;
+  }, this.get_phrase_break = function() {
+   return this.phrase_break;
+  }, this.get_preset_phrase_break = function() {
+   return this.preset_phrase_break;
+  }, this;
+ }
+ function Lt() {
+  var e;
+  this.read_file = function(e) {
+   return "";
+  }, this.errmsg = function(e, t, n) {
+   var r = document.getElementById(he);
+   r.innerHTML += t ? '<b onclick="gotoabc(' + t + "," + n + ')" style="cursor: pointer; display: inline-block">' + e + "</b><br/>\n" : e + "<br/>\n";
+  }, this.img_out = function(e) {
+   var t = /<svg /;
+   e.match(t) && (e = e.replace(t, '<svg id="line_' + k + '" '), k++), r += e;
+  }, this.anno_start = function(e, t, n, r, i, o, s) {
+   !D && t in x ? x[t].line = k : "grace" === e && console.log(e + " ANNO_START start: " + t + " stop: " + n), 
+   q.push([ t, n ]), a.out_svg('<g class="e_' + t + '">\n');
+  }, this.anno_stop = function(e, t, n, r, i, o, s) {
+   "grace" === e && console.log(e + " ANNO_STOP start: " + t + " stop: " + n), a.out_svg("</g>\n"), 
+   a.out_svg('<rect class="abcr _' + t + '" x="'), a.out_sxsy(r, '" y="', i), a.out_svg('" width="' + o.toFixed(2) + '" height="' + s.toFixed(2) + '"/>\n');
+  }, this.get_abcmodel = function(e, t, n) {
+   if (!D) {
+    console.log(n);
+    for (var r = 0; r < t.length; r++) {
+     console.log("Voice: " + r);
+     var i = t[r].st;
+     A[r] = i;
+    }
+    for (var a = e; a; ) {
+     var o = new Nt(n, a);
+     o.istart && (C.push(o), x[o.istart] = o, o.staff in S || (S[o.staff] = {}), o.time in S[o.staff] || (S[o.staff][o.time] = []), 
+     S[o.staff][o.time].push(o)), a = a.ts_next;
+    }
+   }
+  }, this.page_format = !1, this.imagesize = (e = 8.5, 1 !== g && (e *= g), 'width="' + e + 'in"');
+ }
+ function Ft(e, t) {
+  var n = parseInt(e.time) - parseInt(t.time);
+  return 0 !== n ? n : e.grace && !t.grace ? -1 : t.grace && !e.grace ? 1 : e.pitches[e.pitches.length - 1] < t.pitches[0] ? -1 : e.pitches[0] > t.pitches[t.pitches.length - 1] ? 1 : e.voice < t.voice ? (console.log("NOTES SORTED BY VOICE!"), 
+  -1) : 1;
+ }
+ function Pt(e) {
+  var t = "$1";
+  return e.match(U) && (t = "$1"), e.match(G) && (t = "$2"), t;
+ }
+ function Mt(e) {
+  var t = "^";
+  return /^</.test(e) && (t = "_"), t;
+ }
+ function Ht(e) {
+  for (var t = Pt("<"), n = Pt(">"), r = e.replace(/[\)\(]/g, ""), i = it(r), a = "", o = 0; o < i.length; o++) i[o] = i[o].replace(G, t), 
+  i[o] = i[o].replace(U, n), a += i[o];
+  return a += '"', a = '"' + Mt(r) + a;
+ }
+ function zt(e, t, n) {
+  for (var r = !1, i = Pt("<"), a = Pt(">"), o = [], s = 0; s < e.length; s++) {
+   var c = "", l = "x";
+   if (e[s] && "x" !== e[s]) r = !0, l = e[s]; else {
+    if (!n) break;
+    if (!e[s] || e[s] && "x" === e[s]) continue;
+   }
+   if (l.match(/^\(/)) c = Ht(l); else c = '"' + Mt(l) + (l = (l = l.replace(G, i)).replace(U, a)) + '"';
+   c = c.replace(Y, ""), o.unshift(c);
+  }
+  var u = "";
+  return r && (u = o.join("")), u;
+ }
+ function Rt(e) {
+  var t = e.fingering;
+  return "x" === t ? "" : zt(it(t = t.replace(X, "")), e.staff, !1);
+ }
+ function $t(e) {
+  var t = [];
+  for (var n in e) e.hasOwnProperty(n) && t.push(n);
+  return t.sort(function(e, t) {
+   return parseInt(e) - parseInt(t);
+  }), t;
+ }
+ function Ot(e) {
+  for (var t = [], n = {}, r = 0; r < e.length; r++) {
+   var i = e[r];
+   if (!i.grace) for (var a = 0; a < i.pitches.length; a++) {
+    var o = i.pitches[a];
+    t.push(o), o in n || (n[o] = []), n[o].push(i);
+   }
+  }
+  for (r = 0; r < n.length; r++) n[r].sort(Ft);
+  return n;
+ }
+ function Vt(e) {
+  for (var t = Ot(e), n = $t(t), r = [], i = 0; i < n.length; i++) for (var a = n[i], o = 0; o < t[a].length; o++) for (var s = t[a][o], c = it(s.fingering), l = 0; l < s.pitches.length; l++) {
+   s.pitches[l] === parseInt(a) && ("x" !== c[l] ? r.push(c[l]) : r.push(""));
+  }
+  return r;
+ }
+ function Xt(e) {
+  for (var t = 0, n = 0; n < e.length; n++) e[n].grace && t++;
+  return t;
+ }
+ function Gt(e) {
+  if (e.size > 1 && console.log("BIGGIE"), e.grace) return Rt(e);
+  var t = S[e.staff][e.time], n = Xt(t);
+  if (t.length - n < 2) return Rt(e);
+  t.sort(Ft);
+  for (var r = 0, i = t[0]; i.grace; ) i = t[++r];
+  return e !== i ? "" : zt(Vt(t), e.staff, !0);
+ }
+ function Ut(e) {
+  var t = "{", n = function(e) {
+   for (var t = [], n = e.string, r = e.starts, i = e.stops, a = [], o = [], s = 0; s < r.length; s++) a.push(r[s] - r[0]), 
+   o.push(i[s] - r[0]);
+   for (var c = 0; c < a.length; c++) {
+    var l = n.substring(a[c], o[c]);
+    t.push(l);
+   }
+   return t;
+  }(e), r = [];
+  e.fingering && (r = it(e.fingering));
+  for (var i = 0; i < n.length; i++) {
+   if (r[i]) {
+    var a = r[i];
+    "x" !== (a = a.replace(j, "")) && (t += "!" + a + "!");
+   }
+   t += n[i];
+  }
+  return t += "}";
+ }
+ function jt(e) {
+  if (e.fingering) return !0;
+  for (var t = S[e.staff][e.time], n = 0; n < t.length; n++) if (!t[n].grace && t[n].fingering) return !0;
+  return !1;
+ }
+ function Yt(e) {
+  var t = "";
+  switch (e.get_phrase_break()) {
+  case ",":
+   t = "!shortphrase!";
+   break;
+
+  case ";":
+   t = "!mediumphrase!";
+   break;
+
+  case ".":
+   t = "!longphrase!";
+  }
+  return t;
+ }
+ function Kt() {
+  var e = "";
+  if (function() {
+   if (void 0 !== s) return s;
+   s = !1;
+   for (var e = !1, t = !1, n = i.split("\n"), r = 0; r < n.length; r++) {
+    var a = n[r];
+    if (a.match(/^%%setfont-1/) && (e = !0), a.match(/^%%setfont-2/) && (t = !0), e && t) {
+     s = !0;
+     break;
+    }
+   }
+   return s;
+  }() || (e += xe + "\n", function() {
+   if (void 0 !== n) return n;
+   n = !1;
+   for (var e = 0; e < T.length; e++) {
+    var t = T[e];
+    if (x[t].grace) {
+     n = !0;
+     break;
+    }
+   }
+   return n;
+  }() && (e += Be + "\n")), !function() {
+   if (void 0 !== c) return c;
+   c = !1;
+   for (var e = i.split("\n"), t = 0; t < e.length; t++) if (e[t].match(/^%%measurenb\s+\d+/)) {
+    c = !0;
+    break;
+   }
+   return c;
+  }()) {
+   var t = $e("measure_number_interval");
+   t && (e += "%%measurenb " + t + "\n");
+  }
+  for (var r = 0, a = 0; a < T.length; a++) {
+   var o = T[a], l = x[o], u = "";
+   if (l.grace) {
+    if (u = i.substring(parseInt(r), parseInt(l.start - 1)), r = l.end + 1, e += u, 
+    l.fingered_start = e.length + l.anno_start - l.start + 1, l.fingering && "x" !== l.fingering) {
+     var d = it(l.fingering);
+     l.fingered_start += 3 * d.length;
+    }
+    e += Ut(l);
+   } else {
+    var f = parseInt(l.start), g = parseInt(l.end);
+    u = i.substring(parseInt(r), f), e += u += Yt(l), r = g, jt(l) && (e += Gt(l)), 
+    l.fingered_start = e.length, e += l.string;
+   }
+   B[l.fingered_start] = l;
+  }
+  return e += i.substring(r);
+ }
+ function Zt() {
+  f = !0, N++, console.log("RERENDERING NUMBER " + N);
+  var e = new Date().getTime(), t = document.getElementById(pe), n = document.getElementById(he), i = new Lt();
+  a = new Abc(i);
+  var o = Kt(), s = new Date().getTime(), c = s - e;
+  console.log("MY LAG: " + c), document.getElementById(se).value = o, e = new Date().getTime(), 
+  r = "", a.tosvg("edit", '%%bgcolor white\n%%beginsvg\n<style type="text/css">\n\trect.abcr {fill:#a08000; fill-opacity:0}\n\trect.abcr:hover {fill-opacity:0.3}\n</style>\n%%endsvg\n'), 
+  k = 0, n.innerHTML = "", q = [];
+  try {
+   a.tosvg(_, document.getElementById(se).value);
+  } catch (e) {
+   return void alert(e.message + "\nabc2svg tosvg bug - stack:\n" + e.stack);
+  }
+  try {
+   t.innerHTML = r;
+  } catch (e) {
+   return void alert(e.message + "\nabc2svg image bug - abort:\n" + e.stack);
+  }
+  setTimeout(function() {
+   for (var e, t = document.getElementsByClassName("abcr"), n = t.length; --n >= 0; ) (e = t[n]).onclick = function() {
+    fn(this);
+   }, e.ondblclick = function() {
+    pn(this);
+   };
+  }, 300), c = (s = new Date().getTime()) - e, console.log("LIB LAG: " + c), bt();
+ }
+ function Wt(e) {
+  if (console.log(String.fromCharCode(e) + " --\x3e " + e), e === we) {
+   tn();
+   var t = nn();
+   t.length > 0 && t[0] ? (o.set_fingering(""), o.phrase_break = "", Zt()) : o.prior_note && ((o = o.prior_note).set_fingering(""), 
+   Zt()), _n(o);
+  } else if (e == ke || e == Ie) an(), w = [], o.next_note && (o = o.next_note); else if (e == Ce) an(), 
+  w = [], o.prior_note && (o = o.prior_note); else if (e == Ee) gn(); else if (e == ye) !function() {
+   tn();
+   var e = u.pop();
+   e && (e.undo_fingering_change(), o = e, Zt(), _n(o));
+  }(); else {
+   if (e != be) return !1;
+   !function() {
+    tn();
+    var e = l.pop();
+    e && (e.redo_fingering_change(), o = e.next_note ? e.next_note : e, Zt(), _n(o));
+   }();
+  }
+  return _n(o), !0;
+ }
+ function Jt(e) {
+  var t = Wt(e.keyCode);
+  return t && e.preventDefault(), t;
+ }
+ function Qt(e) {
+  return 0 == e ? ">" : "<";
+ }
+ function en(e) {
+  for (var t = e.upper.score_fingerings; t.length > 0; ) o.update_from_score_fingerings(t) && o.next_note && (o = o.next_note);
+  E && (o = o.prior_note);
+ }
+ function tn() {
+  E = !1, b = [], w = [], Zt(), _n(o);
+ }
+ function nn() {
+  for (var e = [], t = o.get_fingering().split(""), n = 0; n < t.length; n++) {
+   var r = t[n];
+   "x" === r ? e.push("") : e.push(r);
+  }
+  return e;
+ }
+ function rn() {
+  for (var e = nn(); e.length; ) {
+   var t = e.pop();
+   t && b.unshift(t);
+  }
+ }
+ function an() {
+  var e = !1;
+  w.length > 0 && (Array.prototype.unshift.apply(b, w), function() {
+   for (var e = 0; e < w.length; e++) if ("(" === w[e]) return !0;
+   return !1;
+  }() || (e = !0)), w = [];
+  for (var t = b.length - 1; t >= 0 && /[\-\/\(]/.test(b[t]); t--) w.unshift(b.pop());
+  if (0 !== b.length) {
+   if (/[\-\/]/.test(b[0]) && (e = !0), E) {
+    var n = nn();
+    ")" === n[n.length - 1] ? n.pop() : (alert("Something wonky with parentheses."), 
+    tn()), Array.prototype.unshift.apply(b, n), E = !1;
+   }
+   e ? o.prior_note ? (o = o.prior_note, rn()) : b.pop() : o.fingering && o.fingering.match(/x/) && rn();
+   for (var r = b.join(""), i = 1; ;) try {
+    var a = Abcdf_Parser.parse(r);
+    E = !1, 2 === i && (E = !0), en(a);
+    break;
+   } catch (e) {
+    if (1 === i ? b.push(")") : 2 === i ? (b.pop(), b.pop(), 0) : 3 === i && (i = 0), 
+    0 == b.length) break;
+    r = b.join(""), i++;
+   }
+   b = [], Zt(), _n(o);
+  }
+ }
+ function on(e) {
+  clearTimeout(y);
+  var t = !1;
+  return /[\(\)\/\-1-5]/.test(e) && (b.push(e), t = !0), "t" !== e && "T" !== e || (an(), 
+  L ? (L = !1, f && (document.body.style.backgroundColor = "white")) : (L = !0, f && (document.body.style.backgroundColor = "black")), 
+  _n(o), t = !0), "," !== e && ";" !== e && "." !== e || (an(), function(e) {
+   o.phrase_break = e;
+  }(e), Zt(), t = !0), y = setTimeout(an, ie), console.log("Done " + y), t;
+ }
+ function sn(e) {
+  var t;
+  return on((t = e, null == t.which ? String.fromCharCode(t.keyCode) : 0 != t.which && 0 != t.charCode ? String.fromCharCode(t.which) : null).toLowerCase());
+ }
+ function cn(e, t) {
+  var n = [], r = [];
+  r.push("% abcDidactyl v6");
+  for (var i, a = Ve(e), o = e.split("\n"), s = "", c = !1, l = 0; l < o.length; l++) {
+   var u = o[l];
+   s ? c ? n.push(u) : (i = Q.exec(u)) && (c = !0) : (i = W.exec(u)) && i[1] ? s = i[1] : n.push(u);
+  }
+  var d, f, g, p, h, m = ze(), v = Fe(t);
+  "replace" === $e("output") ? a[m - 1] = v : a.push(v);
+  for (l = 0; l < a.length; l++) {
+   var _ = l + 1;
+   try {
+    Abcdf_Parser.parse(a[l].sequence);
+   } catch (e) {
+    alert("Bad abcDF parse of fingering string: " + e.message);
+   }
+   d = "% abcD fingering " + _ + ": " + a[l].sequence, r.push(d), a[l].authority && (f = "% Authority: " + a[l].authority, 
+   a[l].authority_year && (f += " (" + a[l].authority_year + ")"), r.push(f)), a[l].transcriber && (g = "% Transcriber: " + a[l].transcriber, 
+   r.push(g)), a[l].transcription_date && (p = "% Transcription date: " + a[l].transcription_date, 
+   r.push(p)), h = a[l].comments.split("\n");
+   for (var y = 0; y < h.length; y++) (y !== h.length - 1 || h[y]) && r.push("% " + h[y]);
+  }
+  return r.push("% abcDidactyl END"), r.join("\n") + "\n" + n.join("\n");
+ }
+ function ln() {
+  document.body.addEventListener("keydown", Jt), document.body.addEventListener("keypress", sn);
+ }
+ function un() {
+  document.body.removeEventListener("keydown", Jt), document.body.removeEventListener("keypress", sn);
+ }
+ function dn() {
+  if (function() {
+   if (!M) {
+    var e = document.getElementById(oe);
+    e.align = "center";
+    var t = document.getElementById(se);
+    t || ((t = document.createElement("div")).id = se, t.style.display = "none", e.appendChild(t)), 
+    t.class = ce;
+    var n = document.createElement(le);
+    n.id = le, e.appendChild(n);
+    var r = document.createElement(ue);
+    r.id = ue, e.appendChild(r);
+    var i = document.createElement(de);
+    i.id = de, e.appendChild(i);
+    var a = document.createElement(ge);
+    a.id = ge, e.appendChild(a);
+    var o = document.createElement(pe);
+    o.id = pe, a.appendChild(o);
+    var s = document.createElement(he);
+    s.id = he, a.appendChild(s);
+    for (var c = 0; c < 7; c++) a.appendChild(document.createElement("br"));
+    var l = document.createElement(fe);
+    l.id = fe, e.appendChild(l);
+   }
+  }(), Te(), function() {
+   if (!M) {
+    xt(), It();
+    var e = R + "/download_36_x4.png", n = document.getElementById(ue), r = document.createElement("table"), i = document.createElement("tbody"), a = document.createElement("tr");
+    n.appendChild(r), r.appendChild(i), r.style.backgroundColor = "LightGray", r.align = "center", 
+    i.appendChild(a);
+    var o = document.createElement("p");
+    o.setAttribute("id", "downloadify"), (l = document.createElement("td")).appendChild(o), 
+    a.appendChild(l);
+    var s = document.createElement("input");
+    s.id = "sequence_spinner", s.min = "1", s.max = "999", s.size = 3, s.type = "number", 
+    s.alt = "fingering_number", s.value = 1, s.onchange = Bn, kt(l = document.createElement("td"), "Sequence", "sequence_prompt"), 
+    l.appendChild(s), a.appendChild(l), t.preset_select || (l.style.display = "none");
+    var c = document.createElement("input");
+    c.type = "image", c.src = R + "/eye.svg", c.width = "36", c.alt = "View", c.onclick = Dn, 
+    (l = document.createElement("td")).appendChild(c), a.appendChild(l);
+    var l, u = document.createElement("input");
+    u.type = "image", u.src = R + "/print.svg", u.width = "36", u.alt = "Print...", 
+    u.onclick = xn, (l = document.createElement("td")).appendChild(u), a.appendChild(l), 
+    l = document.createElement("td");
+    var d = document.createElement("input");
+    d.type = "checkbox", d.value = "annotated", d.checked = P, d.id = "view_annotated", 
+    d.onclick = _t;
+    var f = document.createElement("label");
+    f.htmlFor = "view_annotated", f.appendChild(document.createTextNode("Annotated")), 
+    l.appendChild(d), l.appendChild(f), a.appendChild(l);
+    var g = document.createElement("input");
+    g.type = "image", g.src = R + "/reload.svg", g.width = "36", g.alt = "reset", g.onclick = nt, 
+    (l = document.createElement("td")).appendChild(g), a.appendChild(l);
+    var p = document.createElement("input");
+    p.id = "copy_fingerings_button", p.type = "image", p.src = R + "/clipboard.svg", 
+    p.width = "36", p.alt = "copy", (l = document.createElement("td")).appendChild(p), 
+    a.appendChild(l), t.hide_copy ? p.style.display = "none" : new Clipboard("#copy_fingerings_button", {
+     text: et
+    });
+    var h = document.createElement("input");
+    h.type = "image", h.src = R + "/paperclip.svg", h.width = "36", h.alt = "paste", 
+    h.onclick = tt, (l = document.createElement("td")).appendChild(h), a.appendChild(l), 
+    t.hide_paste && (h.style.display = "none");
+    var m = document.createElement("input");
+    m.type = "image", m.src = R + "/globe.svg", m.width = "36", m.alt = "URL", m.onclick = mt, 
+    (l = document.createElement("td")).appendChild(m), a.appendChild(l), t.url_input || (m.style.display = "none");
+    var v = document.createElement("input");
+    v.setAttribute("type", "file"), v.setAttribute("accept", "text/vnd.abc"), v.onchange = vt, 
+    v.setAttribute("id", "file_input"), (l = document.createElement("td")).appendChild(v), 
+    a.appendChild(l), t.file_input || (v.style.display = "none");
+    var y = document.createElement("input");
+    y.type = "image", y.src = R + "/tags.svg", y.alt = "Metadata...", y.width = "36", 
+    y.onclick = st, (l = document.createElement("td")).appendChild(y), a.appendChild(l);
+    var b = document.createElement("input");
+    b.type = "image", b.src = R + "/zoom-out.svg", b.alt = "Zoom In", b.width = "36", 
+    b.onclick = lt, (l = document.createElement("td")).appendChild(b), a.appendChild(l);
+    var E = document.createElement("input");
+    E.type = "image", E.src = R + "/zoom-in.svg", E.alt = "Zoom In", E.width = "36", 
+    E.onclick = ut, (l = document.createElement("td")).appendChild(E), a.appendChild(l);
+    var w = document.createElement("input");
+    w.type = "image", w.src = R + "/cog.svg", w.alt = "Preferences...", w.width = "36", 
+    w.onclick = ot, (l = document.createElement("td")).appendChild(w), a.appendChild(l);
+    var k = document.createElement("input");
+    k.type = "image", k.src = R + "/info.svg", k.alt = "Help", k.width = "36", k.onclick = at, 
+    (l = document.createElement("td")).appendChild(k), a.appendChild(l), Downloadify.create("downloadify", {
+     filename: function() {
+      return _;
+     },
+     data: Tn,
+     onComplete: function() {
+      alert("Your file has been saved.");
+     },
+     onCancel: function() {
+      alert("File save has been cancelled.");
+     },
+     onError: function() {
+      alert("File save failed!");
+     },
+     transparent: !1,
+     swf: O + "/downloadify.swf",
+     downloadImage: e,
+     width: "36",
+     height: "36",
+     append: !1
+    }), At(), M = !0;
+   }
+  }(), function() {
+   Ue("preset", localStorage.getItem("preset")), Ue("output", localStorage.getItem("output")), 
+   Ue("restore", localStorage.getItem("restore")), Ue("keypad", localStorage.getItem("keypad"));
+   var e = localStorage.getItem("measure_number_interval");
+   void 0 !== e && "" !== e || (e = V), je("measure_number_interval", e), je("default_authority", localStorage.getItem("default_authority")), 
+   je("default_authority_year", localStorage.getItem("default_authority_year")), je("default_transcriber", localStorage.getItem("default_transcriber"));
+  }(), !(i = document.getElementById(se).value)) {
+   var e = $e("default_url");
+   e && (ht(e), i = document.getElementById(se).value);
+  }
+  f = !0, i && (h = Ve(i), Xe(), hn(), _n(o = I[0][0][0]), ln()), bt(), $(function() {
+   FastClick.attach(document.body);
+  });
+ }
+ function fn(e) {
+  console.log("Processing note click....");
+  var t = e.getAttribute("class");
+  console.log("Click " + t);
+  var n = t.split("_")[1];
+  if (n in B) {
+   var r = B[n];
+   qt("process_note_click", r), _n(r), o = r;
+  }
+ }
+ function gn() {
+  tn();
+  var e = "";
+  o.preset_fingering && (e += "Preset (recommended) fingering: " + o.get_preset_fingering() + "\n\n"), 
+  e += "Please enter a fingering string for the selected note.";
+  var t = o.fingering, n = window.prompt(e, t);
+  try {
+   if (null === n) return;
+   en(Abcdf_Parser.parse(n)), Zt(), _n(o);
+  } catch (e) {
+   alert("Bad abcDF parse of fingering string: " + e.message + e.stack);
+  }
+ }
+ function pn(e) {
+  console.log("Processing note double-click...."), fn(e), gn();
+ }
+ function hn() {
+  var e = new Lt(), t = document.getElementById(pe), n = document.getElementById(he);
+  t.align = "center", a = new Abc(e), r = "", a.tosvg("edit", '%%bgcolor white\n%%beginsvg\n<style type="text/css">\n\trect.abcr {fill:#a08000; fill-opacity:0}\n\trect.abcr:hover {fill-opacity:0.3}\n</style>\n%%endsvg\n'), 
+  n.innerHTML = "", q = [];
+  try {
+   i && a.tosvg(_, i);
+  } catch (e) {
+   return void alert(e.message + "\nabc2svg tosvg bug - stack:\n" + e.stack);
+  }
+  try {
+   i && (t.innerHTML = r, function() {
+    for (var e, t, n, r, i, a = 0; a < C.length; a++) t = (e = C[a]).line, n = e.staff, 
+    t in I || (I[t] = [], I[t][0] = [], I[t][1] = []), I[t][n].push(e);
+    for (t = 0; t < I.length; t++) for (n = 0; n < 2; n++) (o = I[t][n]).sort(Ft);
+    for (n = 0; n < 2; n++) for (t = 0; t < I.length; t++) {
+     var o = I[t][n];
+     for (a = 0; a < o.length; a++) r = o[a], i ? (i.next_note = r, r.prior_note = i, 
+     i = r) : (i = r, r.prior_note = void 0);
+    }
+    r.next_note = void 0;
+   }(), function() {
+    var e;
+    for (e in x) x.hasOwnProperty(e) && T.push(e);
+    T.sort(function(e, t) {
+     return parseInt(e) - parseInt(t);
+    });
+   }(), D = !0, k = 0, Qe(), Zt());
+  } catch (e) {
+   return void alert(e.message + "\nabc2svg image bug - abort:\n" + e.stack);
+  }
+ }
+ function mn(e, t) {
+  for (var n = document.getElementsByClassName(e), r = n.length; --r >= 0; ) n[r].setAttribute("color", t);
+ }
+ function vn(e) {
+  var t, n = F.length;
+  for (t = 0; t < n; t++) mn(F[t], e);
+ }
+ function _n(e) {
+  var t = e.fingered_start;
+  0 != F.length && (vn("black"), F = []), F.push("e_" + t), L ? 0 === e.staff ? vn("dodgerblue") : vn("red") : 1 === e.staff ? vn("dodgerblue") : vn("red");
+  var n = "line_" + e.line, r = document.getElementById(n);
+  if (!function(e) {
+   var t = $(e), n = $(window), r = document.getElementById(fe), i = n.scrollTop(), a = i + n.height() - r.offsetHeight, o = t.offset().top;
+   return o + t.height() <= a && o >= i;
+  }(r)) {
+   r.scrollIntoView(!1);
+   var i = document.getElementById(fe), a = document.body.scrollTop;
+   window.scrollTo(0, a + i.offsetHeight);
+  }
+ }
+ function yn(e) {
+  e || (e = i);
+  for (var t = e.split("\n"), n = 0; n < t.length; n++) {
+   var r = t[n];
+   if (/^\s*X:/.test(r)) {
+    var a = r.split(":");
+    return 2 != a.length ? "" : a[1].trim();
+   }
+  }
+  return "";
+ }
+ function bn(e) {
+  var t = [];
+  e.fingering && (t = it(e.fingering));
+  for (var n = e.fingering || "", r = t.length; r < e.size; r++) n += "x";
+  return n += e.phrase_break;
+ }
+ function En(e) {
+  if (e.grace) return bn(e);
+  var t = S[e.staff][e.time], n = Xt(t);
+  if (t.length - n < 2) return bn(e);
+  t.sort(Ft);
+  for (var r = 0, i = t[0]; i.grace; ) i = t[++r];
+  if (e !== i) return "";
+  var a = Vt(t), o = "";
+  for (r = 0; r < a.length; r++) a[r] ? o += a[r] : o += "x";
+  return o;
+ }
+ function wn(e, t) {
+  for (var n = [], r = t, i = e.split(""), a = 0; a < i.length; a++) {
+   var o = i[a];
+   o.match(j) ? o !== r && (n.push(o), r = o) : n.push(o);
+  }
+  return n.join("");
+ }
+ function kn(e, t) {
+  for (var n = I[t][e], r = "", i = 0; i < n.length; i++) {
+   r += En(n[i]);
+  }
+  return r;
+ }
+ function Cn(e, t) {
+  let n = Z.exec(e);
+  return n && n[1] ? n[1] : t;
+ }
+ function In() {
+  for (var e = "", t = "", n = Qt(0), r = Qt(1), i = 0; i < I.length; i++) {
+   var a = kn(0, i);
+   if (a && (n = Cn(a = wn(a, n), n), e += a, i < I.length - 1 && (e += "&")), I[i][1]) {
+    var o = kn(1, i);
+    o && (r = Cn(o = wn(o, r), r), t += o, i < I.length - 1 && (t += "&"));
+   }
+  }
+  return e + "@" + t;
+ }
+ function xn() {
+  console.log("Print that score.");
+  var e = window.open("", "print_window");
+  e.document.write(r), e.document.close(), e.focus(), e.print(), e.close();
+ }
+ function Bn() {
+  document.getElementById(se).value = i, Te(), i = document.getElementById(se).value, 
+  hn(), _n(o = I[0][0][0]), ln();
+ }
+ function Tn() {
+  return cn(P ? Kt() : i, !0);
+ }
+ function Dn() {
+  var e = Tn();
+  window.open().document.write("<pre>" + e + "</pre>");
+ }
+ function Sn() {
+  return In();
+ }
+ function An(e) {
+  var t = function(e) {
+   try {
+    Abcdf_Parser.parse(e);
+   } catch (e) {
+    return "Bad abcDF parse of string: " + e.message + e.stack;
+   }
+   var t = 0, n = $e("validate");
+   if ("complete" === n) t = e.split("x").length - 1; else if ("none" === n) t = 0; else if ("auto" === n) return "Validation of autofill is not yet implemented.";
+   return 1 === t ? "One note is missing a fingering annotation." : t > 1 ? t + " notes are missing fingering annotations." : "";
+  }(e);
+  return !t || (alert(t), !1);
+ }
+ function qn() {
+  var e = P;
+  P = !1;
+  var t = Tn();
+  return P = e, t;
+ }
+ return this.renderUI = function(e) {
+  !function(e) {
+   t || (t = e);
+  }(e), dn();
+  var n = $e("qualtrics");
+  n && (n.disableNextButton(), n.disablePreviousButton());
+ }, this.getXValue = yn, this.getAuthority = function() {
+  return $e("include_pii") ? Le("authority") : "";
+ }, this.getAuthorityYear = function() {
+  return Le("authority_year");
+ }, this.getTranscriber = function() {
+  return $e("include_pii") ? Le("transcriber") : "";
+ }, this.getComments = function() {
+  return Le("comments");
+ }, this.getEnteredCollection = Sn, this.getEnteredAbcDF = Sn, this.getEnteredAbcD = qn, 
+ this.getValidatedCollection = function() {
+  var e = In();
+  return An(e) ? e : "";
+ }, this.getValidatedAbcD = function() {
+  if (An(In())) {
+   var e = Tn();
+   return /^\s*X:/m.test(e) ? /^% abcDidactyl/m.test(e) ? e : (alert("File is not valid abcD."), 
+   "") : (alert("File is not valid abc."), "");
+  }
+  return "";
+ }, this.setEnteredCollection = function(e) {
+  o = I[0][0][0];
+  var t = ze(), n = Fe(!0);
+  n.sequence = e, Je(Ne(t), n), Zt(), _n(o);
+ }, this.handleKeys = ln, this.unhandleKeys = un, this;
+}
