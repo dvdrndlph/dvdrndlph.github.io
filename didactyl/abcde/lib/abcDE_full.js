@@ -1,4 +1,4 @@
-/* abcDE_full.js v6.0.19 */
+/* abcDE_full.js v6.0.20 */
 !function(a, b) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = a.document ? b(a, !0) : function(a) {
   if (!a.document) throw new Error("jQuery requires a window with a document");
@@ -35159,7 +35159,7 @@ function AbcDE() {
  }
  function import_url() {
   var prompt = "Please enter URL to open.";
-  var default_url = CORPORA_URL + "/wtc/prelude01.abc";
+  var default_url = CORPORA_URL + "/clementi/11.abc";
   if (Previous_Url) {
    default_url = Previous_Url;
   } else {

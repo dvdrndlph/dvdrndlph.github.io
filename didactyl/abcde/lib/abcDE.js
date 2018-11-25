@@ -1066,7 +1066,7 @@ function AbcDE() {
 
     function import_url() {
         var prompt = 'Please enter URL to open.';
-        var default_url = CORPORA_URL + '/wtc/prelude01.abc';
+        var default_url = CORPORA_URL + '/clementi/11.abc';
         if (Previous_Url) {
             default_url = Previous_Url;
         } else {

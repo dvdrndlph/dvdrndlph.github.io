@@ -1,4 +1,4 @@
-/* abcDE_full_min.js v6.0.19 */
+/* abcDE_full_min.js v6.0.20 */
 !function(e, t) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function(e) {
   if (!e.document) throw new Error("jQuery requires a window with a document");
@@ -18206,7 +18206,7 @@ function AbcDE() {
   }, r.send()) : alert(n);
  }
  function vt() {
-  var e = j + "/wtc/prelude01.abc";
+  var e = j + "/clementi/11.abc";
   if (f) e = f; else {
    var t = qe("default_url");
    t && (e = t);
