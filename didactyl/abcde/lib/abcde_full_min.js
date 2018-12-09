@@ -1,4 +1,4 @@
-/* abcDE_full_min.js v6.0.20 */
+/* abcDE_full_min.js v6.0.21 */
 !function(e, t) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function(e) {
   if (!e.document) throw new Error("jQuery requires a window with a document");
@@ -18450,13 +18450,13 @@ function AbcDE() {
    this.phrase_break = "";
   }, this.preset_init = function() {
    this.preset_fingering = "";
-   for (var e = 0; e < this.size; e++) this.fingering += "x";
+   for (var e = 0; e < this.size; e++) this.preset_fingering += "x";
    this.preset_phrase_break = "";
   }, this.init(), this.set_fingering = function(e) {
    if (function() {
     for (var e = 0; e < E.length; e++) E[e].undone_fingerings = [];
     u = [];
-   }(), this.fingering && this.prior_fingerings.push(this.fingering), e) {
+   }(), "x" != this.fingering && this.prior_fingerings.push(this.fingering), e) {
     var t = J.exec(e);
     t ? (this.phrase_break = t[1], this.fingering = e.replace(J, "")) : this.fingering = e;
    } else this.init();

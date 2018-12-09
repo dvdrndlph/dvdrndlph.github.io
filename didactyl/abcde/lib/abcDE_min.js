@@ -1,4 +1,4 @@
-/* abcDE_min.js v6.0.20 */
+/* abcDE_min.js v6.0.21 */
 /** @license
  *
  * Copyright (c) 2015, 2016 David A. Randolph.
@@ -616,13 +616,13 @@ function AbcDE() {
    this.phrase_break = "";
   }, this.preset_init = function() {
    this.preset_fingering = "";
-   for (var e = 0; e < this.size; e++) this.fingering += "x";
+   for (var e = 0; e < this.size; e++) this.preset_fingering += "x";
    this.preset_phrase_break = "";
   }, this.init(), this.set_fingering = function(e) {
    if (function() {
     for (var e = 0; e < C.length; e++) C[e].undone_fingerings = [];
     l = [];
-   }(), this.fingering && this.prior_fingerings.push(this.fingering), e) {
+   }(), "x" != this.fingering && this.prior_fingerings.push(this.fingering), e) {
     var t = Y.exec(e);
     t ? (this.phrase_break = t[1], this.fingering = e.replace(Y, "")) : this.fingering = e;
    } else this.init();
