@@ -113,7 +113,7 @@ function AbcDE() {
         Numbering_Set_In_Source,
         Toggled = false,
         Colcl = [], 		// colorized classes
-        Persist_Annotated = true,
+        Persist_Annotated = false,
         Ui_In_Place = false;
 
     var DIDACTYL_URL = '..';

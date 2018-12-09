@@ -1,4 +1,4 @@
-/* abcDE_full.js v6.0.22 */
+/* abcDE_full.js v6.0.23 */
 !function(a, b) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = a.document ? b(a, !0) : function(a) {
   if (!a.document) throw new Error("jQuery requires a window with a document");
@@ -34330,7 +34330,7 @@ var Survey;
  */
 function AbcDE() {
  "use strict";
- var Options, Redo = [], Undo = [], Previous_Url = "", Toggling_Background = false, Magnification = 1, Preferences = {}, Sequences = [], Grace_Notes_In_Source, Autosaver = undefined, Md5_Key = "", Abc_Images, Abc_Fname = "noname.abc", Org_Abc_Str, My_Abc, Timer = 0, Input_Buffer = [], Open_Ornament = false, Trailing_Characters = [], Current_Note, Current_Line_Number = 0, Notes = [], Notes_On_Line = [], Note_At = {}, Fingered_Note_At = {}, Sorted_Note_Locations = [], Preprocessing_Completed = false, Staff_Notes_At_Time = {}, Voice_Staff = {}, Ref = [], Rerender_Count = 0, Fonts_Set_In_Source, Numbering_Set_In_Source, Toggled = false, Colcl = [], Persist_Annotated = true, Ui_In_Place = false;
+ var Options, Redo = [], Undo = [], Previous_Url = "", Toggling_Background = false, Magnification = 1, Preferences = {}, Sequences = [], Grace_Notes_In_Source, Autosaver = undefined, Md5_Key = "", Abc_Images, Abc_Fname = "noname.abc", Org_Abc_Str, My_Abc, Timer = 0, Input_Buffer = [], Open_Ornament = false, Trailing_Characters = [], Current_Note, Current_Line_Number = 0, Notes = [], Notes_On_Line = [], Note_At = {}, Fingered_Note_At = {}, Sorted_Note_Locations = [], Preprocessing_Completed = false, Staff_Notes_At_Time = {}, Voice_Staff = {}, Ref = [], Rerender_Count = 0, Fonts_Set_In_Source, Numbering_Set_In_Source, Toggled = false, Colcl = [], Persist_Annotated = false, Ui_In_Place = false;
  var DIDACTYL_URL = "..";
  var CORPORA_URL = DIDACTYL_URL + "/../corpora";
  var HELP_URL = "./abcde_help.html";

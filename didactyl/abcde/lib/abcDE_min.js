@@ -1,4 +1,4 @@
-/* abcDE_min.js v6.0.22 */
+/* abcDE_min.js v6.0.23 */
 /** @license
  *
  * Copyright (c) 2015, 2016 David A. Randolph.
@@ -30,7 +30,7 @@
  */
 function AbcDE() {
  "use strict";
- var t, n, r, i, a, o, s, c, l = [], u = [], d = "", f = !1, g = 1, p = {}, h = [], m = void 0, v = "", _ = "noname.abc", y = 0, b = [], E = !1, w = [], k = 0, C = [], I = [], x = {}, B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, L = !1, F = [], P = !0, M = !1, H = "../../corpora", z = "./abcde_help.html", R = "../image", O = "../lib/media", V = 5, X = /\s/g, G = /</g, U = />/g, j = /[><]/g, Y = /([,;\.])/, K = /&/g, Z = /.*([<>])[^<>]+$/, W = /^% abcDidactyl v([\d\.]+)$/, J = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Q = /^% abcDidactyl END$/, ee = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, ae = 4e3, oe = "abcde", se = "abc_source", ce = "source", le = "abcde_prefs", ue = "abcde_controls", de = "abcde_metadata", fe = "abcde_keypad", ge = "abcde_rendering", pe = "abcde_target", he = "abcde_error", me = .1, ve = 3, _e = .3, ye = 90, be = 89, Ee = 13, we = 8, ke = 9, Ce = 37, Ie = 39, xe = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Be = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
+ var t, n, r, i, a, o, s, c, l = [], u = [], d = "", f = !1, g = 1, p = {}, h = [], m = void 0, v = "", _ = "noname.abc", y = 0, b = [], E = !1, w = [], k = 0, C = [], I = [], x = {}, B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, L = !1, F = [], P = !1, M = !1, H = "../../corpora", z = "./abcde_help.html", R = "../image", O = "../lib/media", V = 5, X = /\s/g, G = /</g, U = />/g, j = /[><]/g, Y = /([,;\.])/, K = /&/g, Z = /.*([<>])[^<>]+$/, W = /^% abcDidactyl v([\d\.]+)$/, J = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Q = /^% abcDidactyl END$/, ee = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, ae = 4e3, oe = "abcde", se = "abc_source", ce = "source", le = "abcde_prefs", ue = "abcde_controls", de = "abcde_metadata", fe = "abcde_keypad", ge = "abcde_rendering", pe = "abcde_target", he = "abcde_error", me = .1, ve = 3, _e = .3, ye = 90, be = 89, Ee = 13, we = 8, ke = 9, Ce = 37, Ie = 39, xe = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Be = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
  function Te() {
   m && clearInterval(m), l = [], u = [], v = "", f = !1, _ = "noname.abc", n = void 0, 
   i = "", a = void 0, b = [], E = !1, w = [], o = void 0, k = 0, C = [], I = [], x = {}, 
