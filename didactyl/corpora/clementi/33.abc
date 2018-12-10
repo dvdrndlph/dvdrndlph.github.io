@@ -18,5 +18,5 @@ V:1
 !p! e2>d2 c2>B2 A2>G2F2>G2) | (([GB]8 [FA]4)) z4 ||
 V:3
 !p! (G,2 D2 B,2 D2 | G,2 D2 B,2 D2) | (F,2 D2 A,2 D2 | G,2 D2 B,2 D2) | %402
-[I:staff -1] (E2 G2 D2 C2 |$!f! B,2 D2 G2)[I:staff +1] z2 |[K:bass] (C4 ^C4) | %405
+[I:staff -1] E2 G2 D2 C2 |$!f! B,2 D2 G2[I:staff +1] z2 |[K:bass] (C4 ^C4) | %405
  (D2 D,2 D2) z2 ||
