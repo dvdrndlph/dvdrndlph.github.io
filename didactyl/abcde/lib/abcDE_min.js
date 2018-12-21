@@ -1,4 +1,4 @@
-/* abcDE_min.js v6.0.32 */
+/* abcDE_min.js v6.0.33 */
 /** @license
  *
  * Copyright (c) 2015, 2016 David A. Randolph.
@@ -1161,7 +1161,7 @@ function AbcDE() {
   var t = o.fingering, n = window.prompt(e, t);
   try {
    if (null === n) return;
-   en(Abcdf_Parser.parse(n)), Zt(), _n(o);
+   n = n.replace(K, ""), en(Abcdf_Parser.parse(n)), Zt(), _n(o);
   } catch (e) {
    alert("Bad abcDF parse of fingering string: " + e.message + e.stack);
   }

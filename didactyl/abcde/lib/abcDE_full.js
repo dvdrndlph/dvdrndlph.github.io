@@ -1,4 +1,4 @@
-/* abcDE_full.js v6.0.32 */
+/* abcDE_full.js v6.0.33 */
 !function(a, b) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = a.document ? b(a, !0) : function(a) {
   if (!a.document) throw new Error("jQuery requires a window with a document");
@@ -37051,6 +37051,7 @@ function AbcDE() {
    if (new_fingering === null) {
     return;
    }
+   new_fingering = new_fingering.replace(LINE_RE, "");
    var parsimony = Abcdf_Parser.parse(new_fingering);
    finger_notes_from_parse(parsimony);
    rerender();

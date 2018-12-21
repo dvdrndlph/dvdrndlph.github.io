@@ -3312,6 +3312,7 @@ function AbcDE() {
             if (new_fingering === null) {
                 return;
             }
+            new_fingering = new_fingering.replace(LINE_RE, '');
             var parsimony = Abcdf_Parser.parse(new_fingering);
             finger_notes_from_parse(parsimony);
             rerender();

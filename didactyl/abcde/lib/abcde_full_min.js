@@ -1,4 +1,4 @@
-/* abcDE_full_min.js v6.0.32 */
+/* abcDE_full_min.js v6.0.33 */
 !function(e, t) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function(e) {
   if (!e.document) throw new Error("jQuery requires a window with a document");
@@ -18995,7 +18995,7 @@ function AbcDE() {
   var t = a.fingering, n = window.prompt(e, t);
   try {
    if (null === n) return;
-   en(Abcdf_Parser.parse(n)), Kt(), yn(a);
+   n = n.replace(X, ""), en(Abcdf_Parser.parse(n)), Kt(), yn(a);
   } catch (e) {
    alert("Bad abcDF parse of fingering string: " + e.message + e.stack);
   }
