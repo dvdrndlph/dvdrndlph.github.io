@@ -1,3 +1,7 @@
+% abcDidactyl v6
+% abcD fingering 1: xxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxx@xxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+% Transcription date: 2018-12-20 21:50:39
+% abcDidactyl END
 X:53
 T:Sonatina 5.3
 C:Muzio Clementi
@@ -14,19 +18,19 @@ V:2 treble
 V:3 bass
 V:4 bass
 V:1
-"^Allegro moderato.""_dolce""^Air Suisse (Orginal.)"({cd)} e4({ed)c} (d2 | %753
- c4) (e2 | d2)(dBce | .d2)(dBce | .d2)(dBce | G6) |({cd)} e4 (!turn!d2 |$ c4) (e2 | .d2)(dBce | %761
- .d2){/e}(dcde | .d2){/e}(dcde | c6) |!pp!({cd)} e4 (!turn!d2 | c4) (e2 |$ .d2)(dBce | .d2)(dBce | %768
- d2)(dBce |!<(! G6)!<)! |({cd)} e4 (!turn!d2 | c4)({cd)} (e2 | .d2)(dBce |$ .d2){/e}(dcde | %774
+"^Allegro moderato.""_dolce""^Air Suisse (Orginal.)"(c/d/)e3({edc}) (d2 | %753
+ c4) (e2 | d2)(dBce | .d2)(dBce | .d2)(dBce | G6) |({cd}) e4 (!turn!d2 |$ c4) (e2 | .d2)(dBce | %761
+ .d2){/e}(dcde | .d2){/e}(dcde | c6) |!pp!({cd}) e4 (!turn!d2 | c4) (e2 |$ .d2)(dBce | .d2)(dBce | %768
+ d2)(dBce |!<(! G6)!<)! |({cd}) e4 (!turn!d2 | c4)({cd}) (e2 | .d2)(dBce |$ .d2){/e}(dcde | %774
  .d2){/e}(dcde | c6) |!p! .c2"_leggiero"(cdef | g2e2g2 | a2f2a2 |$ g2e2)(g2 | %780
  f2d2f2 | e2c2)(e2 | .d2){/e}(dcde | c6) | .c2(cdef |$ g2e2g2) | %786
-({fg)} (a2f2a2) | (age2g2) | (gfd2f2) | (fec2e2) | (ed){/e} (dcde |$ c6) | %792
+({fg}) (a2f2a2) | (age2g2) | (gfd2f2) | (fec2e2) | (ed){/e} (dcde |$ c6) | %792
  (gf.d2).d2 | (fe.c2).c2 | (ed.B2).B2 | (c/d/c/B/ cdef | %796
  gf.d2).d2 |$ (fe.c2).c2 |"_rallent." (c/d/c/B/ c)(.d.e.^f) | !fermata![Bg]6 | %800
-"^a tempo""_dolce"({cd)} e4 (!turn!d2 | c4) (e2 | .d2)(dBce |$ .d2)(dBce | .d2)(dBce | G6) | %806
-({cd)} e4 (!turn!d2 | c4) (e2 | .d2)(dBce | .d2){/e}(dcde |$ .d2){/e}(dcde |!<(! c6)!<)! | %812
-!f!({c'd')} e'4 (!turn!d'2 | c'4)({c'd')} (e'2 | .d'2)(d'bc'e' | .d'2)(d'bc'e' |$ %816
- .d'2)(d'bc'e' | g6) |({c'd')} e'4 (!turn!d'2 | c'4)({c'd')} (e'2 | .d'2)d'-bc'e' | %821
+"^a tempo""_dolce"({cd}) e4 (!turn!d2 | c4) (e2 | .d2)(dBce |$ .d2)(dBce | .d2)(dBce | G6) | %806
+({cd}) e4 (!turn!d2 | c4) (e2 | .d2)(dBce | .d2){/e}(dcde |$ .d2){/e}(dcde |!<(! c6)!<)! | %812
+!f!({c'd'}) e'4 (!turn!d'2 | c'4)({c'd'}) (e'2 | .d'2)(d'bc'e' | .d'2)(d'bc'e' |$ %816
+ .d'2)(d'bc'e' | g6) |({c'd'}) e'4 (!turn!d'2 | c'4)({c'd'}) (e'2 | .d'2)d'-bc'e' | %821
  d'2{/d'}(d'c'd'e' |$ .d'2){/e'}(d'c'd'e' |!ff! .c'2){/d'}(c'bc'e' | %824
  .g2){/a}(g^fgc' | .e2){/f}(edeg | .c2).c2.c2 | c6 |$ %828
 [K:bass]!p!!>(!{CD} E4 (!turn!D2!>)! | C2.G,2).G,2 |!>(!{CD} E4 (!turn!D2 | C2) z2 z2!>)! | %832
