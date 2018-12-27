@@ -40,9 +40,14 @@ V:3
  E,,/E,/^D,/E,/D,/E,/ E,,/E,/D,/E,/D,/E,/ |$ E,,/E,/^D,/E,/D,/E,/ E,,/E,/D,/E,/D,/E,/ | [E,,E,]6 | %1080
  z6 |[K:treble] [^CE][CE][CE] [CE][CE][CE] | [DE][DE][DE] [DE][DE][DE] |$ %1083
  [CE][CE][CE] [CE][CE][CE] | [DE][DE][DE] [DE][DE][DE] | [CE][CE][CE] [CE][CE][CE] | %1086
- [DF]2 z z2 z |$[K:bass] [E,C][E,C][E,C] [E,^G,][E,G,][E,G,] | (A,,E,A,) (A,,E,A,) | %1089
- A,,E,A, A,,E,A, | A,,E,A, A,,E,A, | A,,E,A, A,,E,A, |$ .A,, z z .[D,,D,] z z | %1093
- .[E,,E,] z z .[E,,E,] z z | (A,,E,A,) (A,,E,A,) | A,,E,A, A,,E,A, |$ A,,E,A, A,,E,A, | %1097
- A,,E,A, A,,E,A, | (G,,A,).A, (D,,D,).D, | (E,,E,).E, (E,,E,).E, |$ %1100
+ [DF]2 z z2 z |$[K:bass] [E,C][E,C][E,C] [E,^G,][E,G,][E,G,] | z(E,A,) z(E,A,) | %1089
+ zE,A, zE,A, | zE,A, zE,A, | zE,A, zE,A, |$ .A,, z z .[D,,D,] z z | %1093
+ .[E,,E,] z z .[E,,E,] z z | z(E,A,) z(E,A,) | zE,A, zE,A, |$ zE,A, zE,A, | %1097
+ zE,A, zE,A, | (G,,A,).A, (D,,D,).D, | (E,,E,).E, (E,,E,).E, |$ %1100
  [A,,,A,,]6 | z6 | z2 z[K:treble] .[CE].[CE].[CE] | ([B,D]2 .[A,C]) .[E=G].[EG].[EG] | %1104
  ([DF]3 [CE]3) | !fermata!z2 z || %1106
+V:4
+x3|x6|x6|x6|x6|x6|x6|x6|x6|x6|x6|x6|x6|x6|x6|x6|x6|x6|x6|x6|x6|x6|
+A,,3 A,,3|A,,3 A,,3|A,,3 A,,3|A,,3 A,,3|x6|x6|
+A,,3 A,,3|A,,3 A,,3|A,,3 A,,3|A,,3 A,,3|
+x6|x6|x6|x6|x6|x6|x6|x3||

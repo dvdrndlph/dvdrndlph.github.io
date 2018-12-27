@@ -46,7 +46,7 @@ V:1
 V:3
  z2 | A,A,A,A, A,A,A,A, | A,A,A,A, A,A,A,A, | %991
  A,A,A,A, A,A,A,A, | A,A,A,A, A,A,A,A, |$ A,2 z2 z4 | (D,D)DD DDDD | DDDD DDDD | %996
- DDDD DDDD |$ DDDD DDDD | D2 z2 ^D2 D2 | E2 z2 ^C2 C2 | _D2 z2 ^A,2 A,2 | %1001
+ DDDD DDDD |$ DDDD DDDD | D2 z2 ^D2 D2 | E2 z2 ^C2 C2 | =D2 z2 ^A,2 A,2 | %1001
  B,2 B,2 [F,,F,]2 [F,,F,]2 |$ [G,,G,]2 [=C,=C]2 [B,,B,]2 [F,,F,]2 | %1003
  [G,,G,]2 [E,,E,]2 [D,,D,]2 [^G,,,^G,,]2 | [A,,,A,,]2 z [A,,,A,,] [A,,,A,,]2 z [A,,,A,,] |$ %1005
  [A,,,A,,]2 z [A,,,A,,] [A,,,A,,]2 z [A,,,A,,] | !fermata![A,,,A,,]4 !fermata!z4 | %1007

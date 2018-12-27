@@ -37,12 +37,12 @@ V:2
  x2 D2 | d^c=cB | G2 G2 | x4 | x4 |$ x4 | x4 | x4 | x4 | GGEE | D2 x2 |]$
 V:3
 !p! B,,2 B,,2 | B,,2 B,,2 |!>(! B,,2 B,,2!>)! | B,,2 B,,2 | %571
- [DF]2 [CF]2 | [EF]2 F2 | [A,F]2 [B,F]2 | D>B, A, x |$ (B,,B,B,,B, | B,,B,B,,B,) | %577
+ [DF]2 [CF]2 | [EF]2 [DF]2 | [A,F]2 [B,F]2 | D>B, A, x |$ (B,,B,B,,B, | B,,B,B,,B,) | %577
  B,,B,B,,B, | E,EE,E |[K:treble] A2 (B2 | ^F2) G2 |[K:bass] .[E,E].[E,E].[F,C].[F,C] | %582
  (B,,F, B,2) |$ z4 | (EFDF) | z4 | (A,F_B,F) | z[K:treble] .=e z .f |$ %588
  z .^c z .d | .[B,B].[B,B] .[CG].[CG] | .[DF].[DF][K:bass]!f! A,A, | %591
  [B,,B,][B,,B,][C,C][C,C] | [F,,F,]4 |!p! B,,2 B,,2 |$ B,,2 B,,2 |!>(! B,,2 B,,2!>)! | B,,2 B,,2 | %597
- [DF]2 [CF]2 | F2 [DF]2 | [A,F]2 [B,F]2 | (D>B, A,) x | B,,/B,/B,,/(B,/ B,,/B,/)B,,/B,/ |$ %602
+ [DF]2 [CF]2 | [EF]2 [DF]2 | [A,F]2 [B,F]2 | (D>B, A,) x | B,,/B,/B,,/(B,/ B,,/B,/)B,,/B,/ |$ %602
  B,,/B,/B,,/B,/ B,,/B,/B,,/B,/ | B,,/B,/B,,/B,/ C,/C/D,/D/ | _E,/_E/E,/E/ E,/E/E,/E/ | %605
  z[K:treble] A z B | z ^F z G |$[K:bass] [E,E][E,E][F,C][F,C] | [B,D]2 z2 | %609
  [E,E][E,E][F,C][F,C] |!f! [B,D]2 z2 | (E,,/E,/E,,/E,/ F,,/F,/F,,/F,/) | [B,,,F,,B,,]2 z2 |]$ %613
@@ -50,4 +50,3 @@ V:4
  x4 | x4 | x4 | x4 | x4 | x4 | x4 | F,2- F, z |$ x4 | x4 | x4 | x4 |[K:treble] x4 | %580
  x4 |[K:bass] x4 | x4 |$ x4 | x4 | x4 | x4 | x[K:treble] x3 |$ x4 | x4 | x2[K:bass] x2 | x4 | x4 | %593
  x4 |$ x4 | x4 | x4 | x4 | x4 | x4 | F,2- F, z | x4 |$ x4 | x4 | x4 | x[K:treble] x3 | x4 |$ %607
-[K:bass] x4 | x4 | x4 | x4 | x4 | x4 |]$

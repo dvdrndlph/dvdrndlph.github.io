@@ -39,11 +39,15 @@ V:3
  D,A,F,A, F,A,D,A, | C,A,E,A, C,A,E,A, |$ D,A,F,A, D,A,F,A, | [G,,G,]4 [A,,A,]4 | %957
  z (D,,F,,A,, D,A,,D,,D,) |$ (C,A,E,A, C,A,E,A,) |!f! D,A,F,A, D,A,F,A, | %960
  [G,,G,]4 [A,,A,]2 [A,,A,]2 |$ (D,,F,,A,,D, D,,D,D,,D, | D,,D,D,,D, C,,D,D,,D,) | %963
- D,,F,,A,,D, D,,D,D,,D, | D,,D,D,,D, D,,D,D,,D, |$ (D,F,A,E B,EA,D | %966
- ^G,DE,D B,EA,E | ^G,D E,2) z4 |$ (E,,E,E,,E, F,,F,^G,,^G, | A,,A,A,,A, F,A,F,A, | %970
+ D,,F,,A,,D, D,,D,D,,D, | D,,D,D,,D, D,,D,D,,D, |$ (D,F,A,D B,DA,D | %966
+ ^G,DE,D B,DA,D | ^G,D E,2) z4 |$ (E,,E,E,,E, F,,F,^G,,^G, | A,,A,A,,A, F,A,F,A, | %970
  C,A,C,A, ^D,2 D,2 |$ .E,2) .[E,,E,]2 .[E,,E,]2 z2 | (=DEDE DEDE) | CECE CECE | %974
  B,EE,E A,EE,E |$ ^G,EE,E G,E E2 | DEDE DEDE | CECE CECE | E,EA,E E,E^G,E |$ %979
- [A,C]2 z2 [A,D]2 [A,B,]2 | [A,C]2 z2 A,2 [A,B,]2 | [A,C]2 z2 [F,,F,] z [F,,F,] z |$ %982
+ [A,C]2 z2 [A,D]2 [A,B,]2 | [A,C]2 z2 [A,D]2 [A,B,]2 | [A,C]2 z2 [F,,F,] z [F,,F,] z |$ %982
  [D,,D,] z [D,,D,] z [E,,E,] z [E,,E,] z | [A,,A,]2 z2 [A,D]2 [A,B,]2 | %984
  [A,C]2 z2 [A,D]2 [A,B,]2 |$ [A,C]2 z2 (D,,D,D,,D, | E,,E,E,,E, E,,E,E,,E,) | %987
  (A,,A,E,C, .A,,) z |]$
+V:4
+x2|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|
+x4F,A,F,A,|
+x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x8|x6|]
