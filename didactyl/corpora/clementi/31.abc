@@ -4,7 +4,7 @@ C:Muzio Clementi
 Z:Public Domain (PianoXML typeset)
 %%score { ( 1 2 ) | ( 3 4 ) }
 L:1/8
-M:4
+M:C
 I:linebreak $
 K:C
 V:1 treble nm="Piano" snm="Pno."
