@@ -3313,6 +3313,7 @@ function AbcDE() {
                 return;
             }
             new_fingering = new_fingering.replace(LINE_RE, '');
+            new_fingering = new_fingering.replace(SPACE_RE, '');
             var parsimony = Abcdf_Parser.parse(new_fingering);
             finger_notes_from_parse(parsimony);
             rerender();
