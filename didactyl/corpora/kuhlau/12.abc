@@ -1,0 +1,42 @@
+X:1
+T:Sonatina 1.2
+C:Friedrich Kuhlau
+Z:Copyright 2018 Mississippi College Piano Pedagogy.
+Z:Creative Commons Attribution 4.0 International License.
+Z:https://creativecommons.org/licenses/by/4.0/
+Z:Permission is granted to share, copy, and redistribute this material.
+Z:
+%%score { 1 | 2 }
+L:1/8
+M:4/4
+I:linebreak $
+K:C
+V:1 treble nm="Piano" snm="Pno."
+V:2 bass 
+V:1
+"_dolce" f4!>(! g!>)!fed | %21
+ (c2 B2) B2 B2 | G4!<(! ABcd!<)! |$!f! _e8 | _e2!>(! f!>)!e dc_B_A | %25
+ (G2 ^F2) F2 F2 |$ G!<(!GBd gf_ed | f!<)!!>(!_edc _B_AG^F!>)! | %28
+!<(! GGBd gf_ed |$ f!<)!!>(!_edc _B_AG^F!>)! | G2!<(! GA Bcd=e | %31
+ f2 ga bc'd'e' |$ f'2 a'!<)!!>(!g' f'e'd'c' | bagf edcB!>)! | c3 G ecBd | %35
+ c3 G ecBd |$ c3 c c'a^gb | afeg fd^ce | d3 A fd^ce | %39
+ d3 A fd^ce |$ d3 A!<(! B^cde!<)! |!>(! fgag fed=c!>)! | %42
+ [Bf]2 [Bf]2 GBdf | [ce]2 [ce]2!<(! cegc'!<)! |$ [e_b]2 [eb]2 egc'b | %45
+ [fa]2 [fa]2 afdc | =B2 c2 [Bd]2 [ce]2 | [df]2 z [df] [ce]2 z [ce] |$ %48
+ [Bd]2 [ce]2 [Bd]2 [ce]2 | [Bd]!<(!gab c'd'e'f'!<)! | g'4"_dolce" f'e'd'c' | %51
+ b2 b2 b2 b2 |$ c'2 c'2 d'c'bc' | d'3 g!8va(! abc'd' | e'g'f'e' d'f'e'd' | %55
+ c'e'd'c' bd'gb |$ c'2!8va)!!<(! cd efga!<)! | %57
+!8va(! bc'd'e'!f! f'd'g'b | c'2 e'd' c'bag!8va)! | fedc BGfB |$ cGfB cGfB | %61
+!f! cceg c'2 z2 |]
+V:2
+!p! G,DB,D G,DB,D |!p! G,FDF G,FDF |!p! G,ECE G,ECE |$ %23
+!p! G,_ECE G,ECE |!p! _A,CA,C A,CA,C |!p! _A,CA,C A,CA,C |$!mf! [G,B,]2 z2 z4 | %27
+ [G,C]2 z2 z4 | [G,B,]2 z2 z4 |$ [G,C]2 z2 z4 | [G,B,]2 z2 z4 | [G,B,D]2 z2 z4 |$ [G,B,D]2 z2 z4 | %33
+ z8 | C,2 [CE]4 [G,D]2 | [CE]2 [CE]4 [G,D]2 |$ [CE]2 [CE]2 z4 | z8 | D,2 [DF]4 [A,E]2 | %39
+ [DF]2 [DF]4 [A,E]2 |$ [DF]2 [DF]2 z4 | z8 | [G,D]2 [G,D]2 z4 | [CE]2 [CE]2 z4 |$ %44
+[K:treble] [CG]2 [CG]2 z4 | [FA]2 [FA]2 z4 |!p! FGEG DGCG |!p! B,G^FG CGFG |$ %48
+!p! G,GCG G,GCG | G,2 z2 z4 |!p! EGEG EGEG |!p! [DF]G[DF]G [DF]G[DF]G |$ %52
+!p! [CE]G[CE]G [CE]G[CE]G |!p! [B,F]G[B,F]G [B,F]G[B,F]G | [CE]2 z2 [FA]2 z2 | %55
+ G2 z2 [G,F]2 z2 |$ [CE]2 z2 z4 | z4 (([Gd]4 | [ce]2)) z2 z4 | %59
+ z4[K:bass] (([G,D]4 |$ [CE]2)) [G,D]2 [CE]2 [G,D]2 | [CE]2 [CEG]2 [CEG]2 z2 |]$ %62
+
