@@ -1,0 +1,51 @@
+% abcDidactyl v6
+% abcD fingering 1: 35311353154321343454321.35311&353142314231421.23123451555;12312345&1555;1235432132435432432143212.@22225.1234x&1213152.513151315;&421242123;151554215.
+% Authority: Justin Badgerow (2019)
+% Transcriber: Justin Badgerow
+% Transcription date: 2019-01-02 22:12:37
+% abcD fingering 2: 35x1x3xxx5xxx134xx54xxx35xxx&35x142314231421xx12xxx15xx1xx12xxx&x5xx12x54xx132xx5xx24xxx5xxxx@2xxxx1xxxx&x2141xx4xxxxxxx3&4xxxxxxx3xx1x5xxxx
+% Authority: Durand & Cie (1890)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-09 01:18:41
+% abcD fingering 3: 2421xxxxx5xxx134xx54xxx24xxx&35x112314231421xx12xxx15451xx12xxx&x54512354xx132xxxxx24xxx5xxxx@3xxxx1xxxx&x2141xx4xxxxxxxx&4xxxxxxxx151x54xxx
+% Authority: Louis Köhler (1904)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-28 11:54:40
+% abcD fingering 4: 2421124215432123xx54xxx24xxx&353142424342421xx12xxx15551xxx1xxx&xxxx1235432132435432432154321@xxxxxxxxxx&x21415xxxxxxxxxx&xxxxxxxxxxxxx54215
+% Authority: Gio. Ricordi
+% Transcriber: David Randolph
+% Transcription date: 2018-12-28 19:33:54
+% abcD fingering 5: 24211242x5432134xx54xxx242xx&353142424242421xx12xxx15xx1xx12xxx&xxxx123543213243543243215432x@3xxx5xxxxx&x21415x5131xxxxx&4121xxxxxxxxx54215
+% Authority: J. J. Riefenstahl
+% Transcriber: David Randolph
+% Transcription date: 2018-12-29 02:15:40
+% abcD fingering 6: 24x112xxxx4xx13xxx5xxxx24x11&3xxx423142x14x1xx1xxxxx545xxx1xxxx&x545x23x4xxx324xxxx24xxx5xxxx@3232x1xxxx&12141525x3xxxxx4&4xxxxxxx31x15542xx
+% Authority: Bruno Mugellini (1904)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-29 13:53:52
+% abcDidactyl END
+X:11
+T:Sonatina 1.1
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { 1 | 2 }
+L:1/8
+Q:1/4=180
+M:2/2
+I:linebreak $
+K:C
+% U:s=!stemless!
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 bass 
+V:1
+!f!"^Spiritoso." (c4 e2c2 .G4) .G4 | (c4 e2c2 .G4) .g4 | %2
+ (f2e2d2c2 B2c2B2c2 | d2c2B2A2 G4) z4 |!p! (c4 e2c2 .G4) .G4 |$ %5
+ (e4 g2e2 .c4) (e2c2 | d2B2c2A2 B2G2A2^F2 | %7
+!f! (G2)A2B2c2 d2e2^f2g2) | (A4 .a4) .a4 .a4 | (B2c2d2e2 ^f2g2a2b2) |$ %10
+ (c4 .c'4) .c'4 .c'4 | (d2g2b2d'2 c'2b2a2g2 | %12
+ ^f2e2g2f2 a2g2f2e2) | (e2d2c2B2 d2c2B2A2 | G8) z8 ||$
+V:2
+ C,2 z2 z4 | C,2 z2 z4 | C,2 z2 C,2 z2 | G,,2 z2 (G,F,E,D, | C,2) z2 z4 |$ C2 z2 z2 ^F,2 | %6
+ G,2 C,2 D,2 D,,2 | G,,2 z2 z4 | (^F,DA,D F,DA,D) | G,2 z2 z4 |$ A,DCD A,DCD | %11
+ B,2 z2 z4 | C2 z2 C,2 z2 | D,2 z2 D,,2 z2 | (G,,B,,D,G, G,,2) z2||

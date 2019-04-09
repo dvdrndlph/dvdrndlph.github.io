@@ -1,0 +1,74 @@
+% abcDidactyl v6
+% abcD fingering 1: 2x4xxxxx43xxxxxxxxxxxxxxx2xxx&x43xxxxxxxxxxxxxxxxx2xxxx4&3xxxxxxxxxxxxxxxxxxxx2x43xxxx&xxxxxxxxxxxxx21xxx513xx4&xx4xx4xx3xxxxxxx21xxx&5132x4xx4xx34xx34xxx3xxxxxx&x4x124x124x123xxx31xx4x12&4x123xxx1xxxxx2xxxx43xxxx&xxxxxxxxxxx2xxxx43xxxxxxxxxx&xxxxxxx2x4xx2x43xxxxxxxxx&xxxxxx2xxxx2x43xxxxxxxxxx&x43xxxx43xxx143xxx143xxxx321&2xxx2xx2xxxx12xx@52xxxxxxxxxxxxx51xxx52x&xxxxxxx31xxxxxxxx2xxxx&xxxxxxxxxxxxxxxxxxxxxxxx&x31xxxx4xx5xxxxxxxxxxxxxxxxx&xxxxxx5xxxxx4xxxxx5xxxxx4xxxxx5xxxxx&xxxxxxxxxxxxxxxxxx5xxxxx4xxxxxxxxxxx&3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxx531xxx5252xxxxxxx&xxxxxx51xxx52xxxxxxxx31&xxxxx2x4251xx4x3xxxxx2xxx3xxxxxxx&xxxxxxxx4x3x51xx4x3xxxxx3xxxxxx13xxx&xxxxxxxxxxxxxxxxxx5xxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+% Authority: Durand & Cie (1890)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-21 02:35:47
+% abcDidactyl END
+X:53
+T:Sonatina 5.3
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:3/8
+Q:1/4=80
+I:linebreak $
+K:C
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+"^Allegro moderato.""_dolce""^Air Suisse (Orginal.)"(c/d/)e3({edc}d2 | %753
+ c4) (e2 | d2)(dBce | .d2)(dBce | .d2)(dBce | G6) |({cd}e4) (!turn!d2 |$ c4) (e2 | .d2)(dBce | %761
+ .d2){/e}(dcde | .d2){/e}(dcde | c6) |!pp!({cd}e4) (!turn!d2 | c4) (e2 |$ .d2)(dBce | .d2)(dBce | %768
+ d2)(dBce |!<(! G6)!<)! |({cd}e4) (!turn!d2 | c4)({cd}e2 | .d2)(dBce |$ .d2){/e}(dcde | %774
+ .d2){/e}(dcde | c6) |!p! .c2"_leggiero"(cdef | g2e2g2 | a2f2a2 |$ g2e2)(g2 | %780
+ f2d2f2 | e2c2)(e2 | .d2){/e}(dcde | c6) | .c2(cdef |$ g2e2g2) | %786
+({fg}a2f2a2) | (age2g2) | (gfd2f2) | (fec2e2) | (ed){/e} (dcde |$ c6) | %792
+ (gf.d2).d2 | (fe.c2).c2 | (ed.B2).B2 | (c/d/c/B/ cdef | %796
+ gf.d2).d2 |$ (fe.c2).c2 |"_rallent." (c/d/c/B/ c)(.d.e.^f) | !fermata![Bg]6 | %800
+"^a tempo""_dolce"({cd}e4) (!turn!d2 | c4) (e2 | .d2)(dBce |$ .d2)(dBce | .d2)(dBce | G6) | %806
+({cd}e4) (!turn!d2 | c4) (e2 | .d2)(dBce | .d2){/e}(dcde |$ .d2){/e}(dcde |!<(! c6)!<)! | %812
+!f!({c'd'} e'4) (!turn!d'2 | c'4) ({c'd'}e'2 | .d'2)(d'bc'e' | .d'2)(d'bc'e' |$ %816
+ .d'2)(d'bc'e' | g6) |({c'd'}e'4) (!turn!d'2 | c'4)({c'd'}e'2 | .d'2)d'-bc'e' | %821
+ d'2{/d'}(d'c'd'e' |$ .d'2){/e'}(d'c'd'e' |!ff! .c'2){/d'}(c'bc'e' | %824
+ .g2){/a}(g^fgc' | .e2){/f}(edeg | .c2).c2.c2 | c6 |$ %828
+[K:bass]!p!!>(!{CD} E4 (!turn!D2!>)! | C2.G,2).G,2 |!>(!{CD} E4 (!turn!D2 | C2) z2 z2!>)! | %832
+!pp! .[E,G,]2 z2 z2 | .[E,C]2 z2 z2 |]$ %834
+V:3
+(C,G,C) | (C,G,C) | %754
+ (C,G,C) | (C,G,C) | (C,G,C) | G,,G,/(F,/E,/D,/) | (C,G,C) |$ C,G,C | C,G,C | C,F,B, | %762
+ C,F,B, | [C,C]E,G, | C,G,C | C,G,C |$ C,G,C | C,G,C | C,G,C | (G,,/G,/A,,/A,/B,,/B,/) | %770
+!f! (C,G,C) | C,G,C | C,G,C |$ C,F,B, | C,F,B, | (C,E,/G,/C) |[K:treble] (C/G/E/G/C/G/) | %777
+ C/G/E/G/C/G/ | C/A/F/A/C/A/ |$ C/G/E/G/C/G/ | B,/G/D/G/B,/G/ | C/G/E/G/C/G/ | %782
+ G,/F/B,/F/G,/F/ | C/G/E/G/C/G/ |!f! C/G/E/G/C/G/ |$ C/G/E/G/C/G/ | C/A/F/A/C/A/ | %787
+ C/G/E/G/C/G/ | B,/G/D/G/B,/G/ | C/G/E/G/C/G/ | G,/F/B,/F/G,/F/ |$ C/E/C/E/C | %792
+[K:bass]!p! z .[G,B,D].[G,B,D] | z .[G,CE].[G,CE] | z .[G,DF].[G,DF] | z .[G,CE].[G,CE] | %796
+ z .[G,B,D].[G,B,D] |$ z .[G,CE].[G,CE] | z .[A,C^F].[A,CF] | !fermata![G,D]3 | %800
+ (C,G,C) | (C,G,C) | (C,G,C) |$ (C,G,C) | (C,G,C) | G,,(G,/F,/E,/D,/ |!pp! (C,)G,C) | C,G,C | %808
+ C,G,C | C,F,B, |$ C,F,B, | (C,/C/G,/C/E,/G,/) | (C,/G,/C,/G,/D,/G,/) | %813
+ E,/G,/E,/G,/C,/G,/ | F,/G,/F,/G,/E,/G,/ | F,/G,/F,/G,/E,/G,/ |$ F,/G,/F,/G,/E,/G,/ | %817
+ G,,/G,/A,,/G,/B,,/G,/ | C,/G,/C,/G,/D,/G,/ | E,/G,/E,/G,/C,/G,/ | %820
+ F,/G,/F,/G,/E,/G,/ | G,,/F,/B,,/F,/G,,/F,/ |$ G,,/F,/B,,/F,/G,,/F,/ | .[C,E,] z z | %824
+ .[C,E,] z z | .[C,E,] z z | .[C,E,].[C,E,].[C,E,] | z/(C,/G,,/C,/G,,/C,/) |$ %828
+ z/C,/G,,/C,/G,,/C,/ | z/C,/G,,/C,/G,,/C,/ | z/C,/G,,/C,/G,,/C,/ | z/C,/G,,/C,/G,,/C,/ | %832
+ z/C,/G,,/C,/G,,/C,/ | C,, z z |]$
+V:4
+x3|x3| %754
+x3|x3|x3|x3|x3|x3|x3|x3| %762
+x3|x3|x3|x3|x3|x3|x3|x3| %770
+x3|x3|x3|x3|x3|x3|x3|    %777
+x3|x3|x3|x3|x3|          %782
+x3|x3|x3|x3|x3|
+x3|x3|x3|x3|x3|
+x3|x3|x3|x3|
+x3|x3|x3|x3|x3|
+x3|x3|x3|x3|x3|x3|x3|x3| %808
+x3|x3|x3|x3|x3|          %813
+x3|x3|x3|x3|             %817
+x3|x3|x3|
+x3|x3|x3|x3|             %824
+x3|x3|C,,3|C,,3|
+C,,3|C,,3|C,,3|C,,3|x3|]

@@ -1,4 +1,4 @@
-/* abcDE_min.js v6.0.42 */
+/* abcDE_min.js v6.0.46 */
 /** @license
  *
  * Copyright (c) 2015, 2016 David A. Randolph.
@@ -30,7 +30,7 @@
  */
 function AbcDE() {
  "use strict";
- var t, n, r, i, a, o, s, c, l = [], u = [], d = "", f = !1, g = 1, p = {}, h = [], m = void 0, v = "", _ = "noname.abc", y = 0, b = [], E = !1, w = [], k = 0, C = [], I = [], x = {}, B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, L = !1, F = [], P = !1, M = !1, H = "../../corpora", z = "./abcde_help.html", R = "../image", O = "../lib/media", V = 5, X = /\s/g, G = /</g, U = />/g, j = /[><]/g, Y = /([,;\.])/, K = /&/g, Z = /.*([<>])[^<>]+$/, W = /^% abcDidactyl v([\d\.]+)$/, J = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Q = /^% abcDidactyl END$/, ee = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, ae = 4e3, oe = "abcde", se = "abc_source", ce = "source", le = "abcde_prefs", ue = "abcde_controls", de = "abcde_metadata", fe = "abcde_keypad", ge = "abcde_rendering", pe = "abcde_target", he = "abcde_error", me = .1, ve = 3, _e = .3, ye = 90, be = 89, Ee = 13, we = 8, ke = 9, Ce = 37, Ie = 39, xe = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Be = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
+ var t, n, r, i, a, o, s, c, l = [], u = [], d = "", f = !1, p = 1, g = {}, h = [], m = void 0, v = "", _ = "noname.abc", y = 0, b = [], E = !1, w = [], k = 0, C = [], I = [], x = {}, B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, L = !1, F = [], P = !1, M = !1, H = "../../corpora", z = "./abcde_help.html", R = "../image", O = "../lib/media", V = 5, X = /\s/g, G = /</g, U = />/g, j = /[><]/g, Y = /([,;\.])/, K = /&/g, Z = /.*([<>])[^<>]+$/, W = /^% abcDidactyl v([\d\.]+)$/, J = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Q = /^% abcDidactyl END$/, ee = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, ae = 4e3, oe = "abcde", se = "abc_source", ce = "source", le = "abcde_prefs", ue = "abcde_controls", de = "abcde_metadata", fe = "abcde_keypad", pe = "abcde_rendering", ge = "abcde_target", he = "abcde_error", me = .1, ve = 3, _e = .3, ye = 90, be = 89, Ee = 13, we = 8, ke = 9, Ce = 37, Ie = 39, xe = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Be = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
  function Te() {
   m && clearInterval(m), l = [], u = [], v = "", f = !1, _ = "noname.abc", n = void 0, 
   i = "", a = void 0, b = [], E = !1, w = [], o = void 0, k = 0, C = [], I = [], x = {}, 
@@ -102,7 +102,7 @@ function AbcDE() {
  function He(e) {
   var t = "";
   "preset" === e || "output" === e || "keypad" === e || "restore" == e ? t = Me(e) : t = document.getElementById(e).value;
-  p[e] = t, localStorage.setItem(e, t);
+  g[e] = t, localStorage.setItem(e, t);
  }
  function ze() {
   var e = document.getElementById("sequence_spinner");
@@ -200,17 +200,17 @@ function AbcDE() {
      a = a.concat(l);
     }
     for (var u = De(n), d = 0; d < u.length; d++) {
-     var f = u[d], g = S[n][f];
-     g.sort(Ft);
-     for (var p = 0; g[p].grace; ) {
+     var f = u[d], p = S[n][f];
+     p.sort(Ft);
+     for (var g = 0; p[g].grace; ) {
       var h = "";
-      g[p][t] = "";
-      for (var m = 0; m < g[p].size; m++) (i = a.shift()) || (console.log(t + " MISSING for grace note:"), 
-      qt(t + " grace note", g[p])), s = Cn(i = Se(i, s), s), h += i;
-      "fingering" === t ? g[p].set_fingering(h) : "preset_fingering" === t && g[p].set_preset_fingering(h), 
-      p++;
+      p[g][t] = "";
+      for (var m = 0; m < p[g].size; m++) (i = a.shift()) || (console.log(t + " MISSING for grace note:"), 
+      qt(t + " grace note", p[g])), s = Cn(i = Se(i, s), s), h += i;
+      "fingering" === t ? p[g].set_fingering(h) : "preset_fingering" === t && p[g].set_preset_fingering(h), 
+      g++;
      }
-     var v = Ot(g), _ = $t(v), y = [], b = [], E = null;
+     var v = Ot(p), _ = $t(v), y = [], b = [], E = null;
      for (m = 0; m < _.length; m++) for (var w = _[m], k = 0; k < v[w].length; k++) if (!(E = v[w][k]).grace) {
       Ke(b, E) || (y.push(""), b.push(E));
       var C = Ze(b, E);
@@ -310,10 +310,10 @@ function AbcDE() {
   e.preventDefault ? e.preventDefault() : e.returnValue = !1;
  }
  function lt() {
-  g > _e && (g -= me, Zt());
+  p > _e && (p -= me, Zt());
  }
  function ut() {
-  g < ve && (g += me, Zt());
+  p < ve && (p += me, Zt());
  }
  function dt(e) {
   He("preset"), He("output"), He("restore"), He("keypad"), He("measure_number_interval"), 
@@ -327,17 +327,17 @@ function AbcDE() {
   var n = t.match(/encoding="([^"]+)"/), r = "utf-8";
   return n && 2 == n.length && (r = n[1]), r;
  }
- function gt(e) {
+ function pt(e) {
   var t = $.parseXML(e), n = vertaal(t, {}), r = n[0], i = n[1];
   return i && console.log("xml2abc ERROR: " + i), r || alert("Unable to open MusicXML file: " + i), 
   r;
  }
- function pt(e) {
+ function gt(e) {
   var t = e.split(".");
   return t[t.length - 1];
  }
  function ht(e) {
-  var t = pt(e), n = 'The server hosting file does not allow access from this domain. Please download the file outside abcDE and then "Choose file" to work with it.', r = function(e, t) {
+  var t = gt(e), n = 'The server hosting file does not allow access from this domain. Please download the file outside abcDE and then "Choose file" to work with it.', r = function(e, t) {
    var n = new XMLHttpRequest();
    return "withCredentials" in n ? n.open(e, t, !0) : "undefined" != typeof XDomainRequest ? (n = new XDomainRequest()).open(e, t) : n = null, 
    n;
@@ -357,13 +357,13 @@ function AbcDE() {
       return alert("Could not open compressed MusicXML file: " + e.message), "";
      }
      return "UTF-8" !== ft(t) ? (alert("Input mxl is not UTF-8 encoded. Cannot open."), 
-     "") : t = gt(t);
+     "") : t = pt(t);
     }(r.response))) return;
    } else {
     var i = ft(n = r.responseText);
     if (i) {
      if (!/^utf/i.test(i)) return void alert("Input xml is not UTF-8 encoded. Cannot open.");
-     n = gt(n);
+     n = pt(n);
     }
    }
    n && (d = e, document.getElementById(se).value = n, dn());
@@ -384,13 +384,13 @@ function AbcDE() {
   var e = document.getElementById("file_input").files;
   if (e.length) {
    var t = e[0];
-   if ("mxl" !== pt(t.name)) {
+   if ("mxl" !== gt(t.name)) {
     var n = !1, r = new FileReader();
     r.onload = function(e) {
      var i = ft(r.result), a = new FileReader();
      i ? n = !0 : i = "UTF-8", a.onload = function(e) {
       var t = "";
-      t = n ? gt(a.result) : e.target.result, document.getElementById(se).value = t, dn();
+      t = n ? pt(a.result) : e.target.result, document.getElementById(se).value = t, dn();
      }, a.readAsText(t, i);
     }, r.readAsText(t, "UTF-8");
    } else !function(e) {
@@ -404,7 +404,7 @@ function AbcDE() {
      } catch (e) {
       return void alert("Could not open compressed MusicXML file: " + e.message);
      }
-     "UTF-8" === ft(n) ? (n = gt(n), document.getElementById(se).value = n, dn()) : alert("Input xml is not UTF-8 encoded. Cannot open.");
+     "UTF-8" === ft(n) ? (n = pt(n), document.getElementById(se).value = n, dn()) : alert("Input xml is not UTF-8 encoded. Cannot open.");
     }, t.readAsArrayBuffer(e);
    }(t);
   } else alert("Please select a valid abc file.");
@@ -712,7 +712,7 @@ function AbcDE() {
      S[o.staff][o.time].push(o)), a = a.ts_next;
     }
    }
-  }, this.page_format = !1, this.imagesize = (e = 8.5, 1 !== g && (e *= g), 'width="' + e + 'in"');
+  }, this.page_format = !1, this.imagesize = (e = 8.5, 1 !== p && (e *= p), 'width="' + e + 'in"');
  }
  function Ft(e, t) {
   var n = parseInt(e.time) - parseInt(t.time);
@@ -872,8 +872,8 @@ function AbcDE() {
     }
     e += Ut(l);
    } else {
-    var f = parseInt(l.start), g = parseInt(l.end);
-    u = i.substring(parseInt(r), f), e += u += Yt(l), r = g, jt(l) && (e += Gt(l)), 
+    var f = parseInt(l.start), p = parseInt(l.end);
+    u = i.substring(parseInt(r), f), e += u += Yt(l), r = p, jt(l) && (e += Gt(l)), 
     l.fingered_start = e.length, e += l.string;
    }
    B[l.fingered_start] = l;
@@ -882,7 +882,7 @@ function AbcDE() {
  }
  function Zt() {
   f = !0, N++, console.log("RERENDERING NUMBER " + N);
-  var e = new Date().getTime(), t = document.getElementById(pe), n = document.getElementById(he), i = new Lt();
+  var e = new Date().getTime(), t = document.getElementById(ge), n = document.getElementById(he), i = new Lt();
   a = new Abc(i);
   var o = Kt(), s = new Date().getTime(), c = s - e;
   console.log("MY LAG: " + c), document.getElementById(se).value = o, e = new Date().getTime(), 
@@ -902,7 +902,7 @@ function AbcDE() {
    for (var e, t = document.getElementsByClassName("abcr"), n = t.length; --n >= 0; ) (e = t[n]).onclick = function() {
     fn(this);
    }, e.ondblclick = function() {
-    pn(this);
+    gn(this);
    };
   }, 300), c = (s = new Date().getTime()) - e, console.log("LIB LAG: " + c), bt();
  }
@@ -913,7 +913,7 @@ function AbcDE() {
    t.length > 0 && t[0] ? (o.set_fingering(""), o.phrase_break = "", Zt()) : o.prior_note && ((o = o.prior_note).set_fingering(""), 
    Zt()), _n(o);
   } else if (e == ke || e == Ie) an(), w = [], o.next_note && (o = o.next_note); else if (e == Ce) an(), 
-  w = [], o.prior_note && (o = o.prior_note); else if (e == Ee) gn(); else if (e == ye) !function() {
+  w = [], o.prior_note && (o = o.prior_note); else if (e == Ee) pn(); else if (e == ye) !function() {
    tn();
    var e = u.pop();
    e && (e.undo_fingering_change(), o = e, Zt(), _n(o));
@@ -1000,7 +1000,7 @@ function AbcDE() {
    var u = o[l];
    s ? c ? n.push(u) : (i = Q.exec(u)) && (c = !0) : (i = W.exec(u)) && i[1] ? s = i[1] : n.push(u);
   }
-  var d, f, g, p, h, m = ze(), v = Fe(t);
+  var d, f, p, g, h, m = ze(), v = Fe(t);
   "replace" === $e("output") ? a[m - 1] = v : a.push(v);
   for (l = 0; l < a.length; l++) {
    var _ = l + 1;
@@ -1010,9 +1010,9 @@ function AbcDE() {
     alert("Bad abcDF parse of fingering string: " + e.message);
    }
    d = "% abcD fingering " + _ + ": " + a[l].sequence, r.push(d), a[l].authority && (f = "% Authority: " + a[l].authority, 
-   a[l].authority_year && (f += " (" + a[l].authority_year + ")"), r.push(f)), a[l].transcriber && (g = "% Transcriber: " + a[l].transcriber, 
-   r.push(g)), a[l].transcription_date && (p = "% Transcription date: " + a[l].transcription_date, 
-   r.push(p)), h = a[l].comments.split("\n");
+   a[l].authority_year && (f += " (" + a[l].authority_year + ")"), r.push(f)), a[l].transcriber && (p = "% Transcriber: " + a[l].transcriber, 
+   r.push(p)), a[l].transcription_date && (g = "% Transcription date: " + a[l].transcription_date, 
+   r.push(g)), h = a[l].comments.split("\n");
    for (var y = 0; y < h.length; y++) (y !== h.length - 1 || h[y]) && r.push("% " + h[y]);
   }
   return r.push("% abcDidactyl END"), r.join("\n") + "\n" + n.join("\n");
@@ -1037,10 +1037,10 @@ function AbcDE() {
     r.id = ue, e.appendChild(r);
     var i = document.createElement(de);
     i.id = de, e.appendChild(i);
-    var a = document.createElement(ge);
-    a.id = ge, e.appendChild(a);
-    var o = document.createElement(pe);
-    o.id = pe, a.appendChild(o);
+    var a = document.createElement(pe);
+    a.id = pe, e.appendChild(a);
+    var o = document.createElement(ge);
+    o.id = ge, a.appendChild(o);
     var s = document.createElement(he);
     s.id = he, a.appendChild(s);
     for (var c = 0; c < 7; c++) a.appendChild(document.createElement("br"));
@@ -1057,29 +1057,30 @@ function AbcDE() {
     o.setAttribute("id", "downloadify"), (l = document.createElement("td")).appendChild(o), 
     a.appendChild(l);
     var s = document.createElement("input");
-    s.id = "sequence_spinner", s.min = "1", s.max = "999", s.size = 3, s.type = "number", 
-    s.alt = "fingering_number", s.value = 1, s.onchange = Bn, kt(l = document.createElement("td"), "Sequence", "sequence_prompt"), 
-    l.appendChild(s), a.appendChild(l), t.preset_select || (l.style.display = "none");
-    var c = document.createElement("input");
+    if (s.id = "sequence_spinner", s.min = "1", s.max = "999", s.size = 3, s.type = "number", 
+    s.alt = "fingering_number", s.value = 1, s.onchange = Bn, kt(l = document.createElement("td"), "Suggestion", "sequence_prompt"), 
+    l.appendChild(s), a.appendChild(l), t.preset_select || (l.style.display = "none"), 
+    t.sequence) var c = document.createElement("input");
     c.type = "image", c.src = R + "/eye.svg", c.width = "36", c.alt = "View", c.onclick = Dn, 
-    (l = document.createElement("td")).appendChild(c), a.appendChild(l);
+    (l = document.createElement("td")).appendChild(c), a.appendChild(l), t.hide_view && (l.style.display = "none");
     var l, u = document.createElement("input");
     u.type = "image", u.src = R + "/print.svg", u.width = "36", u.alt = "Print...", 
     u.onclick = xn, (l = document.createElement("td")).appendChild(u), a.appendChild(l), 
-    l = document.createElement("td");
+    t.hide_print && (l.style.display = "none"), l = document.createElement("td");
     var d = document.createElement("input");
     d.type = "checkbox", d.value = "annotated", d.checked = P, d.id = "view_annotated", 
     d.onclick = _t;
     var f = document.createElement("label");
     f.htmlFor = "view_annotated", f.appendChild(document.createTextNode("Annotated")), 
-    l.appendChild(d), l.appendChild(f), a.appendChild(l);
-    var g = document.createElement("input");
-    g.type = "image", g.src = R + "/reload.svg", g.width = "36", g.alt = "reset", g.onclick = nt, 
-    (l = document.createElement("td")).appendChild(g), a.appendChild(l);
+    l.appendChild(d), t.hide_annotated && (l.style.display = "none"), l.appendChild(f), 
+    a.appendChild(l), t.hide_annotated && (l.style.display = "none");
     var p = document.createElement("input");
-    p.id = "copy_fingerings_button", p.type = "image", p.src = R + "/clipboard.svg", 
-    p.width = "36", p.alt = "copy", (l = document.createElement("td")).appendChild(p), 
-    a.appendChild(l), t.hide_copy ? p.style.display = "none" : new Clipboard("#copy_fingerings_button", {
+    p.type = "image", p.src = R + "/reload.svg", p.width = "36", p.alt = "reset", p.onclick = nt, 
+    (l = document.createElement("td")).appendChild(p), a.appendChild(l), t.hide_reset && (l.style.display = "none");
+    var g = document.createElement("input");
+    g.id = "copy_fingerings_button", g.type = "image", g.src = R + "/clipboard.svg", 
+    g.width = "36", g.alt = "copy", (l = document.createElement("td")).appendChild(g), 
+    a.appendChild(l), t.hide_copy ? g.style.display = "none" : new Clipboard("#copy_fingerings_button", {
      text: et
     });
     var h = document.createElement("input");
@@ -1095,7 +1096,8 @@ function AbcDE() {
     a.appendChild(l), t.file_input || (v.style.display = "none");
     var y = document.createElement("input");
     y.type = "image", y.src = R + "/tags.svg", y.alt = "Metadata...", y.width = "36", 
-    y.onclick = st, (l = document.createElement("td")).appendChild(y), a.appendChild(l);
+    y.onclick = st, (l = document.createElement("td")).appendChild(y), a.appendChild(l), 
+    t.hide_metadata && (y.style.display = "none");
     var b = document.createElement("input");
     b.type = "image", b.src = R + "/zoom-out.svg", b.alt = "Zoom In", b.width = "36", 
     b.onclick = lt, (l = document.createElement("td")).appendChild(b), a.appendChild(l);
@@ -1104,7 +1106,8 @@ function AbcDE() {
     E.onclick = ut, (l = document.createElement("td")).appendChild(E), a.appendChild(l);
     var w = document.createElement("input");
     w.type = "image", w.src = R + "/cog.svg", w.alt = "Preferences...", w.width = "36", 
-    w.onclick = ot, (l = document.createElement("td")).appendChild(w), a.appendChild(l);
+    w.onclick = ot, (l = document.createElement("td")).appendChild(w), a.appendChild(l), 
+    t.hide_prefs && (w.style.display = "none");
     var k = document.createElement("input");
     k.type = "image", k.src = R + "/info.svg", k.alt = "Help", k.width = "36", k.onclick = at, 
     (l = document.createElement("td")).appendChild(k), a.appendChild(l), Downloadify.create("downloadify", {
@@ -1153,7 +1156,7 @@ function AbcDE() {
    qt("process_note_click", r), _n(r), o = r;
   }
  }
- function gn() {
+ function pn() {
   tn();
   var e = "";
   o.preset_fingering && (e += "Preset (recommended) fingering: " + o.get_preset_fingering() + "\n\n"), 
@@ -1166,11 +1169,11 @@ function AbcDE() {
    alert("Bad abcDF parse of fingering string: " + e.message + e.stack);
   }
  }
- function pn(e) {
-  console.log("Processing note double-click...."), fn(e), gn();
+ function gn(e) {
+  console.log("Processing note double-click...."), fn(e), pn();
  }
  function hn() {
-  var e = new Lt(), t = document.getElementById(pe), n = document.getElementById(he);
+  var e = new Lt(), t = document.getElementById(ge), n = document.getElementById(he);
   t.align = "center", a = new Abc(e), r = "", a.tosvg("edit", '%%bgcolor white\n%%beginsvg\n<style type="text/css">\n\trect.abcr {fill:#a08000; fill-opacity:0}\n\trect.abcr:hover {fill-opacity:0.3}\n</style>\n%%endsvg\n'), 
   n.innerHTML = "", q = [];
   try {

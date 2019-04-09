@@ -1,4 +1,4 @@
-/* abcDE_full.js v6.0.42 */
+/* abcDE_full.js v6.0.46 */
 !function(a, b) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = a.document ? b(a, !0) : function(a) {
   if (!a.document) throw new Error("jQuery requires a window with a document");
@@ -35600,13 +35600,13 @@ function AbcDE() {
   sequence_spinner.value = 1;
   sequence_spinner.onchange = load_fingering;
   cell = document.createElement("td");
-  insert_label(cell, "Sequence", "sequence_prompt");
+  insert_label(cell, "Suggestion", "sequence_prompt");
   cell.appendChild(sequence_spinner);
   row.appendChild(cell);
   if (!Options.preset_select) {
    cell.style.display = "none";
   }
-  var view_button = document.createElement("input");
+  if (Options.sequence) var view_button = document.createElement("input");
   view_button.type = "image";
   view_button.src = IMAGE_DIR + "/eye.svg";
   view_button.width = button_width;
@@ -35615,6 +35615,9 @@ function AbcDE() {
   cell = document.createElement("td");
   cell.appendChild(view_button);
   row.appendChild(cell);
+  if (Options.hide_view) {
+   cell.style.display = "none";
+  }
   var print_button = document.createElement("input");
   print_button.type = "image";
   print_button.src = IMAGE_DIR + "/print.svg";
@@ -35624,6 +35627,9 @@ function AbcDE() {
   var cell = document.createElement("td");
   cell.appendChild(print_button);
   row.appendChild(cell);
+  if (Options.hide_print) {
+   cell.style.display = "none";
+  }
   cell = document.createElement("td");
   var checkbox = document.createElement("input");
   checkbox.type = "checkbox";
@@ -35635,8 +35641,14 @@ function AbcDE() {
   label.htmlFor = "view_annotated";
   label.appendChild(document.createTextNode("Annotated"));
   cell.appendChild(checkbox);
+  if (Options.hide_annotated) {
+   cell.style.display = "none";
+  }
   cell.appendChild(label);
   row.appendChild(cell);
+  if (Options.hide_annotated) {
+   cell.style.display = "none";
+  }
   var reset_button = document.createElement("input");
   reset_button.type = "image";
   reset_button.src = IMAGE_DIR + "/reload.svg";
@@ -35646,6 +35658,9 @@ function AbcDE() {
   cell = document.createElement("td");
   cell.appendChild(reset_button);
   row.appendChild(cell);
+  if (Options.hide_reset) {
+   cell.style.display = "none";
+  }
   var copy_button = document.createElement("input");
   copy_button.id = "copy_fingerings_button";
   copy_button.type = "image";
@@ -35706,6 +35721,9 @@ function AbcDE() {
   cell = document.createElement("td");
   cell.appendChild(metadata_button);
   row.appendChild(cell);
+  if (Options.hide_metadata) {
+   metadata_button.style.display = "none";
+  }
   var zoom_out_button = document.createElement("input");
   zoom_out_button.type = "image";
   zoom_out_button.src = IMAGE_DIR + "/zoom-out.svg";
@@ -35733,6 +35751,9 @@ function AbcDE() {
   cell = document.createElement("td");
   cell.appendChild(prefs_button);
   row.appendChild(cell);
+  if (Options.hide_prefs) {
+   prefs_button.style.display = "none";
+  }
   var help_button = document.createElement("input");
   help_button.type = "image";
   help_button.src = IMAGE_DIR + "/info.svg";

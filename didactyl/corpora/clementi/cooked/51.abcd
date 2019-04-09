@@ -1,0 +1,77 @@
+% abcDidactyl v6
+% abcD fingering 1: 432133143215313432133&21.43234414152&132441.43213314321&531343213321.4321&33115321123212&1;23543213212154321432123123543213212&154321432123123123123123123123123123135432143213&2xx1.24125125125235235235235124124125125&1351351251251;24125125125235235235235124124125125&1351351251251.432315432315.@531531531531531531531531521521521521&531531531531421421421421531531531531&5315314214215321235.531531531531&531531531531521521521521531531531531&521521521521531531531531531531521521&42.4141434342;&4141434342;51515151515151&53153153153142.24411522&221142;24411522&515151514;214214215314214214215314214214.
+% Authority: Justin Badgerow (2019)
+% Transcriber: Justin Badgerow
+% Transcription date: 2019-01-01 17:15:34
+% abcD fingering 2: 43xx53143x15313xxxx54&2x43xxxx1x152&13x43x43xx5314xx1&5313xxxx542x43xx&x4125321xxxxxx&12x5xxx13x121xxxx14xx1xx12x5xxx13x12&1xxxxx4xx1xx1xxxxxxxxxxxxxxxxxxxxxxxx35xxx14xx13&xxx124235xxxxxx23xxxxxxxxxx124xxx125xxx&135xxx12xxxx124235xxxxxx23xxxxxxxxxx124xxx12xxxx&13xxxx12xxxx143xx2543xx25@5x1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxx4xxxxxxxxxxx5xxxxxxxxxxx&5xxxxx4xxxxx532xxxx5xxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxx5xxxxxxxxxxx5xxxxx52xxxx&4241xx43xxxx&41xx43xxxx5xxxxxxx4xxxxx&xxxxxxxxxxxx4224x1xxxx&3x1x4224x1xxxx&xxxxxxxx4xxxxxxxx5xx4xxxxxxxx5xx4xxxxxx
+% Authority: Durand & Cie (1890)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-20 23:08:35
+% abcD fingering 3: 43xxx42xxx15313xxxxx4&2xx3xxx41x153&23x452x3xxxxxxxx1&5313xxxxx4xxx3xx&x41253121xxxxx&123xxxxx3xx21xxxx14xxxxxxxxxxxxx3xx2&1xxxxx4xxxxx1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx4xxx3&xxx123235xxxxxx23xxxxxxxxxx124xxx125xxx&135xxx235xxx12323xxxxxxx23xxxxxxxxxx12xxxx12xxxx&13xxxx23xxxx13xxx25xxxxxx@5xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxx4xxxxxxxxxxx5xxxxxxxxxxx&5xxxxx4xxxxx53xxxxx5xxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxx5xxxxxxxxxxx5xxxxxxxxxxx&x241xxxxxxxx&xxxxxxxxxx4x3x5xxx4xxxxx&xxxxxxxxxxxxx213xxxx1x&3xx1xx2xxxxxxx&xxxxxxxx4xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+% Authority: Louis Köhler (1904)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-28 17:08:18
+% abcD fingering 4: x323553x3215313xxxxxx&xxx3234x1xx52&132441x323553xxx1&5313xxxxxxxxxxx3&xxxx532xxxxxxx&1235xx21321215xxx14321xx1xxxxxxxxxxx&15xxxx43xxxx123xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxx123235xxxxxx21xxxxxxxxxx135xxx235xxx&135xxx125xxx1232xxxxxxxxxxxxxxxxxxxx135xxxxxxxxx&xxxxxxxxxxxxxx21215xxxxxx@xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxx531xxxxxxxxx531xxxxxxxxx&42xxxxxxxxxx23x123x531xxxxxxxxx&xxxxxxxxxxxxx21xxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx4213xx&4241xxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxx2xx1xx1x&4x1xxx2xxxxx2x&xxxxxxxx4xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+% Authority: Gio. Ricordi
+% Transcriber: David Randolph
+% Transcription date: 2018-12-29 00:59:23
+% abcD fingering 5: x323553x3215313xxxxxx&xxx3234x1x1xx&1324414321553xxx1&5313xxxxxxxxxxxx&xxxxxxxxxxxxxx&1235xx21321215xxx14321xx1xxxxxxxxxxx&x5xxxx43xxxx123xxxxxxxxxxxxxxxxxxxxxxxxxxxx4xxxx&xxx123235xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxx@xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+% Authority: J. J. Riefenstahl
+% Transcriber: David Randolph
+% Transcription date: 2018-12-29 13:09:00
+% abcD fingering 6: 43xx54243x153134xxx54&2x4xxxx52xxx2&x3x43x4xxx54243x2&x3x34xxx542x4xxx&x412542x2x43xx&123xxxxx3xx2xxxxx14xxxxx123xxxxx3xx2&xxxxx14xxxxx1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx4xxx3&(232323232323232323232)xx135235xxxxxx23xxxxxxxxxx124xxx125xxx&x3xxxx125xxx13x235xxxxxx23xxxxxxxxxx12xxxx12xxxx&135xxx12xxxxx4xxx254xxx25@53xxxxxxxxxxxxxxxxxxxxxxx2xxxxxxxxxx&x3xxxxxxxxxx53xxxxxxxxxx53xxxxxxxxxx&5xxxxx42xxxxx32xxxx5xxxxxxxxxxx&xxxxxxxxxxxxx2xxxxxxxxxxx3xxxxxxxxxx&xxxxxxxxxxxx53xxxxxxxxxx53xxxxx2xxxx&3241xx43xxxx&4xxxxxxxxxxxxxxxxxxxxxxx&x3xxxxxxxxxx4213412521&43215313412x23&xxxxxxxx4xxxxxxxx53x4xxxxxxxx53x4xxxxxx
+% Authority: Bruno Mugellini (1904)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-29 16:31:14
+% abcDidactyl END
+X:51
+T:Sonatina 5.1
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:4/4
+Q:1/4=140
+I:linebreak $
+K:G
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+"^Presto."((3:2:5 a/gz/f2g2 |"_dolce" .b4) .b4 .g4{/a} (3(g2f2g2 | %668
+ d'8 .b4) .g4 | .c'4{/d'} (3(c'2b2c'2 .e'4) .e'4 |$ %670
+ (^c'4 .d'4) z4{/a} (3(g2f2g2 | .a4) (a4 e4 a4 | d8 .g4) .d4 |$ %673
+ .c4 .c4 .B4 .d4 | (d4 .A4) z4{/A} (3(G2F2G2 | .B4) .B4 .G4{/A} (3(G2F2G2 |$ %676
+ d8 .B4) .G4 | .c4{/d} (3(c2B2c2 .e4) .e4 | (^c4 .d4) z4{/a} (3(g2f2g2 |$ %679
+!<(! .b4) .b4 .e4 .e4!<)! |!>(! (a8 f4 d4!>)! | .B4) .B4 .^c4{/d} (3(c2B2c2 |$ %682
+ (3d2)(f2a2 (3d'2^c'2b2 (3a2g2f2 (3e2d2^c2 | %683
+ (3B2)(b2a2 (3g2f2e2 (3d2^c2B2 (3A2B2c2 | (3d2)(f2a2 (3d'2^c'2b2 (3a2g2f2 (3e2d2^c2 |$ %685
+ (3B2)(b2a2 (3g2f2e2 (3d2^c2B2 (3A2B2c2 | (3(d2)e2f2 (3d2e2f2!f! (3d2e2f2 (3d2e2f2 | %687
+ (3d2e2f2 (3d2e2f2 (3d2e2f2 (3d2e2f2 | (3d2f2a2 (3g2f2e2 (3d2^c2B2 (3A2G2F2 |$ TE16({DE}) | %690
+ (3(D2)F2A2 (3F2A2d2 (3F2A2d2 (3F2A2d2 | %691
+ (3^G2B2d2 (3G2B2d2 (3G2B2d2 (3G2B2d2 | %692
+ (3=G2A2^c2 (3G2A2c2 (3F2A2d2 (3F2A2d2 |$ %693
+ (3E2G2B2 (3E2G2B2 (3^C2E2A2 (3C2E2A2) | %694
+ (3(D2F2A2 (3F2A2d2 (3F2A2d2 (3F2A2d2 | %695
+!<(! (3^G2B2d2 (3G2B2d2 (3G2B2d2 (3G2B2d2!<)! | %696
+ (3=G2A2^c2 (3G2A2c2!<(! (3F2A2d2 (3F2A2d2 |$ %697
+ (3E2G2B2 (3E2G2B2 (3^C2E2A2 (3C2E2A2!<)! | .D4) z4 z4{/B} (3(A2^G2A2 | %699
+ .[Fd]4) z4 z4{/B} (3(A2^G2A2 | .[Fd]4) z4 z4 |]
+V:3
+[K:bass] z2 | (3(G,B,D (3G,B,D (3G,B,D (3G,B,D) | (3G,B,D (3G,B,D (3G,B,D (3G,B,D | %669
+ (3G,CE (3G,CE (3G,CE (3G,CE |$ (3G,B,D (3G,B,D (3G,B,D (3G,B,D | %671
+[K:treble] (3CEA (3CEA (3CEA (3CEA | (3B,DG (3B,DG (3B,DG (3B,DG |$ %673
+[K:bass] (3F,A,D (3F,A,D (3G,B,D (3G,B,D | (3D,F,A, (3DA,F, D,2 z2 | %675
+ (3(G,B,D (3G,B,D (3G,B,D (3G,B,D) |$ (3G,B,D (3G,B,D (3G,B,D (3G,B,D | %677
+ (3G,CE (3G,CE (3G,CE (3G,CE | (3G,B,D (3G,B,D (3G,B,D (3G,B,D |$ (3G,^CE (3G,CE (3G,CE (3G,CE | %680
+ (3F,A,D (3F,A,D (3F,A,D (3F,A,D | (3G,B,E (3G,B,E[K:treble] (3A,EG (3A,EG |$ %682
+ .[DF]2 z2 z4 | .[DG]2 .[DG]2 .[DE]2 .[DE]2 | .[DF]2 z2 z4 |$ %685
+ .[DG]2 .[DG]2 .[DE]2 .[DE]2 | .[DF]2 z2[K:bass] .[F,,F,]2 .[F,,F,]2 | %687
+ .[G,,G,]2 .[G,,G,]2 .[^G,,^G,]2 .[G,,G,]2 | [A,,A,]8 |$ %689
+ (3A,,^C,G, (3A,,C,G, (3A,,C,G, (3A,,C,!>(!G, | [D,F,]2 z2!>)!!p! z2 .D2 | %691
+ .B,2 .B,2 .E2 .E2 | (A,4 .D2) .D2 |$ .G,2 .G,2 .A,2 .A,2 | .[D,F,]2 z2 z2 .D,2 | %695
+ .B,,2 .B,,2 .E,2 .E,2 | (A,,4 .D,2) .D,2 |$ .[G,,G,]2 .[G,,G,]2 .[A,,A,]2 .[A,,A,]2 | %698
+!f! (3(D,F,A, (3D,F,A, (3D,F,A, (3^C,E,A,) | (3D,F,A, (3D,F,A, (3D,F,A, (3^C,E,A, | %700
+ (3D,F,A, (3D,F,A, D,2 |]

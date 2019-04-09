@@ -1,4 +1,4 @@
-/* abcDE_full_min.js v6.0.42 */
+/* abcDE_full_min.js v6.0.46 */
 !function(e, t) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function(e) {
   if (!e.document) throw new Error("jQuery requires a window with a document");
@@ -18891,25 +18891,26 @@ function AbcDE() {
     a.setAttribute("id", "downloadify"), (u = document.createElement("td")).appendChild(a), 
     s.appendChild(u);
     var o = document.createElement("input");
-    o.id = "sequence_spinner", o.min = "1", o.max = "999", o.size = 3, o.type = "number", 
-    o.alt = "fingering_number", o.value = 1, o.onchange = Sn, kt(u = document.createElement("td"), "Sequence", "sequence_prompt"), 
-    u.appendChild(o), s.appendChild(u), t.preset_select || (u.style.display = "none");
-    var c = document.createElement("input");
+    if (o.id = "sequence_spinner", o.min = "1", o.max = "999", o.size = 3, o.type = "number", 
+    o.alt = "fingering_number", o.value = 1, o.onchange = Sn, kt(u = document.createElement("td"), "Suggestion", "sequence_prompt"), 
+    u.appendChild(o), s.appendChild(u), t.preset_select || (u.style.display = "none"), 
+    t.sequence) var c = document.createElement("input");
     c.type = "image", c.src = F + "/eye.svg", c.width = "36", c.alt = "View", c.onclick = An, 
-    (u = document.createElement("td")).appendChild(c), s.appendChild(u);
+    (u = document.createElement("td")).appendChild(c), s.appendChild(u), t.hide_view && (u.style.display = "none");
     var u, l = document.createElement("input");
     l.type = "image", l.src = F + "/print.svg", l.width = "36", l.alt = "Print...", 
     l.onclick = Tn, (u = document.createElement("td")).appendChild(l), s.appendChild(u), 
-    u = document.createElement("td");
+    t.hide_print && (u.style.display = "none"), u = document.createElement("td");
     var f = document.createElement("input");
     f.type = "checkbox", f.value = "annotated", f.checked = M, f.id = "view_annotated", 
     f.onclick = yt;
     var p = document.createElement("label");
     p.htmlFor = "view_annotated", p.appendChild(document.createTextNode("Annotated")), 
-    u.appendChild(f), u.appendChild(p), s.appendChild(u);
+    u.appendChild(f), t.hide_annotated && (u.style.display = "none"), u.appendChild(p), 
+    s.appendChild(u), t.hide_annotated && (u.style.display = "none");
     var d = document.createElement("input");
     d.type = "image", d.src = F + "/reload.svg", d.width = "36", d.alt = "reset", d.onclick = nt, 
-    (u = document.createElement("td")).appendChild(d), s.appendChild(u);
+    (u = document.createElement("td")).appendChild(d), s.appendChild(u), t.hide_reset && (u.style.display = "none");
     var h = document.createElement("input");
     h.id = "copy_fingerings_button", h.type = "image", h.src = F + "/clipboard.svg", 
     h.width = "36", h.alt = "copy", (u = document.createElement("td")).appendChild(h), 
@@ -18929,7 +18930,8 @@ function AbcDE() {
     s.appendChild(u), t.file_input || (g.style.display = "none");
     var _ = document.createElement("input");
     _.type = "image", _.src = F + "/tags.svg", _.alt = "Metadata...", _.width = "36", 
-    _.onclick = ot, (u = document.createElement("td")).appendChild(_), s.appendChild(u);
+    _.onclick = ot, (u = document.createElement("td")).appendChild(_), s.appendChild(u), 
+    t.hide_metadata && (_.style.display = "none");
     var b = document.createElement("input");
     b.type = "image", b.src = F + "/zoom-out.svg", b.alt = "Zoom In", b.width = "36", 
     b.onclick = ut, (u = document.createElement("td")).appendChild(b), s.appendChild(u);
@@ -18938,7 +18940,8 @@ function AbcDE() {
     x.onclick = lt, (u = document.createElement("td")).appendChild(x), s.appendChild(u);
     var w = document.createElement("input");
     w.type = "image", w.src = F + "/cog.svg", w.alt = "Preferences...", w.width = "36", 
-    w.onclick = at, (u = document.createElement("td")).appendChild(w), s.appendChild(u);
+    w.onclick = at, (u = document.createElement("td")).appendChild(w), s.appendChild(u), 
+    t.hide_prefs && (w.style.display = "none");
     var k = document.createElement("input");
     k.type = "image", k.src = F + "/info.svg", k.alt = "Help", k.width = "36", k.onclick = st, 
     (u = document.createElement("td")).appendChild(k), s.appendChild(u), Downloadify.create("downloadify", {

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expert Data Collector: Didactyl IV</title>
+    <link rel="icon" type="image/ico" href="../image/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../css/abcDE.css">
+    <script src="../lib/jquery-1.12.0.min.js" type="text/javascript"></script>
+
+    <script src="../lib/knockout-min.js" type="text/javascript"></script>
+    <script src="../lib/survey.js" type="text/javascript"></script>
+    <!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+    <script src="https://surveyjs.azureedge.net/1.0.78/survey.ko.js"></script>
+    <link href="https://surveyjs.azureedge.net/1.0.78/survey.css" type="text/css" rel="stylesheet" />
+    -->
+
+    <script src="../lib/collector.js" type="text/javascript"></script>
+    <script src="../lib/fastclick.js" type="text/javascript"></script>
+    <script src="../lib/sprintf.min.js" type="text/javascript"></script>
+    <script src="../lib/md5.min.js" type="text/javascript"></script>
+    <script src="../lib/swfobject.js" type="text/javascript"></script>
+    <script src="../lib/downloadify.min.js" type="text/javascript"></script>
+    <script src="../lib/abc2svg-1.js" type="text/javascript"></script>
+    <script src="../lib/jszip.js" type="text/javascript"></script>
+    <script src="../lib/xml2abc-min.js" type="text/javascript"></script>
+    <script src="../lib/clipboard.min.js" type="text/javascript"></script>
+    <script src="../lib/abcDF_parser.js" type="text/javascript"></script>
+    <script src="../lib/abcDE.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div id="abcde"></div>
+
+<div id="preliminary_survey"></div>
+<div id="exit_survey"></div>
+<input id="abort_submission" value="CHANGE FINGERINGS" type="button" onclick="abort_submission();" style="display:none;">
+
+<form id="consent_form" style="display:none">
+    <h1>
+        Informed Consent - Participant – Elizabethtown College
+    </h1>
+
+    <h2>Consent Form</h2>
+
+    <h3>Title of Research</h3>
+    Toward a Useful Computational Model of Piano Fingering
+
+    <h3>Principal Investigators</h3>
+    <ul>
+        <li>Justin Badgerow (Elizabethtown College)</li>
+        <li>David Randolph (University of Illinois at Chicago)</li>
+    </ul>
+
+    <h3>Purpose of Research</h3>
+    The purpose of this project is to develop computational systems capable of automatically generating high-quality fingering advice to pianists.
+
+    <h3>Procedures</h3>
+    I will be determining fingerings for short musical examples and answering questions about the fingering process. I may also be performing examples on a digital piano, with or without special glove attachments designed for automatic collection of fingering data.
+
+    <h3>Risks and Discomforts</h3>
+    I understand that no risks or discomforts are anticipated from my participation in this study beyond those of using an electronic device and playing the piano.
+
+    <h3>Benefits</h3>
+    The development of software that can provide customized fingering advice will potentially reduce the time required to prepare pieces for performance. Also, through participation in these activities, participants may begin to think about fingering in new ways.
+
+    <h3>Compensation</h3>
+    I will receive $40 per two-hour session as a professional pianist or $10 per hour as a piano student.
+
+    <h3>Confidentiality</h3>
+    <p>
+        <i>The personal information gathered during this study will remain confidential, with all records to be kept private and locked in a file or on secure computer systems during the study. Only the researchers listed above will have access to personal information about me. If fingering data are shared, they will be completely anonymized.</i>
+    </p>
+    <p>
+        <i>The results of the research will likely be published in the form of academic articles or conference presentations. In any report or publication, the researchers will not provide any information that would make it possible to identify me.</i>
+    </p>
+
+    <h3>Withdrawal without Prejudice</h3>
+    <p>
+        <i>My participation in this study is strictly voluntary; refusal to participate will involve no penalty. If I initially decide to participate, I am still free to withdraw at any time.</i>
+    </p>
+
+    <h3>Payment for Research Related Injuries</h3>
+    <p>
+        <i>Elizabethtown College has made no provision for monetary compensation in the event of injury resulting from the research. In the event of such injury, assistance will be provided to access health care services. The cost of health care services is the responsibility of the participant.</i>
+    </p>
+
+    <h3>Contacts and Questions</h3>
+    <p>
+        If I have any questions concerning the research project, I may contact Dr. Justin Badgerow,
+        Associate Professor of Music, at x3668 or badgerowj@etown.edu. Should I have any questions
+        about my participant rights involved in this research, I may contact the Elizabethtown College
+        Institutional Review Board Submission Coordinator, Pat Blough at (717) 361-1133 or via email at bloughp@etown.edu.
+    </p>
+    <p>
+        A copy of this consent form will be emailed to me at the address I provided.
+    </p>
+
+    <h3>Statement of Consent</h3>
+    <input type="checkbox" name="eighteen"> I am 18 years of age or older.<br><br>
+    <input type="checkbox" name="understand"> I have read and understand the above information. Any questions I had about the terms of my participation have been asked and answered by a principal investigator.<br><br>
+    <input type="button" id="consent_button" value="SUBMIT" onclick="processConsent()">
+    <br><br>
+</form>
+
+<form id="instructions" style="display:none;">
+    <div id="interpolation_instructions">
+        <p>
+            Please assume the original editor is trying to provide complete fingering solutions in the following examples.
+            Fill in all missing annotations for fingerings the original editor intended the performer to use.
+        </p>
+    </div>
+    <div id="annotation_instructions">
+        <p>
+            Please completely annotate the following examples.
+        </p>
+    </div>
+
+    <!--
+    <br />
+    We have created an editor to make this task as easy as possible.
+    <ul>
+        <li>Click a note or use the arrow keys to navigate.</li>
+        <li>To enter most annotations, simply enter a digit (1-5) when a note is highlighted (red or blue).</li>
+        <li>Red highlighting indicates the right hand is in use. Blue indicates the left. Type&nbsp;<strong>T&nbsp;</strong>to&nbsp;<strong>t</strong>oggle the hand assignment. You will notice different positioning and typeface&nbsp;for annotations assigned to different hands.</li>
+        <li>To indicate a note has&nbsp;different striking and releasing fingers (i.e., a finger <em>substitution</em>), enter two digits separated by a hyphen.</li>
+        <li>Detailed help is available via the&nbsp;<span style="font-family: georgia, serif;"><span style="font-size: 19px;"><em><strong>i</strong></em></span></span>&nbsp;button on the right of the tool bar at the top of the page.</li>
+    </ul>
+    -->
+    <input type="button" id="start_annotating" value="NEXT" onclick="startAnnotating()">
+    <br/><br/>
+</form>
+
+<div id="submission_complete" style="display:none;">
+    <h2>Thank you!</h2>
+    <p>
+        Thank you for completing this fingering
+        activity. Your responses have been finalized
+        and included in our data. Your contribution
+        is very much appreciated.
+    </p>
+    <p>
+        Please click <b>NEXT</b> to complete
+        additional activities now, or you may
+        return to this survey at a later time using the
+        same browser.
+    </p>
+    <input type="button" id="complete_submission" value="NEXT" onclick="location.reload(true);">
+</div>
+
+<div id="all_done" style="display:none;">
+    <h2>All done!</h2>
+    <p>
+        Thank you for your participation in this phase of our study. Your contributions are much appreciated.
+    </p>
+</div>
+</body>
+</html>

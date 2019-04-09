@@ -1,0 +1,51 @@
+% abcDidactyl v6
+% abcD fingering 1: 1xxxxx1xxxxx1xxxxx&1xx5x3xxx14xx14xx14xxxxxxx2x412xxx142x142x&142xxxxxxxxxxxxx131424xx24xxxxxxxxxxxxxx13142xxx&2xxxxxxxxxxx42xxxxxx421242xxxxxx42xx432x4xxxxxxx&4xx13x13x132x3x5xxxx2135xx1213&3xx25142312xxxxxxxxx14321xx12&1xxxxxx1251xxxxxxxxx5xx5xx4xx1xx13xxxx&24xx53213xxxx24xx132413121xx13xxxx24xx&53213xxxx24xx3x4x133524354xx14xx13x235@1xx&3xxxxx2x1x1x3xxxxx2x1xxx&xxxxxxxxxxxx&41xxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxx&3xxx2x1xxx1x3xxx2x4xxx3x&5xx4xxxxxxxxxxx31&1xxxxxx1xxxxx131x31xxxxx&x1xxxxx131x31xxxxxxxxxx>14xxx<1xx
+% Authority: Durand & Cie (1890)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-09 21:03:33
+% abcDidactyl END
+X:42
+T:Sonatina 4.2
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:3/4
+Q:1/4=120
+I:linebreak $
+K:F
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+!p! z2 (EG .c2).c2.c2.c2 | %527
+ z2!<(! (F=B .d2).d2d2.d2 | z2 (G_B .e2).e2.e2.e2!<)! |$ %529
+ z A^ce .a2.a2 (a_bag | fagf egfe dfed) | %531
+ z (A^ce .a2).a2 (ae'^c'g | fafa egeg dfdf) |$ %533
+ (=c_ece cece cdcd) | c(dcd AdAd _BdB)d | (B_dBd BcBc BcBc) | %536
+ (BcBc GcGc AcAc) |$!f! (=BfBf BfBf BfBf) | (ec=Bc dcBc fdcd) | %539
+ (g!<(!ede fede afe!<)!f) |!ff! (_baga baga baga |$!>(! .b2).a2.g2.f2.e2.d2!>)! | %542
+!p! .c2.=B2._B2.A2._A2.G2 |!<(! F8 (=A2>F2!<)! |!>(! c8) (BAGF!>)! | %545
+ E2G2B2d2c2B2 | [E^G]4 [FA]4) z4 |$ (_e6 ge d2f2) | (A6 cA B2)(cd | %549
+ _efed egfe .d2) z2 | (cdc=B c_edc ._B2) z2 |$ z (BcB gBcB) z (Acf) | %552
+ z (BcB gBcB) z (Acf) |!p! z (dBG) z (cAF) z (BGE) | %554
+ z2 (FG .A2).[FA]2.[FA]2.[FA]2 |$ ([Ac]4 [G_B]8) | %556
+ z2 (fc .A2).[FA]2.[FA]2.[FA]2 | ([Ac]4 [G_B]8) | %558
+ ([FA]2>[GB]2 [FA]4 [EG]4) |"_dolce" z2 (fg .a2).[fa]2.[fa]2.[fa]2 | %560
+ ([ac']4 [g_b]8) |$ z2 (f'c' .a2).[fa]2.[fa]2.[fa]2 | ([ac']4 [g_b]8) | %563
+ (afbg .[fa]2).[fa]2.[eg]2.[eg]2 |!f! f6 (ed cBAG | %565
+ F6) (ED[I:staff +1] CB,A,G, | .F,4)[I:staff -1] .[A,CF]4 z4 |]$ %567
+V:3
+C6 | C6 | C6 |$ %529
+!f! (^CA,CA,CA, | DA, EA,FA,) | ^CA,CA,CA, | DA,EA,FA, |$[K:treble] .^F.F F2 z2 | %534
+ .G.G G2 z2 | .=E.E E2 z2 | .F.F F2 z2 |$ %537
+[K:bass] [G,D][G,D][G,D][G,D][G,D][G,D] | (C,CC,CC,C) | C,CC,CC,C | C,CC,CC,C |$ C,2 z2 z2 | %542
+ z6 | (F,,F,F,,F,F,,F,) | F,,F,F,,F,F,,F, | F,,F,F,,F,F,,F, | F,,F,F,,F,F,,F, |$ %547
+!f! (A,F,A,F,B,F,) | _EF,EF,DF, | A,F,A,F,B,F, | ^F,DF,DG,E |$ %551
+ [=E,G,C]4 [F,A,C]2 | [E,G,C]4 [F,A,C]2 | .B, z .C z .C, z | [F,A,]2 z2 z2 |$ %555
+ z (C/=B,/ .C).C,.D,.E, | F,2 z2 z2 | z (C/_B,/ .C).C,.D,.E, | (F,>B,, C,2 C,,2 | %559
+ F,,2) z2 z2 |[K:treble] z (c/=B/ .c).C.D.E |$ F2 z2 z2 | z c/-=B/ .c.C.D.E | %563
+ (FB, C2[K:bass] C,2) | .[F,A,].[F,A,] [F,A,]2 z2 | .[F,A,].[F,A,] [F,A,]2 z2 | %566
+ .F,,2 .[F,,F,]2 z2 |]$

@@ -1,0 +1,50 @@
+% abcDidactyl v6
+% abcD fingering 1: 2xx14x3x2xx15x3x5x125x1253xx1424242xxx4x&xx2xxx5x2x4x1x4x1x4x5243xxxx14xx23xx&24xx13xx35xx24xxxxxx5xxx14x213x15xxx&2xxx2x3xxxx251325xx251325xxx5xxx&13xxxxxxxxxxxxxx13xxxxxx23xx14xx14xx5xxx13234xxx&2xxx54xx1xx12xxx1xxx4x1x3xxxxxxx4x1x3xxx&x1xxxx21xxx1xxxx21xxx21xxx2xxxx@2x123x1xx13xx&x123x1xx1xx2xxxxxxxxx&xx53xx42xx31xxxxxxxxxxxxxx42>1xx5xxxxxx2x&5x<2>3xx1x<2x3xx23x13x&5314521xxx&xxxxxxxxx32xx4xx5xx32xx4xx5xx&42xxxxxxxxxxxx42xxxxxxxxxxxxxx
+% Authority: Durand & Cie (1890)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-09 23:35:26
+% abcDidactyl END
+X:55
+T:Sonatina 5.5
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:2/4
+Q:1/4=94
+I:linebreak $
+K:G
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+.B2.B2 | .B2.B2.e2.e2 | .^d2.d2.B2.B2 | %896
+ .B2.B2.g2.g2 | .f2.f2.b2.b2 | .e2.e2.a2.a2 | .d2.d2 agfg | .e2e2.^c2.c2 | %901
+ .^A2.A2.F2.F2 | .F2.F2.B2.B2 |$ .^A2.A2.F2.F2 | .F2.F2.d2.d2 | %905
+ .^c2.c2.f2.f2 | .B2.B2.e2.e2 | .=A2.A2.d2.d2 | %908
+ (d2^G2) (AGFG | B2A2) z4 | z4 .[DF]2.[DF]2 | .[^CE]2.[CE]2 z4 |$ %912
+ z4 .[^DF]2.[DF]2 | .[E=G]2.[EG]2!ff! .[eg]2.[eg]2 | %914
+ [^ce]2.[ce]2.[Ac]2.[Ac]2 | (a4 gfed | ^c2)B2 (AGFE | D4) (ED^CB, | %918
+[I:staff +1] A,4) A,G,F,E, | .D,2.D,2.F,2.F,2 |$ .B,2.B,2.^G,2.G,2 | %921
+ .A,2.A,2[I:staff -1].E2.E2 |!pp! .A2.A2.F2.F2 | %923
+!<(! .G2.G2.B2.B2!<)! | (B2E2)(B2D2) | (D2^C2) .e2.e2 | %926
+ (e2.A2)(e2.G2) | (G2F2) .d2.d2 | .E2.E2 (AGFE |$ DFDF DFDF | %930
+ DFDF DFDF) | DEDE DEDE | ^CECE =CFCF | B,GB,G!<(! (BAGF | %934
+ EFEF GFED!<)! |$!f! ^CDCD EDCB, | A,B,^CD EFGA) | (DFAd B2).B2 | %938
+ .D2.D2 (FEDE | DFAd B2).B2 | .D2.D2 (FEDE |$ .D2) z2!p! (DEFG | %942
+ .A2) z2 (FGAB | .=c2) z2!pp! (defg | .a2) z2 (fgab | .c'2) z2 (fgab | %946
+ .c'2) z2 c'-d'e'd' | c'4 z4 | z4!D.C.! |]$ %949
+V:3
+!p! z2 | z2 (G2 | F2) z2 | z2 (E2 | ^D2 =D2 | %898
+ ^C2 =C2 | B,2 E,2 | G,2 E,2 | F,4) | z2 (D2 |$ ^C2) z2 | z2 (B,2 | %905
+ ^A,2 =A,2 | ^G,2 =G,2 | F,2 B,,2 |!f! E,2 E,,2 | .A,,) z (^G,/A,/G,/A,/ | %910
+ .A,,).A,, z2 | z2 (^G,/A,/G,/A,/ |$ .A,,).A,, z2 | z2 .[A,^C].[A,C] | %914
+ .[^CE].[CE].[EG].[EG] | .[DF].[DF] z2 | .[G,,G,].[G,,G,] z2 | .[A,,F,].[A,,F,] z2 | %918
+ [A,,^C,][A,,C,] z2 | D,,2 z2 |$ z2 (D,2 | ^C,2) z2 | z2 (=C,2 | B,,2) z2 | (G,2 ^G,2 | %925
+ A,2) z2 | (^C2 B,2 | ^A,2 B,2 | G,2 =A,2) |$!pp! (D,,2 F,,2 | B,,2 ^G,,2) | %931
+ (A,,2 E,2 | A,2 D,2 | G,2) z2 | G,2 z2 |$ [A,,E,G,]2 z2 | %936
+ .[A,,E,G,] z .[A,,E,G,] z |!ff! [D,F,]2 [G,,G,]2 | [A,,D,F,]2 [A,,^C,G,]2 | %939
+ [D,F,]2 [G,,G,]2 | [A,,D,F,]2 [A,,^C,G,]2 |$ [D,F,][D,F,] z2 | [D,F,][D,F,] z2 | %943
+ .[D,F,A,].[D,F,A,] z2 |[K:treble] .[DF].[DF] z2 | .[DFA].[DFA] z2 | .[DFA].[DFA] z2 | z4 | z2 |]$ %949

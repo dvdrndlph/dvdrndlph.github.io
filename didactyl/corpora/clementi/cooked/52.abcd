@@ -1,0 +1,70 @@
+% abcDidactyl v6
+% abcD fingering 1: 43x154x1xx13xxxx53&23xxxx4x215413253x&42xxxxxxxxxx5xxxxxxxxxxx1232x521xxx52xxxxxxxxxx&123xx5xx3xx123xxxxxxxx1xx1xxx1xx1xxx53x13x&43xx53143x15313xxx54&2x43xxxx1x152&13x43x43xx5314xx1531&3xxxx542x43xxx4125x2&3523xxx12x5xxx13x121xxxx14xx1xx12xxxxxx3x12&1xxxx14xx1xx1xxxxxxxxxxxxxxxxxxxxxxx35xxx14xx13&(23)xx12x12xxxxxxx2xxxxxxxxxxx124xxx12xxxx&13xxxx12xxxx12x12xxxxxxx235xxxxxxxxx124xxx12xxxx&13xxxx12xxxx143xx154xxxxx@52xxxxxxxxxx53xxxxxxxxxx4xxxxx5xxxxx&5xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx21xxxxxxxxx&x23152xx23152&xxxxxx123&x5x1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxx4xxxxxxxxxxx5xxxxxxxxxxx&5xxxxxxxxxxx532xxxx5xxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxx52xxxxxxxxxx53xxxxxx2xxx&52xxxx52xxxx4241xx43xxxx&41xx43xxxxxxxxxxxx4xxxxx&5xxxxxxxxxxxxx13421x21&3x21xx1x421x12&xxxxxxxx4xxxxxxxx5xx4xxxxxxxx5xxxxxxxxx
+% Authority: Durand & Cie (1890)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-21 00:58:58
+% abcDidactyl END
+X:52
+T:Sonatina 5.2
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:4/4
+Q:1/4=140
+I:linebreak $
+K:G
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+$!p!(3:2:5(e/dz/^c2d2 | %702
+ .a4) (a4 ^f4 d4 | d'8 ._b4) .g4 | .^f4{/g} (3(f2e2f2 .g4) ._e4 |$ %705
+ (^c4 d8){/e} (3(d2c2d2 |!<(! ._e4) .e4 .=c4 .A4!<)! | (g4 =f4 d4 _B4) | %708
+ (G4 c4 A4 =F4 |$ (3(_B2)=F2D2 (3B2F2D2 (3B2F2D2 (3B2F2D2 | %710
+ (3=B2_F2D2 (3B2F2D2 (3B2F2D2 (3B2F2D2) | (3z2 (C2_E2 (3G2E2G2 (3c2G2E2 (3c2G2E2 | %712
+ (3^c2G2=E2 (3c2G2E2 (3c2G2E2 (3c2G2E2) |$ (3z2 (D2^F2 (3A2F2A2 (3d2A2F2 (3A2F2D2) | %714
+ (3z2 (D2G2 (3_B2G2B2 (3d2B2G2 (3B2G2D2) | %715
+ (3z2 D2E2 (3^F2G2A2 (3=B2^c2d2 (3e2^f2g2 | %716
+ (3a2b2^c'2 (3d'2a2f2 (3d2A2F2 z4 |$ z8 z4!p!{/a} (3(g2f2g2 | %718
+"_dolce" .b4) .b4 .g4{/a} (3(g2f2g2 | d'8 .b4) .g4 | .c'4 (3(c'2b2c'2 .e'4) .e'4 |$ %721
+ (^c'4 d'4) z4{/a} (3(g2f2g2 | .a4) (a4 e4 a4 | d8 .g4) d4 |$ %724
+ .c4 .c4 .B4 .d4 | (d4 .A4) z4{/A} (3G2F2G2 | .B4 .B4 .G4{/A} (3(G2F2G2 | %727
+ d8 .B4) .G4 |$ .c4{/d} (3(c2B2c2 .e4) .e4 | (^c4 .d4) z4{/g} (3(=f2e2f2 | %730
+ .a4) .a4 .d4 .d4 | (g8!>(! e4 ^c4!>)! |$ %732
+ d4) (d4 ^F4){/G} (3(F2E2F2 | (3(G2)B2d2 (3g2f2e2 (3d2c2B2 (3A2G2F2 | %734
+ (3(E2)e2d2 (3c2B2A2 (3G2F2E2 (3D2E2F2 | (3(G2)B2d2 (3g2f2e2 (3d2c2B2 (3A2G2F2 |$ %736
+ (3E2)(e2d2 (3c2B2A2 (3G2F2E2 (3D2E2F2 | (3(G2)A2B2 (3G2A2B2 (3G2A2B2 (3G2A2B2 | %738
+ (3G2A2B2 (3G2A2B2 (3G2A2B2 (3G2A2B2) | (3z2 (b2d'2 (3c'2b2a2 (3g2f2e2 (3d2c2B2 |$ %740
+ TA16({GA}) | (3(G2)!>(!B2d2 (3B2d2g2!>)!!p! (3B2d2g2 (3B2d2g2 | %742
+ (3^c2e2g2 (3c2e2g2 (3c2e2g2 (3c2e2g2 | %743
+ (3=c2d2^f2 (3c2d2f2 (3B2d2g2 (3B2d2g2 |$ %744
+ (3A2c2e2 (3A2c2e2 (3F2A2d2 (3F2A2d2 | %745
+ (3(G2)B2d2 (3B2d2g2 (3B2d2g2 (3B2d2g2 | %746
+!<(! (3^c2e2g2 (3c2e2g2 (3c2e2g2 (3c2e2g2!<)! | %747
+ (3=c2d2^f2 (3c2d2f2!<(! (3B2d2g2 (3B2d2g2 |$ %748
+ (3A2c2e2 (3A2c2e2 (3F2A2d2 (3F2A2d2!<)! |!f! G4) z4 z4{/e} (3(d2^c2d2 | %750
+ [Bg]4) z4 z4{/e} (3(d2^c2d2 | [Bg]4) z4 z4 |]$ %752
+V:3
+z2 |[K:treble] (3(=C^FA (3CFA (3CFA (3CFA) | %703
+ (3_B,DG (3B,DG (3B,DG (3B,DG |[K:bass] (3A,CD (3A,CD (3G,_B,D (3G,B,D |$ %705
+ (3^F,A,D (3F,A,D (3F,A,D (3F,A,D | (3=F,A,C (3F,A,C (3F,A,C (3F,A,C | %707
+ (3=F,_B,D (3F,B,D (3F,B,D (3F,B,D | (3=F,C_E (3F,CE (3F,CE (3F,CE |$ ._B,2 z2 z2 ._A,2 | %710
+ .G,2 .G,2 .G,,2 .G,,2 | [C,,C,]4 z2 ._B,2 | .A,2 .A,2 .A,,2 .A,,2 |$ %713
+!ff! [D,,D,]8 | [D,,D,]8 | [D,,D,]8 | z4 z2 (3DA,F, |$ D,6 z2 | %718
+ (3(G,B,D (3G,B,D (3G,B,D (3G,B,D) | (3G,B,D (3G,B,D (3G,B,D (3G,B,D | %720
+ (3G,CE (3G,CE (3G,CE (3G,CE |$ (3G,B,D (3G,B,D (3G,B,D (3G,B,D | %722
+[K:treble] (3CEA (3CEA (3CEA (3CEA | (3B,DG (3B,DG (3B,DG (3B,DG |$ %724
+[K:bass] (3F,A,D (3F,A,D (3G,B,D (3G,B,D | (3(D,F,A, (3DA,F, D,2) z2 | %726
+ (3G,B,D (3G,B,D (3G,B,D (3G,B,D | (3G,B,D (3G,B,D (3G,B,D (3G,B,D |$ (3G,CE (3G,CE (3G,CE (3G,CE | %729
+ (3G,B,D (3G,B,D (3G,B,D (3G,B,D |!f! (3=F,B,D (3F,B,D (3F,B,D (3F,B,D | %731
+ (3E,G,C (3E,G,C (3E,G,_B, (3E,G,B, |$!p! (3D,G,=B, (3D,G,B, (3D,A,C (3D,A,C | %733
+ [G,B,]2 z2 z4 | [G,C]2 [G,C]2 [G,A,]2 [G,A,]2 |
+ [G,B,]2 z2 z4 |$ [G,C]2 [G,C]2 [G,A,]2 [G,A,]2 | %737
+ [G,B,]2 z2!f! [B,,,B,,]2 [B,,,B,,]2 | [C,,C,]2 [C,,C,]2 [^C,,^C,]2 [C,,C,]2 | [D,,D,]8 |$ %740
+ (3D,F,C (3D,F,C (3D,F,C (3D,F,C | [G,B,]2 z2 z2[K:treble] .G2 | .E2 .E2 .A2 .A2 | %743
+ (D4 .G2) .G2 |$ .C2 .C2 .D2 .D2 | [G,B,]2 z2 z2[K:bass] .G,2 | .E,2 .E,2 .A,2 .A,2 | %747
+ (D,4 .G,2) .G,2 |$ [C,C]2 [C,C]2 ([D,D]2 [D,D]2) | (3G,B,D (3G,B,D (3G,B,D (3F,A,D | %750
+ (3G,B,D (3G,B,D (3G,B,D (3F,A,D | (3G,B,D (3G,B,D G,2 |]$

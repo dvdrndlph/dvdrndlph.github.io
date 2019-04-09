@@ -1575,12 +1575,13 @@ function AbcDE() {
         sequence_spinner.value = 1;
         sequence_spinner.onchange = load_fingering;
         cell = document.createElement('td');
-        insert_label(cell, 'Sequence', 'sequence_prompt');
+        insert_label(cell, 'Suggestion', 'sequence_prompt');
         cell.appendChild(sequence_spinner);
         row.appendChild(cell);
         if (!Options.preset_select) {
             cell.style.display = 'none';
         }
+        if (Options.sequence)
 
         var view_button = document.createElement('input');
         view_button.type = 'image';
@@ -1591,6 +1592,9 @@ function AbcDE() {
         cell = document.createElement('td');
         cell.appendChild(view_button);
         row.appendChild(cell);
+        if (Options.hide_view) {
+            cell.style.display = 'none';
+        }
 
         var print_button = document.createElement('input');
         print_button.type = 'image';
@@ -1601,6 +1605,9 @@ function AbcDE() {
         var cell = document.createElement('td');
         cell.appendChild(print_button);
         row.appendChild(cell);
+        if (Options.hide_print) {
+            cell.style.display = 'none';
+        }
 
         cell = document.createElement('td');
         var checkbox = document.createElement('input');
@@ -1613,8 +1620,14 @@ function AbcDE() {
         label.htmlFor = 'view_annotated';
         label.appendChild(document.createTextNode('Annotated'));
         cell.appendChild(checkbox);
+        if (Options.hide_annotated) {
+            cell.style.display = 'none';
+        }
         cell.appendChild(label);
         row.appendChild(cell);
+        if (Options.hide_annotated) {
+            cell.style.display = 'none';
+        }
 
         var reset_button = document.createElement('input');
         reset_button.type = 'image';
@@ -1625,6 +1638,9 @@ function AbcDE() {
         cell = document.createElement('td');
         cell.appendChild(reset_button);
         row.appendChild(cell);
+        if (Options.hide_reset) {
+            cell.style.display = 'none';
+        }
 
         var copy_button = document.createElement('input');
         copy_button.id = 'copy_fingerings_button';
@@ -1690,6 +1706,10 @@ function AbcDE() {
         cell = document.createElement('td');
         cell.appendChild(metadata_button);
         row.appendChild(cell);
+        if (Options.hide_metadata) {
+            // file_input.style.visibility = 'hidden';
+            metadata_button.style.display = 'none';
+        }
 
         var zoom_out_button = document.createElement('input');
         zoom_out_button.type = 'image';
@@ -1720,6 +1740,9 @@ function AbcDE() {
         cell = document.createElement('td');
         cell.appendChild(prefs_button);
         row.appendChild(cell);
+        if (Options.hide_prefs) {
+            prefs_button.style.display = 'none';
+        }
 
         var help_button = document.createElement('input');
         help_button.type = 'image';

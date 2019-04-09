@@ -1,0 +1,53 @@
+% abcDidactyl v6
+% abcD fingering 1: 2211554322343213.33115532&1132123.54321323421;54321323421;5321&2215152413.543213234213234;54321323421;123543213212&1;3535342135353421.@53135313531353135313531&515151155.15151515432132151515321&313122515.15151515151515321.2415&3;212155.
+% Authority: Justin Badgerow (2019)
+% Transcriber: Justin Badgerow
+% Transcription date: 2019-01-01 12:01:14
+% abcD fingering 2: 321154xxx23xxxxx53xx5x32&xx3xxxx5xxx132xxxx5xxx132xxxx532x&3215xx24xx5xxx132xxx13xx15xxx132xxxx123x4xx13x12&135xxx4x1x5xxx42x@421xxxxx53xx4xxxxxxxxxx&52xx1xxxxxxxxxxxxxxx13xxxxxxx32x&31xx2xxxxxxxxxxxxxxxxxxxxx2xxx&x31x1xx
+% Authority: Durand & Cie (1890)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-09 14:58:35
+% abcD fingering 3: 321154xxx23xxxxx32xx4542&123xxxx5xxx13xxxxx5xxxx3xxxxx53xx&3215xx24xx5xxxx3xxxx13xx4xxxxx3xxxxx123xxxx13xx2&135xxx4xxxxxxxxxx@4xxxxxxx53xx4xxxxxxx5xx&x2xxx1xxxxxxxxxxxxxx13xxxxxxx3xx&31xx2xxxxxxxxxxxxxxxxxxxxx2xxx&x3xxxxx
+% Authority: Louis Köhler (1904)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-28 12:52:30
+% abcD fingering 4: 221155xx233xxx1333xxx532&14xxxx15432132xxxx543xxxxxxxx5321&2215xx2413543xx32xxx13231xxxxxxxxxx1123543213212&135xxx42xxxxxxxxx@5xxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxx54321321xxxx5321&31xx2xxxxxxxxxxxxxxxxxxxxx2xxx&12141xx
+% Authority: Gio. Ricordi
+% Transcriber: David Randolph
+% Transcription date: 2018-12-28 19:45:07
+% abcD fingering 5: 221x55xx233xxx1333xx5xxx&xxxxxxx5432132xxxx54xxxxxxxxx5321&xxxxxxx4x3543xx32xxx13231xxxxxxxxxx1123543213212&135xxxx2xxxxxxxxx@xxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxx
+% Authority: J. J. Riefenstahl
+% Transcriber: David Randolph
+% Transcription date: 2018-12-29 02:22:27
+% abcD fingering 6: 321154xxx23xxxx243115421&323xxxx5xxxx3xxxxx5xxxx3xxxxx53xx&3215xx24xx5xxxx3xxxx13xx4xxxxx3xxxxx123x4xxx3x12&135xxx42xx5xxx4xx@4xxxxxxx53xx4xxxxxxx42x&51xx52xxxxxxxxxx5xxxx3xxxxxxx3xx&42xx32xxxxxxxxxxxxxxxxx3xx24xx&x3x3x54
+% Authority: Bruno Mugellini (1904)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-29 14:01:35
+% abcDidactyl END
+X:21
+T:Sonatina 2.1
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:2/2
+I:linebreak $
+K:C
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+[K:G][M:2/4]!p![Q:1/4=104]"^Allegretto." .d2 | %135
+ (d2B2)(B2g2) | (g6!p! f)e | .d2.d2 (de)dc | B2.d2 z2 g2 | %139
+!<(! (g2d2)(d2b2)!<)! | b6!p! (ge |$ .d2).d2 (d^cBc | d4) z2 (ag | %143
+ fed^c BcdB | A2) z2 z2 (ag | fed^c!<(! BcdB | A2)!<)! z2!f! (d'afd |$ %147
+ e2)e2 [^ca]2[ca]2 | (([eg]4 [df]2))!p! (ag | fed^c BcdB | %150
+ AGFG) .A2(ag |!<(! fed^c BcdB | A2) z2!<)!!f! (dfad' | %153
+ ^c'bag fed^c |$ (d)faf afge | dfaf afge | d4) z2 |]
+V:3
+[K:G][M:2/4] z | (G,B,DB,) | G,B,DB, | F,A,DA, | G,B,DB, | G,B,DB, | G,B,E z |$ %141
+ .[A,F].[A,F] .[A,E].[A,E] | (D,DD,D) | D,DD,D | (D,/E,/F,/G,/ A,/B,/^C/D/) | D,DD,D | %146
+ (D,/F,/)A,/D/ z2 |$ [G,B,][G,B,]A,A, | D,DD,D | D,DD,D | D,DD,D | D,DD,D | %152
+ (D,/F,/A,/D/) z2 | (G,E,A,A,, |$ D,) z z .A,, | .D, z z .A,, | D,.D,,.D,, |]

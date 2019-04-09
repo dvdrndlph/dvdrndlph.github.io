@@ -1,0 +1,65 @@
+% abcDidactyl v6
+% abcD fingering 1: 131554321235431213.24541335&245413243432123451432123.14313155432123543&1213.3532414231343235432421232124321235&421421421.2341313133524;2341313133524;&24352413.5321313133524;5321313133524;314213132424&1.23123412312345125.@515151515151515151515151511&5113215.515151515151515151&515151.353525151515353525151524&21512;1215432;121543&13252.1215432;1215431322&511;5115151.
+% Authority: Justin Badgerow (2019)
+% Transcriber: Justin Badgerow
+% Transcription date: 2019-01-01 17:12:59
+% abcD fingering 2: 13x5xxxx2135xx121324xxxx35&24xxxx243xxx1xxxx14xxxxx5x3xxx5xxxx213xxx&12133xx24142313xxxxxxxxxx123xxxxxx123x&4xx5xx4xx2xx24xx13xxxx2xx24xx13xxxx&13xxxx2453213xxxxxxxx53213xxxxxxxx3xxx13241324&1xx1xx412x1xxxxxxx@xxxxxxxxxxxxxxxxxxxxxxxxxxx&xxx3xxxxxxxxxxxxxxxxxxxxx&xxxxxx3xxxxxxxxx1xxxxxxxxxxx14&21x311xxxxxx1xxxxx&141x21xxxxxxxxxxxx132x&xxxxxxxxxx
+% Authority: Durand & Cie (1890)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-09 20:40:01
+% abcD fingering 3: 12x4xx121235xx121324xxxx35&24xxxx243xxx1xxxx14xxxxxxx2xxxx3xx2xxxxxx&xxxx3xx25442313xxxxxxxxxx123xxxxxx1xxx&4xx5xx5xx2xx24xx13xxxxxxxxxxxxxxxxx&24xxxxxx52124xx13xxxxxxxxxxxxxxxxx3xxx13241324&1xx1xxx5-12x1xxxxxxx@xxxxxxxxxxxxxxxxxxxxxxxxxx2&xx23xxxxxxxxxxxxxxxxxxxxx&xxxxxx3xxxxxxxxxxxxxxxxxxxxx13&11xxxxxxxxxxxxxxxx&141xxxxxxxxxxxxxxx14xx&x12x12xxxx
+% Authority: Louis Köhler (1904)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-28 16:41:23
+% abcD fingering 4: 121432121235xx121324541325&245413243xxx1xxxx14xxx3xxx2xxxxxxxxxxxxxx&xxxx2xx15142313xxxxxxx242123xx2xxx1xxx&xxxxxxxxx1xxxxxxxxxxxxxxxxxxxxxxxxx&13xxxx1252113xxxxxxxxxxxxxxxxxxxxx3xxx24xx24xx&1xx1xxx1xx1xxx5xxx@xxxxxxxxxxxxxxxxxxxxxxxxxxx&xxx3xxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxx3xxxxx1xxx1x&2xx21xxxxxxxxxxxxx&1431xxxxxxxxxxxxxx1xx1&xxxxxxxxxx
+% Authority: Gio. Ricordi
+% Transcriber: David Randolph
+% abcD fingering 5: 121432121235xxxxxx24541335&245413243xxx1xxxx14xxxxxxxxxxxxxxxxxxxxxx&xxxx35325142313xxxxxxx242123xx2xxx1xxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&1xx1xxx1xx1xxx5xxx@xxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxx&xxxxxxxxxxxxxxxxxxxxxx&xxxxxxxxxx
+% Authority: J. J. Riefenstahl
+% Transcriber: David Randolph
+% Transcription date: 2018-12-29 13:02:11
+% Transcription date: 2018-12-29 00:23:32
+% abcD fingering 6: 13x5xxx1213xxx121324xx1324&13xx12243xxx1xxxx14xxxxx14-13xxx5xxx1213xxx&12133xxxx142xx3xxxxxxx242123xxx432123x&42x42x42x2x413xxxx24xx2x413xxxx24xx&24xxxxxx53213xxxx24xx53213xxxx24xx314213132424&1xx1xxx1xx1xxxxxxx@xxxxxxxxxxxxxxxxxxxxxxxxxx2&xx23xxxxxxxxxxxxxxxxxxxxx&xxxxxx3xxx2xxxxx1x3xxx2xxxxx14&21x31231xxxx231xxx&141xx231xxxx231xxx14x2&xx2xx2xxxx
+% Authority: Bruno Mugellini (1904)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-29 16:05:13
+% abcDidactyl END
+X:41
+T:Sonatina 4.1
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:3/4
+Q:1/4=120
+I:linebreak $
+K:F
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+"^Con spirito." F8 (A2>F2 | c8) (BAGF | %498
+ E2G2B2d2c2B2 | [E^G]4 [FA]4) z4 | (f6 gf e2d2) |$ %501
+ (c6 dc B2A2) | (GAG^F GABc d2=F2) | (F2E2PD2C2D2E2) | [A,F]8 (AFAF | %505
+ c8) (BAGF | E2G2B2d2c2B2 |$ [E^G]4 [FA]4) z4 |!p! (f6 af e2g2) | %509
+ (=B6 dBc2G2) | (fgfe fagf egec | =BcBA BdcB cegc') |$ %512
+ z (afd) z (gec) z (fd=B) | z2 (cd .e2).[ce]2.[ce]2.[ce]2 | ([eg]4 [d=f]8) | %515
+ z2!<(! (cd .e2).[ce]2.[ce]2.[ce]2!<)! | ([eg]4 [d=f]8) |$ ([ce]2>[df]2 [ce]4 [=Bd]4) | %518
+"_dolce" z2 (cG .E2).[CE]2.[CE]2.[CE]2 | ([EG]4 [D=F]8) | %520
+ z2 (cG .E2).[CE]2.[CE]2.[CE]2 | ([EG]4 [D=F]8) | %522
+ (ECFD .[CE]2).[CE]2.[=B,D]2.[B,D]2 |$ C6 (DE FGA=B | %524
+ c6) (de fga=b | .c'4) .[EGc]4 z4 |]
+V:2
+ x6 | x6 | x6 | x6 | d4 cB |$ %501
+ A4 GF | x6 | x6 | x6 | x6 | x6 |$ x6 | x6 | x6 | x6 | x6 |$ x6 | x6 | x6 | x6 | x6 |$ x6 | x6 | %519
+ x6 | x6 | x6 | x6 |$ x6 | x6 | x6 |]
+V:3
+[K:F][M:3/4]!f! (F,,F,F,,F,F,,F,) | (F,,F,F,,F,F,,F,) | (F,,F,F,,F,F,,F,) | (F,,F,F,,F,F,,F,) | %500
+ (F,,F,) F,2 z2 |$ (F,,F,) F,2 z2 | (B,,4 =B,,2) | (C,2 C,,2) z2 | (F,,F,F,,F,F,,F,) | %505
+ F,,F,F,,F,F,,F, | F,,F,F,,F,F,,F, |$ F,,F,F,,F,F,,F, | (=B,G,B,G,CG,) | FG,FG,EG, | %510
+ =B,G,B,G,CG, | FG,FG,EC |$ .F z .G z .G, z | [CE]2 z2 z2 | z (G/^F/ .G).G,.A,.=B, | %515
+ C2 z2 z2 | z G/-^F/ .G.G,.A,.=B, |$ (C>F, G,2) (G,,2 | C,2) z2 z2 | %519
+ z G,/-^F,/ .G,.G,,.A,,.=B,, | C,2 z2 z2 | z G,/-^F,/ .G,.G,,.A,,.=B,, | (C,F,, G,,2) G,,2 |$ %523
+!f! (C,,C,) C,2 z2 | (C,,C,) C,2 z2 | .[C,,C,]2 .[C,,C,]2 z2 |]

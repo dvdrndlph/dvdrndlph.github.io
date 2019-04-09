@@ -1,0 +1,44 @@
+% abcDidactyl v6
+% abcD fingering 1: 2xxxxxxxxxxxxxxx5xxx132543x13xx5xx&2454213245x2x4&x4xxx4xxx5xx21xxx1xxxxx2xxxxx2xxxxx&2xxxxxxxxxxxxxxx5xxx13254xx13xx5xx&2454x132x5x2xx&x4xxx4xxx2xxxx3x13x14xx&12x3x13x14xxxxxxxxx@31xx42xxxxxx&5xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&xxx5xx5xxxxx3xxxxxx23&31xx42xxxxxx&5xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx5xxxxx&5xx4xx5xxxxxxxxxxx5xxxxxxxxxxxxxxxx&5xxxxxxxxxxxxxxxx4xxxxxxxxxxxx
+% Authority: Durand & Cie (1890)
+% Transcriber: David Randolph
+% Transcription date: 2018-12-09 21:50:14
+% abcDidactyl END
+X:44
+T:Sonatina 4.4
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:2/4
+Q:1/4=80
+I:linebreak $
+K:F
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+"^Rondo""_dolce"!p![Q:1/4=80]"^Allegro vivace" (3(fga(3fga | %614
+ .c2).c2 (3(fga(3fga | .d2).d2 (3(d'c'b(3agf | (3egf(3edc (3BAG(3dcB |$ %617
+ A2.c2) z2 (c'2 | a2f2d2B2 | A2c2) z2 (c'2 | a2f2d2a2 |$ %621
+ .g2) (3(gfe .d2) (3(fed | .c2)!>(! (3(edc .=B2) (3(GAB | .c2) z2 (3(cde(3cde!>)! | %624
+!p! (3def(3def (3efg(3efg) |$"_dolce" z4 (3(fga(3fga | .c2).c2 (3(fga(3fga | %627
+ .d2).d2!<(! (3(d'c'b(3agf!<)! |!f! (3egf(3edc (3BAG(3dcB |$ %629
+ A2.c2) z2 (c'2 | a2f2d2B2 | A2.c2) z2 (c'2 | a2f2e2d'2 |$ %633
+ .c'2)!>(! (3(c'ba .g2) (3(bag | .f2)!turn!f2a2g2!>)! |!p! z2 !turn!f2 z2 !turn!f2 | %636
+!<(! z2 (3(agf (3edc!<)!!f!(3BAG |$ .F2)!turn!F2 z2 !turn!F2 | %638
+ z2 (3(AGF (3EDC(3B,A,G, | .F,2) z2 .[A,CF]2 z2 | [A,CF]4!fine! |]$ %641
+V:3
+[K:treble] z2 | .[FA].[FA] z2 | .[FB].[FB] z2 |[K:bass] [C,E,G,C]4 |$ %617
+ (3F,/A,/C/(3F,/A,/C/ (3F,/A,/C/(3F,/A,/C/ | (3F,/A,/C/(3F,/A,/C/ (3F,/B,/D/(3F,/B,/D/ | %619
+ (3F,/A,/C/(3F,/A,/C/ (3F,/A,/C/(3F,/A,/C/ | (3F,/A,/C/(3F,/A,/C/ (3F,/B,/D/(3G,/A,/D/ |$ %621
+ (3(E,/G,/C/) z (3(F,/A,/D/) z | (3(G,/C/E/) z (3(G,/D/F/) z | (3(C/D/E/(3C/D/E/ .C) z | %624
+ z[K:treble] .=B z ._B |$ z4 | .[FA].[FA] z2 | .[FB].[FB] z2 |[K:bass] [C,E,G,C]4 |$ %629
+ (3(F,/A,/C/(3F,/A,/C/ (3F,/A,/C/(3F,/A,/C/) | (3F,/A,/C/(3F,/A,/C/ (3F,/B,/D/(3F,/B,/D/ | %631
+ (3F,/A,/C/(3F,/A,/C/ (3F,/A,/C/(3F,/A,/C/ | (3F,/A,/C/(3F,/A,/C/ (3G,/B,/E/(3G,/B,/E/ |$ %633
+ (3A,/C/F/ z (3B,/D/G/ z |[K:treble] (3(C/F/A/(3C/F/A/ (3C/F/A/(3C/E/B/) | %635
+ (3(F/A/c/(3F/A/c/ (3F/B/d/(3F/B/d/ | (3F/A/c/) z z[K:bass] [C,C] |$ %637
+ (3(F,/A,/C/(3F,/A,/C/ (3F,/B,/D/(3F,/B,/D/ | (3F,/A,/C/) z z [C,,C,] | %639
+!ff! (3(F,,/A,,/C,/(3F,,/A,,/C,/ (3F,,/A,,/C,/(3F,,/A,,/C,/ | F,,2) |]$
