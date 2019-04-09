@@ -1581,7 +1581,9 @@ function AbcDE() {
         if (!Options.preset_select) {
             cell.style.display = 'none';
         }
-        if (Options.sequence)
+        if (Options.sequence) {
+            sequence_spinner.value = Options.sequence;
+        }
 
         var view_button = document.createElement('input');
         view_button.type = 'image';

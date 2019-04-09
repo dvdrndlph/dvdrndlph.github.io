@@ -1,4 +1,4 @@
-/* abcDE_full.js v6.0.47 */
+/* abcDE_full.js v6.0.48 */
 !function(a, b) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = a.document ? b(a, !0) : function(a) {
   if (!a.document) throw new Error("jQuery requires a window with a document");
@@ -35606,7 +35606,10 @@ function AbcDE() {
   if (!Options.preset_select) {
    cell.style.display = "none";
   }
-  if (Options.sequence) var view_button = document.createElement("input");
+  if (Options.sequence) {
+   sequence_spinner.value = Options.sequence;
+  }
+  var view_button = document.createElement("input");
   view_button.type = "image";
   view_button.src = IMAGE_DIR + "/eye.svg";
   view_button.width = button_width;

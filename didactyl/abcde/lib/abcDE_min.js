@@ -1,4 +1,4 @@
-/* abcDE_min.js v6.0.47 */
+/* abcDE_min.js v6.0.48 */
 /** @license
  *
  * Copyright (c) 2015, 2016 David A. Randolph.
@@ -1057,10 +1057,11 @@ function AbcDE() {
     o.setAttribute("id", "downloadify"), (l = document.createElement("td")).appendChild(o), 
     a.appendChild(l);
     var s = document.createElement("input");
-    if (s.id = "sequence_spinner", s.min = "1", s.max = "999", s.size = 3, s.type = "number", 
+    s.id = "sequence_spinner", s.min = "1", s.max = "999", s.size = 3, s.type = "number", 
     s.alt = "fingering_number", s.value = 1, s.onchange = Bn, kt(l = document.createElement("td"), "Suggestion", "sequence_prompt"), 
     l.appendChild(s), a.appendChild(l), t.preset_select || (l.style.display = "none"), 
-    t.sequence) var c = document.createElement("input");
+    t.sequence && (s.value = t.sequence);
+    var c = document.createElement("input");
     c.type = "image", c.src = R + "/eye.svg", c.width = "36", c.alt = "View", c.onclick = Dn, 
     (l = document.createElement("td")).appendChild(c), a.appendChild(l), t.hide_view && (l.style.display = "none");
     var l, u = document.createElement("input");

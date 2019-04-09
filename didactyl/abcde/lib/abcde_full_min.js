@@ -1,4 +1,4 @@
-/* abcDE_full_min.js v6.0.47 */
+/* abcDE_full_min.js v6.0.48 */
 !function(e, t) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function(e) {
   if (!e.document) throw new Error("jQuery requires a window with a document");
@@ -18891,10 +18891,11 @@ function AbcDE() {
     a.setAttribute("id", "downloadify"), (u = document.createElement("td")).appendChild(a), 
     s.appendChild(u);
     var o = document.createElement("input");
-    if (o.id = "sequence_spinner", o.min = "1", o.max = "999", o.size = 3, o.type = "number", 
+    o.id = "sequence_spinner", o.min = "1", o.max = "999", o.size = 3, o.type = "number", 
     o.alt = "fingering_number", o.value = 1, o.onchange = Sn, kt(u = document.createElement("td"), "Suggestion", "sequence_prompt"), 
     u.appendChild(o), s.appendChild(u), t.preset_select || (u.style.display = "none"), 
-    t.sequence) var c = document.createElement("input");
+    t.sequence && (o.value = t.sequence);
+    var c = document.createElement("input");
     c.type = "image", c.src = F + "/eye.svg", c.width = "36", c.alt = "View", c.onclick = An, 
     (u = document.createElement("td")).appendChild(c), s.appendChild(u), t.hide_view && (u.style.display = "none");
     var u, l = document.createElement("input");
