@@ -237,7 +237,8 @@ function submit_annotation() {
     if (! partial_ok) {
         let x_re = /x/;
         if (x_re.test(abcDF)) {
-            alert("The entered fingering sequence is incomplete. Please go back and provide the missing annotations.");
+            alert("The entered fingering sequence is incomplete. Please provide the missing annotations.");
+            return;
         }
     }
     var abcD = abcDE.getEnteredAbcD();
