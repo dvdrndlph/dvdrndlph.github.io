@@ -274,6 +274,12 @@ function getParameterByName(name, url) {
 }
 
 window.onload = function() {
+    var resetting = getParameterByName('reset');
+    if (resetting) {
+        start_over();
+        return;
+    }
+
     client_id = getQueryVariable("client_id");
     console.log("Value of user client_id is " + client_id);
     preset = getQueryVariable("preset");
@@ -290,11 +296,6 @@ window.onload = function() {
     partial_ok = getQueryVariable("partial_ok");
     console.log("Value of all is " + partial_ok);
 
-    var resetting = getParameterByName('reset');
-    if (resetting) {
-        start_over();
-        return;
-    }
     var interpols = document.getElementById('interpolation_instructions');
     var annots = document.getElementById('annotation_instructions');
     if (interpolate) {
