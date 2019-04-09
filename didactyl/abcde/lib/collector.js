@@ -1,13 +1,10 @@
 // var DB_BASE_URL = 'https://52.9.186.114/'; // Amazon
 var DB_BASE_URL = '/'; // UIC
-// var DB_BASE_URL = 'http://nlp-music.cs.uic.edu/'
-var DB_SUBJECT_URL = DB_BASE_URL + 'subject.php';
 var DB_ANNOTATION_URL = DB_BASE_URL + 'annotation.php';
 var CONSENT_KEY = 'didactyl_collector_consent';
 var SELECTIONS_KEY = 'didactyl_collector_selections';
 var COMPLETIONS_KEY = 'didactyl_collector_completions';
 var CLIENT_ID_KEY = 'didactyl_collector_user_id';
-// var DEFAULT_URL_DIR = "https://dvdrndlph.github.io/didactyl/wtc/";
 var DEFAULT_URL_DIR = "https://nlp-music.cs.uic.edu/corpora";
 
 var abcDE;
@@ -21,6 +18,7 @@ var selection_str = '[]';
 var completion_str = '[]';
 var selections = [];
 var selection_id;
+var partial_ok = false;
 var completions = [];
 
 // Following function borrowed from http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript.
@@ -231,11 +229,17 @@ function post_annotation(survey_data) {
 }
 
 function submit_annotation() {
-    var abort_button = document.getElementById('abort_submission');
+    let abort_button = document.getElementById('abort_submission');
     abort_button.style.display = 'block';
 
     // var selection_id = abcDE.getXValue();
-    var abcDF = abcDE.getEnteredAbcDF();
+    let abcDF = abcDE.getEnteredAbcDF();
+    if (! partial_ok) {
+        let x_re = /x/;
+        if (x_re.test(abcDF)) {
+            alert("The entered fingering sequence is incomplete. Please go back and provide the missing annotations.");
+        }
+    }
     var abcD = abcDE.getEnteredAbcD();
     abcDE.unhandleKeys();
     var abcde_div = document.getElementById('abcde');
@@ -269,45 +273,6 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-// function post_subject(survey_data) {
-//     var url = DB_SUBJECT_URL;
-//     var data_str = JSON.stringify(survey_data);
-//     console.log("POSTing: " + data_str);
-//     $.ajax({
-//         type: "POST",
-//         contentType: "application/json; charset=utf-8",
-//         data: data_str,
-//         dataType: "json",
-//         url: url,
-//         success: function (data) {
-//             if (data.status !== 0) {
-//                 var error_msg = "Attempt to save your data failed. " +
-//                     "Please contact the study coordinator at drando2@uic.edu.\n\n" +
-//                     "Thank you.\n\n" + data.msg;
-//                 alert(error_msg);
-//                 console.log(error_msg);
-//                 console.log(JSON.stringify(data));
-//             } else {
-//                 // ASSERT something is selected. The survey should guarantee this.
-//                 selection_str = JSON.stringify(survey_data.selections);
-//                 localStorage.setItem(SELECTIONS_KEY, selection_str);
-//                 completion_str = '[]';
-//                 localStorage.setItem(COMPLETIONS_KEY, completion_str);
-//                 localStorage.setItem(CLIENT_ID_KEY, survey_data.clientId);
-//                 var preliminaries = document.getElementById('preliminary_survey');
-//                 preliminaries.style.display = 'none';
-//                 var instructions = document.getElementById('instructions');
-//                 instructions.style.display = 'block';
-//             }
-//         },
-//         error: function (XMLHttpRequest, textStatus, errorThrown) {
-//             alert("The database could not be reached.\n\n" +
-//                 "Status: " + textStatus + "\n\n" +
-//                 "Error: " + errorThrown);
-//         }
-//     });
-// }
-
 window.onload = function() {
     client_id = getQueryVariable("client_id");
     console.log("Value of user client_id is " + client_id);
@@ -322,6 +287,8 @@ window.onload = function() {
     completion_str = localStorage.getItem(COMPLETIONS_KEY);
     sequence_id = getQueryVariable("sequence_id");
     console.log("Value of user sequence_id is " + sequence_id);
+    partial_ok = getQueryVariable("partial_ok");
+    console.log("Value of all is " + require_all);
 
     var resetting = getParameterByName('reset');
     if (resetting) {
@@ -339,22 +306,6 @@ window.onload = function() {
     }
 
     if (consenting === 'yes') {
-        // if (!client_id) {
-        //     var survey = new Survey.Survey(PRELIM_JSON, 'preliminary_survey');
-        //     survey.showTitle = true;
-        //     survey.pagePrevText = 'BACK';
-        //     survey.pageNextText = 'NEXT';
-        //     survey.completeText = 'SUBMIT';
-        //     survey.showQuestionNumbers = 'off';
-        //     survey.showPageTitles = true;
-        //     survey.onComplete.add(function (s) {
-        //         var email = survey.data.email;
-        //         client_id = generate_client_id(email);
-        //         survey.setValue("clientId", client_id);
-        //         post_subject(survey.data);
-        //     });
-        //     survey.render('preliminary_survey');
-        // }
         if (! informed) {
             var instructions = document.getElementById('instructions');
             instructions.style.display = 'block';
