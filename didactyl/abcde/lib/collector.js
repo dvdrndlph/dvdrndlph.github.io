@@ -20,6 +20,7 @@ var sequence_id;
 var selection_str = '[]';
 var completion_str = '[]';
 var selections = [];
+var selection_id;
 var completions = [];
 
 // Following function borrowed from http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript.
@@ -207,7 +208,7 @@ function post_annotation(survey_data) {
         success: function (data) {
             if (data.status !== 0) {
                 var error_msg = "Attempt to save your data failed. " +
-                    "Please contact the survey coordinator at drando2@uic.edu.\n\n" +
+                    "Please contact the study coordinator at drando2@uic.edu.\n\n" +
                     "Thank you.\n\n" + data.msg;
                 alert(error_msg);
                 console.log(error_msg);
@@ -233,7 +234,7 @@ function submit_annotation() {
     var abort_button = document.getElementById('abort_submission');
     abort_button.style.display = 'block';
 
-    var selection_id = abcDE.getXValue();
+    // var selection_id = abcDE.getXValue();
     var abcDF = abcDE.getEnteredAbcDF();
     var abcD = abcDE.getEnteredAbcD();
     abcDE.unhandleKeys();
@@ -268,44 +269,44 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-function post_subject(survey_data) {
-    var url = DB_SUBJECT_URL;
-    var data_str = JSON.stringify(survey_data);
-    console.log("POSTing: " + data_str);
-    $.ajax({
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        data: data_str,
-        dataType: "json",
-        url: url,
-        success: function (data) {
-            if (data.status !== 0) {
-                var error_msg = "Attempt to save your data failed. " +
-                    "Please contact the study coordinator at drando2@uic.edu.\n\n" +
-                    "Thank you.\n\n" + data.msg;
-                alert(error_msg);
-                console.log(error_msg);
-                console.log(JSON.stringify(data));
-            } else {
-                // ASSERT something is selected. The survey should guarantee this.
-                selection_str = JSON.stringify(survey_data.selections);
-                localStorage.setItem(SELECTIONS_KEY, selection_str);
-                completion_str = '[]';
-                localStorage.setItem(COMPLETIONS_KEY, completion_str);
-                localStorage.setItem(CLIENT_ID_KEY, survey_data.clientId);
-                var preliminaries = document.getElementById('preliminary_survey');
-                preliminaries.style.display = 'none';
-                var instructions = document.getElementById('instructions');
-                instructions.style.display = 'block';
-            }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("The database could not be reached.\n\n" +
-                "Status: " + textStatus + "\n\n" +
-                "Error: " + errorThrown);
-        }
-    });
-}
+// function post_subject(survey_data) {
+//     var url = DB_SUBJECT_URL;
+//     var data_str = JSON.stringify(survey_data);
+//     console.log("POSTing: " + data_str);
+//     $.ajax({
+//         type: "POST",
+//         contentType: "application/json; charset=utf-8",
+//         data: data_str,
+//         dataType: "json",
+//         url: url,
+//         success: function (data) {
+//             if (data.status !== 0) {
+//                 var error_msg = "Attempt to save your data failed. " +
+//                     "Please contact the study coordinator at drando2@uic.edu.\n\n" +
+//                     "Thank you.\n\n" + data.msg;
+//                 alert(error_msg);
+//                 console.log(error_msg);
+//                 console.log(JSON.stringify(data));
+//             } else {
+//                 // ASSERT something is selected. The survey should guarantee this.
+//                 selection_str = JSON.stringify(survey_data.selections);
+//                 localStorage.setItem(SELECTIONS_KEY, selection_str);
+//                 completion_str = '[]';
+//                 localStorage.setItem(COMPLETIONS_KEY, completion_str);
+//                 localStorage.setItem(CLIENT_ID_KEY, survey_data.clientId);
+//                 var preliminaries = document.getElementById('preliminary_survey');
+//                 preliminaries.style.display = 'none';
+//                 var instructions = document.getElementById('instructions');
+//                 instructions.style.display = 'block';
+//             }
+//         },
+//         error: function (XMLHttpRequest, textStatus, errorThrown) {
+//             alert("The database could not be reached.\n\n" +
+//                 "Status: " + textStatus + "\n\n" +
+//                 "Error: " + errorThrown);
+//         }
+//     });
+// }
 
 window.onload = function() {
     client_id = getQueryVariable("client_id");
@@ -376,7 +377,7 @@ window.onload = function() {
                 instructions.style.display = 'block';
             } else {
                 for (var i = 0; i < selections.length; i++) {
-                    var selection_id = selections[i];
+                    selection_id = selections[i];
                     if ($.inArray(selection_id, completions) > -1) {
                         // Already did it.
                         continue;
