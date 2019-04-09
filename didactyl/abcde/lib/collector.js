@@ -1,6 +1,6 @@
 // var DB_BASE_URL = 'https://52.9.186.114/'; // Amazon
-// var DB_BASE_URL = '/'; // UIC
-var DB_BASE_URL = 'http://nlp-music.cs.uic.edu/'
+var DB_BASE_URL = '/'; // UIC
+// var DB_BASE_URL = 'http://nlp-music.cs.uic.edu/'
 var DB_SUBJECT_URL = DB_BASE_URL + 'subject.php';
 var DB_ANNOTATION_URL = DB_BASE_URL + 'annotation.php';
 var CONSENT_KEY = 'didactyl_collector_consent';
