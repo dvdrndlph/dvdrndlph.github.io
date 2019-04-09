@@ -288,7 +288,7 @@ window.onload = function() {
     sequence_id = getQueryVariable("sequence_id");
     console.log("Value of user sequence_id is " + sequence_id);
     partial_ok = getQueryVariable("partial_ok");
-    console.log("Value of all is " + require_all);
+    console.log("Value of all is " + partial_ok);
 
     var resetting = getParameterByName('reset');
     if (resetting) {
