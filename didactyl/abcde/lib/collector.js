@@ -1,6 +1,7 @@
 // var DB_BASE_URL = 'https://52.9.186.114/'; // Amazon
 var DB_BASE_URL = '/'; // UIC
 var DB_ANNOTATION_URL = DB_BASE_URL + 'annotation.php';
+var DB_EXPERIMENT_SELECT_URL = DB_BASE_URL + 'experiment.php';
 var CONSENT_KEY = 'didactyl_collector_consent';
 var SELECTIONS_KEY = 'didactyl_collector_selections';
 var COMPLETIONS_KEY = 'didactyl_collector_completions';
@@ -10,15 +11,16 @@ var DEFAULT_URL_DIR = "https://nlp-music.cs.uic.edu/corpora";
 var abcDE;
 var consenting;
 var preset;
-var interpolate;
 var informed = false;
+var experiment_id = 0;
+var experiment_type;
 var client_id;
-var sequence_id;
 var selection_str = '[]';
 var completion_str = '[]';
 var selections = [];
 var selection_id;
-var partial_ok = false;
+var partial;
+var preset_lock = false;
 var completions = [];
 
 // Following function borrowed from http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript.
@@ -172,8 +174,8 @@ function abort_submission() {
 }
 
 function get_current_date_string() {
-    var current_date = new Date();
-    var date_str = current_date.getFullYear() + '-' +
+    let current_date = new Date();
+    let date_str = current_date.getFullYear() + '-' +
         sprintf("%02d", (current_date.getMonth() + 1)) + '-' +
         sprintf("%02d", current_date.getDate()) + ' ' +
         sprintf("%02d", current_date.getHours()) + ":" +
@@ -183,10 +185,41 @@ function get_current_date_string() {
 }
 
 function generate_client_id(email) {
-    var date_str = get_current_date_string();
-    var str_to_hash = date_str + email;
-    var key = md5(str_to_hash);
+    let date_str = get_current_date_string();
+    let str_to_hash = date_str + email;
+    let key = md5(str_to_hash);
     return key;
+}
+
+function set_up_experiment() {
+    let url = DB_EXPERIMENT_SELECT_URL + '?experiment_id=' + experiment_id + '&client_id=' + client_id;
+    let json = $.getJSON(url);
+    let data = JSON.parse(json);
+    if (! data['type']) {
+        let error_msg = "Unable to retrieve experiment settings.\n\n" +
+            "Please contact the study coordinator at drando2@uic.edu.\n\n" +
+            "Thank you.\n\n" + data.msg;
+        alert(error_msg);
+        console.log(error_msg);
+        console.log(JSON.stringify(data));
+        return;
+    }
+
+    preset = getQueryVariable("preset") || data.preset;
+    selection_str = getQueryVariable("selections") || data.selections;
+    if (! selection_str) {
+        selection_str = data.defaultSelections;
+    }
+    selections = selection_str.split(",");
+
+    experiment_type = getQueryVariable("type") || data.type;
+    partial = getQueryVariable("partial") || data.partial;
+    preset_lock = getQueryVariable("preset_lock") || data.lock;
+    console.log("Value of experiment type is " + experiment_type);
+    console.log("Value of preset is " + preset);
+    console.log("Value of selections is " + selection_str);
+    console.log("Value of partial is " + partial);
+    console.log("Value of preset_lock is " + preset_lock);
 }
 
 function post_annotation(survey_data) {
@@ -234,7 +267,7 @@ function submit_annotation() {
 
     // var selection_id = abcDE.getXValue();
     let abcDF = abcDE.getEnteredAbcDF();
-    if (! partial_ok) {
+    if (! partial) {
         let x_re = /x/;
         if (x_re.test(abcDF)) {
             alert("The entered fingering sequence is incomplete. Please provide the missing annotations.");
@@ -281,25 +314,19 @@ window.onload = function() {
         return;
     }
 
+    experiment_id = getQueryVariable("id");
+    console.log("Value of experiment id is " + experiment_id);
     client_id = getQueryVariable("client_id");
     console.log("Value of user client_id is " + client_id);
-    preset = getQueryVariable("preset");
-    console.log("Value of preset is " + preset);
+
     consenting = localStorage.getItem(CONSENT_KEY);
-    selection_str = getQueryVariable("selections");
-    console.log("Value of selections is " + selection_str);
-    interpolate = getQueryVariable("interpolate");
-    console.log("Value of user client_id is " + client_id);
-    selections = selection_str.split(",");
     completion_str = localStorage.getItem(COMPLETIONS_KEY);
-    sequence_id = getQueryVariable("sequence_id");
-    console.log("Value of user sequence_id is " + sequence_id);
-    partial_ok = getQueryVariable("partial_ok");
-    console.log("Value of all is " + partial_ok);
+
+    set_up_experiment();
 
     var interpols = document.getElementById('interpolation_instructions');
     var annots = document.getElementById('annotation_instructions');
-    if (interpolate) {
+    if (experiment_type == "interpolate") {
         interpols.style.display = 'block';
         annots.style.display = 'none';
     } else {
@@ -341,7 +368,7 @@ window.onload = function() {
                     }
                     var url = urlForId(selection_id);
                     var settings = {
-                        experiment_id: 'collector',
+                        experiment_id: experiment_id,
                         submit_button_id: 'didactyl_collector_submit',
                         submit_button_label: 'NEXT',
                         restore: 'always',
@@ -349,7 +376,7 @@ window.onload = function() {
                         file_input: false,
                         url_input: false,
                         preset_select: false,
-                        sequence_id: sequence_id,
+                        preset: preset,
                         hide_print: true,
                         hide_view: true,
                         hide_prefs: true,
@@ -357,6 +384,7 @@ window.onload = function() {
                         hide_copy: true,
                         hide_paste: true,
                         hide_metadata: true,
+                        preset_lock: preset_lock,
                     };
                     abcDE = new AbcDE();
                     abcDE.renderUI(settings);

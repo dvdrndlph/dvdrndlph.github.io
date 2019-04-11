@@ -1,4 +1,4 @@
-/* abcDE_min.js v6.0.54 */
+/* abcDE_min.js v6.0.55 */
 /** @license
  *
  * Copyright (c) 2015, 2016 David A. Randolph.
@@ -30,10 +30,10 @@
  */
 function AbcDE() {
  "use strict";
- var t, n, r, i, a, o, s, c, l = [], u = [], d = "", f = !1, p = 1, g = {}, h = [], m = void 0, v = "", _ = "noname.abc", y = 0, b = [], E = !1, w = [], k = 0, C = [], I = [], x = {}, B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, L = !1, F = [], P = !1, M = !1, H = "../../corpora", z = "./abcde_help.html", R = "../image", O = "../lib/media", V = 5, X = /\s/g, G = /</g, U = />/g, j = /[><]/g, Y = /([,;\.])/, K = /&/g, Z = /.*([<>])[^<>]+$/, W = /^% abcDidactyl v([\d\.]+)$/, J = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Q = /^% abcDidactyl END$/, ee = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, ae = 4e3, oe = "abcde", se = "abc_source", ce = "source", le = "abcde_prefs", ue = "abcde_controls", de = "abcde_metadata", fe = "abcde_keypad", pe = "abcde_rendering", ge = "abcde_target", he = "abcde_error", me = .1, ve = 3, _e = .3, ye = 90, be = 89, Ee = 13, we = 8, ke = 9, Ce = 37, Ie = 39, xe = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Be = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
+ var t, n, r, i, a, o, s, c, l = [], u = [], d = "", f = !1, p = 1, g = {}, h = [], m = void 0, v = "", _ = "noname.abc", y = 0, b = [], E = !1, w = [], k = 0, C = [], x = [], I = {}, B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, L = !1, F = [], P = !1, M = !1, H = "../../corpora", z = "./abcde_help.html", R = "../image", O = "../lib/media", V = 5, X = /\s/g, G = /</g, U = />/g, j = /[><]/g, Y = /([,;\.])/, K = /&/g, Z = /.*([<>])[^<>]+$/, W = /^% abcDidactyl v([\d\.]+)$/, J = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Q = /^% abcDidactyl END$/, ee = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, ae = 4e3, oe = "abcde", se = "abc_source", ce = "source", le = "abcde_prefs", ue = "abcde_controls", de = "abcde_metadata", fe = "abcde_keypad", pe = "abcde_rendering", ge = "abcde_target", he = "abcde_error", me = .1, ve = 3, _e = .3, ye = 90, be = 89, Ee = 13, we = 8, ke = 9, Ce = 37, xe = 39, Ie = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Be = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
  function Te() {
   m && clearInterval(m), l = [], u = [], v = "", f = !1, _ = "noname.abc", n = void 0, 
-  i = "", a = void 0, b = [], E = !1, w = [], o = void 0, k = 0, C = [], I = [], x = {}, 
+  i = "", a = void 0, b = [], E = !1, w = [], o = void 0, k = 0, C = [], x = [], I = {}, 
   B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, s = void 0, c = void 0, F = [];
  }
  function De(e) {
@@ -55,8 +55,10 @@ function AbcDE() {
  function Ae() {
   return "undefined" != typeof Storage;
  }
- function qe(e, t) {
-  return v || (v = md5(i)), e + "_" + t + "_" + v;
+ function qe(e, n) {
+  v || (v = md5(i));
+  var r = e + "_" + n + "_" + v;
+  return t.experiment_id && (r = t.experiment_id + "_" + r), r;
  }
  function Ne(e) {
   if (!Ae()) return {};
@@ -247,7 +249,7 @@ function AbcDE() {
   }();
  }
  function et(e) {
-  return In();
+  return xn();
  }
  function tt() {
   var e = window.prompt("Please enter a fingering string for the current piece.", "");
@@ -255,7 +257,7 @@ function AbcDE() {
  }
  function nt() {
   i && (confirm("All changes you have made to this fingering sequence will be discarded, and the initial sequence will be restored. Are you sure you want to proceed?") && (Je(void 0, Ge(ze())), 
-  Zt(), _n(o = I[0][0][0])));
+  Zt(), _n(o = x[0][0][0])));
  }
  function rt(e) {
   return function e(t, n) {
@@ -460,7 +462,7 @@ function AbcDE() {
   }
   return e.appendChild(s), o && e.appendChild(document.createElement("br")), s;
  }
- function It() {
+ function xt() {
   var e = document.getElementById(de), t = document.createElement("div");
   t.id = "metadata_modal_wrapper", e.appendChild(t);
   var n = document.createElement("div");
@@ -478,7 +480,7 @@ function AbcDE() {
    s.htmlFor = t, s.appendChild(document.createTextNode(n)), e.appendChild(s), e.appendChild(o);
   }(n, "comments", "Comments", "comments", 10, 50);
  }
- function xt() {
+ function It() {
   var e = document.getElementById(le), n = document.createElement("div");
   n.id = "prefs_modal_wrapper", e.appendChild(n);
   var r = document.createElement("div");
@@ -539,7 +541,7 @@ function AbcDE() {
      break;
 
     case "next":
-     n = Ie;
+     n = xe;
      break;
 
     case "backspace":
@@ -693,7 +695,7 @@ function AbcDE() {
    var t = /<svg /;
    e.match(t) && (e = e.replace(t, '<svg id="line_' + k + '" '), k++), r += e;
   }, this.anno_start = function(e, t, n, r, i, o, s) {
-   !D && t in x ? x[t].line = k : "grace" === e && console.log(e + " ANNO_START start: " + t + " stop: " + n), 
+   !D && t in I ? I[t].line = k : "grace" === e && console.log(e + " ANNO_START start: " + t + " stop: " + n), 
    q.push([ t, n ]), a.out_svg('<g class="e_' + t + '">\n');
   }, this.anno_stop = function(e, t, n, r, i, o, s) {
    "grace" === e && console.log(e + " ANNO_STOP start: " + t + " stop: " + n), a.out_svg("</g>\n"), 
@@ -708,7 +710,7 @@ function AbcDE() {
     }
     for (var a = e; a; ) {
      var o = new Nt(n, a);
-     o.istart && (C.push(o), x[o.istart] = o, o.staff in S || (S[o.staff] = {}), o.time in S[o.staff] || (S[o.staff][o.time] = []), 
+     o.istart && (C.push(o), I[o.istart] = o, o.staff in S || (S[o.staff] = {}), o.time in S[o.staff] || (S[o.staff][o.time] = []), 
      S[o.staff][o.time].push(o)), a = a.ts_next;
     }
    }
@@ -839,12 +841,12 @@ function AbcDE() {
     }
    }
    return s;
-  }() || (e += xe + "\n", function() {
+  }() || (e += Ie + "\n", function() {
    if (void 0 !== n) return n;
    n = !1;
    for (var e = 0; e < T.length; e++) {
     var t = T[e];
-    if (x[t].grace) {
+    if (I[t].grace) {
      n = !0;
      break;
     }
@@ -863,7 +865,7 @@ function AbcDE() {
    t && (e += "%%measurenb " + t + "\n");
   }
   for (var r = 0, a = 0; a < T.length; a++) {
-   var o = T[a], l = x[o], u = "";
+   var o = T[a], l = I[o], u = "";
    if (l.grace) {
     if (u = i.substring(parseInt(r), parseInt(l.start - 1)), r = l.end + 1, e += u, 
     l.fingered_start = e.length + l.anno_start - l.start + 1, l.fingering && "x" !== l.fingering) {
@@ -912,7 +914,7 @@ function AbcDE() {
    var t = nn();
    t.length > 0 && t[0] ? (o.set_fingering(""), o.phrase_break = "", Zt()) : o.prior_note && ((o = o.prior_note).set_fingering(""), 
    Zt()), _n(o);
-  } else if (e == ke || e == Ie) an(), w = [], o.next_note && (o = o.next_note); else if (e == Ce) an(), 
+  } else if (e == ke || e == xe) an(), w = [], o.next_note && (o = o.next_note); else if (e == Ce) an(), 
   w = [], o.prior_note && (o = o.prior_note); else if (e == Ee) pn(); else if (e == ye) !function() {
    tn();
    var e = u.pop();
@@ -1049,7 +1051,7 @@ function AbcDE() {
    }
   }(), Te(), function() {
    if (!M) {
-    xt(), It();
+    It(), xt();
     var e = R + "/download_36_x4.png", n = document.getElementById(ue), r = document.createElement("table"), i = document.createElement("tbody"), a = document.createElement("tr");
     n.appendChild(r), r.appendChild(i), r.style.backgroundColor = "LightGray", r.align = "center", 
     i.appendChild(a);
@@ -1066,7 +1068,7 @@ function AbcDE() {
     (l = document.createElement("td")).appendChild(c), a.appendChild(l), t.hide_view && (l.style.display = "none");
     var l, u = document.createElement("input");
     u.type = "image", u.src = R + "/print.svg", u.width = "36", u.alt = "Print...", 
-    u.onclick = xn, (l = document.createElement("td")).appendChild(u), a.appendChild(l), 
+    u.onclick = In, (l = document.createElement("td")).appendChild(u), a.appendChild(l), 
     t.hide_print && (l.style.display = "none"), l = document.createElement("td");
     var d = document.createElement("input");
     d.type = "checkbox", d.value = "annotated", d.checked = P, d.id = "view_annotated", 
@@ -1143,7 +1145,7 @@ function AbcDE() {
    var e = $e("default_url");
    e && (ht(e), i = document.getElementById(se).value);
   }
-  f = !0, i && (h = Ve(i), Xe(), hn(), _n(o = I[0][0][0]), ln()), bt(), $(function() {
+  f = !0, i && (h = Ve(i), Xe(), hn(), _n(o = x[0][0][0]), ln()), bt(), $(function() {
    FastClick.attach(document.body);
   });
  }
@@ -1185,17 +1187,17 @@ function AbcDE() {
   try {
    i && (t.innerHTML = r, function() {
     for (var e, t, n, r, i, a = 0; a < C.length; a++) t = (e = C[a]).line, n = e.staff, 
-    t in I || (I[t] = [], I[t][0] = [], I[t][1] = []), I[t][n].push(e);
-    for (t = 0; t < I.length; t++) for (n = 0; n < 2; n++) (o = I[t][n]).sort(Ft);
-    for (n = 0; n < 2; n++) for (t = 0; t < I.length; t++) {
-     var o = I[t][n];
+    t in x || (x[t] = [], x[t][0] = [], x[t][1] = []), x[t][n].push(e);
+    for (t = 0; t < x.length; t++) for (n = 0; n < 2; n++) (o = x[t][n]).sort(Ft);
+    for (n = 0; n < 2; n++) for (t = 0; t < x.length; t++) {
+     var o = x[t][n];
      for (a = 0; a < o.length; a++) r = o[a], i ? (i.next_note = r, r.prior_note = i, 
      i = r) : (i = r, r.prior_note = void 0);
     }
     r.next_note = void 0;
    }(), function() {
     var e;
-    for (e in x) x.hasOwnProperty(e) && T.push(e);
+    for (e in I) I.hasOwnProperty(e) && T.push(e);
     T.sort(function(e, t) {
      return parseInt(e) - parseInt(t);
     });
@@ -1260,7 +1262,7 @@ function AbcDE() {
   return n.join("");
  }
  function kn(e, t) {
-  for (var n = I[t][e], r = "", i = 0; i < n.length; i++) {
+  for (var n = x[t][e], r = "", i = 0; i < n.length; i++) {
    r += En(n[i]);
   }
   return r;
@@ -1269,24 +1271,24 @@ function AbcDE() {
   let n = Z.exec(e);
   return n && n[1] ? n[1] : t;
  }
- function In() {
-  for (var e = "", t = "", n = Qt(0), r = Qt(1), i = 0; i < I.length; i++) {
+ function xn() {
+  for (var e = "", t = "", n = Qt(0), r = Qt(1), i = 0; i < x.length; i++) {
    var a = kn(0, i);
-   if (a && (n = Cn(a = wn(a, n), n), e += a, i < I.length - 1 && (e += "&")), I[i][1]) {
+   if (a && (n = Cn(a = wn(a, n), n), e += a, i < x.length - 1 && (e += "&")), x[i][1]) {
     var o = kn(1, i);
-    o && (r = Cn(o = wn(o, r), r), t += o, i < I.length - 1 && (t += "&"));
+    o && (r = Cn(o = wn(o, r), r), t += o, i < x.length - 1 && (t += "&"));
    }
   }
   return e + "@" + t;
  }
- function xn() {
+ function In() {
   console.log("Print that score.");
   var e = window.open("", "print_window");
   e.document.write(r), e.document.close(), e.focus(), e.print(), e.close();
  }
  function Bn() {
   document.getElementById(se).value = i, Te(), i = document.getElementById(se).value, 
-  hn(), _n(o = I[0][0][0]), ln();
+  hn(), _n(o = x[0][0][0]), ln();
  }
  function Tn() {
   return cn(P ? Kt() : i, !0);
@@ -1296,7 +1298,7 @@ function AbcDE() {
   window.open().document.write("<pre>" + e + "</pre>");
  }
  function Sn() {
-  return In();
+  return xn();
  }
  function An(e) {
   var t = function(e) {
@@ -1319,7 +1321,7 @@ function AbcDE() {
  }
  return this.renderUI = function(e) {
   !function(e) {
-   t || (t = e);
+   t || (t = e).experiment_id || (t.experiment_id = "");
   }(e), dn();
   var n = $e("qualtrics");
   n && (n.disableNextButton(), n.disablePreviousButton());
@@ -1333,17 +1335,17 @@ function AbcDE() {
   return Le("comments");
  }, this.getEnteredCollection = Sn, this.getEnteredAbcDF = Sn, this.getEnteredAbcD = qn, 
  this.getValidatedCollection = function() {
-  var e = In();
+  var e = xn();
   return An(e) ? e : "";
  }, this.getValidatedAbcD = function() {
-  if (An(In())) {
+  if (An(xn())) {
    var e = Tn();
    return /^\s*X:/m.test(e) ? /^% abcDidactyl/m.test(e) ? e : (alert("File is not valid abcD."), 
    "") : (alert("File is not valid abc."), "");
   }
   return "";
  }, this.setEnteredCollection = function(e) {
-  o = I[0][0][0];
+  o = x[0][0][0];
   var t = ze(), n = Fe(!0);
   n.sequence = e, Je(Ne(t), n), Zt(), _n(o);
  }, this.handleKeys = ln, this.unhandleKeys = un, this;
