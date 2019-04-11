@@ -191,9 +191,9 @@ function generate_client_id(email) {
     return key;
 }
 
-function set_up_experiment() {
+async function set_up_experiment() {
     let url = DB_EXPERIMENT_SELECT_URL + '?experimentId=' + experiment_id + '&clientId=' + client_id;
-    $.getJSON(url, function(data) {
+    await $.getJSON(url, function(data) {
         // let data = JSON.parse(json);
         if (! data['type']) {
             let error_msg = "Unable to retrieve experiment settings.\n\n" +
@@ -320,15 +320,15 @@ window.onload = function() {
         console.log("Value of user client_id is " + client_id);
     }
 
-    if (! experiment_type) {
-        set_up_experiment();
-    }
-
     consenting = localStorage.getItem(experiment_id + CONSENT_KEY);
     if (consenting !== 'yes') {
         var consent_div = document.getElementById('consent_form');
         consent_div.style.display = 'block';
         return;
+    }
+
+    if (! experiment_type) {
+        set_up_experiment();
     }
 
     if (! informed) {
@@ -350,7 +350,7 @@ window.onload = function() {
 
     completion_str = localStorage.getItem(experiment_id + COMPLETIONS_KEY);
     run_experiment();
-}
+};
 
 function run_experiment() {
     var instructions = document.getElementById('instructions');
