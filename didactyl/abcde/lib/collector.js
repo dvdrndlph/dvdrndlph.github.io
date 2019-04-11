@@ -192,7 +192,7 @@ function generate_client_id(email) {
 }
 
 function launch_experiment() {
-    let url = DB_EXPERIMENT_SELECT_URL + '?experiment_id=' + experiment_id + '&client_id=' + client_id;
+    let url = DB_EXPERIMENT_SELECT_URL + '?experimentId=' + experiment_id + '&clientId=' + client_id;
     $.getJSON(url, function(json) {
         let data = JSON.parse(json);
         if (! data['type']) {
