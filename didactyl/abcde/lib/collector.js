@@ -191,7 +191,7 @@ function generate_client_id(email) {
     return key;
 }
 
-function launch_experiment() {
+function set_up_experiment() {
     let url = DB_EXPERIMENT_SELECT_URL + '?experimentId=' + experiment_id + '&clientId=' + client_id;
     $.getJSON(url, function(data) {
         // let data = JSON.parse(json);
@@ -218,7 +218,6 @@ function launch_experiment() {
             console.log("Value of selections is " + selection_str);
             console.log("Value of partial is " + partial);
             console.log("Value of preset_lock is " + preset_lock);
-            run_experiment();
         }
     });
 }
@@ -314,16 +313,29 @@ window.onload = function() {
         start_over();
         return;
     }
+    if (! experiment_id || ! client_id) {
+        experiment_id = getQueryVariable("id");
+        console.log("Value of experiment id is " + experiment_id);
+        client_id = getQueryVariable("client_id");
+        console.log("Value of user client_id is " + client_id);
+    }
 
-    experiment_id = getQueryVariable("id");
-    console.log("Value of experiment id is " + experiment_id);
-    client_id = getQueryVariable("client_id");
-    console.log("Value of user client_id is " + client_id);
+    consenting = localStorage.getItem(experiment_id + CONSENT_KEY);
+    if (consenting !== 'yes') {
+        var consent_div = document.getElementById('consent_form');
+        consent_div.style.display = 'block';
+        return;
+    }
 
-    consenting = localStorage.getItem(CONSENT_KEY);
-    completion_str = localStorage.getItem(COMPLETIONS_KEY);
+    if (! informed) {
+        var instructions = document.getElementById('instructions');
+        instructions.style.display = 'block';
+        informed = true;
+        return;
+    }
 
-    launch_experiment();
+    completion_str = localStorage.getItem(experiment_id + COMPLETIONS_KEY);
+    run_experiment();
 }
 
 function run_experiment() {
