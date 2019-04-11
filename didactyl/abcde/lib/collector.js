@@ -272,15 +272,15 @@ function submit_annotation() {
         let upper_blanks = matches[2];
         let lower_blanks = matches[3]
         let msg = "The entered fingering sequence is incomplete. Please provide the missing annotations.";
-        let is_incomplete = false;
-        if (partial !== 'both' && any_blanks) {
-            is_incomplete = true;
-        } else if (partial !== 'upper' && upper_blanks) {
-            is_incomplete = true;
-        } else if (partial !== 'lower' && lower_blanks) {
-            is_incomplete = true;
+        let is_complete = false;
+        if (partial == 'both' || ! any_blanks) {
+            is_complete = true;
+        } else if (partial == 'upper' && ! lower_blanks) {
+            is_complete = true;
+        } else if (partial !== 'lower' && ! upper_blanks) {
+            is_complete = true;
         }
-        if (is_incomplete) {
+        if (! is_complete) {
             alert(msg);
         }
         return;
