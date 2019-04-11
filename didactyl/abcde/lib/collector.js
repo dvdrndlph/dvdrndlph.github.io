@@ -263,7 +263,9 @@ function submit_annotation() {
     let abort_button = document.getElementById('abort_submission');
     abort_button.style.display = 'block';
     let abcDF = abcDE.getEnteredAbcDF();
-    if (partial in ['both', 'upper', 'lower']) {
+    let partialities = ['both', 'upper', 'lower'];
+    // If some partial annotation is allowed...
+    if (partialities.indexOf(partial) != -1 ) {
         let x_re = /((.*x.*)@(.*x.*))/;
         let matches = abcDF.match(x_re);
         let any_blanks = matches[1];
