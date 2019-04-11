@@ -320,6 +320,10 @@ window.onload = function() {
         console.log("Value of user client_id is " + client_id);
     }
 
+    if (! experiment_type) {
+        set_up_experiment();
+    }
+
     consenting = localStorage.getItem(experiment_id + CONSENT_KEY);
     if (consenting !== 'yes') {
         var consent_div = document.getElementById('consent_form');
@@ -328,6 +332,16 @@ window.onload = function() {
     }
 
     if (! informed) {
+        consent_div.style.display = 'none';
+        var interpols = document.getElementById('interpolation_instructions');
+        var annots = document.getElementById('annotation_instructions');
+        if (experiment_type == "interpolate") {
+            interpols.style.display = 'block';
+            annots.style.display = 'none';
+        } else {
+            interpols.style.display = 'none';
+            annots.style.display = 'block';
+        }
         var instructions = document.getElementById('instructions');
         instructions.style.display = 'block';
         informed = true;
@@ -339,79 +353,58 @@ window.onload = function() {
 }
 
 function run_experiment() {
-    var interpols = document.getElementById('interpolation_instructions');
-    var annots = document.getElementById('annotation_instructions');
-    if (experiment_type == "interpolate") {
-        interpols.style.display = 'block';
-        annots.style.display = 'none';
-    } else {
-        interpols.style.display = 'none';
-        annots.style.display = 'block';
+    var instructions = document.getElementById('instructions');
+    instructions.style.display = 'none';
+
+    completions = JSON.parse(completion_str);
+    if (! completions) {
+        completions = [];
     }
+    if (selections.length === completions.length) {
+        // Hide editor.
+        var abcde_div = document.getElementById('abcde');
+        abcde_div.style.display = 'none';
 
-    if (consenting === 'yes') {
-        if (! informed) {
-            var instructions = document.getElementById('instructions');
-            instructions.style.display = 'block';
-            informed = true;
-        }
-        else {
-            var instructions = document.getElementById('instructions');
-            instructions.style.display = 'none';
-            completions = JSON.parse(completion_str);
-            if (! completions) {
-                completions = [];
-            }
-            if (selections.length === completions.length) {
-                // Hide editor.
-                var abcde_div = document.getElementById('abcde');
-                abcde_div.style.display = 'none';
-
-                // All done.
-                var instructions = document.getElementById('all_done');
-                instructions.style.display = 'block';
-            } else {
-                for (var i = 0; i < selections.length; i++) {
-                    selection_id = selections[i];
-                    if ($.inArray(selection_id, completions) > -1) {
-                        // Already did it.
-                        continue;
-                    }
-                    if ($.inArray(selection_id, selections) < 0) {
-                        // Ain't gonna do it.
-                        continue;
-                    }
-                    var url = urlForId(selection_id);
-                    var settings = {
-                        experiment_id: experiment_id,
-                        submit_button_id: 'didactyl_collector_submit',
-                        submit_button_label: 'NEXT',
-                        restore: 'always',
-                        default_url: url,
-                        file_input: false,
-                        url_input: false,
-                        preset_select: false,
-                        preset: preset,
-                        hide_print: true,
-                        hide_view: true,
-                        hide_prefs: true,
-                        hide_annotated: true,
-                        hide_copy: true,
-                        hide_paste: true,
-                        hide_metadata: true,
-                        preset_lock: preset_lock,
-                    };
-                    abcDE = new AbcDE();
-                    abcDE.renderUI(settings);
-                    var next_button = document.getElementById('didactyl_collector_submit');
-                    next_button.onclick = submit_annotation;
-                    break;
-                }
-            }
-        }
+        // All done.
+        var instructions = document.getElementById('all_done');
+        instructions.style.display = 'block';
     } else {
-        var consent_div = document.getElementById('consent_form');
-        consent_div.style.display = 'block';
+        for (var i = 0; i < selections.length; i++) {
+            selection_id = selections[i];
+            if ($.inArray(selection_id, completions) > -1) {
+                // Already did it.
+                continue;
+            }
+            if ($.inArray(selection_id, selections) < 0) {
+                // Ain't gonna do it.
+                continue;
+            }
+            var url = urlForId(selection_id);
+            var settings = {
+                experiment_id: experiment_id,
+                submit_button_id: 'didactyl_collector_submit',
+                submit_button_label: 'NEXT',
+                restore: 'always',
+                default_url: url,
+                file_input: false,
+                url_input: false,
+                preset_select: false,
+                preset: preset,
+                hide_print: true,
+                hide_view: true,
+                hide_prefs: true,
+                hide_annotated: true,
+                hide_copy: true,
+                hide_paste: true,
+                hide_metadata: true,
+                preset_lock: preset_lock,
+            };
+            abcDE = new AbcDE();
+            abcDE.renderUI(settings);
+            var next_button = document.getElementById('didactyl_collector_submit');
+            next_button.onclick = submit_annotation;
+            break;
+        }
     }
 };
 
