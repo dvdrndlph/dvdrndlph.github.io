@@ -193,8 +193,8 @@ function generate_client_id(email) {
 
 function launch_experiment() {
     let url = DB_EXPERIMENT_SELECT_URL + '?experimentId=' + experiment_id + '&clientId=' + client_id;
-    $.getJSON(url, function(json) {
-        let data = JSON.parse(json);
+    $.getJSON(url, function(data) {
+        // let data = JSON.parse(json);
         if (! data['type']) {
             let error_msg = "Unable to retrieve experiment settings.\n\n" +
                 "Please contact the study coordinator at drando2@uic.edu.\n\n" +
