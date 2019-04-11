@@ -262,21 +262,33 @@ function post_annotation(survey_data) {
 function submit_annotation() {
     let abort_button = document.getElementById('abort_submission');
     abort_button.style.display = 'block';
-
-    // var selection_id = abcDE.getXValue();
     let abcDF = abcDE.getEnteredAbcDF();
-    if (! partial) {
-        let x_re = /x/;
-        if (x_re.test(abcDF)) {
-            alert("The entered fingering sequence is incomplete. Please provide the missing annotations.");
-            return;
+    if (partial in ('both', 'upper', 'lower')) {
+        let x_re = /((.*x.*)@(.*x.*))/;
+        let matches = abcDF.match(x_re);
+        let any_blanks = matches[1];
+        let upper_blanks = matches[2];
+        let lower_blanks = matches[3]
+        let msg = "The entered fingering sequence is incomplete. Please provide the missing annotations.";
+        let is_incomplete = false;
+        if (partial !== 'both' && any_blanks) {
+            is_incomplete = true;
+        } else if (partial !== 'upper' && upper_blanks) {
+            is_incomplete = true;
+        } else if (partial !== 'lower' && lower_blanks) {
+            is_incomplete = true;
         }
+        if (is_incomplete) {
+            alert(msg);
+        }
+        return;
     }
-    var abcD = abcDE.getEnteredAbcD();
+
+    let abcD = abcDE.getEnteredAbcD();
     abcDE.unhandleKeys();
-    var abcde_div = document.getElementById('abcde');
+    let abcde_div = document.getElementById('abcde');
     abcde_div.style.display = 'none';
-    var survey = new Survey.Survey(EXIT_JSON, 'exit_survey');
+    let survey = new Survey.Survey(EXIT_JSON, 'exit_survey');
     survey.showTitle = true;
     survey.pagePrevText = 'BACK';
     survey.pageNextText = 'NEXT';
@@ -336,6 +348,7 @@ window.onload = function() {
         set_up_experiment();
     }
 
+    var instructions = document.getElementById('instructions');
     if (! informed) {
         consent_div.style.display = 'none';
         var interpols = document.getElementById('interpolation_instructions');
@@ -347,20 +360,17 @@ window.onload = function() {
             interpols.style.display = 'none';
             annots.style.display = 'block';
         }
-        var instructions = document.getElementById('instructions');
         instructions.style.display = 'block';
         informed = true;
         return;
     }
 
     completion_str = localStorage.getItem(completions_key);
+    instructions.style.display = 'none';
     run_experiment();
 };
 
 function run_experiment() {
-    var instructions = document.getElementById('instructions');
-    instructions.style.display = 'none';
-
     completions = JSON.parse(completion_str);
     if (! completions) {
         completions = [];
