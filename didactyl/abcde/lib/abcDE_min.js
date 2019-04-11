@@ -1,4 +1,4 @@
-/* abcDE_min.js v6.0.66 */
+/* abcDE_min.js v6.0.67 */
 /** @license
  *
  * Copyright (c) 2015, 2016 David A. Randolph.
