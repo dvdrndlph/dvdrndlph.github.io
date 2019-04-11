@@ -323,11 +323,11 @@ window.onload = function() {
         return;
     }
 
+    var consent_div = document.getElementById('consent_form');
     consent_key = experiment_id + CONSENT_SUFFIX;
     completions_key = experiment_id + COMPLETIONS_SUFFIX;
     consenting = localStorage.getItem(consent_key);
     if (consenting !== 'yes') {
-        var consent_div = document.getElementById('consent_form');
         consent_div.style.display = 'block';
         return;
     }
