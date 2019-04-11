@@ -2,10 +2,8 @@
 var DB_BASE_URL = '/'; // UIC
 var DB_ANNOTATION_URL = DB_BASE_URL + 'annotation.php';
 var DB_EXPERIMENT_SELECT_URL = DB_BASE_URL + 'experiment.php';
-var CONSENT_KEY = 'didactyl_collector_consent';
-var SELECTIONS_KEY = 'didactyl_collector_selections';
-var COMPLETIONS_KEY = 'didactyl_collector_completions';
-var CLIENT_ID_KEY = 'didactyl_collector_user_id';
+var CONSENT_SUFFIX = 'didactyl_collector_consent';
+var COMPLETIONS_SUFFIX = 'didactyl_collector_completions';
 var DEFAULT_URL_DIR = "https://nlp-music.cs.uic.edu/corpora";
 
 var abcDE;
@@ -21,6 +19,8 @@ var selections = [];
 var selection_id;
 var partial;
 var preset_lock = false;
+var consent_key;
+var completions_key;
 var completions = [];
 
 // Following function borrowed from http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript.
@@ -37,10 +37,8 @@ function getQueryVariable(variable) {
 }
 
 function start_over() {
-    localStorage.removeItem(CONSENT_KEY);
-    localStorage.removeItem(SELECTIONS_KEY);
-    localStorage.removeItem(COMPLETIONS_KEY);
-    localStorage.removeItem(CLIENT_ID_KEY);
+    localStorage.removeItem(consent_key);
+    localStorage.removeItem(completions_key);
     window.location = window.location.pathname;
 }
 
@@ -74,7 +72,7 @@ function processConsent() {
     var understand = document.forms["consent_form"].elements["understand"];
     if (eighteen.checked && understand.checked) {
         console.log("He or she consented!!");
-        localStorage.setItem(CONSENT_KEY, 'yes');
+        localStorage.setItem(consent_key, 'yes');
         formality.style.display = 'none';
     } else {
         console.log("NO soup for you.");
@@ -247,7 +245,7 @@ function post_annotation(survey_data) {
             } else {
                 completions.push(survey_data.selectionId);
                 completion_str = JSON.stringify(completions);
-                localStorage.setItem(COMPLETIONS_KEY, completion_str);
+                localStorage.setItem(completions_key, completion_str);
                 survey_div.style.display = 'none';
                 abort_button.style.display = 'none';
                 thank_you_div.style.display = 'block';
@@ -320,8 +318,15 @@ window.onload = function() {
         console.log("Value of user client_id is " + client_id);
     }
 
-    consenting = localStorage.getItem(experiment_id + CONSENT_KEY);
+    if (! experiment_id) {
+        alert("The 'id' parameter is required.");
+        return;
+    }
+
+    consenting = localStorage.getItem(consent_key);
     if (consenting !== 'yes') {
+        consent_key = experiment_id + CONSENT_SUFFIX;
+        completions_key = experiment_id + COMPLETIONS_SUFFIX;
         var consent_div = document.getElementById('consent_form');
         consent_div.style.display = 'block';
         return;
@@ -348,7 +353,7 @@ window.onload = function() {
         return;
     }
 
-    completion_str = localStorage.getItem(experiment_id + COMPLETIONS_KEY);
+    completion_str = localStorage.getItem(completions_key);
     run_experiment();
 };
 
