@@ -214,7 +214,7 @@ function set_up_experiment() {
 
     experiment_type = getQueryVariable("type") || data.type;
     partial = getQueryVariable("partial") || data.partial;
-    preset_lock = getQueryVariable("preset_lock") || data.lock;
+    preset_lock = getQueryVariable("preset_lock") || data.presetLock;
     console.log("Value of experiment type is " + experiment_type);
     console.log("Value of preset is " + preset);
     console.log("Value of selections is " + selection_str);
