@@ -263,6 +263,8 @@ function submit_annotation() {
     let abort_button = document.getElementById('abort_submission');
     abort_button.style.display = 'block';
     let abcDF = abcDE.getEnteredAbcDF();
+    let msg = "The entered fingering sequence is incomplete. Please provide the missing annotations.";
+    let is_complete = false;
     let partialities = ['both', 'upper', 'lower'];
     // If some partial annotation is allowed...
     if (partialities.indexOf(partial) != -1 ) {
@@ -271,8 +273,6 @@ function submit_annotation() {
         let any_blanks = matches[1];
         let upper_blanks = matches[2];
         let lower_blanks = matches[3]
-        let msg = "The entered fingering sequence is incomplete. Please provide the missing annotations.";
-        let is_complete = false;
         if (partial == 'both' || ! any_blanks) {
             is_complete = true;
         } else if (partial == 'upper' && ! lower_blanks) {
@@ -280,11 +280,11 @@ function submit_annotation() {
         } else if (partial !== 'lower' && ! upper_blanks) {
             is_complete = true;
         }
-        if (! is_complete) {
-            alert(msg);
-        }
-        return;
     }
+    if (! is_complete) {
+        alert(msg);
+    }
+    return;
 
     let abcD = abcDE.getEnteredAbcD();
     abcDE.unhandleKeys();
