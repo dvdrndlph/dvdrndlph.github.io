@@ -264,13 +264,16 @@ function submit_annotation() {
     abort_button.style.display = 'block';
     let abcDF = abcDE.getEnteredAbcDF();
     let msg = "The entered fingering sequence is incomplete. Please provide the missing annotations.";
-    let is_complete = false;
+    let is_complete = true;
+    let x_re = /((.*x.*)@(.*x.*))/;
+    let matches = abcDF.match(x_re);
+    let any_blanks = matches[1];
+    if (any_blanks) {
+        is_complete = false;
+    }
     let partialities = ['both', 'upper', 'lower'];
     // If some partial annotation is allowed...
     if (partialities.indexOf(partial) != -1 ) {
-        let x_re = /((.*x.*)@(.*x.*))/;
-        let matches = abcDF.match(x_re);
-        let any_blanks = matches[1];
         let upper_blanks = matches[2];
         let lower_blanks = matches[3]
         if (partial == 'both' || ! any_blanks) {
