@@ -267,13 +267,13 @@ function submit_annotation() {
     let is_complete = true;
     let x_re = /((.*x.*)@(.*x.*))/;
     let matches = abcDF.match(x_re);
-    let any_blanks = matches[1];
-    if (any_blanks) {
+    if (matches) {
         is_complete = false;
     }
     let partialities = ['both', 'upper', 'lower'];
     // If some partial annotation is allowed...
     if (partialities.indexOf(partial) != -1 ) {
+        let any_blanks = matches[1];
         let upper_blanks = matches[2];
         let lower_blanks = matches[3]
         if (partial == 'both' || ! any_blanks) {
