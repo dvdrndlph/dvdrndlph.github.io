@@ -290,8 +290,8 @@ function submit_annotation() {
     }
     if (! is_complete) {
         alert(msg);
+        return;
     }
-    return;
 
     let abcD = abcDE.getEnteredAbcD();
     abcDE.unhandleKeys();
