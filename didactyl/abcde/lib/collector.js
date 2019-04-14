@@ -415,7 +415,7 @@ function run_experiment() {
                 preset_select: false,
                 preset: preset,
                 hide_print: true,
-                hide_view: true,
+                // hide_view: true,
                 hide_prefs: true,
                 hide_annotated: true,
                 hide_copy: true,
