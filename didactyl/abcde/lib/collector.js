@@ -306,6 +306,7 @@ function submit_annotation() {
     survey.showPageTitles = true;
     survey.onComplete.add(function(s) {
         survey.setValue("clientId", client_id);
+        survey.setValue("experimentId", experiment_id);
         survey.setValue("selectionId", selection_id);
         survey.setValue("abcDF", abcDF);
         survey.setValue("abcD", abcD);
