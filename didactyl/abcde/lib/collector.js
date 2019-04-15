@@ -189,7 +189,7 @@ function generate_client_id(email) {
     return key;
 }
 
-function get_and_go(data) {
+function set_up_and_run_experiment(data) {
     if (! data['type']) {
         let error_msg = "Unable to retrieve experiment settings.\n\n" +
             "Please contact the study coordinator at drando2@uic.edu.\n\n" +
@@ -217,9 +217,9 @@ function get_and_go(data) {
     run_experiment();
 };
 
-function set_up_and_run_experiment() {
+function get_experiment_data(callback) {
     let url = DB_EXPERIMENT_SELECT_URL + '?experimentId=' + experiment_id + '&clientId=' + client_id;
-    $.getJSON(url, get_and_go(data));
+    $.getJSON(url, callback);
 }
 
 function post_annotation(survey_data) {
@@ -359,7 +359,7 @@ window.onload = function() {
     }
 
     if (! experiment_type) {
-        set_up_and_run_experiment();
+        get_experiment_data(set_up_and_run_experiment);
     } else {
         run_experiment();
     }
