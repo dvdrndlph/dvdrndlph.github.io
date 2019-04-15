@@ -1,4 +1,4 @@
-/* abcDE_full.js v6.0.85 */
+/* abcDE_full.js v6.0.86 */
 !function(a, b) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = a.document ? b(a, !0) : function(a) {
   if (!a.document) throw new Error("jQuery requires a window with a document");
@@ -35863,6 +35863,7 @@ function AbcDE() {
   this.staff = elem.st;
   this.prior_fingerings = [];
   this.undone_fingerings = [];
+  this.locked = false;
   this.init = function() {
    this.fingering = "";
    for (var i = 0; i < this.size; i++) {
@@ -35879,6 +35880,10 @@ function AbcDE() {
   };
   this.init();
   this.set_fingering = function(fingering_str) {
+   if (this.locked) {
+    this.fingering = this.preset_fingering;
+    return;
+   }
    purge_redo_stack();
    if (this.fingering != "x") {
     this.prior_fingerings.push(this.fingering);
@@ -35900,6 +35905,11 @@ function AbcDE() {
    if (!fingering_str) {
     this.preset_init();
    } else {
+    if (Options["preset_lock"]) {
+     if (!/x/.test(fingering_str)) {
+      this.locked = true;
+     }
+    }
     var match = PHRASE_RE.exec(fingering_str);
     if (match) {
      this.preset_phrase_break = match[1];

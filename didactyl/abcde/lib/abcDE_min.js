@@ -1,4 +1,4 @@
-/* abcDE_min.js v6.0.85 */
+/* abcDE_min.js v6.0.86 */
 /** @license
  *
  * Copyright (c) 2015, 2016 David A. Randolph.
@@ -30,10 +30,10 @@
  */
 function AbcDE() {
  "use strict";
- var t, n, r, i, a, o, s, c, l = [], u = [], d = "", f = !1, p = 1, g = {}, h = [], m = void 0, v = "", _ = "noname.abc", y = 0, b = [], E = !1, w = [], k = 0, C = [], x = [], I = {}, B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, L = !1, F = [], P = !1, M = !1, H = "../../corpora", z = "./abcde_help.html", R = "../image", O = "../lib/media", V = 5, X = /\s/g, G = /</g, U = />/g, j = /[><]/g, Y = /([,;\.])/, K = /&/g, Z = /.*([<>])[^<>]+$/, W = /^% abcDidactyl v([\d\.]+)$/, J = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Q = /^% abcDidactyl END$/, ee = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, ae = 4e3, oe = "abcde", se = "abc_source", ce = "source", le = "abcde_prefs", ue = "abcde_controls", de = "abcde_metadata", fe = "abcde_keypad", pe = "abcde_rendering", ge = "abcde_target", he = "abcde_error", me = .1, ve = 3, _e = .3, ye = 90, be = 89, Ee = 13, we = 8, ke = 9, Ce = 37, xe = 39, Ie = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Be = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
+ var t, n, r, i, a, o, s, c, l = [], u = [], d = "", f = !1, p = 1, g = {}, h = [], m = void 0, v = "", _ = "noname.abc", y = 0, b = [], E = !1, k = [], w = 0, C = [], x = [], I = {}, B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, L = !1, F = [], P = !1, M = !1, H = "../../corpora", z = "./abcde_help.html", R = "../image", O = "../lib/media", V = 5, X = /\s/g, G = /</g, U = />/g, j = /[><]/g, Y = /([,;\.])/, K = /&/g, Z = /.*([<>])[^<>]+$/, W = /^% abcDidactyl v([\d\.]+)$/, J = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Q = /^% abcDidactyl END$/, ee = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, ae = 4e3, oe = "abcde", se = "abc_source", ce = "source", le = "abcde_prefs", ue = "abcde_controls", de = "abcde_metadata", fe = "abcde_keypad", pe = "abcde_rendering", ge = "abcde_target", he = "abcde_error", me = .1, ve = 3, _e = .3, ye = 90, be = 89, Ee = 13, ke = 8, we = 9, Ce = 37, xe = 39, Ie = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Be = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
  function Te() {
   m && clearInterval(m), l = [], u = [], v = "", f = !1, _ = "noname.abc", n = void 0, 
-  i = "", a = void 0, b = [], E = !1, w = [], o = void 0, k = 0, C = [], x = [], I = {}, 
+  i = "", a = void 0, b = [], E = !1, k = [], o = void 0, w = 0, C = [], x = [], I = {}, 
   B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, s = void 0, c = void 0, F = [];
  }
  function De(e) {
@@ -213,7 +213,7 @@ function AbcDE() {
       g++;
      }
      var v = Ot(p), _ = $t(v), y = [], b = [], E = null;
-     for (m = 0; m < _.length; m++) for (var w = _[m], k = 0; k < v[w].length; k++) if (!(E = v[w][k]).grace) {
+     for (m = 0; m < _.length; m++) for (var k = _[m], w = 0; w < v[k].length; w++) if (!(E = v[k][w]).grace) {
       Ke(b, E) || (y.push(""), b.push(E));
       var C = Ze(b, E);
       (i = a.shift()) || (console.log(t + " MISSING for note:"), qt(t + " pit note", E)), 
@@ -437,14 +437,14 @@ function AbcDE() {
   t = String.fromCharCode(t);
   /[0-9]/.test(t) || (e.returnValue = !1, e.preventDefault && e.preventDefault());
  }
- function wt(e, t, n, r, i, a) {
+ function kt(e, t, n, r, i, a) {
   var o = document.createElement("input");
   o.type = "text", o.class = r, o.id = t, i && (o.onkeypress = i), "year" === r && (o.size = "4");
   var s = document.createElement("label");
   s.htmlFor = t, s.appendChild(document.createTextNode(n)), e.appendChild(s), e.appendChild(o), 
   a && e.appendChild(document.createElement("br"));
  }
- function kt(e, t, n) {
+ function wt(e, t, n) {
   var r = document.createElement("label");
   r.class = n;
   var i = document.createTextNode(t);
@@ -452,11 +452,11 @@ function AbcDE() {
  }
  function Ct(e, t, n, r, i, a, o) {
   var s = document.createElement("div");
-  s.class = "radio_div", kt(e, t, "prompt");
+  s.class = "radio_div", wt(e, t, "prompt");
   for (var c = 0; c < r.length; c++) {
    var l = document.createElement("input");
    l.type = "radio", l.id = r[c], l.id === a && (l.checked = !0), l.name = n, s.appendChild(l), 
-   kt(s, i[c], "radio_label");
+   wt(s, i[c], "radio_label");
    var u = document.createElement("span");
    u.innerHTML = "&nbsp;&nbsp", s.appendChild(u);
   }
@@ -471,8 +471,8 @@ function AbcDE() {
   r.style.textAlign = "right";
   var i = document.createElement("a");
   i.id = "metadata_modal_close", i.href = "#", i.innerHTML = "Close <b>X</b>", r.appendChild(i), 
-  i.addEventListener("click", ct, !1), n.appendChild(r), wt(n, "authority", "Authority", "name", void 0, !1), 
-  wt(n, "authority_year", "Year", "year", Et, !0), wt(n, "transcriber", "Transcriber", "name", void 0, !0), 
+  i.addEventListener("click", ct, !1), n.appendChild(r), kt(n, "authority", "Authority", "name", void 0, !1), 
+  kt(n, "authority_year", "Year", "year", Et, !0), kt(n, "transcriber", "Transcriber", "name", void 0, !0), 
   function(e, t, n, r, i, a) {
    var o = document.createElement("textarea");
    o.class = r, o.id = t, o.rows = i, o.cols = a;
@@ -499,12 +499,12 @@ function AbcDE() {
   var u = "hide";
   "ontouchstart" in window && (u = "show"), Ct(r, "Keypad", s, c, l, u, !0), function(e, t, n, r, i, a, o, s) {
    var c = document.createElement("div");
-   c.class = "spinner_div", kt(c, t, "prompt");
+   c.class = "spinner_div", wt(c, t, "prompt");
    var l = document.createElement("input");
    l.id = n, l.min = r, l.max = i, l.size = a, l.type = "number", l.value = o, c.appendChild(l), 
    e.appendChild(c), s && e.appendChild(document.createElement("br"));
-  }(r, "Measure Number Interval", "measure_number_interval", 0, 20, 2, 5, !0), wt(r, "default_authority", "Default Authority", "name", void 0, !0), 
-  wt(r, "default_authority_year", "Year", "year", Et, !0), wt(r, "default_transcriber", "Transcriber Name", "name", void 0, !0);
+  }(r, "Measure Number Interval", "measure_number_interval", 0, 20, 2, 5, !0), kt(r, "default_authority", "Default Authority", "name", void 0, !0), 
+  kt(r, "default_authority_year", "Year", "year", Et, !0), kt(r, "default_transcriber", "Transcriber Name", "name", void 0, !0);
  }
  function Bt(e, t, n) {
   var r = document.createElement("input");
@@ -534,7 +534,7 @@ function AbcDE() {
   a.id = n, a.class = "keypad_button", a.type = "image", a.src = R + "/" + r, a.alt = i, 
   a.onclick = function() {
    !function(t) {
-    var n = ke;
+    var n = we;
     switch (t) {
     case "previous":
      n = Ce;
@@ -545,7 +545,7 @@ function AbcDE() {
      break;
 
     case "backspace":
-     n = we;
+     n = ke;
      break;
 
     case "pencil":
@@ -586,33 +586,33 @@ function AbcDE() {
  function qt(e, t) {
   console.log(e + " Line: " + t.line + " Start: " + t.start + " Time: " + t.time + " String: " + t.string + " Size: " + t.size + " Pitch: " + t.pitches.join(",") + " Voice: " + t.voice + " Staff: " + t.staff + " Grace: " + t.grace);
  }
- function Nt(e, t) {
-  if ("note" != e[t.type] && "grace" != e[t.type]) return {};
+ function Nt(e, n) {
+  if ("note" != e[n.type] && "grace" != e[n.type]) return {};
   if (this.fingering = "", this.preset_fingering = "", this.prior_note = null, this.next_note = null, 
-  this.line = -1, this.grace = !1, this.anno_start = t.istart, this.size = 0, this.pitches = [], 
+  this.line = -1, this.grace = !1, this.anno_start = n.istart, this.size = 0, this.pitches = [], 
   this.start = -1, this.end = -1, this.starts = [], this.stops = [], this.phrase_break = "", 
-  this.preset_phrase_break = "", "note" === e[t.type]) {
-   this.size = t.notes.length;
-   for (var n = 0; n < this.size; n++) this.pitches.push(t.notes[n].pit);
+  this.preset_phrase_break = "", "note" === e[n.type]) {
+   this.size = n.notes.length;
+   for (var r = 0; r < this.size; r++) this.pitches.push(n.notes[r].pit);
    this.pitches.sort(function(e, t) {
     return parseInt(e) - parseInt(t);
-   }), this.start = t.istart, this.end = t.iend;
+   }), this.start = n.istart, this.end = n.iend;
   } else {
-   this.grace = !0, this.start = t.extra.istart, this.size = 1;
-   var r = t.extra;
-   if (!r.notes) return alert("Who turned off the notes?!"), {};
+   this.grace = !0, this.start = n.extra.istart, this.size = 1;
+   var a = n.extra;
+   if (!a.notes) return alert("Who turned off the notes?!"), {};
    for (;;) {
-    if (r.notes.length > 1 && alert('Chords not supported in a grace "note."'), this.starts.push(r.istart), 
-    this.stops.push(r.iend), this.pitches.push(r.notes[0].pit), !r.next) {
-     this.end = r.iend;
+    if (a.notes.length > 1 && alert('Chords not supported in a grace "note."'), this.starts.push(a.istart), 
+    this.stops.push(a.iend), this.pitches.push(a.notes[0].pit), !a.next) {
+     this.end = a.iend;
      break;
     }
-    r = r.next, this.size++;
+    a = a.next, this.size++;
    }
   }
-  return this.istart = t.istart, this.time = t.time, this.string = i.substring(this.start, this.end), 
-  this.voice = t.v, this.staff = t.st, this.prior_fingerings = [], this.undone_fingerings = [], 
-  this.init = function() {
+  return this.istart = n.istart, this.time = n.time, this.string = i.substring(this.start, this.end), 
+  this.voice = n.v, this.staff = n.st, this.prior_fingerings = [], this.undone_fingerings = [], 
+  this.locked = !1, this.init = function() {
    this.fingering = "";
    for (var e = 0; e < this.size; e++) this.fingering += "x";
    this.phrase_break = "";
@@ -621,18 +621,21 @@ function AbcDE() {
    for (var e = 0; e < this.size; e++) this.preset_fingering += "x";
    this.preset_phrase_break = "";
   }, this.init(), this.set_fingering = function(e) {
-   if (function() {
-    for (var e = 0; e < C.length; e++) C[e].undone_fingerings = [];
-    l = [];
-   }(), "x" != this.fingering && this.prior_fingerings.push(this.fingering), e) {
-    var t = Y.exec(e);
-    t ? (this.phrase_break = t[1], this.fingering = e.replace(Y, "")) : this.fingering = e;
-   } else this.init();
-   u.push(this);
+   if (this.locked) this.fingering = this.preset_fingering; else {
+    if (function() {
+     for (var e = 0; e < C.length; e++) C[e].undone_fingerings = [];
+     l = [];
+    }(), "x" != this.fingering && this.prior_fingerings.push(this.fingering), e) {
+     var t = Y.exec(e);
+     t ? (this.phrase_break = t[1], this.fingering = e.replace(Y, "")) : this.fingering = e;
+    } else this.init();
+    u.push(this);
+   }
   }, this.set_preset_fingering = function(e) {
    if (e) {
-    var t = Y.exec(e);
-    t ? (this.preset_phrase_break = t[1], this.preset_fingering = e.replace(Y, "")) : this.preset_fingering = e;
+    t.preset_lock && (/x/.test(e) || (this.locked = !0));
+    var n = Y.exec(e);
+    n ? (this.preset_phrase_break = n[1], this.preset_fingering = e.replace(Y, "")) : this.preset_fingering = e;
    } else this.preset_init();
   }, this.get_pitch_fingering = function(e) {
    var t = function(e) {
@@ -693,9 +696,9 @@ function AbcDE() {
    r.innerHTML += t ? '<b onclick="gotoabc(' + t + "," + n + ')" style="cursor: pointer; display: inline-block">' + e + "</b><br/>\n" : e + "<br/>\n";
   }, this.img_out = function(e) {
    var t = /<svg /;
-   e.match(t) && (e = e.replace(t, '<svg id="line_' + k + '" '), k++), r += e;
+   e.match(t) && (e = e.replace(t, '<svg id="line_' + w + '" '), w++), r += e;
   }, this.anno_start = function(e, t, n, r, i, o, s) {
-   !D && t in I ? I[t].line = k : "grace" === e && console.log(e + " ANNO_START start: " + t + " stop: " + n), 
+   !D && t in I ? I[t].line = w : "grace" === e && console.log(e + " ANNO_START start: " + t + " stop: " + n), 
    q.push([ t, n ]), a.out_svg('<g class="e_' + t + '">\n');
   }, this.anno_stop = function(e, t, n, r, i, o, s) {
    "grace" === e && console.log(e + " ANNO_STOP start: " + t + " stop: " + n), a.out_svg("</g>\n"), 
@@ -889,7 +892,7 @@ function AbcDE() {
   var o = Kt(), s = new Date().getTime(), c = s - e;
   console.log("MY LAG: " + c), document.getElementById(se).value = o, e = new Date().getTime(), 
   r = "", a.tosvg("edit", '%%bgcolor white\n%%beginsvg\n<style type="text/css">\n\trect.abcr {fill:#a08000; fill-opacity:0}\n\trect.abcr:hover {fill-opacity:0.3}\n</style>\n%%endsvg\n'), 
-  k = 0, n.innerHTML = "", q = [];
+  w = 0, n.innerHTML = "", q = [];
   try {
    a.tosvg(_, document.getElementById(se).value);
   } catch (e) {
@@ -909,13 +912,13 @@ function AbcDE() {
   }, 300), c = (s = new Date().getTime()) - e, console.log("LIB LAG: " + c), bt();
  }
  function Wt(e) {
-  if (console.log(String.fromCharCode(e) + " --\x3e " + e), e === we) {
+  if (console.log(String.fromCharCode(e) + " --\x3e " + e), e === ke) {
    tn();
    var t = nn();
    t.length > 0 && t[0] ? (o.set_fingering(""), o.phrase_break = "", Zt()) : o.prior_note && ((o = o.prior_note).set_fingering(""), 
    Zt()), _n(o);
-  } else if (e == ke || e == xe) an(), w = [], o.next_note && (o = o.next_note); else if (e == Ce) an(), 
-  w = [], o.prior_note && (o = o.prior_note); else if (e == Ee) pn(); else if (e == ye) !function() {
+  } else if (e == we || e == xe) an(), k = [], o.next_note && (o = o.next_note); else if (e == Ce) an(), 
+  k = [], o.prior_note && (o = o.prior_note); else if (e == Ee) pn(); else if (e == ye) !function() {
    tn();
    var e = u.pop();
    e && (e.undo_fingering_change(), o = e, Zt(), _n(o));
@@ -941,7 +944,7 @@ function AbcDE() {
   E && (o = o.prior_note);
  }
  function tn() {
-  E = !1, b = [], w = [], Zt(), _n(o);
+  E = !1, b = [], k = [], Zt(), _n(o);
  }
  function nn() {
   for (var e = [], t = o.get_fingering().split(""), n = 0; n < t.length; n++) {
@@ -958,11 +961,11 @@ function AbcDE() {
  }
  function an() {
   var e = !1;
-  w.length > 0 && (Array.prototype.unshift.apply(b, w), function() {
-   for (var e = 0; e < w.length; e++) if ("(" === w[e]) return !0;
+  k.length > 0 && (Array.prototype.unshift.apply(b, k), function() {
+   for (var e = 0; e < k.length; e++) if ("(" === k[e]) return !0;
    return !1;
-  }() || (e = !0)), w = [];
-  for (var t = b.length - 1; t >= 0 && /[\-\/\(]/.test(b[t]); t--) w.unshift(b.pop());
+  }() || (e = !0)), k = [];
+  for (var t = b.length - 1; t >= 0 && /[\-\/\(]/.test(b[t]); t--) k.unshift(b.pop());
   if (0 !== b.length) {
    if (/[\-\/]/.test(b[0]) && (e = !0), E) {
     var n = nn();
@@ -1060,7 +1063,7 @@ function AbcDE() {
     a.appendChild(l);
     var s = document.createElement("input");
     s.id = "sequence_spinner", s.min = "1", s.max = "999", s.size = 3, s.type = "number", 
-    s.alt = "fingering_number", s.value = 1, s.onchange = Bn, kt(l = document.createElement("td"), "Suggestion", "sequence_prompt"), 
+    s.alt = "fingering_number", s.value = 1, s.onchange = Bn, wt(l = document.createElement("td"), "Suggestion", "sequence_prompt"), 
     l.appendChild(s), a.appendChild(l), t.preset_select || (l.style.display = "none"), 
     t.sequence && (s.value = t.sequence);
     var c = document.createElement("input");
@@ -1107,13 +1110,13 @@ function AbcDE() {
     var E = document.createElement("input");
     E.type = "image", E.src = R + "/zoom-in.svg", E.alt = "Zoom In", E.width = "36", 
     E.onclick = ut, (l = document.createElement("td")).appendChild(E), a.appendChild(l);
-    var w = document.createElement("input");
-    w.type = "image", w.src = R + "/cog.svg", w.alt = "Preferences...", w.width = "36", 
-    w.onclick = ot, (l = document.createElement("td")).appendChild(w), a.appendChild(l), 
-    t.hide_prefs && (w.style.display = "none");
     var k = document.createElement("input");
-    k.type = "image", k.src = R + "/info.svg", k.alt = "Help", k.width = "36", k.onclick = at, 
-    (l = document.createElement("td")).appendChild(k), a.appendChild(l), Downloadify.create("downloadify", {
+    k.type = "image", k.src = R + "/cog.svg", k.alt = "Preferences...", k.width = "36", 
+    k.onclick = ot, (l = document.createElement("td")).appendChild(k), a.appendChild(l), 
+    t.hide_prefs && (k.style.display = "none");
+    var w = document.createElement("input");
+    w.type = "image", w.src = R + "/info.svg", w.alt = "Help", w.width = "36", w.onclick = at, 
+    (l = document.createElement("td")).appendChild(w), a.appendChild(l), Downloadify.create("downloadify", {
      filename: function() {
       return _;
      },
@@ -1201,7 +1204,7 @@ function AbcDE() {
     T.sort(function(e, t) {
      return parseInt(e) - parseInt(t);
     });
-   }(), D = !0, k = 0, Qe(), Zt());
+   }(), D = !0, w = 0, Qe(), Zt());
   } catch (e) {
    return void alert(e.message + "\nabc2svg image bug - abort:\n" + e.stack);
   }
@@ -1254,14 +1257,14 @@ function AbcDE() {
   for (r = 0; r < a.length; r++) a[r] ? o += a[r] : o += "x";
   return o;
  }
- function wn(e, t) {
+ function kn(e, t) {
   for (var n = [], r = t, i = e.split(""), a = 0; a < i.length; a++) {
    var o = i[a];
    o.match(j) ? o !== r && (n.push(o), r = o) : n.push(o);
   }
   return n.join("");
  }
- function kn(e, t) {
+ function wn(e, t) {
   for (var n = x[t][e], r = "", i = 0; i < n.length; i++) {
    r += En(n[i]);
   }
@@ -1273,10 +1276,10 @@ function AbcDE() {
  }
  function xn() {
   for (var e = "", t = "", n = Qt(0), r = Qt(1), i = 0; i < x.length; i++) {
-   var a = kn(0, i);
-   if (a && (n = Cn(a = wn(a, n), n), e += a, i < x.length - 1 && (e += "&")), x[i][1]) {
-    var o = kn(1, i);
-    o && (r = Cn(o = wn(o, r), r), t += o, i < x.length - 1 && (t += "&"));
+   var a = wn(0, i);
+   if (a && (n = Cn(a = kn(a, n), n), e += a, i < x.length - 1 && (e += "&")), x[i][1]) {
+    var o = wn(1, i);
+    o && (r = Cn(o = kn(o, r), r), t += o, i < x.length - 1 && (t += "&"));
    }
   }
   return e + "@" + t;

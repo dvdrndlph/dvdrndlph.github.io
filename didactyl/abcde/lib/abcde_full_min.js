@@ -1,4 +1,4 @@
-/* abcDE_full_min.js v6.0.85 */
+/* abcDE_full_min.js v6.0.86 */
 !function(e, t) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function(e) {
   if (!e.document) throw new Error("jQuery requires a window with a document");
@@ -18420,33 +18420,33 @@ function AbcDE() {
  function Rt(e, t) {
   console.log(e + " Line: " + t.line + " Start: " + t.start + " Time: " + t.time + " String: " + t.string + " Size: " + t.size + " Pitch: " + t.pitches.join(",") + " Voice: " + t.voice + " Staff: " + t.staff + " Grace: " + t.grace);
  }
- function Pt(e, t) {
-  if ("note" != e[t.type] && "grace" != e[t.type]) return {};
+ function Pt(e, n) {
+  if ("note" != e[n.type] && "grace" != e[n.type]) return {};
   if (this.fingering = "", this.preset_fingering = "", this.prior_note = null, this.next_note = null, 
-  this.line = -1, this.grace = !1, this.anno_start = t.istart, this.size = 0, this.pitches = [], 
+  this.line = -1, this.grace = !1, this.anno_start = n.istart, this.size = 0, this.pitches = [], 
   this.start = -1, this.end = -1, this.starts = [], this.stops = [], this.phrase_break = "", 
-  this.preset_phrase_break = "", "note" === e[t.type]) {
-   this.size = t.notes.length;
-   for (var n = 0; n < this.size; n++) this.pitches.push(t.notes[n].pit);
+  this.preset_phrase_break = "", "note" === e[n.type]) {
+   this.size = n.notes.length;
+   for (var r = 0; r < this.size; r++) this.pitches.push(n.notes[r].pit);
    this.pitches.sort(function(e, t) {
     return parseInt(e) - parseInt(t);
-   }), this.start = t.istart, this.end = t.iend;
+   }), this.start = n.istart, this.end = n.iend;
   } else {
-   this.grace = !0, this.start = t.extra.istart, this.size = 1;
-   var r = t.extra;
-   if (!r.notes) return alert("Who turned off the notes?!"), {};
+   this.grace = !0, this.start = n.extra.istart, this.size = 1;
+   var s = n.extra;
+   if (!s.notes) return alert("Who turned off the notes?!"), {};
    for (;;) {
-    if (r.notes.length > 1 && alert('Chords not supported in a grace "note."'), this.starts.push(r.istart), 
-    this.stops.push(r.iend), this.pitches.push(r.notes[0].pit), !r.next) {
-     this.end = r.iend;
+    if (s.notes.length > 1 && alert('Chords not supported in a grace "note."'), this.starts.push(s.istart), 
+    this.stops.push(s.iend), this.pitches.push(s.notes[0].pit), !s.next) {
+     this.end = s.iend;
      break;
     }
-    r = r.next, this.size++;
+    s = s.next, this.size++;
    }
   }
-  return this.istart = t.istart, this.time = t.time, this.string = i.substring(this.start, this.end), 
-  this.voice = t.v, this.staff = t.st, this.prior_fingerings = [], this.undone_fingerings = [], 
-  this.init = function() {
+  return this.istart = n.istart, this.time = n.time, this.string = i.substring(this.start, this.end), 
+  this.voice = n.v, this.staff = n.st, this.prior_fingerings = [], this.undone_fingerings = [], 
+  this.locked = !1, this.init = function() {
    this.fingering = "";
    for (var e = 0; e < this.size; e++) this.fingering += "x";
    this.phrase_break = "";
@@ -18455,18 +18455,21 @@ function AbcDE() {
    for (var e = 0; e < this.size; e++) this.preset_fingering += "x";
    this.preset_phrase_break = "";
   }, this.init(), this.set_fingering = function(e) {
-   if (function() {
-    for (var e = 0; e < E.length; e++) E[e].undone_fingerings = [];
-    u = [];
-   }(), "x" != this.fingering && this.prior_fingerings.push(this.fingering), e) {
-    var t = J.exec(e);
-    t ? (this.phrase_break = t[1], this.fingering = e.replace(J, "")) : this.fingering = e;
-   } else this.init();
-   l.push(this);
+   if (this.locked) this.fingering = this.preset_fingering; else {
+    if (function() {
+     for (var e = 0; e < E.length; e++) E[e].undone_fingerings = [];
+     u = [];
+    }(), "x" != this.fingering && this.prior_fingerings.push(this.fingering), e) {
+     var t = J.exec(e);
+     t ? (this.phrase_break = t[1], this.fingering = e.replace(J, "")) : this.fingering = e;
+    } else this.init();
+    l.push(this);
+   }
   }, this.set_preset_fingering = function(e) {
    if (e) {
-    var t = J.exec(e);
-    t ? (this.preset_phrase_break = t[1], this.preset_fingering = e.replace(J, "")) : this.preset_fingering = e;
+    t.preset_lock && (/x/.test(e) || (this.locked = !0));
+    var n = J.exec(e);
+    n ? (this.preset_phrase_break = n[1], this.preset_fingering = e.replace(J, "")) : this.preset_fingering = e;
    } else this.preset_init();
   }, this.get_pitch_fingering = function(e) {
    var t = function(e) {

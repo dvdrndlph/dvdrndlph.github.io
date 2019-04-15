@@ -1881,6 +1881,7 @@ function AbcDE() {
         this.staff = elem.st;
         this.prior_fingerings = [];
         this.undone_fingerings = [];
+        this.locked = false;
 
         this.init = function() {
             this.fingering = '';
@@ -1901,6 +1902,10 @@ function AbcDE() {
         this.init();
 
         this.set_fingering = function(fingering_str) {
+            if (this.locked) {
+                this.fingering = this.preset_fingering;
+                return;
+            }
             purge_redo_stack();
             if (this.fingering != 'x') {
                 this.prior_fingerings.push(this.fingering);
@@ -1923,6 +1928,11 @@ function AbcDE() {
             if (! fingering_str) {
                 this.preset_init();
             } else {
+                if (Options['preset_lock']) {
+                    if (!/x/.test(fingering_str)) {
+                        this.locked = true;
+                    }
+                }
                 var match = PHRASE_RE.exec(fingering_str);
                 if (match) {
                     this.preset_phrase_break = match[1];

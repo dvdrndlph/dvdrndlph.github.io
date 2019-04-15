@@ -189,9 +189,9 @@ function generate_client_id(email) {
     return key;
 }
 
-async function set_up_experiment() {
+function set_up_experiment() {
     let url = DB_EXPERIMENT_SELECT_URL + '?experimentId=' + experiment_id + '&clientId=' + client_id;
-    await $.getJSON(url, function(data) {
+    $.getJSON(url, function(data) {
         // let data = JSON.parse(json);
         if (! data['type']) {
             let error_msg = "Unable to retrieve experiment settings.\n\n" +
@@ -328,17 +328,14 @@ function getParameterByName(name, url) {
 }
 
 window.onload = function() {
-    var instructions = document.getElementById('instructions');
-    var thank_you_div = document.getElementById('submission_complete');
-
-    if (! experiment_id || ! client_id) {
+    if (!experiment_id || !client_id) {
         experiment_id = getQueryVariable("id");
         console.log("Value of experiment id is " + experiment_id);
         client_id = getQueryVariable("client_id");
         console.log("Value of user client_id is " + client_id);
     }
 
-    if (! experiment_id) {
+    if (!experiment_id) {
         alert("The 'id' parameter is required.");
         return;
     }
@@ -359,8 +356,15 @@ window.onload = function() {
         return;
     }
 
+    run_experiment();
+}
+
+async function run_experiment() {
+    var instructions = document.getElementById('instructions');
+    var thank_you_div = document.getElementById('submission_complete');
+
     if (! experiment_type) {
-        set_up_experiment();
+        await set_up_experiment();
     }
 
     if (! informed) {
@@ -382,10 +386,6 @@ window.onload = function() {
     thank_you_div.style.display = 'none';
     instructions.style.display = 'none';
     completion_str = localStorage.getItem(completions_key);
-    run_experiment();
-};
-
-function run_experiment() {
     var abcde_div = document.getElementById('abcde');
     completions = JSON.parse(completion_str);
     if (! completions) {
@@ -438,5 +438,5 @@ function run_experiment() {
             break;
         }
     }
-};
+}
 
