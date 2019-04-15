@@ -409,7 +409,7 @@ function run_experiment() {
                 // Ain't gonna do it.
                 continue;
             }
-            document.getElementById("abcde").innerHTML = "";
+            abcde_div.innerHTML = "";
             var url = urlForId(selection_id);
             var settings = {
                 experiment_id: experiment_id,
