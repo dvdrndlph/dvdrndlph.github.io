@@ -53,6 +53,9 @@ function urlForId(id) {
     if (corpus_id == 'c') {
         subdir = 'clementi';
     }
+    if (experiment_type == "interpolate") {
+        subdir += '/cooked';
+    }
     var file_name = file_id;
     if (subdir == 'wtc') {
         let pf_re = /.*1$/;
@@ -61,6 +64,10 @@ function urlForId(id) {
         }
     }
     file_name += '.abc';
+    if (experiment_type == "interpolate") {
+        file_name += 'd';
+    }
+
     var url = DEFAULT_URL_DIR + '/' + subdir + '/' + file_name;
     return url;
 }
