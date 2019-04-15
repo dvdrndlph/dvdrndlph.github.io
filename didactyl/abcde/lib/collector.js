@@ -328,16 +328,16 @@ function getParameterByName(name, url) {
 }
 
 window.onload = function() {
-    var resetting = getParameterByName('reset');
-    if (resetting) {
-        start_over();
-        return;
-    }
     if (! experiment_id || ! client_id) {
         experiment_id = getQueryVariable("id");
         console.log("Value of experiment id is " + experiment_id);
         client_id = getQueryVariable("client_id");
         console.log("Value of user client_id is " + client_id);
+    }
+    var resetting = getParameterByName('reset');
+    if (resetting) {
+        start_over();
+        return;
     }
 
     if (! experiment_id) {
