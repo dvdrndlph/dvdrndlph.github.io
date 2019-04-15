@@ -42,7 +42,6 @@ function start_over() {
     localStorage.removeItem(completions_key);
     // window.location = window.location.pathname;
     resetted = true;
-    window.onload();
 }
 
 function urlForId(id) {
@@ -337,20 +336,21 @@ window.onload = function() {
         client_id = getQueryVariable("client_id");
         console.log("Value of user client_id is " + client_id);
     }
-    var resetting = getParameterByName('reset');
-    if (resetting && ! resetted) {
-        start_over();
-        return;
-    }
 
     if (! experiment_id) {
         alert("The 'id' parameter is required.");
         return;
     }
 
-    var consent_div = document.getElementById('consent_form');
     consent_key = experiment_id + CONSENT_SUFFIX;
     completions_key = experiment_id + COMPLETIONS_SUFFIX;
+
+    var resetting = getParameterByName('reset');
+    if (resetting && ! resetted) {
+        start_over();
+    }
+
+    var consent_div = document.getElementById('consent_form');
     consenting = localStorage.getItem(consent_key);
     if (consenting !== 'yes') {
         consent_div.style.display = 'block';
