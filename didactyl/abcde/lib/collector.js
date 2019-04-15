@@ -8,7 +8,6 @@ var DEFAULT_URL_DIR = "https://nlp-music.cs.uic.edu/corpora";
 
 var abcDE;
 var consenting;
-var resetted = false;
 var preset;
 var informed = false;
 var experiment_id = 0;
@@ -41,7 +40,6 @@ function start_over() {
     localStorage.removeItem(consent_key);
     localStorage.removeItem(completions_key);
     // window.location = window.location.pathname;
-    resetted = true;
 }
 
 function urlForId(id) {
@@ -346,8 +344,9 @@ window.onload = function() {
     completions_key = experiment_id + COMPLETIONS_SUFFIX;
 
     var resetting = getParameterByName('reset');
-    if (resetting && ! resetted) {
+    if (resetting) {
         start_over();
+        return;
     }
 
     var consent_div = document.getElementById('consent_form');
