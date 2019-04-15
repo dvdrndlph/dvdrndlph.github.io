@@ -328,6 +328,9 @@ function getParameterByName(name, url) {
 }
 
 window.onload = function() {
+    var instructions = document.getElementById('instructions');
+    var thank_you_div = document.getElementById('submission_complete');
+
     if (! experiment_id || ! client_id) {
         experiment_id = getQueryVariable("id");
         console.log("Value of experiment id is " + experiment_id);
@@ -360,7 +363,6 @@ window.onload = function() {
         set_up_experiment();
     }
 
-    var instructions = document.getElementById('instructions');
     if (! informed) {
         consent_div.style.display = 'none';
         var interpols = document.getElementById('interpolation_instructions');
@@ -377,19 +379,20 @@ window.onload = function() {
         return;
     }
 
-    completion_str = localStorage.getItem(completions_key);
+    thank_you_div.style.display = 'none';
     instructions.style.display = 'none';
+    completion_str = localStorage.getItem(completions_key);
     run_experiment();
 };
 
 function run_experiment() {
+    var abcde_div = document.getElementById('abcde');
     completions = JSON.parse(completion_str);
     if (! completions) {
         completions = [];
     }
     if (selections.length === completions.length) {
         // Hide editor.
-        var abcde_div = document.getElementById('abcde');
         abcde_div.style.display = 'none';
 
         // All done.
@@ -430,6 +433,7 @@ function run_experiment() {
             abcDE.renderUI(settings);
             var next_button = document.getElementById('didactyl_collector_submit');
             next_button.onclick = submit_annotation;
+            abcde_div.style.display = 'block';
             break;
         }
     }
