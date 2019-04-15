@@ -189,35 +189,37 @@ function generate_client_id(email) {
     return key;
 }
 
-function set_up_experiment() {
-    let url = DB_EXPERIMENT_SELECT_URL + '?experimentId=' + experiment_id + '&clientId=' + client_id;
-    $.getJSON(url, function(data) {
-        // let data = JSON.parse(json);
-        if (! data['type']) {
-            let error_msg = "Unable to retrieve experiment settings.\n\n" +
-                "Please contact the study coordinator at drando2@uic.edu.\n\n" +
-                "Thank you.\n\n" + data.msg;
-            alert(error_msg);
-            console.log(error_msg);
-            console.log(JSON.stringify(data));
-        } else {
-            preset = getQueryVariable("preset") || data.preset;
-            selection_str = getQueryVariable("selections") || data.selections;
-            if (! selection_str) {
-                selection_str = data.defaultSelections;
-            }
-            selections = selection_str.split(",");
-
-            experiment_type = getQueryVariable("type") || data.type;
-            partial = getQueryVariable("partial") || data.partial;
-            preset_lock = getQueryVariable("preset_lock") || data.presetLock;
-            console.log("Value of experiment type is " + experiment_type);
-            console.log("Value of preset is " + preset);
-            console.log("Value of selections is " + selection_str);
-            console.log("Value of partial is " + partial);
-            console.log("Value of preset_lock is " + preset_lock);
+function get_and_go(data) {
+    if (! data['type']) {
+        let error_msg = "Unable to retrieve experiment settings.\n\n" +
+            "Please contact the study coordinator at drando2@uic.edu.\n\n" +
+            "Thank you.\n\n" + data.msg;
+        alert(error_msg);
+        console.log(error_msg);
+        console.log(JSON.stringify(data));
+    } else {
+        preset = getQueryVariable("preset") || data.preset;
+        selection_str = getQueryVariable("selections") || data.selections;
+        if (! selection_str) {
+            selection_str = data.defaultSelections;
         }
-    });
+        selections = selection_str.split(",");
+
+        experiment_type = getQueryVariable("type") || data.type;
+        partial = getQueryVariable("partial") || data.partial;
+        preset_lock = getQueryVariable("preset_lock") || data.presetLock;
+        console.log("Value of experiment type is " + experiment_type);
+        console.log("Value of preset is " + preset);
+        console.log("Value of selections is " + selection_str);
+        console.log("Value of partial is " + partial);
+        console.log("Value of preset_lock is " + preset_lock);
+    }
+    run_experiment();
+};
+
+function set_up_and_run_experiment() {
+    let url = DB_EXPERIMENT_SELECT_URL + '?experimentId=' + experiment_id + '&clientId=' + client_id;
+    $.getJSON(url, get_and_go(data));
 }
 
 function post_annotation(survey_data) {
@@ -356,16 +358,17 @@ window.onload = function() {
         return;
     }
 
-    run_experiment();
-}
+    if (! experiment_type) {
+        set_up_and_run_experiment();
+    } else {
+        run_experiment();
+    }
+};
 
-async function run_experiment() {
+function run_experiment() {
     var instructions = document.getElementById('instructions');
     var thank_you_div = document.getElementById('submission_complete');
 
-    if (! experiment_type) {
-        await set_up_experiment();
-    }
 
     if (! informed) {
         consent_div.style.display = 'none';
