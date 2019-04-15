@@ -1,4 +1,4 @@
-/* abcDE_full_min.js v6.0.84 */
+/* abcDE_full_min.js v6.0.85 */
 !function(e, t) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function(e) {
   if (!e.document) throw new Error("jQuery requires a window with a document");
@@ -18067,7 +18067,7 @@ function AbcDE() {
    var o = qe("restore");
    (a = "always" === o || "never" !== o && confirm("You have previously entered data for this piece (or sequence). Do you want to restore them?")) && (n = e.sequence);
   }
-  a ? Je(e) : i && Je(t), Ge(n, "fingering"), Ge(r, "preset_fingering"), v = setInterval(function() {
+  a ? Je(e) : i && Je(t), Ge(r, "preset_fingering"), Ge(n, "fingering"), v = setInterval(function() {
    Fe();
   }, se);
  }

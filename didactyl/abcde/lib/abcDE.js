@@ -726,8 +726,8 @@ function AbcDE() {
             restore_metadata(preset);
         }
 
-        set_sequence(finger_str, 'fingering');
         set_sequence(preset_finger_str, 'preset_fingering');
+        set_sequence(finger_str, 'fingering');
 
         Autosaver = setInterval(function () {
             autosave();
