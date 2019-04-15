@@ -368,7 +368,7 @@ window.onload = function() {
 function run_experiment() {
     var instructions = document.getElementById('instructions');
     var thank_you_div = document.getElementById('submission_complete');
-
+    var consent_div = document.getElementById('consent_form');
 
     if (! informed) {
         consent_div.style.display = 'none';
