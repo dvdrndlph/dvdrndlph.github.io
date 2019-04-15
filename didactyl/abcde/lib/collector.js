@@ -426,6 +426,7 @@ function run_experiment() {
                 submit_button_id: 'didactyl_collector_submit',
                 submit_button_label: 'NEXT',
                 restore: 'always',
+                output: 'replace',
                 default_url: url,
                 file_input: false,
                 url_input: false,
