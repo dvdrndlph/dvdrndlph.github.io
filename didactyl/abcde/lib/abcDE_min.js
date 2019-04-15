@@ -1,4 +1,4 @@
-/* abcDE_min.js v6.0.90 */
+/* abcDE_min.js v6.0.91 */
 /** @license
  *
  * Copyright (c) 2015, 2016 David A. Randolph.
@@ -103,7 +103,7 @@ function AbcDE() {
  }
  function He(e) {
   var t = "";
-  "preset" === e || "output" === e || "keypad" === e || "restore" == e ? t = Me(e) : t = document.getElementById(e).value;
+  "preset_preference" === e || "output" === e || "keypad" === e || "restore" == e ? t = Me(e) : t = document.getElementById(e).value;
   g[e] = t, localStorage.setItem(e, t);
  }
  function ze() {
@@ -156,16 +156,23 @@ function AbcDE() {
  function Xe() {
   var e = document.getElementById("sequence_spinner");
   e.min = 1, e.max = h.length || 1;
-  var t, n = (t = 1, "last" === $e("preset") && (t = h.length || 1), t);
-  e.value = n;
+  var t = function() {
+   var e = $e("preset");
+   if (e) return e;
+   var t = 1;
+   return "last" === (e = $e("preset_preference")) && (t = h.length || 1), t;
+  }();
+  e.value = t;
  }
  function Ge(e) {
   if (e) {
    var t = e - 1;
    return parseInt(e) <= h.length ? h[t] : Oe();
   }
-  return (n = $e("preset")) && "none" !== n ? "first" === n ? h[0] : "last" === n ? h[h.length - 1] : "" : Oe();
-  var n;
+  return function() {
+   let e = $e("preset");
+   return e ? h[e - 1] : (e = $e("preset_preference")) && "none" !== e ? "first" === e ? h[0] : "last" === e ? h[h.length - 1] : "" : Oe();
+  }();
  }
  function Ue(e, t) {
   for (var n = document.getElementsByName(e), r = 0; r < n.length; r++) {
@@ -494,7 +501,7 @@ function AbcDE() {
   o.innerText = "Preferences", r.appendChild(o);
   var s = "restore", c = [ "always", "never", "ask" ], l = [ "Always", "Never", "Ask" ];
   t && t[s] || Ct(r, "Restore Data", s, c, l, "ask", !0), s = "output", t && t[s] || Ct(r, "Output", s, c = [ "append", "replace" ], l = [ "Append", "Replace" ], "append", !0), 
-  s = "preset", t && t[s] || Ct(r, "Preset", s, c = [ "first", "last", "none" ], l = [ "First", "Last", "None" ], "first", !0), 
+  s = "preset_preference", t && t[s] || Ct(r, "Preset", s, c = [ "first", "last", "none" ], l = [ "First", "Last", "None" ], "first", !0), 
   s = "keypad", c = [ "show", "hide" ], l = [ "Show", "Hide" ];
   var u = "hide";
   "ontouchstart" in window && (u = "show"), Ct(r, "Keypad", s, c, l, u, !0), function(e, t, n, r, i, a, o, s) {
@@ -1065,7 +1072,7 @@ function AbcDE() {
     s.id = "sequence_spinner", s.min = "1", s.max = "999", s.size = 3, s.type = "number", 
     s.alt = "fingering_number", s.value = 1, s.onchange = Bn, wt(l = document.createElement("td"), "Suggestion", "sequence_prompt"), 
     l.appendChild(s), a.appendChild(l), t.preset_select || (l.style.display = "none"), 
-    t.sequence && (s.value = t.sequence);
+    t.preset && (s.value = t.preset);
     var c = document.createElement("input");
     c.type = "image", c.src = R + "/eye.svg", c.width = "36", c.alt = "View", c.onclick = Dn, 
     (l = document.createElement("td")).appendChild(c), a.appendChild(l), t.hide_view && (l.style.display = "none");

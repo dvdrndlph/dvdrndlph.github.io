@@ -1,4 +1,4 @@
-/* abcDE_full_min.js v6.0.90 */
+/* abcDE_full_min.js v6.0.91 */
 !function(e, t) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function(e) {
   if (!e.document) throw new Error("jQuery requires a window with a document");
@@ -17937,7 +17937,7 @@ function AbcDE() {
  }
  function je(e) {
   var t = "";
-  "preset" === e || "output" === e || "keypad" === e || "restore" == e ? t = De(e) : t = document.getElementById(e).value;
+  "preset_preference" === e || "output" === e || "keypad" === e || "restore" == e ? t = De(e) : t = document.getElementById(e).value;
   h[e] = t, localStorage.setItem(e, t);
  }
  function Ve() {
@@ -17990,16 +17990,23 @@ function AbcDE() {
  function Ue() {
   var e = document.getElementById("sequence_spinner");
   e.min = 1, e.max = m.length || 1;
-  var t, n = (t = 1, "last" === qe("preset") && (t = m.length || 1), t);
-  e.value = n;
+  var t = function() {
+   var e = qe("preset");
+   if (e) return e;
+   var t = 1;
+   return "last" === (e = qe("preset_preference")) && (t = m.length || 1), t;
+  }();
+  e.value = t;
  }
  function $e(e) {
   if (e) {
    var t = e - 1;
    return parseInt(e) <= m.length ? m[t] : ze();
   }
-  return (n = qe("preset")) && "none" !== n ? "first" === n ? m[0] : "last" === n ? m[m.length - 1] : "" : ze();
-  var n;
+  return function() {
+   let e = qe("preset");
+   return e ? m[e - 1] : (e = qe("preset_preference")) && "none" !== e ? "first" === e ? m[0] : "last" === e ? m[m.length - 1] : "" : ze();
+  }();
  }
  function Qe(e, t) {
   for (var n = document.getElementsByName(e), r = 0; r < n.length; r++) {
@@ -18328,7 +18335,7 @@ function AbcDE() {
   a.innerText = "Preferences", r.appendChild(a);
   var o = "restore", c = [ "always", "never", "ask" ], u = [ "Always", "Never", "Ask" ];
   t && t[o] || Et(r, "Restore Data", o, c, u, "ask", !0), o = "output", t && t[o] || Et(r, "Output", o, c = [ "append", "replace" ], u = [ "Append", "Replace" ], "append", !0), 
-  o = "preset", t && t[o] || Et(r, "Preset", o, c = [ "first", "last", "none" ], u = [ "First", "Last", "None" ], "first", !0), 
+  o = "preset_preference", t && t[o] || Et(r, "Preset", o, c = [ "first", "last", "none" ], u = [ "First", "Last", "None" ], "first", !0), 
   o = "keypad", c = [ "show", "hide" ], u = [ "Show", "Hide" ];
   var l = "hide";
   "ontouchstart" in window && (l = "show"), Et(r, "Keypad", o, c, u, l, !0), function(e, t, n, r, i, s, a, o) {
@@ -18899,7 +18906,7 @@ function AbcDE() {
     o.id = "sequence_spinner", o.min = "1", o.max = "999", o.size = 3, o.type = "number", 
     o.alt = "fingering_number", o.value = 1, o.onchange = Sn, kt(u = document.createElement("td"), "Suggestion", "sequence_prompt"), 
     u.appendChild(o), s.appendChild(u), t.preset_select || (u.style.display = "none"), 
-    t.sequence && (o.value = t.sequence);
+    t.preset && (o.value = t.preset);
     var c = document.createElement("input");
     c.type = "image", c.src = F + "/eye.svg", c.width = "36", c.alt = "View", c.onclick = An, 
     (u = document.createElement("td")).appendChild(c), s.appendChild(u), t.hide_view && (u.style.display = "none");

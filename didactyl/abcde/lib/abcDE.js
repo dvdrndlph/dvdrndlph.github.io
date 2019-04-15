@@ -351,7 +351,7 @@ function AbcDE() {
 
     function store_preference(field_id) {
         var setting = '';
-        if (field_id === 'preset' || field_id === 'output' ||
+        if (field_id === 'preset_preference' || field_id === 'output' ||
             field_id === 'keypad' || field_id == 'restore') {
             setting = get_radio_setting(field_id);
         } else {
@@ -414,6 +414,10 @@ function AbcDE() {
 
     function get_default_sequence_number() {
         var setting = get_setting('preset');
+        if (setting) {
+            return setting;
+        }
+        setting = get_setting('preset_preference');
         var number = 1;
         if (setting === 'last') {
             number = Sequences.length || 1;
@@ -497,7 +501,12 @@ function AbcDE() {
     }
 
     function get_default_sequence() {
-        var setting = get_setting('preset');
+        let setting = get_setting('preset');
+        if (setting) {
+            var index = setting - 1;
+            return Sequences[index];
+        }
+        setting = get_setting('preset_preference');
         if (!setting || setting === 'none') {
             return get_dummy_sequence();
         } else if (setting === 'first') {
@@ -1372,7 +1381,7 @@ function AbcDE() {
                 radio_name, button_ids, button_labels, 'append', true);
         }
 
-        radio_name = 'preset';
+        radio_name = 'preset_preference';
         if (!Options || !Options[radio_name]) {
             button_ids = ['first', 'last', 'none'];
             button_labels = ['First', 'Last', 'None'];
@@ -1584,8 +1593,8 @@ function AbcDE() {
         if (!Options.preset_select) {
             cell.style.display = 'none';
         }
-        if (Options.sequence) {
-            sequence_spinner.value = Options.sequence;
+        if (Options.preset) {
+            sequence_spinner.value = Options.preset;
         }
 
         var view_button = document.createElement('input');
