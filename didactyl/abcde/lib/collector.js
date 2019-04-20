@@ -50,21 +50,21 @@ function urlForId(id) {
     // var selection_id = matches[3];
     // var phrase_id = matches[4];
     var subdir = 'wtc';
-    if (corpus_id == 'c') {
+    if (corpus_id === 'c') {
         subdir = 'clementi';
     }
-    if (experiment_type == "interpolate") {
+    if (experiment_type === "interpolate") {
         subdir += '/cooked';
     }
     var file_name = file_id;
-    if (subdir == 'wtc') {
+    if (subdir === 'wtc') {
         let pf_re = /.*1$/;
         if (pf_re.test(id)) {
             file_name = 'prelude' + file_id;
         }
     }
     file_name += '.abc';
-    if (experiment_type == "interpolate") {
+    if (experiment_type === "interpolate") {
         file_name += 'd';
     }
 
@@ -322,7 +322,7 @@ function submit_annotation() {
     let abcde_div = document.getElementById('abcde');
     abcde_div.style.display = 'none';
     let survey = new Survey.Survey(EXIT_JSON, 'exit_survey');
-    if (experiment_type === 'interpolation') {
+    if (experiment_type === 'interpolate') {
         survey = new Survey.Survey(INTERPOLATION_EXIT_JSON, 'exit_survey');
     }
 
@@ -400,7 +400,7 @@ function run_experiment() {
         consent_div.style.display = 'none';
         var interpols = document.getElementById('interpolation_instructions');
         var annots = document.getElementById('annotation_instructions');
-        if (experiment_type == "interpolate") {
+        if (experiment_type === "interpolate") {
             interpols.style.display = 'block';
             annots.style.display = 'none';
         } else {
