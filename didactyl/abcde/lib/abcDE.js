@@ -135,7 +135,7 @@ function AbcDE() {
     var ABCD_HDR_RE = /^% abcDidactyl v([\d\.]+)$/;
     var ABCD_FINGERING_RE = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/;
     var ABCD_TERMINAL_RE = /^% abcDidactyl END$/;
-    var ABCD_AUTHORITY_RE = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/;
+    var ABCD_AUTHORITY_RE = /^% Authority: ([^\(]+)(\s+\((\d\d\d\d)\))?$/;
     var ABCD_TRANSCRIBER_RE = /^% Transcriber: (.*)$/;
     var ABCD_TRANSCRIPTION_DATE_RE =
         /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/;
@@ -401,10 +401,17 @@ function AbcDE() {
             return Options[arg];
         }
 
+        if (arg === 'preset') {
+            // We used to store something with this name. Now we are
+            // using it exclusively as an Option to mean something else.
+            return '';
+        }
+
         if (arg === 'measure_number_interval') {
             var field = document.getElementById(arg);
             return field.value;
         }
+
         var preference = get_radio_setting(arg);
         if (preference) {
             return preference;
@@ -468,7 +475,7 @@ function AbcDE() {
                     if (match && match[1]) {
                         seq.authority = match[1];
                         if (match[2]) {
-                            seq.authority_year = match[2];
+                            seq.authority_year = match[3];
                         }
                         continue;
                     }
@@ -550,7 +557,7 @@ function AbcDE() {
     }
 
     function preset_preferences() {
-        set_radio('preset', localStorage.getItem('preset'));
+        set_radio('preset_preference', localStorage.getItem('preset_preference'));
         set_radio('output', localStorage.getItem('output'));
         set_radio('restore', localStorage.getItem('restore'));
         set_radio('keypad', localStorage.getItem('keypad'));
@@ -707,7 +714,7 @@ function AbcDE() {
         var finger_str = preset.sequence;
         var preset_finger_str = preset.sequence;
         var presetting = true;
-        var setting = get_setting('preset');
+        var setting = get_setting('preset_preference');
         if (!setting || setting === 'none') {
             presetting = false;
             finger_str = '';
@@ -939,7 +946,7 @@ function AbcDE() {
     }
 
     function close_preferences(e) {
-        store_preference('preset');
+        store_preference('preset_preference');
         store_preference('output');
         store_preference('restore');
         store_preference('keypad');
@@ -3667,8 +3674,8 @@ function AbcDE() {
         var abcd_str = get_persisting_abcd();
         // window.open('data:text/vnd.abc;charset=utf-8,' + encodeURI(abcd_str), 'view_window');
         // window.open('data:text/text;charset=utf-8,hello', '_blank');
-        var w = window.open()
-        w.document.write('<pre>' + abcd_str + '</pre>')
+        var w = window.open();
+        w.document.write('<pre>' + abcd_str + '</pre>');
     }
 
     function getAuthority() {

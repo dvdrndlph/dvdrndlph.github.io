@@ -1,4 +1,4 @@
-/* abcDE_full_min.js v6.0.92 */
+/* abcDE_full_min.js v6.0.93 */
 !function(e, t) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function(e) {
   if (!e.document) throw new Error("jQuery requires a window with a document");
@@ -17864,7 +17864,7 @@ var __extends = this && this.__extends || function(e, t) {
  */
 function AbcDE() {
  "use strict";
- var t, n, r, i, s, a, o, c, u = [], l = [], f = "", p = !1, d = 1, h = {}, m = [], v = void 0, g = "", y = "noname.abc", _ = 0, b = [], x = !1, w = [], k = 0, E = [], C = [], T = {}, S = {}, O = [], A = !1, N = {}, B = {}, R = [], P = 0, L = !1, I = [], M = !1, D = !1, j = "../../corpora", V = "./abcde_help.html", F = "../image", q = "../lib/media", z = 5, H = /\s/g, U = /</g, Q = />/g, W = /[><]/g, J = /([,;\.])/, X = /&/g, K = /.*([<>])[^<>]+$/, G = /^% abcDidactyl v([\d\.]+)$/, Y = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Z = /^% abcDidactyl END$/, ee = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, se = 4e3, ae = "abcde", oe = "abc_source", ce = "source", ue = "abcde_prefs", le = "abcde_controls", fe = "abcde_metadata", pe = "abcde_keypad", de = "abcde_rendering", he = "abcde_target", me = "abcde_error", ve = .1, ge = 3, ye = .3, _e = 90, be = 89, xe = 13, we = 8, ke = 9, Ee = 37, Ce = 39, Te = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Se = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
+ var t, n, r, i, s, a, o, c, u = [], l = [], f = "", p = !1, d = 1, h = {}, m = [], v = void 0, g = "", y = "noname.abc", _ = 0, b = [], x = !1, w = [], k = 0, E = [], C = [], T = {}, S = {}, O = [], A = !1, N = {}, B = {}, R = [], P = 0, L = !1, I = [], M = !1, D = !1, j = "../../corpora", V = "./abcde_help.html", F = "../image", q = "../lib/media", z = 5, H = /\s/g, U = /</g, Q = />/g, W = /[><]/g, J = /([,;\.])/, X = /&/g, K = /.*([<>])[^<>]+$/, G = /^% abcDidactyl v([\d\.]+)$/, Y = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Z = /^% abcDidactyl END$/, ee = /^% Authority: ([^\(]+)(\s+\((\d\d\d\d)\))?$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, se = 4e3, ae = "abcde", oe = "abc_source", ce = "source", ue = "abcde_prefs", le = "abcde_controls", fe = "abcde_metadata", pe = "abcde_keypad", de = "abcde_rendering", he = "abcde_target", me = "abcde_error", ve = .1, ge = 3, ye = .3, _e = 90, be = 89, xe = 13, we = 8, ke = 9, Ee = 37, Ce = 39, Te = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Se = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
  function Oe() {
   v && clearInterval(v), u = [], l = [], g = "", p = !1, y = "noname.abc", n = void 0, 
   i = "", s = void 0, b = [], x = !1, w = [], a = void 0, k = 0, E = [], C = [], T = {}, 
@@ -17953,6 +17953,7 @@ function AbcDE() {
  }
  function qe(e) {
   if (t && t[e]) return t[e];
+  if ("preset" === e) return "";
   if ("measure_number_interval" === e) return document.getElementById(e).value;
   var n = De(e);
   return n || "";
@@ -17971,7 +17972,7 @@ function AbcDE() {
    }, s.push(i); else {
     if (t = Z.exec(c)) break;
     if ((t = ee.exec(c)) && t[1]) {
-     i.authority = t[1], t[2] && (i.authority_year = t[2]);
+     i.authority = t[1], t[2] && (i.authority_year = t[3]);
      continue;
     }
     if ((t = te.exec(c)) && t[1]) {
@@ -18067,7 +18068,7 @@ function AbcDE() {
   }
  }
  function Ye(e, t) {
-  var n = t.sequence, r = t.sequence, i = !0, s = qe("preset");
+  var n = t.sequence, r = t.sequence, i = !0, s = qe("preset_preference");
   s && "none" !== s || (i = !1, n = "");
   var a = !1;
   if (e && e.sequence && e.sequence !== n) {
@@ -18159,7 +18160,7 @@ function AbcDE() {
   d < ge && (d += ve, Kt());
  }
  function ft(e) {
-  je("preset"), je("output"), je("restore"), je("keypad"), je("measure_number_interval"), 
+  je("preset_preference"), je("output"), je("restore"), je("keypad"), je("measure_number_interval"), 
   je("default_authority"), je("default_authority_year"), je("default_transcriber"), 
   document.getElementById("prefs_modal_wrapper").className = "", i && (Kt(), yn(a)), 
   bt(), un(), e.preventDefault ? e.preventDefault() : e.returnValue = !1;
@@ -18980,7 +18981,7 @@ function AbcDE() {
     }), Bt(), D = !0;
    }
   }(), function() {
-   Qe("preset", localStorage.getItem("preset")), Qe("output", localStorage.getItem("output")), 
+   Qe("preset_preference", localStorage.getItem("preset_preference")), Qe("output", localStorage.getItem("output")), 
    Qe("restore", localStorage.getItem("restore")), Qe("keypad", localStorage.getItem("keypad"));
    var e = localStorage.getItem("measure_number_interval");
    void 0 !== e && "" !== e || (e = z), We("measure_number_interval", e), We("default_authority", localStorage.getItem("default_authority")), 

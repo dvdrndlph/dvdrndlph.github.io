@@ -1,4 +1,4 @@
-/* abcDE_full.js v6.0.92 */
+/* abcDE_full.js v6.0.93 */
 !function(a, b) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = a.document ? b(a, !0) : function(a) {
   if (!a.document) throw new Error("jQuery requires a window with a document");
@@ -34347,7 +34347,7 @@ function AbcDE() {
  var ABCD_HDR_RE = /^% abcDidactyl v([\d\.]+)$/;
  var ABCD_FINGERING_RE = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/;
  var ABCD_TERMINAL_RE = /^% abcDidactyl END$/;
- var ABCD_AUTHORITY_RE = /^% Authority: (.*)\s+\((\d\d\d\d)\)$/;
+ var ABCD_AUTHORITY_RE = /^% Authority: ([^\(]+)(\s+\((\d\d\d\d)\))?$/;
  var ABCD_TRANSCRIBER_RE = /^% Transcriber: (.*)$/;
  var ABCD_TRANSCRIPTION_DATE_RE = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/;
  var ABCD_COMMENT_RE = /^% (.*)$/;
@@ -34569,6 +34569,9 @@ function AbcDE() {
   if (Options && Options[arg]) {
    return Options[arg];
   }
+  if (arg === "preset") {
+   return "";
+  }
   if (arg === "measure_number_interval") {
    var field = document.getElementById(arg);
    return field.value;
@@ -34634,7 +34637,7 @@ function AbcDE() {
      if (match && match[1]) {
       seq.authority = match[1];
       if (match[2]) {
-       seq.authority_year = match[2];
+       seq.authority_year = match[3];
       }
       continue;
      }
@@ -34709,7 +34712,7 @@ function AbcDE() {
   }
  }
  function preset_preferences() {
-  set_radio("preset", localStorage.getItem("preset"));
+  set_radio("preset_preference", localStorage.getItem("preset_preference"));
   set_radio("output", localStorage.getItem("output"));
   set_radio("restore", localStorage.getItem("restore"));
   set_radio("keypad", localStorage.getItem("keypad"));
@@ -34850,7 +34853,7 @@ function AbcDE() {
   var finger_str = preset.sequence;
   var preset_finger_str = preset.sequence;
   var presetting = true;
-  var setting = get_setting("preset");
+  var setting = get_setting("preset_preference");
   if (!setting || setting === "none") {
    presetting = false;
    finger_str = "";
@@ -35047,7 +35050,7 @@ function AbcDE() {
   }
  }
  function close_preferences(e) {
-  store_preference("preset");
+  store_preference("preset_preference");
   store_preference("output");
   store_preference("restore");
   store_preference("keypad");
