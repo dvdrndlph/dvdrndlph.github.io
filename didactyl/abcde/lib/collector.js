@@ -321,10 +321,8 @@ function submit_annotation() {
     abcDE.unhandleKeys();
     let abcde_div = document.getElementById('abcde');
     abcde_div.style.display = 'none';
-    let survey;
-    if (experiment_type === 'annotation') {
-        survey = new Survey.Survey(EXIT_JSON, 'exit_survey');
-    } else if (experiment_type === 'interpolation') {
+    let survey = new Survey.Survey(EXIT_JSON, 'exit_survey');
+    if (experiment_type === 'interpolation') {
         survey = new Survey.Survey(INTERPOLATION_EXIT_JSON, 'exit_survey');
     }
 
