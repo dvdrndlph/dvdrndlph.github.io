@@ -174,6 +174,21 @@ var EXIT_JSON = {
     ]
 };
 
+var INTERPOLATION_EXIT_JSON = {
+    pages: [
+        {
+            name: "Problems",
+            questions: [
+                {
+                    type: "comment",
+                    name: "problems",
+                    title: "Please describe any problems you encountered in annotating this piece, including any inconsistencies between the notes on your score and the notes presented in the survey."
+                }
+            ]
+        }
+    ]
+};
+
 function abort_submission() {
     location.reload(true);
 }
@@ -306,7 +321,13 @@ function submit_annotation() {
     abcDE.unhandleKeys();
     let abcde_div = document.getElementById('abcde');
     abcde_div.style.display = 'none';
-    let survey = new Survey.Survey(EXIT_JSON, 'exit_survey');
+    let survey;
+    if (experiment_type === 'annotation') {
+        survey = new Survey.Survey(EXIT_JSON, 'exit_survey');
+    } else if (experiment_type === 'interpolation') {
+        survey = new Survey.Survey(INTERPOLATION_EXIT_JSON, 'exit_survey');
+    }
+
     survey.showTitle = true;
     survey.pagePrevText = 'BACK';
     survey.pageNextText = 'NEXT';

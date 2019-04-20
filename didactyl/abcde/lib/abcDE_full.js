@@ -1,4 +1,4 @@
-/* abcDE_full.js v6.0.93 */
+/* abcDE_full.js v6.0.94 */
 !function(a, b) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = a.document ? b(a, !0) : function(a) {
   if (!a.document) throw new Error("jQuery requires a window with a document");
@@ -34866,7 +34866,7 @@ function AbcDE() {
    } else if (restore_setting === "never") {
     should_restore = false;
    } else {
-    should_restore = confirm("You have previously entered data for this piece (or sequence). " + "Do you want to restore them?");
+    should_restore = confirm("You have previously entered data for this piece (or suggestion). " + "Do you want to restore them?");
    }
    if (should_restore) {
     finger_str = autosaved.sequence;

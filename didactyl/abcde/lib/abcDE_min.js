@@ -1,4 +1,4 @@
-/* abcDE_min.js v6.0.93 */
+/* abcDE_min.js v6.0.94 */
 /** @license
  *
  * Copyright (c) 2015, 2016 David A. Randolph.
@@ -239,7 +239,7 @@ function AbcDE() {
   var o = !1;
   if (e && e.sequence && e.sequence !== n) {
    var s = $e("restore");
-   (o = "always" === s || "never" !== s && confirm("You have previously entered data for this piece (or sequence). Do you want to restore them?")) && (n = e.sequence);
+   (o = "always" === s || "never" !== s && confirm("You have previously entered data for this piece (or suggestion). Do you want to restore them?")) && (n = e.sequence);
   }
   o ? Ye(e) : i && Ye(t), We(r, "preset_fingering"), We(n, "fingering"), m = setInterval(function() {
    Re();

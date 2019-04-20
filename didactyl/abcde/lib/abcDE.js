@@ -443,7 +443,6 @@ function AbcDE() {
     }
 
     function get_sequences(abcd_str) {
-        // FIXME: This does not find any sequences, ever.
         var lines = abcd_str.split("\n");
         var match;
         var within_abcd_block = false;
@@ -728,7 +727,7 @@ function AbcDE() {
             } else if (restore_setting === 'never') {
                 should_restore = false;
             } else {
-                should_restore = confirm('You have previously entered data for this piece (or sequence). ' +
+                should_restore = confirm('You have previously entered data for this piece (or suggestion). ' +
                     'Do you want to restore them?');
             }
             if (should_restore) {
