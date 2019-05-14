@@ -1,4 +1,4 @@
-/* abcDE_full_min.js v6.0.97 */
+/* abcDE_full_min.js v6.0.98 */
 !function(e, t) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function(e) {
   if (!e.document) throw new Error("jQuery requires a window with a document");
@@ -171,16 +171,16 @@
   }, O = 1 << 31, A = {}.hasOwnProperty, N = [], B = N.pop, R = N.push, P = N.push, I = N.slice, L = function(e, t) {
    for (var n = 0, r = e.length; r > n; n++) if (e[n] === t) return n;
    return -1;
-  }, M = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped", D = "[\\x20\\t\\r\\n\\f]", j = "(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+", V = "\\[" + D + "*(" + j + ")(?:" + D + "*([*^$|!~]?=)" + D + "*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + j + "))|)" + D + "*\\]", F = ":(" + j + ")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|" + V + ")*)|.*)\\)|)", q = new RegExp(D + "+", "g"), z = new RegExp("^" + D + "+|((?:^|[^\\\\])(?:\\\\.)*)" + D + "+$", "g"), H = new RegExp("^" + D + "*," + D + "*"), U = new RegExp("^" + D + "*([>+~]|" + D + ")" + D + "*"), $ = new RegExp("=" + D + "*([^\\]'\"]*?)" + D + "*\\]", "g"), Q = new RegExp(F), W = new RegExp("^" + j + "$"), J = {
-   ID: new RegExp("^#(" + j + ")"),
-   CLASS: new RegExp("^\\.(" + j + ")"),
-   TAG: new RegExp("^(" + j + "|[*])"),
+  }, M = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped", j = "[\\x20\\t\\r\\n\\f]", D = "(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+", V = "\\[" + j + "*(" + D + ")(?:" + j + "*([*^$|!~]?=)" + j + "*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + D + "))|)" + j + "*\\]", F = ":(" + D + ")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|" + V + ")*)|.*)\\)|)", q = new RegExp(j + "+", "g"), z = new RegExp("^" + j + "+|((?:^|[^\\\\])(?:\\\\.)*)" + j + "+$", "g"), H = new RegExp("^" + j + "*," + j + "*"), $ = new RegExp("^" + j + "*([>+~]|" + j + ")" + j + "*"), U = new RegExp("=" + j + "*([^\\]'\"]*?)" + j + "*\\]", "g"), Q = new RegExp(F), W = new RegExp("^" + D + "$"), J = {
+   ID: new RegExp("^#(" + D + ")"),
+   CLASS: new RegExp("^\\.(" + D + ")"),
+   TAG: new RegExp("^(" + D + "|[*])"),
    ATTR: new RegExp("^" + V),
    PSEUDO: new RegExp("^" + F),
-   CHILD: new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + D + "*(even|odd|(([+-]|)(\\d*)n|)" + D + "*(?:([+-]|)" + D + "*(\\d+)|))" + D + "*\\)|)", "i"),
+   CHILD: new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + j + "*(even|odd|(([+-]|)(\\d*)n|)" + j + "*(?:([+-]|)" + j + "*(\\d+)|))" + j + "*\\)|)", "i"),
    bool: new RegExp("^(?:" + M + ")$", "i"),
-   needsContext: new RegExp("^" + D + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + D + "*((?:-\\d)?\\d*)" + D + "*\\)|)(?=[^-]|$)", "i")
-  }, X = /^(?:input|select|textarea|button)$/i, K = /^h\d$/i, G = /^[^{]+\{\s*\[native \w/, Y = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/, Z = /[+~]/, ee = /'|\\/g, te = new RegExp("\\\\([\\da-f]{1,6}" + D + "?|(" + D + ")|.)", "ig"), ne = function(e, t, n) {
+   needsContext: new RegExp("^" + j + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + j + "*((?:-\\d)?\\d*)" + j + "*\\)|)(?=[^-]|$)", "i")
+  }, X = /^(?:input|select|textarea|button)$/i, K = /^h\d$/i, G = /^[^{]+\{\s*\[native \w/, Y = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/, Z = /[+~]/, ee = /'|\\/g, te = new RegExp("\\\\([\\da-f]{1,6}" + j + "?|(" + j + ")|.)", "ig"), ne = function(e, t, n) {
    var r = "0x" + t - 65536;
    return r != r || n ? t : 0 > r ? String.fromCharCode(r + 65536) : String.fromCharCode(r >> 10 | 55296, 1023 & r | 56320);
   }, re = function() {
@@ -319,13 +319,13 @@
     return void 0 !== t.getElementsByClassName && m ? t.getElementsByClassName(e) : void 0;
    }, g = [], v = [], (n.qsa = G.test(d.querySelectorAll)) && (oe(function(e) {
     h.appendChild(e).innerHTML = "<a id='" + b + "'></a><select id='" + b + "-\r\\' msallowcapture=''><option selected=''></option></select>", 
-    e.querySelectorAll("[msallowcapture^='']").length && v.push("[*^$]=" + D + "*(?:''|\"\")"), 
-    e.querySelectorAll("[selected]").length || v.push("\\[" + D + "*(?:value|" + M + ")"), 
+    e.querySelectorAll("[msallowcapture^='']").length && v.push("[*^$]=" + j + "*(?:''|\"\")"), 
+    e.querySelectorAll("[selected]").length || v.push("\\[" + j + "*(?:value|" + M + ")"), 
     e.querySelectorAll("[id~=" + b + "-]").length || v.push("~="), e.querySelectorAll(":checked").length || v.push(":checked"), 
     e.querySelectorAll("a#" + b + "+*").length || v.push(".#.+[+~]");
    }), oe(function(e) {
     var t = d.createElement("input");
-    t.setAttribute("type", "hidden"), e.appendChild(t).setAttribute("name", "D"), e.querySelectorAll("[name=d]").length && v.push("name" + D + "*[*^$|!~]?="), 
+    t.setAttribute("type", "hidden"), e.appendChild(t).setAttribute("name", "D"), e.querySelectorAll("[name=d]").length && v.push("name" + j + "*[*^$|!~]?="), 
     e.querySelectorAll(":enabled").length || v.push(":enabled", ":disabled"), e.querySelectorAll("*,:x"), 
     v.push(",.*:");
    })), (n.matchesSelector = G.test(y = h.matches || h.webkitMatchesSelector || h.mozMatchesSelector || h.oMatchesSelector || h.msMatchesSelector)) && oe(function(e) {
@@ -354,7 +354,7 @@
   }, ie.matches = function(e, t) {
    return ie(e, null, null, t);
   }, ie.matchesSelector = function(e, t) {
-   if ((e.ownerDocument || e) !== d && p(e), t = t.replace($, "='$1']"), n.matchesSelector && m && !T[t + " "] && (!g || !g.test(t)) && (!v || !v.test(t))) try {
+   if ((e.ownerDocument || e) !== d && p(e), t = t.replace(U, "='$1']"), n.matchesSelector && m && !T[t + " "] && (!g || !g.test(t)) && (!v || !v.test(t))) try {
     var r = y.call(e, t);
     if (r || n.disconnectedMatch || e.document && 11 !== e.document.nodeType) return r;
    } catch (e) {}
@@ -432,7 +432,7 @@
     },
     CLASS: function(e) {
      var t = E[e + " "];
-     return t || (t = new RegExp("(^|" + D + ")" + e + "(" + D + "|$)")) && E(e, function(e) {
+     return t || (t = new RegExp("(^|" + j + ")" + e + "(" + j + "|$)")) && E(e, function(e) {
       return t.test("string" == typeof e.className && e.className || void 0 !== e.getAttribute && e.getAttribute("class") || "");
      });
     },
@@ -685,7 +685,7 @@
    if (u) return t ? 0 : u.slice(0);
    for (o = e, c = [], l = r.preFilter; o; ) {
     for (a in (!n || (i = H.exec(o))) && (i && (o = o.slice(i[0].length) || o), c.push(s = [])), 
-    n = !1, (i = U.exec(o)) && (n = i.shift(), s.push({
+    n = !1, (i = $.exec(o)) && (n = i.shift(), s.push({
      value: n,
      type: i[0].replace(z, " ")
     }), o = o.slice(n.length)), r.filter) !(i = J[a].exec(o)) || l[a] && !(i = l[a](i)) || (n = i.shift(), 
@@ -1046,13 +1046,13 @@
  var M = function(e) {
   var t = d.noData[(e.nodeName + " ").toLowerCase()], n = +e.nodeType || 1;
   return (1 === n || 9 === n) && (!t || !0 !== t && e.getAttribute("classid") === t);
- }, D = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/, j = /([A-Z])/g;
+ }, j = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/, D = /([A-Z])/g;
  function V(e, t, n) {
   if (void 0 === n && 1 === e.nodeType) {
-   var r = "data-" + t.replace(j, "-$1").toLowerCase();
+   var r = "data-" + t.replace(D, "-$1").toLowerCase();
    if ("string" == typeof (n = e.getAttribute(r))) {
     try {
-     n = "true" === n || "false" !== n && ("null" === n ? null : +n + "" === n ? +n : D.test(n) ? d.parseJSON(n) : n);
+     n = "true" === n || "false" !== n && ("null" === n ? null : +n + "" === n ? +n : j.test(n) ? d.parseJSON(n) : n);
     } catch (e) {}
     d.data(e, t, n);
    } else n = void 0;
@@ -1189,7 +1189,7 @@
    var t, n, i;
   };
  }();
- var H = /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source, U = new RegExp("^(?:([+-])=|)(" + H + ")([a-z%]*)$", "i"), $ = [ "Top", "Right", "Bottom", "Left" ], Q = function(e, t) {
+ var H = /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source, $ = new RegExp("^(?:([+-])=|)(" + H + ")([a-z%]*)$", "i"), U = [ "Top", "Right", "Bottom", "Left" ], Q = function(e, t) {
   return e = t || e, "none" === d.css(e, "display") || !d.contains(e.ownerDocument, e);
  };
  function W(e, t, n, r) {
@@ -1197,7 +1197,7 @@
    return r.cur();
   } : function() {
    return d.css(e, t, "");
-  }, c = o(), l = n && n[3] || (d.cssNumber[t] ? "" : "px"), u = (d.cssNumber[t] || "px" !== l && +c) && U.exec(d.css(e, t));
+  }, c = o(), l = n && n[3] || (d.cssNumber[t] ? "" : "px"), u = (d.cssNumber[t] || "px" !== l && +c) && $.exec(d.css(e, t));
   if (u && u[3] !== l) {
    l = l || u[3], n = n || [], u = +c || 1;
    do {
@@ -1757,7 +1757,7 @@
   return n || ("none" !== (n = Ie(e, t)) && n || ((t = ((Re = (Re || d("<iframe frameborder='0' width='0' height='0'/>")).appendTo(t.documentElement))[0].contentWindow || Re[0].contentDocument).document).write(), 
   t.close(), n = Ie(e, t), Re.detach()), Pe[e] = n), n;
  }
- var Me = /^margin/, De = new RegExp("^(" + H + ")(?!px)[a-z%]+$", "i"), je = function(e, t, n, r) {
+ var Me = /^margin/, je = new RegExp("^(" + H + ")(?!px)[a-z%]+$", "i"), De = function(e, t, n, r) {
   var i, s, a = {};
   for (s in t) a[s] = e.style[s], e.style[s] = t[s];
   for (s in i = n.apply(e, r || []), t) e.style[s] = a[s];
@@ -1821,7 +1821,7 @@
  }, qe = function(e, t, n) {
   var r, i, s, a, o = e.style;
   return a = (n = n || Fe(e)) ? n.getPropertyValue(t) || n[t] : void 0, n && ("" !== a || d.contains(e.ownerDocument, e) || (a = d.style(e, t)), 
-  !f.pixelMarginRight() && De.test(a) && Me.test(t) && (r = o.width, i = o.minWidth, 
+  !f.pixelMarginRight() && je.test(a) && Me.test(t) && (r = o.width, i = o.minWidth, 
   s = o.maxWidth, o.minWidth = o.maxWidth = o.width = a, a = n.width, o.width = r, 
   o.minWidth = i, o.maxWidth = s)), void 0 === a ? a : a + "";
  }) : Ve.currentStyle && (Fe = function(e) {
@@ -1829,11 +1829,11 @@
  }, qe = function(e, t, n) {
   var r, i, s, a, o = e.style;
   return null == (a = (n = n || Fe(e)) ? n[t] : void 0) && o && o[t] && (a = o[t]), 
-  De.test(a) && !ze.test(t) && (r = o.left, (s = (i = e.runtimeStyle) && i.left) && (i.left = e.currentStyle.left), 
+  je.test(a) && !ze.test(t) && (r = o.left, (s = (i = e.runtimeStyle) && i.left) && (i.left = e.currentStyle.left), 
   o.left = "fontSize" === t ? "1em" : a, a = o.pixelLeft + "px", o.left = r, s && (i.left = s)), 
   void 0 === a ? a : a + "" || "auto";
  });
- var Ue = /alpha\([^)]*\)/i, $e = /opacity\s*=\s*([^)]*)/i, Qe = /^(none|table(?!-c[ea]).+)/, We = new RegExp("^(" + H + ")(.*)$", "i"), Je = {
+ var $e = /alpha\([^)]*\)/i, Ue = /opacity\s*=\s*([^)]*)/i, Qe = /^(none|table(?!-c[ea]).+)/, We = new RegExp("^(" + H + ")(.*)$", "i"), Je = {
   position: "absolute",
   visibility: "hidden",
   display: "block"
@@ -1857,16 +1857,16 @@
   return r ? Math.max(0, r[1] - (n || 0)) + (r[2] || "px") : t;
  }
  function tt(e, t, n, r, i) {
-  for (var s = n === (r ? "border" : "content") ? 4 : "width" === t ? 1 : 0, a = 0; 4 > s; s += 2) "margin" === n && (a += d.css(e, n + $[s], !0, i)), 
-  r ? ("content" === n && (a -= d.css(e, "padding" + $[s], !0, i)), "margin" !== n && (a -= d.css(e, "border" + $[s] + "Width", !0, i))) : (a += d.css(e, "padding" + $[s], !0, i), 
-  "padding" !== n && (a += d.css(e, "border" + $[s] + "Width", !0, i)));
+  for (var s = n === (r ? "border" : "content") ? 4 : "width" === t ? 1 : 0, a = 0; 4 > s; s += 2) "margin" === n && (a += d.css(e, n + U[s], !0, i)), 
+  r ? ("content" === n && (a -= d.css(e, "padding" + U[s], !0, i)), "margin" !== n && (a -= d.css(e, "border" + U[s] + "Width", !0, i))) : (a += d.css(e, "padding" + U[s], !0, i), 
+  "padding" !== n && (a += d.css(e, "border" + U[s] + "Width", !0, i)));
   return a;
  }
  function nt(t, n, i) {
   var s = !0, a = "width" === n ? t.offsetWidth : t.offsetHeight, o = Fe(t), c = f.boxSizing && "border-box" === d.css(t, "boxSizing", !1, o);
   if (r.msFullscreenElement && e.top !== e && t.getClientRects().length && (a = Math.round(100 * t.getBoundingClientRect()[n])), 
   0 >= a || null == a) {
-   if ((0 > (a = qe(t, n, o)) || null == a) && (a = t.style[n]), De.test(a)) return a;
+   if ((0 > (a = qe(t, n, o)) || null == a) && (a = t.style[n]), je.test(a)) return a;
    s = c && (f.boxSizingReliable() || a === t.style[n]), a = parseFloat(a) || 0;
   }
   return a + tt(t, n, i || (c ? "border" : "content"), s, o) + "px";
@@ -1908,7 +1908,7 @@
     var i, s, a, o = d.camelCase(t), c = e.style;
     if (t = d.cssProps[o] || (d.cssProps[o] = Ye(o) || o), a = d.cssHooks[t] || d.cssHooks[o], 
     void 0 === n) return a && "get" in a && void 0 !== (i = a.get(e, !1, r)) ? i : c[t];
-    if ("string" === (s = typeof n) && (i = U.exec(n)) && i[1] && (n = W(e, t, i), s = "number"), 
+    if ("string" === (s = typeof n) && (i = $.exec(n)) && i[1] && (n = W(e, t, i), s = "number"), 
     null != n && n == n && ("number" === s && (n += i && i[3] || (d.cssNumber[o] ? "" : "px")), 
     f.clearCloneStyle || "" !== n || 0 !== t.indexOf("background") || (c[t] = "inherit"), 
     !(a && "set" in a && void 0 === (n = a.set(e, n, r))))) try {
@@ -1925,7 +1925,7 @@
  }), d.each([ "height", "width" ], function(e, t) {
   d.cssHooks[t] = {
    get: function(e, n, r) {
-    return n ? Qe.test(d.css(e, "display")) && 0 === e.offsetWidth ? je(e, Je, function() {
+    return n ? Qe.test(d.css(e, "display")) && 0 === e.offsetWidth ? De(e, Je, function() {
      return nt(e, t, r);
     }) : nt(e, t, r) : void 0;
    },
@@ -1936,19 +1936,19 @@
   };
  }), f.opacity || (d.cssHooks.opacity = {
   get: function(e, t) {
-   return $e.test((t && e.currentStyle ? e.currentStyle.filter : e.style.filter) || "") ? .01 * parseFloat(RegExp.$1) + "" : t ? "1" : "";
+   return Ue.test((t && e.currentStyle ? e.currentStyle.filter : e.style.filter) || "") ? .01 * parseFloat(RegExp.$1) + "" : t ? "1" : "";
   },
   set: function(e, t) {
    var n = e.style, r = e.currentStyle, i = d.isNumeric(t) ? "alpha(opacity=" + 100 * t + ")" : "", s = r && r.filter || n.filter || "";
-   n.zoom = 1, (t >= 1 || "" === t) && "" === d.trim(s.replace(Ue, "")) && n.removeAttribute && (n.removeAttribute("filter"), 
-   "" === t || r && !r.filter) || (n.filter = Ue.test(s) ? s.replace(Ue, i) : s + " " + i);
+   n.zoom = 1, (t >= 1 || "" === t) && "" === d.trim(s.replace($e, "")) && n.removeAttribute && (n.removeAttribute("filter"), 
+   "" === t || r && !r.filter) || (n.filter = $e.test(s) ? s.replace($e, i) : s + " " + i);
   }
  }), d.cssHooks.marginRight = He(f.reliableMarginRight, function(e, t) {
-  return t ? je(e, {
+  return t ? De(e, {
    display: "inline-block"
   }, qe, [ e, "marginRight" ]) : void 0;
  }), d.cssHooks.marginLeft = He(f.reliableMarginLeft, function(e, t) {
-  return t ? (parseFloat(qe(e, "marginLeft")) || (d.contains(e.ownerDocument, e) ? e.getBoundingClientRect().left - je(e, {
+  return t ? (parseFloat(qe(e, "marginLeft")) || (d.contains(e.ownerDocument, e) ? e.getBoundingClientRect().left - De(e, {
    marginLeft: 0
   }, function() {
    return e.getBoundingClientRect().left;
@@ -1960,7 +1960,7 @@
  }, function(e, t) {
   d.cssHooks[e + t] = {
    expand: function(n) {
-    for (var r = 0, i = {}, s = "string" == typeof n ? n.split(" ") : [ n ]; 4 > r; r++) i[e + $[r] + t] = s[r] || s[r - 2] || s[0];
+    for (var r = 0, i = {}, s = "string" == typeof n ? n.split(" ") : [ n ]; 4 > r; r++) i[e + U[r] + t] = s[r] || s[r - 2] || s[0];
     return i;
    }
   }, Me.test(e) || (d.cssHooks[e + t].set = et);
@@ -2035,7 +2035,7 @@
   var n, r = {
    height: e
   }, i = 0;
-  for (t = t ? 1 : 0; 4 > i; i += 2 - t) r["margin" + (n = $[i])] = r["padding" + n] = e;
+  for (t = t ? 1 : 0; 4 > i; i += 2 - t) r["margin" + (n = U[i])] = r["padding" + n] = e;
   return t && (r.opacity = r.width = e), r;
  }
  function ut(e, t, n) {
@@ -2090,7 +2090,7 @@
   tweeners: {
    "*": [ function(e, t) {
     var n = this.createTween(e, t);
-    return W(n.elem, e, U.exec(t), n), n;
+    return W(n.elem, e, $.exec(t), n), n;
    } ]
   },
   tweener: function(e, t) {
@@ -2478,8 +2478,8 @@
   return n && n.documentElement && !n.getElementsByTagName("parsererror").length || d.error("Invalid XML: " + t), 
   n;
  };
- var St = /#.*$/, Ot = /([?&])_=[^&]*/, At = /^(.*?):[ \t]*([^\r\n]*)\r?$/gm, Nt = /^(?:GET|HEAD)$/, Bt = /^\/\//, Rt = /^([\w.+-]+:)(?:\/\/(?:[^\/?#]*@|)([^\/?#:]*)(?::(\d+)|)|)/, Pt = {}, It = {}, Lt = "*/".concat("*"), Mt = kt.href, Dt = Rt.exec(Mt.toLowerCase()) || [];
- function jt(e) {
+ var St = /#.*$/, Ot = /([?&])_=[^&]*/, At = /^(.*?):[ \t]*([^\r\n]*)\r?$/gm, Nt = /^(?:GET|HEAD)$/, Bt = /^\/\//, Rt = /^([\w.+-]+:)(?:\/\/(?:[^\/?#]*@|)([^\/?#:]*)(?::(\d+)|)|)/, Pt = {}, It = {}, Lt = "*/".concat("*"), Mt = kt.href, jt = Rt.exec(Mt.toLowerCase()) || [];
+ function Dt(e) {
   return function(t, n) {
    "string" != typeof t && (n = t, t = "*");
    var r, i = 0, s = t.toLowerCase().match(P) || [];
@@ -2514,7 +2514,7 @@
   ajaxSettings: {
    url: Mt,
    type: "GET",
-   isLocal: /^(?:about|app|app-storage|.+-extension|file|res|widget):$/.test(Dt[1]),
+   isLocal: /^(?:about|app|app-storage|.+-extension|file|res|widget):$/.test(jt[1]),
    global: !0,
    processData: !0,
    async: !0,
@@ -2550,8 +2550,8 @@
   ajaxSetup: function(e, t) {
    return t ? Ft(Ft(e, d.ajaxSettings), t) : Ft(d.ajaxSettings, e);
   },
-  ajaxPrefilter: jt(Pt),
-  ajaxTransport: jt(It),
+  ajaxPrefilter: Dt(Pt),
+  ajaxTransport: Dt(It),
   ajax: function(t, n) {
    "object" == typeof t && (n = t, t = void 0), n = n || {};
    var r, i, s, a, o, c, l, u, f = d.ajaxSetup({}, n), p = f.context || f, h = f.context && (p.nodeType || p.jquery) ? d(p) : d.event, m = d.Deferred(), v = d.Callbacks("once memory"), g = f.statusCode || {}, y = {}, _ = {}, b = 0, x = "canceled", w = {
@@ -2584,9 +2584,9 @@
      return l && l.abort(t), k(0, t), this;
     }
    };
-   if (m.promise(w).complete = v.add, w.success = w.done, w.error = w.fail, f.url = ((t || f.url || Mt) + "").replace(St, "").replace(Bt, Dt[1] + "//"), 
+   if (m.promise(w).complete = v.add, w.success = w.done, w.error = w.fail, f.url = ((t || f.url || Mt) + "").replace(St, "").replace(Bt, jt[1] + "//"), 
    f.type = n.method || n.type || f.method || f.type, f.dataTypes = d.trim(f.dataType || "*").toLowerCase().match(P) || [ "" ], 
-   null == f.crossDomain && (r = Rt.exec(f.url.toLowerCase()), f.crossDomain = !(!r || r[1] === Dt[1] && r[2] === Dt[2] && (r[3] || ("http:" === r[1] ? "80" : "443")) === (Dt[3] || ("http:" === Dt[1] ? "80" : "443")))), 
+   null == f.crossDomain && (r = Rt.exec(f.url.toLowerCase()), f.crossDomain = !(!r || r[1] === jt[1] && r[2] === jt[2] && (r[3] || ("http:" === r[1] ? "80" : "443")) === (jt[3] || ("http:" === jt[1] ? "80" : "443")))), 
    f.data && f.processData && "string" != typeof f.data && (f.data = d.param(f.data, f.traditional)), 
    Vt(Pt, f, n, w), 2 === b) return w;
    for (i in (c = d.event && f.global) && 0 == d.active++ && d.event.trigger("ajaxStart"), 
@@ -2736,7 +2736,7 @@
  }, d.expr.filters.visible = function(e) {
   return !d.expr.filters.hidden(e);
  };
- var zt = /%20/g, Ht = /\[\]$/, Ut = /\r?\n/g, $t = /^(?:submit|button|image|reset|file)$/i, Qt = /^(?:input|select|textarea|keygen)/i;
+ var zt = /%20/g, Ht = /\[\]$/, $t = /\r?\n/g, Ut = /^(?:submit|button|image|reset|file)$/i, Qt = /^(?:input|select|textarea|keygen)/i;
  function Wt(e, t, n, r) {
   var i;
   if (d.isArray(t)) d.each(t, function(t, i) {
@@ -2761,17 +2761,17 @@
     return e ? d.makeArray(e) : this;
    }).filter(function() {
     var e = this.type;
-    return this.name && !d(this).is(":disabled") && Qt.test(this.nodeName) && !$t.test(e) && (this.checked || !X.test(e));
+    return this.name && !d(this).is(":disabled") && Qt.test(this.nodeName) && !Ut.test(e) && (this.checked || !X.test(e));
    }).map(function(e, t) {
     var n = d(this).val();
     return null == n ? null : d.isArray(n) ? d.map(n, function(e) {
      return {
       name: t.name,
-      value: e.replace(Ut, "\r\n")
+      value: e.replace($t, "\r\n")
      };
     }) : {
      name: t.name,
-     value: n.replace(Ut, "\r\n")
+     value: n.replace($t, "\r\n")
     };
    }).get();
   }
@@ -2966,7 +2966,7 @@
   };
  }), d.each([ "top", "left" ], function(e, t) {
   d.cssHooks[t] = He(f.pixelPosition, function(e, n) {
-   return n ? (n = qe(e, t), De.test(n) ? d(e).position()[t] + "px" : n) : void 0;
+   return n ? (n = qe(e, t), je.test(n) ? d(e).position()[t] + "px" : n) : void 0;
   });
  }), d.each({
   Height: "height",
@@ -10607,10 +10607,10 @@ var Abcdf_Parser = function() {
      hand: e,
      digit: t
     };
-   }, R = /^[_\^]/, P = J([ "_", "^" ], !1, !1), I = /^[,;.]/, L = J([ ",", ";", "." ], !1, !1), M = /^[pf]/, D = J([ "p", "f" ], !1, !1), j = /^[<>]/, V = J([ "<", ">" ], !1, !1), F = /^[1-5]/, q = J([ [ "1", "5" ] ], !1, !1), z = 0, H = [ {
+   }, R = /^[_\^]/, P = J([ "_", "^" ], !1, !1), I = /^[,;.]/, L = J([ ",", ";", "." ], !1, !1), M = /^[pf]/, j = J([ "p", "f" ], !1, !1), D = /^[<>]/, V = J([ "<", ">" ], !1, !1), F = /^[1-5]/, q = J([ [ "1", "5" ] ], !1, !1), z = 0, H = [ {
     line: 1,
     column: 1
-   } ], U = 0, $ = [], Q = 0;
+   } ], $ = 0, U = [], Q = 0;
    if ("startRule" in n) {
     if (!(n.startRule in s)) throw new Error("Can't start parsing from rule \"" + n.startRule + '".');
     a = s[n.startRule];
@@ -10656,7 +10656,7 @@ var Abcdf_Parser = function() {
     };
    }
    function G(e) {
-    z < U || (z > U && (U = z, $ = []), $.push(e));
+    z < $ || (z > $ && ($ = z, U = []), U.push(e));
    }
    function Y(t, n, r) {
     return new e(e.buildMessage(t, n), t, n, r);
@@ -10723,7 +10723,7 @@ var Abcdf_Parser = function() {
     var e, n, r;
     return e = z, (n = function() {
      var e;
-     return j.test(t.charAt(z)) ? (e = t.charAt(z), z++) : (e = i, 0 === Q && G(V)), 
+     return D.test(t.charAt(z)) ? (e = t.charAt(z), z++) : (e = i, 0 === Q && G(V)), 
      e;
     }()) === i && (n = null), n !== i && (r = function() {
      var e;
@@ -10743,13 +10743,13 @@ var Abcdf_Parser = function() {
    }
    function le() {
     var e;
-    return M.test(t.charAt(z)) ? (e = t.charAt(z), z++) : (e = i, 0 === Q && G(D)), 
+    return M.test(t.charAt(z)) ? (e = t.charAt(z), z++) : (e = i, 0 === Q && G(j)), 
     e;
    }
    if ((r = a()) !== i && z === t.length) return r;
    throw r !== i && z < t.length && G({
     type: "end"
-   }), Y($, U < t.length ? t.charAt(U) : null, U < t.length ? K(U, U + 1) : K(U, U));
+   }), Y(U, $ < t.length ? t.charAt($) : null, $ < t.length ? K($, $ + 1) : K($, $));
   }
  };
 }(), AbcdfRaw_Parser = function() {
@@ -10826,7 +10826,7 @@ var Abcdf_Parser = function() {
    n = void 0 !== n ? n : {};
    var r, i = {}, s = {
     sequence: H
-   }, a = H, o = "@", c = D("@", !1), l = "&", u = D("&", !1), f = "", p = "/", d = D("/", !1), h = "(", m = D("(", !1), v = ")", g = D(")", !1), y = "x", _ = D("x", !1), b = "-", x = D("-", !1), w = /^[_\^]/, k = j([ "_", "^" ], !1, !1), E = /^[,;.]/, C = j([ ",", ";", "." ], !1, !1), T = /^[pf]/, S = j([ "p", "f" ], !1, !1), O = /^[<>]/, A = j([ "<", ">" ], !1, !1), N = /^[1-5]/, B = j([ [ "1", "5" ] ], !1, !1), R = 0, P = [ {
+   }, a = H, o = "@", c = j("@", !1), l = "&", u = j("&", !1), f = "", p = "/", d = j("/", !1), h = "(", m = j("(", !1), v = ")", g = j(")", !1), y = "x", _ = j("x", !1), b = "-", x = j("-", !1), w = /^[_\^]/, k = D([ "_", "^" ], !1, !1), E = /^[,;.]/, C = D([ ",", ";", "." ], !1, !1), T = /^[pf]/, S = D([ "p", "f" ], !1, !1), O = /^[<>]/, A = D([ "<", ">" ], !1, !1), N = /^[1-5]/, B = D([ [ "1", "5" ] ], !1, !1), R = 0, P = [ {
     line: 1,
     column: 1
    } ], I = 0, L = [], M = 0;
@@ -10834,14 +10834,14 @@ var Abcdf_Parser = function() {
     if (!(n.startRule in s)) throw new Error("Can't start parsing from rule \"" + n.startRule + '".');
     a = s[n.startRule];
    }
-   function D(e, t) {
+   function j(e, t) {
     return {
      type: "literal",
      text: e,
      ignoreCase: t
     };
    }
-   function j(e, t, n) {
+   function D(e, t, n) {
     return {
      type: "class",
      parts: e,
@@ -10882,18 +10882,18 @@ var Abcdf_Parser = function() {
    }
    function H() {
     var e, n, r, s, a;
-    return e = R, (n = U()) !== i ? (r = R, 64 === t.charCodeAt(R) ? (s = o, R++) : (s = i, 
-    0 === M && q(c)), s !== i && (a = U()) !== i ? r = s = [ s, a ] : (R = r, r = i), 
+    return e = R, (n = $()) !== i ? (r = R, 64 === t.charCodeAt(R) ? (s = o, R++) : (s = i, 
+    0 === M && q(c)), s !== i && (a = $()) !== i ? r = s = [ s, a ] : (R = r, r = i), 
     r === i && (r = null), r !== i ? e = n = [ n, r ] : (R = e, e = i)) : (R = e, e = i), 
     e;
    }
-   function U() {
-    var e, n, r, s;
-    return e = R, (n = $()) !== i ? (38 === t.charCodeAt(R) ? (r = l, R++) : (r = i, 
-    0 === M && q(u)), r !== i && (s = U()) !== i ? e = n = [ n, r, s ] : (R = e, e = i)) : (R = e, 
-    e = i), e === i && (e = $()) === i && (e = f), e;
-   }
    function $() {
+    var e, n, r, s;
+    return e = R, (n = U()) !== i ? (38 === t.charCodeAt(R) ? (r = l, R++) : (r = i, 
+    0 === M && q(u)), r !== i && (s = $()) !== i ? e = n = [ n, r, s ] : (R = e, e = i)) : (R = e, 
+    e = i), e === i && (e = U()) === i && (e = f), e;
+   }
+   function U() {
     var e, t;
     for (e = [], t = Q(); t !== i; ) e.push(t), t = Q();
     return e;
@@ -12278,7 +12278,7 @@ Downloadify = window.Downloadify = {
   }, {} ],
   32: [ function(e, t, n) {
    "use strict";
-   var r = e("../utils/common"), i = e("./trees"), s = e("./adler32"), a = e("./crc32"), o = e("./messages"), c = 0, l = 1, u = 3, f = 4, p = 5, d = 0, h = 1, m = -2, v = -3, g = -5, y = -1, _ = 1, b = 2, x = 3, w = 4, k = 0, E = 2, C = 8, T = 9, S = 15, O = 8, A = 286, N = 30, B = 19, R = 2 * A + 1, P = 15, I = 3, L = 258, M = L + I + 1, D = 32, j = 42, V = 69, F = 73, q = 91, z = 103, H = 113, U = 666, $ = 1, Q = 2, W = 3, J = 4, X = 3;
+   var r = e("../utils/common"), i = e("./trees"), s = e("./adler32"), a = e("./crc32"), o = e("./messages"), c = 0, l = 1, u = 3, f = 4, p = 5, d = 0, h = 1, m = -2, v = -3, g = -5, y = -1, _ = 1, b = 2, x = 3, w = 4, k = 0, E = 2, C = 8, T = 9, S = 15, O = 8, A = 286, N = 30, B = 19, R = 2 * A + 1, P = 15, I = 3, L = 258, M = L + I + 1, j = 32, D = 42, V = 69, F = 73, q = 91, z = 103, H = 113, $ = 666, U = 1, Q = 2, W = 3, J = 4, X = 3;
    function K(e, t) {
     return e.msg = o[t], t;
    }
@@ -12345,7 +12345,7 @@ Downloadify = window.Downloadify = {
    function se(e, t) {
     for (var n, r; ;) {
      if (e.lookahead < M) {
-      if (ie(e), e.lookahead < M && t === c) return $;
+      if (ie(e), e.lookahead < M && t === c) return U;
       if (0 === e.lookahead) break;
      }
      if (n = 0, e.lookahead >= I && (e.ins_h = (e.ins_h << e.hash_shift ^ e.window[e.strstart + I - 1]) & e.hash_mask, 
@@ -12361,15 +12361,15 @@ Downloadify = window.Downloadify = {
      } else e.strstart += e.match_length, e.match_length = 0, e.ins_h = e.window[e.strstart], 
      e.ins_h = (e.ins_h << e.hash_shift ^ e.window[e.strstart + 1]) & e.hash_mask; else r = i._tr_tally(e, 0, e.window[e.strstart]), 
      e.lookahead--, e.strstart++;
-     if (r && (ee(e, !1), 0 === e.strm.avail_out)) return $;
+     if (r && (ee(e, !1), 0 === e.strm.avail_out)) return U;
     }
     return e.insert = e.strstart < I - 1 ? e.strstart : I - 1, t === f ? (ee(e, !0), 
-    0 === e.strm.avail_out ? W : J) : e.last_lit && (ee(e, !1), 0 === e.strm.avail_out) ? $ : Q;
+    0 === e.strm.avail_out ? W : J) : e.last_lit && (ee(e, !1), 0 === e.strm.avail_out) ? U : Q;
    }
    function ae(e, t) {
     for (var n, r, s; ;) {
      if (e.lookahead < M) {
-      if (ie(e), e.lookahead < M && t === c) return $;
+      if (ie(e), e.lookahead < M && t === c) return U;
       if (0 === e.lookahead) break;
      }
      if (n = 0, e.lookahead >= I && (e.ins_h = (e.ins_h << e.hash_shift ^ e.window[e.strstart + I - 1]) & e.hash_mask, 
@@ -12385,15 +12385,15 @@ Downloadify = window.Downloadify = {
        n = e.prev[e.strstart & e.w_mask] = e.head[e.ins_h], e.head[e.ins_h] = e.strstart);
       } while (0 != --e.prev_length);
       if (e.match_available = 0, e.match_length = I - 1, e.strstart++, r && (ee(e, !1), 
-      0 === e.strm.avail_out)) return $;
+      0 === e.strm.avail_out)) return U;
      } else if (e.match_available) {
       if ((r = i._tr_tally(e, 0, e.window[e.strstart - 1])) && ee(e, !1), e.strstart++, 
-      e.lookahead--, 0 === e.strm.avail_out) return $;
+      e.lookahead--, 0 === e.strm.avail_out) return U;
      } else e.match_available = 1, e.strstart++, e.lookahead--;
     }
     return e.match_available && (r = i._tr_tally(e, 0, e.window[e.strstart - 1]), e.match_available = 0), 
     e.insert = e.strstart < I - 1 ? e.strstart : I - 1, t === f ? (ee(e, !0), 0 === e.strm.avail_out ? W : J) : e.last_lit && (ee(e, !1), 
-    0 === e.strm.avail_out) ? $ : Q;
+    0 === e.strm.avail_out) ? U : Q;
    }
    var oe, ce = function(e, t, n, r, i) {
     this.good_length = e, this.max_lazy = t, this.nice_length = n, this.max_chain = r, 
@@ -12402,7 +12402,7 @@ Downloadify = window.Downloadify = {
    function le(e) {
     var t;
     return e && e.state ? (e.total_in = e.total_out = 0, e.data_type = E, (t = e.state).pending = 0, 
-    t.pending_out = 0, t.wrap < 0 && (t.wrap = -t.wrap), t.status = t.wrap ? j : H, 
+    t.pending_out = 0, t.wrap < 0 && (t.wrap = -t.wrap), t.status = t.wrap ? D : H, 
     e.adler = 2 === t.wrap ? 0 : 1, t.last_flush = c, i._tr_init(t), d) : K(e, m);
    }
    function ue(e) {
@@ -12447,17 +12447,17 @@ Downloadify = window.Downloadify = {
     var n = 65535;
     for (n > e.pending_buf_size - 5 && (n = e.pending_buf_size - 5); ;) {
      if (e.lookahead <= 1) {
-      if (ie(e), 0 === e.lookahead && t === c) return $;
+      if (ie(e), 0 === e.lookahead && t === c) return U;
       if (0 === e.lookahead) break;
      }
      e.strstart += e.lookahead, e.lookahead = 0;
      var r = e.block_start + n;
      if ((0 === e.strstart || e.strstart >= r) && (e.lookahead = e.strstart - r, e.strstart = r, 
-     ee(e, !1), 0 === e.strm.avail_out)) return $;
-     if (e.strstart - e.block_start >= e.w_size - M && (ee(e, !1), 0 === e.strm.avail_out)) return $;
+     ee(e, !1), 0 === e.strm.avail_out)) return U;
+     if (e.strstart - e.block_start >= e.w_size - M && (ee(e, !1), 0 === e.strm.avail_out)) return U;
     }
     return e.insert = 0, t === f ? (ee(e, !0), 0 === e.strm.avail_out ? W : J) : (e.strstart > e.block_start && (ee(e, !1), 
-    e.strm.avail_out), $);
+    e.strm.avail_out), U);
    }), new ce(4, 4, 8, 4, se), new ce(4, 5, 16, 8, se), new ce(4, 6, 32, 32, se), new ce(4, 4, 16, 16, ae), new ce(8, 16, 32, 32, ae), new ce(8, 16, 128, 128, ae), new ce(8, 32, 128, 256, ae), new ce(32, 128, 258, 1024, ae), new ce(32, 258, 258, 4096, ae) ], 
    n.deflateInit = function(e, t) {
     return fe(e, t, C, S, O, k);
@@ -12466,8 +12466,8 @@ Downloadify = window.Downloadify = {
    }, n.deflate = function(e, t) {
     var n, r, s, o;
     if (!e || !e.state || t > p || t < 0) return e ? K(e, m) : m;
-    if (r = e.state, !e.output || !e.input && 0 !== e.avail_in || r.status === U && t !== f) return K(e, 0 === e.avail_out ? g : m);
-    if (r.strm = e, n = r.last_flush, r.last_flush = t, r.status === j) if (2 === r.wrap) e.adler = 0, 
+    if (r = e.state, !e.output || !e.input && 0 !== e.avail_in || r.status === $ && t !== f) return K(e, 0 === e.avail_out ? g : m);
+    if (r.strm = e, n = r.last_flush, r.last_flush = t, r.status === D) if (2 === r.wrap) e.adler = 0, 
     te(r, 31), te(r, 139), te(r, 8), r.gzhead ? (te(r, (r.gzhead.text ? 1 : 0) + (r.gzhead.hcrc ? 2 : 0) + (r.gzhead.extra ? 4 : 0) + (r.gzhead.name ? 8 : 0) + (r.gzhead.comment ? 16 : 0)), 
     te(r, 255 & r.gzhead.time), te(r, r.gzhead.time >> 8 & 255), te(r, r.gzhead.time >> 16 & 255), 
     te(r, r.gzhead.time >> 24 & 255), te(r, 9 === r.level ? 2 : r.strategy >= b || r.level < 2 ? 4 : 0), 
@@ -12477,7 +12477,7 @@ Downloadify = window.Downloadify = {
     te(r, 9 === r.level ? 2 : r.strategy >= b || r.level < 2 ? 4 : 0), te(r, X), r.status = H); else {
      var v = C + (r.w_bits - 8 << 4) << 8;
      v |= (r.strategy >= b || r.level < 2 ? 0 : r.level < 6 ? 1 : 6 === r.level ? 2 : 3) << 6, 
-     0 !== r.strstart && (v |= D), v += 31 - v % 31, r.status = H, ne(r, v), 0 !== r.strstart && (ne(r, e.adler >>> 16), 
+     0 !== r.strstart && (v |= j), v += 31 - v % 31, r.status = H, ne(r, v), 0 !== r.strstart && (ne(r, e.adler >>> 16), 
      ne(r, 65535 & e.adler)), e.adler = 1;
     }
     if (r.status === V) if (r.gzhead.extra) {
@@ -12520,23 +12520,23 @@ Downloadify = window.Downloadify = {
     e.adler = 0, r.status = H)) : r.status = H), 0 !== r.pending) {
      if (Z(e), 0 === e.avail_out) return r.last_flush = -1, d;
     } else if (0 === e.avail_in && G(t) <= G(n) && t !== f) return K(e, g);
-    if (r.status === U && 0 !== e.avail_in) return K(e, g);
-    if (0 !== e.avail_in || 0 !== r.lookahead || t !== c && r.status !== U) {
+    if (r.status === $ && 0 !== e.avail_in) return K(e, g);
+    if (0 !== e.avail_in || 0 !== r.lookahead || t !== c && r.status !== $) {
      var y = r.strategy === b ? function(e, t) {
       for (var n; ;) {
        if (0 === e.lookahead && (ie(e), 0 === e.lookahead)) {
-        if (t === c) return $;
+        if (t === c) return U;
         break;
        }
        if (e.match_length = 0, n = i._tr_tally(e, 0, e.window[e.strstart]), e.lookahead--, 
-       e.strstart++, n && (ee(e, !1), 0 === e.strm.avail_out)) return $;
+       e.strstart++, n && (ee(e, !1), 0 === e.strm.avail_out)) return U;
       }
       return e.insert = 0, t === f ? (ee(e, !0), 0 === e.strm.avail_out ? W : J) : e.last_lit && (ee(e, !1), 
-      0 === e.strm.avail_out) ? $ : Q;
+      0 === e.strm.avail_out) ? U : Q;
      }(r, t) : r.strategy === x ? function(e, t) {
       for (var n, r, s, a, o = e.window; ;) {
        if (e.lookahead <= L) {
-        if (ie(e), e.lookahead <= L && t === c) return $;
+        if (ie(e), e.lookahead <= L && t === c) return U;
         if (0 === e.lookahead) break;
        }
        if (e.match_length = 0, e.lookahead >= I && e.strstart > 0 && (r = o[s = e.strstart - 1]) === o[++s] && r === o[++s] && r === o[++s]) {
@@ -12546,12 +12546,12 @@ Downloadify = window.Downloadify = {
        }
        if (e.match_length >= I ? (n = i._tr_tally(e, 1, e.match_length - I), e.lookahead -= e.match_length, 
        e.strstart += e.match_length, e.match_length = 0) : (n = i._tr_tally(e, 0, e.window[e.strstart]), 
-       e.lookahead--, e.strstart++), n && (ee(e, !1), 0 === e.strm.avail_out)) return $;
+       e.lookahead--, e.strstart++), n && (ee(e, !1), 0 === e.strm.avail_out)) return U;
       }
       return e.insert = 0, t === f ? (ee(e, !0), 0 === e.strm.avail_out ? W : J) : e.last_lit && (ee(e, !1), 
-      0 === e.strm.avail_out) ? $ : Q;
+      0 === e.strm.avail_out) ? U : Q;
      }(r, t) : oe[r.level].func(r, t);
-     if (y !== W && y !== J || (r.status = U), y === $ || y === W) return 0 === e.avail_out && (r.last_flush = -1), 
+     if (y !== W && y !== J || (r.status = $), y === U || y === W) return 0 === e.avail_out && (r.last_flush = -1), 
      d;
      if (y === Q && (t === l ? i._tr_align(r) : t !== p && (i._tr_stored_block(r, 0, 0, !1), 
      t === u && (Y(r.head), 0 === r.lookahead && (r.strstart = 0, r.block_start = 0, 
@@ -12563,7 +12563,7 @@ Downloadify = window.Downloadify = {
     ne(r, 65535 & e.adler)), Z(e), r.wrap > 0 && (r.wrap = -r.wrap), 0 !== r.pending ? d : h);
    }, n.deflateEnd = function(e) {
     var t;
-    return e && e.state ? (t = e.state.status) !== j && t !== V && t !== F && t !== q && t !== z && t !== H && t !== U ? K(e, m) : (e.state = null, 
+    return e && e.state ? (t = e.state.status) !== D && t !== V && t !== F && t !== q && t !== z && t !== H && t !== $ ? K(e, m) : (e.state = null, 
     t === H ? K(e, v) : d) : m;
    }, n.deflateInfo = "pako deflate (from Nodeca project)";
   }, {
@@ -12676,7 +12676,7 @@ Downloadify = window.Downloadify = {
   }, {} ],
   35: [ function(e, t, n) {
    "use strict";
-   var r = e("../utils/common"), i = e("./adler32"), s = e("./crc32"), a = e("./inffast"), o = e("./inftrees"), c = 0, l = 1, u = 2, f = 4, p = 5, d = 6, h = 0, m = 1, v = 2, g = -2, y = -3, _ = -4, b = -5, x = 8, w = 1, k = 2, E = 3, C = 4, T = 5, S = 6, O = 7, A = 8, N = 9, B = 10, R = 11, P = 12, I = 13, L = 14, M = 15, D = 16, j = 17, V = 18, F = 19, q = 20, z = 21, H = 22, U = 23, $ = 24, Q = 25, W = 26, J = 27, X = 28, K = 29, G = 30, Y = 31, Z = 32, ee = 852, te = 592, ne = 15;
+   var r = e("../utils/common"), i = e("./adler32"), s = e("./crc32"), a = e("./inffast"), o = e("./inftrees"), c = 0, l = 1, u = 2, f = 4, p = 5, d = 6, h = 0, m = 1, v = 2, g = -2, y = -3, _ = -4, b = -5, x = 8, w = 1, k = 2, E = 3, C = 4, T = 5, S = 6, O = 7, A = 8, N = 9, B = 10, R = 11, P = 12, I = 13, L = 14, M = 15, j = 16, D = 17, V = 18, F = 19, q = 20, z = 21, H = 22, $ = 23, U = 24, Q = 25, W = 26, J = 27, X = 28, K = 29, G = 30, Y = 31, Z = 32, ee = 852, te = 592, ne = 15;
    function re(e) {
     return (e >>> 24 & 255) + (e >>> 8 & 65280) + ((65280 & e) << 8) + ((255 & e) << 24);
    }
@@ -12890,7 +12890,7 @@ Downloadify = window.Downloadify = {
       break;
 
      case 2:
-      n.mode = j;
+      n.mode = D;
       break;
 
      case 3:
@@ -12911,9 +12911,9 @@ Downloadify = window.Downloadify = {
      if (n.length = 65535 & oe, oe = 0, ce = 0, n.mode = M, t === d) break e;
 
     case M:
-     n.mode = D;
+     n.mode = j;
 
-    case D:
+    case j:
      if (pe = n.length) {
       if (pe > se && (pe = se), pe > ae && (pe = ae), 0 === pe) break e;
       r.arraySet(te, ee, ne, pe, ie), se -= pe, ne += pe, ae -= pe, ie += pe, n.length -= pe;
@@ -12922,7 +12922,7 @@ Downloadify = window.Downloadify = {
      n.mode = P;
      break;
 
-    case j:
+    case D:
      for (;ce < 14; ) {
       if (0 === se) break e;
       se--, oe += ee[ne++] << ce, ce += 8;
@@ -13055,9 +13055,9 @@ Downloadify = window.Downloadify = {
       }
       n.length += oe & (1 << n.extra) - 1, oe >>>= n.extra, ce -= n.extra, n.back += n.extra;
      }
-     n.was = n.length, n.mode = U;
+     n.was = n.length, n.mode = $;
 
-    case U:
+    case $:
      for (;ve = (Ce = n.distcode[oe & (1 << n.distbits) - 1]) >>> 16 & 255, ge = 65535 & Ce, 
      !((me = Ce >>> 24) <= ce); ) {
       if (0 === se) break e;
@@ -13075,9 +13075,9 @@ Downloadify = window.Downloadify = {
       e.msg = "invalid distance code", n.mode = G;
       break;
      }
-     n.offset = ge, n.extra = 15 & ve, n.mode = $;
+     n.offset = ge, n.extra = 15 & ve, n.mode = U;
 
-    case $:
+    case U:
      if (n.extra) {
       for (Ee = n.extra; ce < Ee; ) {
        if (0 === se) break e;
@@ -13189,7 +13189,7 @@ Downloadify = window.Downloadify = {
    "use strict";
    var r = e("../utils/common"), i = [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31, 35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195, 227, 258, 0, 0 ], s = [ 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 18, 18, 18, 18, 19, 19, 19, 19, 20, 20, 20, 20, 21, 21, 21, 21, 16, 72, 78 ], a = [ 1, 2, 3, 4, 5, 7, 9, 13, 17, 25, 33, 49, 65, 97, 129, 193, 257, 385, 513, 769, 1025, 1537, 2049, 3073, 4097, 6145, 8193, 12289, 16385, 24577, 0, 0 ], o = [ 16, 16, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 23, 24, 24, 25, 25, 26, 26, 27, 27, 28, 28, 29, 29, 64, 64 ];
    t.exports = function(e, t, n, c, l, u, f, p) {
-    var d, h, m, v, g, y, _, b, x, w = p.bits, k = 0, E = 0, C = 0, T = 0, S = 0, O = 0, A = 0, N = 0, B = 0, R = 0, P = null, I = 0, L = new r.Buf16(16), M = new r.Buf16(16), D = null, j = 0;
+    var d, h, m, v, g, y, _, b, x, w = p.bits, k = 0, E = 0, C = 0, T = 0, S = 0, O = 0, A = 0, N = 0, B = 0, R = 0, P = null, I = 0, L = new r.Buf16(16), M = new r.Buf16(16), j = null, D = 0;
     for (k = 0; k <= 15; k++) L[k] = 0;
     for (E = 0; E < c; E++) L[t[n + E]]++;
     for (S = w, T = 15; T >= 1 && 0 === L[T]; T--) ;
@@ -13200,11 +13200,11 @@ Downloadify = window.Downloadify = {
     if (N > 0 && (0 === e || 1 !== T)) return -1;
     for (M[1] = 0, k = 1; k < 15; k++) M[k + 1] = M[k] + L[k];
     for (E = 0; E < c; E++) 0 !== t[n + E] && (f[M[t[n + E]]++] = E);
-    if (0 === e ? (P = D = f, y = 19) : 1 === e ? (P = i, I -= 257, D = s, j -= 257, 
-    y = 256) : (P = a, D = o, y = -1), R = 0, E = 0, k = C, g = u, O = S, A = 0, m = -1, 
+    if (0 === e ? (P = j = f, y = 19) : 1 === e ? (P = i, I -= 257, j = s, D -= 257, 
+    y = 256) : (P = a, j = o, y = -1), R = 0, E = 0, k = C, g = u, O = S, A = 0, m = -1, 
     v = (B = 1 << S) - 1, 1 === e && B > 852 || 2 === e && B > 592) return 1;
     for (;;) {
-     0, _ = k - A, f[E] < y ? (b = 0, x = f[E]) : f[E] > y ? (b = D[j + f[E]], x = P[I + f[E]]) : (b = 96, 
+     0, _ = k - A, f[E] < y ? (b = 0, x = f[E]) : f[E] > y ? (b = j[D + f[E]], x = P[I + f[E]]) : (b = 96, 
      x = 0), d = 1 << k - A, C = h = 1 << O;
      do {
       l[g + (R >> A) + (h -= d)] = _ << 24 | b << 16 | x | 0;
@@ -13258,7 +13258,7 @@ Downloadify = window.Downloadify = {
    c(P);
    var I = new Array(m);
    c(I);
-   var L, M, D, j = function(e, t, n, r, i) {
+   var L, M, j, D = function(e, t, n, r, i) {
     this.static_tree = e, this.extra_bits = t, this.extra_base = n, this.elems = r, 
     this.max_length = i, this.has_stree = e && e.length;
    }, V = function(e, t) {
@@ -13277,19 +13277,19 @@ Downloadify = window.Downloadify = {
    function H(e, t, n) {
     z(e, n[2 * t], n[2 * t + 1]);
    }
-   function U(e, t) {
+   function $(e, t) {
     var n = 0;
     do {
      n |= 1 & e, e >>>= 1, n <<= 1;
     } while (--t > 0);
     return n >>> 1;
    }
-   function $(e, t, n) {
+   function U(e, t, n) {
     var r, i, s = new Array(y + 1), a = 0;
     for (r = 1; r <= y; r++) s[r] = a = a + n[r - 1] << 1;
     for (i = 0; i <= t; i++) {
      var o = e[2 * i + 1];
-     0 !== o && (e[2 * i] = U(s[o]++, o));
+     0 !== o && (e[2 * i] = $(s[o]++, o));
     }
    }
    function Q(e) {
@@ -13348,7 +13348,7 @@ Downloadify = window.Downloadify = {
       for (s = h; 0 !== s; s--) for (r = e.bl_count[s]; 0 !== r; ) (i = e.heap[--n]) > l || (c[2 * i + 1] !== s && (e.opt_len += (s - c[2 * i + 1]) * c[2 * i], 
       c[2 * i + 1] = s), r--);
      }
-    }(e, t), $(s, l, e.bl_count);
+    }(e, t), U(s, l, e.bl_count);
    }
    function Y(e, t, n) {
     var r, i, s = -1, a = t[1], o = 0, c = 7, l = 4;
@@ -13387,10 +13387,10 @@ Downloadify = window.Downloadify = {
      for (;e <= 255; ) A[2 * e + 1] = 9, e++, s[9]++;
      for (;e <= 279; ) A[2 * e + 1] = 7, e++, s[7]++;
      for (;e <= 287; ) A[2 * e + 1] = 8, e++, s[8]++;
-     for ($(A, h + 1, s), e = 0; e < m; e++) N[2 * e + 1] = 5, N[2 * e] = U(e, 5);
-     L = new j(A, C, d + 1, h, y), M = new j(N, T, 0, m, y), D = new j(new Array(0), S, 0, v, b);
+     for (U(A, h + 1, s), e = 0; e < m; e++) N[2 * e + 1] = 5, N[2 * e] = $(e, 5);
+     L = new D(A, C, d + 1, h, y), M = new D(N, T, 0, m, y), j = new D(new Array(0), S, 0, v, b);
     }(), ee = !0), e.l_desc = new V(e.dyn_ltree, L), e.d_desc = new V(e.dyn_dtree, M), 
-    e.bl_desc = new V(e.bl_tree, D), e.bi_buf = 0, e.bi_valid = 0, Q(e);
+    e.bl_desc = new V(e.bl_tree, j), e.bi_buf = 0, e.bi_valid = 0, Q(e);
    }, n._tr_stored_block = te, n._tr_flush_block = function(e, t, n, r) {
     var c, l, p = 0;
     e.level > 0 ? (e.strm.data_type === o && (e.strm.data_type = function(e) {
@@ -13434,33 +13434,137 @@ Downloadify = window.Downloadify = {
    };
   }, {} ]
  }, {}, [ 9 ])(9);
-}), function() {
+});
+
+var $jscomp = $jscomp || {};
+
+$jscomp.scope = {}, $jscomp.defineProperty = "function" == typeof Object.defineProperties ? Object.defineProperty : function(e, t, n) {
+ if (n.get || n.set) throw new TypeError("ES3 does not support getters and setters.");
+ e != Array.prototype && e != Object.prototype && (e[t] = n.value);
+}, $jscomp.getGlobal = function(e) {
+ return "undefined" != typeof window && window === e ? e : "undefined" != typeof global && null != global ? global : e;
+}, $jscomp.global = $jscomp.getGlobal(this), $jscomp.SYMBOL_PREFIX = "jscomp_symbol_", 
+$jscomp.initSymbol = function() {
+ $jscomp.initSymbol = function() {}, $jscomp.global.Symbol || ($jscomp.global.Symbol = $jscomp.Symbol);
+}, $jscomp.symbolCounter_ = 0, $jscomp.Symbol = function(e) {
+ return $jscomp.SYMBOL_PREFIX + (e || "") + $jscomp.symbolCounter_++;
+}, $jscomp.initSymbolIterator = function() {
+ $jscomp.initSymbol();
+ var e = $jscomp.global.Symbol.iterator;
+ e || (e = $jscomp.global.Symbol.iterator = $jscomp.global.Symbol("iterator")), "function" != typeof Array.prototype[e] && $jscomp.defineProperty(Array.prototype, e, {
+  configurable: !0,
+  writable: !0,
+  value: function() {
+   return $jscomp.arrayIterator(this);
+  }
+ }), $jscomp.initSymbolIterator = function() {};
+}, $jscomp.arrayIterator = function(e) {
+ var t = 0;
+ return $jscomp.iteratorPrototype(function() {
+  return t < e.length ? {
+   done: !1,
+   value: e[t++]
+  } : {
+   done: !0
+  };
+ });
+}, $jscomp.iteratorPrototype = function(e) {
+ return $jscomp.initSymbolIterator(), (e = {
+  next: e
+ })[$jscomp.global.Symbol.iterator] = function() {
+  return this;
+ }, e;
+}, $jscomp.iteratorFromArray = function(e, t) {
+ $jscomp.initSymbolIterator(), e instanceof String && (e += "");
+ var n = 0, r = {
+  next: function() {
+   if (n < e.length) {
+    var i = n++;
+    return {
+     value: t(i, e[i]),
+     done: !1
+    };
+   }
+   return r.next = function() {
+    return {
+     done: !0,
+     value: void 0
+    };
+   }, r.next();
+  }
+ };
+ return r[Symbol.iterator] = function() {
+  return r;
+ }, r;
+}, $jscomp.polyfill = function(e, t, n, r) {
+ if (t) {
+  for (n = $jscomp.global, e = e.split("."), r = 0; r < e.length - 1; r++) {
+   var i = e[r];
+   i in n || (n[i] = {}), n = n[i];
+  }
+  (t = t(r = n[e = e[e.length - 1]])) != r && null != t && $jscomp.defineProperty(n, e, {
+   configurable: !0,
+   writable: !0,
+   value: t
+  });
+ }
+}, $jscomp.polyfill("Array.prototype.keys", function(e) {
+ return e || function() {
+  return $jscomp.iteratorFromArray(this, function(e) {
+   return e;
+  });
+ };
+}, "es6-impl", "es3"), $jscomp.findInternal = function(e, t, n) {
+ e instanceof String && (e = String(e));
+ for (var r = e.length, i = 0; i < r; i++) {
+  var s = e[i];
+  if (t.call(n, s, i, e)) return {
+   i: i,
+   v: s
+  };
+ }
+ return {
+  i: -1,
+  v: void 0
+ };
+}, $jscomp.polyfill("Array.prototype.find", function(e) {
+ return e || function(e, t) {
+  return $jscomp.findInternal(this, e, t).v;
+ };
+}, "es6-impl", "es3");
+
+var xml2abc_VERSION = 104, vertaal;
+
+!function() {
  function e(e, t) {
+  return Array(e + 1).join(t);
+ }
+ function t(e, t) {
   for (var n = []; e; ) n.push(t), --e;
   return n;
  }
- function t(e, t) {
+ function n(e, t) {
   for (var n = 0, r = {}; n < e.length; ++n) r[e[n]] = t[n];
   return r;
  }
- function n(e, t) {
+ function r(e, t) {
   var n = e.split(/%[ds]/);
   return n.length > t.length && t.push(""), t.map(function(e, t) {
    return n[t] + e;
   }).join("");
  }
- function r(e, t) {
-  C.info(n(e, t));
- }
  function i(e, t) {
+  S.info(r(e, t));
+ }
+ function s(e, t) {
   return -1 !== e.indexOf(t, e.length - t.length);
  }
- function s(e) {
+ function a(e) {
   return Object.keys(e).map(function(e) {
    return parseInt(e);
   });
  }
- function a(e, t) {
+ function o(e, t) {
   var n, r = [];
   if (Array.isArray(e)) for (n = 0; n < e.length; ++n) n in e && r.push([ n, e[n] ]); else for (n in e) r.push([ n, e[n] ]);
   return r.sort(t ? function(e, t) {
@@ -13469,50 +13573,53 @@ Downloadify = window.Downloadify = {
    return e[1] - t[1] || t[0] - e[0];
   }), r;
  }
- function o(e) {
+ function c(e) {
   this.reset(), this.ixp = e, this.divs = this.mdur = this.ixm = 0;
  }
- function c(e, t) {
+ function l(e, t) {
   this.tijd = 0, this.dur = e, this.fact = null, this.tup = [ "" ], this.tupabc = "", 
-  this.grace = this.beam = 0, this.after = this.before = "", this.ns = t ? [ t ] : [], 
-  this.lyrs = {}, this.pos = 0;
+  this.grace = this.beam = 0, this.before = [], this.after = "", this.ns = t ? [ t ] : [], 
+  this.lyrs = {}, this.pos = 0, this.tab = null, this.ntdec = "";
  }
- function l(e) {
+ function u(e) {
   this.tijd = 0, this.str = e, this.pos = 0;
  }
- function u() {}
- function f(e) {
+ function f() {}
+ function p(e) {
   this.maxtime = this.tijd = 0, this.gMaten = [], this.gLyrics = [], this.vnums = {}, 
-  this.cnt = new u(), this.vceCnt = 1, this.lastnote = null, this.bpl = e.b, this.cpl = e.n, 
+  this.cnt = new f(), this.vceCnt = 1, this.lastnote = null, this.bpl = e.b, this.cpl = e.n, 
   this.repbra = 0, this.nvlt = e.v;
  }
- function p(e, t, n, r) {
+ function d(e, t, n, r) {
   this.fnmext = e, this.outlist = [], this.infolist = [], this.title = "T:Title", 
-  this.key = "none", this.clefs = {}, this.mtr = "none", this.tempo = 0, this.pad = t, 
-  this.X = n + 1, this.denL = r.d, this.volpan = r.m, this.cmpL = [], this.rightmargin = this.leftmargin = this.pagewidth = this.scale = "", 
-  4 == r.p.length && (this.scale = "" != r.p[0] ? parseFloat(r.p[0]) : "", this.pagewidth = "" != r.p[1] ? parseFloat(r.p[1]) : "", 
-  this.leftmargin = "" != r.p[2] ? parseFloat(r.p[2]) : "", this.rightmargin = "" != r.p[3] ? parseFloat(r.p[3]) : "");
+  this.key = "none", this.clefs = {}, this.mtr = "none", this.tempo = 0, this.tempo_units = [ 1, 4 ], 
+  this.pad = t, this.X = n + 1, this.denL = r.d, this.volpan = r.m, this.cmpL = [], 
+  this.scale = "", this.tstep = r.t, this.stemless = 0, this.rightmargin = this.leftmargin = this.pagewidth = "", 
+  this.shiftStem = r.s, 4 == r.p.length && (this.scale = "" != r.p[0] ? parseFloat(r.p[0]) : "", 
+  this.pagewidth = "" != r.p[1] ? parseFloat(r.p[1]) : "", this.leftmargin = "" != r.p[2] ? parseFloat(r.p[2]) : "", 
+  this.rightmargin = "" != r.p[3] ? parseFloat(r.p[3]) : "");
  }
- function d(e, t) {
+ function h(e, t) {
   if (!e.join("")) return [ "", 0 ];
   for (var n = [], r = 0; r < e.length; ++r) {
-   var s = e[r];
-   "" == s ? s = t ? "_" : "*" : i(s, "_") && !i(s, "\\_") ? (s = s.replace("_", ""), 
-   t = 1) : t = 0, n.push(s);
+   var i = e[r];
+   "" == i ? i = t ? "_" : "*" : s(i, "_") && !s(i, "\\_") ? (i = i.replace("_", ""), 
+   t = 1) : t = 0, n.push(i);
   }
   return [ n.join(" "), t ];
  }
- function h(e, t) {
+ function m(e, t) {
   for (var n, r = e, i = t; t; ) n = e % t, e = t, t = n;
   return [ r / e, i / e ];
  }
- function m(e, t, n) {
-  return 0 == e.dur ? "" : (t = (i = h(n * e.dur, 4 * t))[0], n = i[1], e.fact && (t = (i = h(t * (i = e.fact[0]), n * (e = e.fact[1])))[0], 
-  n = i[1]), 64 < n && (r("denominator too small: %d/%d rounded to %d/%d", [ t, n, (i = h(Math.round(64 * t / n) || 1, 64))[0], i[1] ]), 
-  t = i[0], n = i[1]), 1 == t ? 1 == n ? "" : 2 == n ? "/" : "/" + n : 1 == n ? "" + t : t + "/" + n);
-  var i;
+ function v(e, t, n) {
+  return 0 == e.dur ? "" : (t = (r = m(n * e.dur, 4 * t))[0], n = r[1], e.fact && (t = (r = m(t * (r = e.fact[0]), n * (e = e.fact[1])))[0], 
+  n = r[1]), 64 < n && ((e = t / n) - (r = Math.floor(e)) < .1 * e && (t = r, n = 1), 
+  i("denominator too small: %d/%d rounded to %d/%d", [ t, n, (r = m(Math.round(64 * t / n) || 1, 64))[0], r[1] ]), 
+  t = r[0], n = r[1]), 1 == t ? 1 == n ? "" : 2 == n ? "/" : "/" + n : 1 == n ? "" + t : t + "/" + n);
+  var r;
  }
- function v(e) {
+ function g(e) {
   if (!(r = e.match(/([_^]*)([A-Ga-g])([',]*)/))) return -1;
   e = r[1];
   var t, n = r[2], r = r[3];
@@ -13520,13 +13627,13 @@ Downloadify = window.Downloadify = {
   e && (n += ("^" == e[0] ? 1 : -1) * e.length), r && (n += ("'" == r[0] ? 12 : -12) * r.length), 
   n;
  }
- function g(e, t, r) {
+ function y(e, t, n) {
   var i, s, a = 0, o = t[e];
   -1 < (s = o.tup.indexOf("start")) && o.tup.splice(s, 1);
   var c = e;
-  for (r = [ o.fact[0] / r[0], o.fact[1] / r[1] ]; e < t.length; ) {
-   if (!((o = t[e]) instanceof l || o.grace)) {
-    if (-1 < o.tup.indexOf("start") ? (e = (s = g(e, t, r))[0], a += s = s[1]) : o.fact && (a += 1), 
+  for (n = [ o.fact[0] / n[0], o.fact[1] / n[1] ]; e < t.length; ) {
+   if (!((o = t[e]) instanceof u || o.grace)) {
+    if (-1 < o.tup.indexOf("start") ? (e = (s = y(e, t, n))[0], a += s = s[1]) : o.fact && (a += 1), 
     -1 < (s = o.tup.indexOf("stop"))) {
      o.tup.splice(s, 1);
      break;
@@ -13539,12 +13646,12 @@ Downloadify = window.Downloadify = {
    }
    e += 1;
   }
-  return i = "3,2,3" == (i = [ r[0], r[1], a ]).toString() ? "(3" : n("(%d:%d:%d", i), 
+  return i = "3,2,3" == (i = [ n[0], n[1], a ]).toString() ? "(3" : r("(%d:%d:%d", i), 
   t[c].tupabc = i + t[c].tupabc, [ e, a ];
  }
- function y(e) {
+ function _(e) {
   e = e.filter(function(e) {
-   return e instanceof c;
+   return e instanceof l;
   });
   for (var t = 0; t < e.length - 1; ) {
    var n = e[t], r = e[t + 1];
@@ -13553,57 +13660,64 @@ Downloadify = window.Downloadify = {
    r.dur *= 2, n.after = ">" + n.after, t += 1)), t += 1;
   }
  }
- function _(e, t, n, r, s) {
-  for (r = 0; r < e.length; ) (n = e[r]) instanceof c && n.fact && (r = (n = g(r, e, [ 1, 1 ]))[0]), 
+ function b(e, t, n, r, i) {
+  for (r = 0; r < e.length; ) (n = e[r]) instanceof l && n.fact && !n.grace && (r = (n = y(r, e, [ 1, 1 ]))[0]), 
   r += 1;
   r = [];
   for (var a, o = 0; o < e.length; ++o) {
-   if ((n = e[o]) instanceof c) {
-    var l = m(n, t, s), u = 1 < n.ns.length;
+   if ((n = e[o]) instanceof l) {
+    var c = v(n, t, i), u = 1 < n.ns.length;
     a = (a = n.ns.filter(function(e) {
-     return i(e, "-");
+     return s(e, "-");
     })).map(function(e) {
      return e.slice(0, -1);
     });
     var f = "";
-    u && a.length == n.ns.length && (n.ns = a, f = "-"), a = n.tupabc + n.before, u && (a += "["), 
-    a += n.ns.join(""), u && (a += "]" + f), i(a, "-") && (a = a.slice(0, -1), f = "-"), 
-    a += l + f, a += n.after, n = n.beam;
-   } else a = n.str, n = 1;
+    u && a.length == n.ns.length && (n.ns = a, f = "-"), a = n.tupabc + n.before.join(""), 
+    u && (a += "["), a += n.ns.join(""), u && (a += "]" + f), s(a, "-") && (a = a.slice(0, -1), 
+    f = "-"), a += c + f, a += n.after, n = n.beam;
+   } else n.str instanceof Array && (n.str = n.str[0]), a = n.str, n = 1;
    n ? r.push(a) : r.push(" " + a);
   }
-  return r.join("");
+  for (r = r.join(""); 0 <= r.indexOf("!ped!!ped!"); ) r = r.replace(/!ped!!ped!/g, "!ped!");
+  for (;0 <= r.indexOf("!ped-up!!ped-up!"); ) r = r.replace(/!ped-up!!ped-up!/g, "!ped-up!");
+  for (;0 <= r.indexOf("!8va(!!8va)!"); ) r = r.replace(/!8va\(!!8va\)!/g, "");
+  return r;
  }
- function b(e, t) {
+ function x(e, t) {
   e.map(function(e, t) {
    e.pos = t;
   }), e.sort(function(e, t) {
    return e.tijd - t.tijd || e.pos - t.pos;
   });
-  for (var n = 0, i = [], s = 0; s < e.length; ++s) {
-   var a = e[s];
-   if (a.tijd > n && i.push(new c(a.tijd - n, "x")), a instanceof l) a.tijd < n && (a.tijd = n), 
-   i.push(a), n = a.tijd; else {
-    if (a.tijd < n) {
-     if ("z" == a.ns[0]) continue;
-     var o = i[i.length - 1];
-     if (!(o.tijd <= a.tijd)) {
-      r("overlapping notes in one voice! part %d, measure %d, note %s discarded", [ t.ixp + 1, t.ixm + 1, a instanceof c ? a.ns : a.str ]);
+  for (var n = 0, r = [], s = [], a = 0; a < e.length; ++a) {
+   var o = e[a];
+   if (o.tijd > n && (r.push(new l(o.tijd - n, "x")), s.push(r.length - 1)), o instanceof u) o.tijd < n && (o.tijd = n), 
+   r.push(o), n = o.tijd; else {
+    if (o.tijd < n) {
+     if ("z" == o.ns[0]) continue;
+     var c = r[r.length - 1];
+     if (!(c.tijd <= o.tijd)) {
+      i("overlapping notes in one voice! part %d, measure %d, note %s discarded", [ t.ixp + 1, t.ixm + 1, o instanceof l ? o.ns : o.str ]);
       continue;
      }
-     if ("z" == o.ns[0]) o.dur = a.tijd - o.tijd, 0 == o.dur && pop(i), r("overlap in part %d, measure %d: rest shortened", [ t.ixp + 1, t.ixm + 1 ]); else {
-      if (o.ns = o.ns.concat(a.ns), r("overlap in part %d, measure %d: added chord", [ t.ixp + 1, t.ixm + 1 ]), 
-      a.dur = a.tijd + a.dur - n, 0 >= a.dur) continue;
-      a.tijd = n;
+     if ("z" == c.ns[0]) c.dur = o.tijd - c.tijd, 0 == c.dur && r.pop(), i("overlap in part %d, measure %d: rest shortened", [ t.ixp + 1, t.ixm + 1 ]); else {
+      if (c.ns = c.ns.concat(o.ns), i("overlap in part %d, measure %d: added chord", [ t.ixp + 1, t.ixm + 1 ]), 
+      o.dur = o.tijd + o.dur - n, 0 >= o.dur) continue;
+      o.tijd = n;
      }
     }
-    i.push(a), n = a.tijd + a.dur;
+    if (r.push(o), o instanceof l) if ("x" == (n = o.ns[0]) || "z" == n) s.push(r.length - 1); else if (s.length) {
+     if (o.beam && !o.grace) for (n = 0; n < s.length; ++n) r[s[n]].beam = o.beam;
+     s = [];
+    }
+    n = o.tijd + o.dur;
    }
   }
-  return 0 == n && r("empty measure in part %d, measure %d, it should contain at least a rest to advance the time!", [ t.ixp + 1, t.ixm + 1 ]), 
-  i;
+  return 0 == n && i("empty measure in part %d, measure %d, it should contain at least a rest to advance the time!", [ t.ixp + 1, t.ixm + 1 ]), 
+  r;
  }
- function x(e) {
+ function w(e) {
   var t, n, r, i;
   if (0 == e.length) return [];
   for (t = [], r = 0; r < e.length; ++r) {
@@ -13616,18 +13730,18 @@ Downloadify = window.Downloadify = {
   return t.splice(-1, 1), 1 < e.length && (t = [ "{" ].concat(t).concat([ "}" ])), 
   t;
  }
- function w(e, t, n, r, i, s) {
+ function k(e, t, n, r, i, s) {
   if ("name_tuple" == e[0]) r = r.shift(), t[0] && (e[1] = t[0] + ":" + e[1], e[2] = t[1] + ":" + e[2]), 
-  i.push(e), s.push.apply(s, x(r)); else if (2 == e.length) r = r.shift(), (n = [ "name_tuple", "", "" ])[1] = e[0][1] + ":" + e[1][2], 
-  n[2] = e[0][2] + ":" + e[1][3], i.push(n), s.push.apply(s, x(r)); else {
+  i.push(e), s.push.apply(s, w(r)); else if (2 == e.length) r = r.shift(), (n = [ "name_tuple", "", "" ])[1] = e[0][1] + ":" + e[1][2], 
+  n[2] = e[0][2] + ":" + e[1][3], i.push(n), s.push.apply(s, w(r)); else {
    var a, o, c;
    for (t = (c = e[e.length - 1])[0], a = c[1], o = c[2], c = c[3], a = "yes" == a || n, 
-   s.push("brace" == t ? "{" : "["), n = 0; n < e.length - 1; ++n) w(e[n], [ o, c ], a, r, i, s), 
+   s.push("brace" == t ? "{" : "["), n = 0; n < e.length - 1; ++n) k(e[n], [ o, c ], a, r, i, s), 
    a && s.push("|");
    a && s.splice(-1, 1), s.push("brace" == t ? "}" : "]");
   }
  }
- function k(e) {
+ function E(e) {
   for (var t = "", n = e.children(), r = 0; r < n.length; ++r) {
    var i = n[r];
    switch (i.nodeName) {
@@ -13642,225 +13756,306 @@ Downloadify = window.Downloadify = {
   return t ? ("begin" != (n = e.find("syllabic").text()) && "middle" != n || (t += "-"), 
   e.find("extend").length && (t += "_"), t) : t;
  }
- function E(e) {
-  this.slurBuf = {}, this.wedge_type = "", this.ingrace = 0, this.msc = new f(e), 
-  this.unfold = e.u, this.ctf = e.c, this.gStfMap = [], this.midiMap = [], this.drumInst = {}, 
-  this.drumNotes = {}, this.instMid = [], this.midDflt = [ -1, -1, -1, -91 ], this.msralts = {}, 
-  this.curalts = {}, this.stfMap = {}, this.clefMap = {}, this.curClef = {}, this.clefOct = {}, 
-  this.curStf = {}, this.nolbrk = e.x, this.doPageFmt = 1 == e.p.length, this.tstep = e.t;
+ function C(t, n) {
+  var r = t;
+  return 4 < n && (r = t.toLowerCase()), 5 < n && (r += e(n - 5, "'")), 4 > n && (r += e(4 - n, ",")), 
+  r;
  }
- var C, T = Math.pow(2, 53), S = {
+ function T(e) {
+  this.slurBuf = {}, this.dirStk = {}, this.ingrace = 0, this.msc = new p(e), this.unfold = e.u, 
+  this.ctf = e.c, this.gStfMap = [], this.midiMap = [], this.drumInst = {}, this.drumNotes = {}, 
+  this.instMid = [], this.midDflt = [ -1, -1, -1, -91 ], this.msralts = {}, this.curalts = {}, 
+  this.stfMap = {}, this.vce2stf = {}, this.clefMap = {}, this.curClef = {}, this.stemDir = {}, 
+  this.clefOct = {}, this.curStf = {}, this.nolbrk = e.x, this.doPageFmt = 1 == e.p.length, 
+  this.tstep = e.t, this.dirtov1 = e.v1, this.ped = !e.noped, this.wstems = e.stm, 
+  this.pedVce = null, this.repeat_str = {}, this.tabVceMap = {}, this.koppen = {}, 
+  this.note_alts = [ "=C ^C =D ^D =E =F ^F =G ^G =A ^A =B".split(" "), "^B _D ^^C _E _F ^E _G ^^F _A ^^G _B _C".split(" "), "__D ^^B __E __F ^^D __G ^^E __A _/A __B __C ^^A".split(" ") ], 
+  this.step_map = {
+   C: 0,
+   D: 2,
+   E: 4,
+   F: 5,
+   G: 7,
+   A: 9,
+   B: 11
+  };
+ }
+ var S, O = Math.pow(2, 53), A = {
   "ornaments>trill-mark": "T",
   "ornaments>mordent": "M",
   "ornaments>inverted-mordent": "P",
   "ornaments>turn": "!turn!",
   "ornaments>inverted-turn": "!invertedturn!",
-  "ornaments>tremolo": "!///!",
   "technical>up-bow": "u",
   "technical>down-bow": "v",
   "technical>harmonic": "!open!",
   "technical>open-string": "!open!",
   "technical>stopped": "!plus!",
+  "technical>snap-pizzicato": "!snap!",
+  "technical>thumb-position": "!thumb!",
   "articulations>accent": "!>!",
-  "articulations>strong-accent": "!>!",
+  "articulations>strong-accent": "!^!",
   "articulations>staccato": ".",
   "articulations>staccatissimo": "!wedge!",
+  "articulations>scoop": "!slide!",
   fermata: "!fermata!",
   arpeggiate: "!arpeggio!",
   "articulations>tenuto": "!tenuto!",
-  "articulations>staccatissimo": "!wedge!",
   "articulations>spiccato": "!wedge!",
   "articulations>breath-mark": "!breath!",
   "articulations>detached-legato": "!tenuto!."
- }, O = {
+ }, N = {
   p: "!p!",
   pp: "!pp!",
   ppp: "!ppp!",
+  pppp: "!pppp!",
   f: "!f!",
   ff: "!ff!",
   fff: "!fff!",
+  ffff: "!ffff!",
   mp: "!mp!",
   mf: "!mf!",
   sfz: "!sfz!"
- };
- xml2abc_VERSION = 62, o.prototype.reset = function() {
+ }, B = '%%beginsvg\n<defs>,<text id="x" x="-3" y="0">&#xe263;</text>,<text id="x-" x="-3" y="0">&#xe263;</text>,<text id="x+" x="-3" y="0">&#xe263;</text>,<text id="normal" x="-3.7" y="0">&#xe0a3;</text>,<text id="normal-" x="-3.7" y="0">&#xe0a3;</text>,<text id="normal+" x="-3.7" y="0">&#xe0a4;</text>,<g id="circle-x"><text x="-3" y="0">&#xe263;</text><circle r="4" class="stroke"></circle></g>,<g id="circle-x-"><text x="-3" y="0">&#xe263;</text><circle r="4" class="stroke"></circle></g>,<path id="triangle" d="m-4 -3.2l4 6.4 4 -6.4z" class="stroke" style="stroke-width:1.4"></path>,<path id="triangle-" d="m-4 -3.2l4 6.4 4 -6.4z" class="stroke" style="stroke-width:1.4"></path>,<path id="triangle+" d="m-4 -3.2l4 6.4 4 -6.4z" class="stroke" style="fill:#000"></path>,<path id="square" d="m-3.5 3l0 -6.2 7.2 0 0 6.2z" class="stroke" style="stroke-width:1.4"></path>,<path id="square-" d="m-3.5 3l0 -6.2 7.2 0 0 6.2z" class="stroke" style="stroke-width:1.4"></path>,<path id="square+" d="m-3.5 3l0 -6.2 7.2 0 0 6.2z" class="stroke" style="fill:#000"></path>,<path id="diamond" d="m0 -3l4.2 3.2 -4.2 3.2 -4.2 -3.2z" class="stroke" style="stroke-width:1.4"></path>,<path id="diamond-" d="m0 -3l4.2 3.2 -4.2 3.2 -4.2 -3.2z" class="stroke" style="stroke-width:1.4"></path>,<path id="diamond+" d="m0 -3l4.2 3.2 -4.2 3.2 -4.2 -3.2z" class="stroke" style="fill:#000"></path>,</defs>\n%%endsvg'.split(","), R = '%%beginsvg\n,<style type="text/css">\n,.bf {font-family:sans-serif; font-size:7px}\n,</style>\n,<defs>\n,<rect id="clr" x="-3" y="-1" width="6" height="5" fill="white"></rect>\n,<rect id="clr2" x="-3" y="-1" width="11" height="5" fill="white"></rect>\n'.split(",");
+ c.prototype.reset = function() {
   this.lline = this.attr = "", this.rline = "|", this.lnum = "";
- }, u.prototype.inc = function(e, t) {
+ }, f.prototype.inc = function(e, t) {
   this.counters[e][t] = (this.counters[e][t] || 0) + 1;
- }, u.prototype.clear = function(n) {
-  var r = e((n = Object.keys(n)).length, 0);
+ }, f.prototype.clear = function(e) {
+  var r = t((e = Object.keys(e)).length, 0);
   this.counters = {
-   note: t(n, r),
-   nopr: t(n, r),
-   nopt: t(n, r)
+   note: n(e, r),
+   nopr: n(e, r),
+   nopt: n(e, r)
   };
- }, u.prototype.getv = function(e, t) {
+ }, f.prototype.getv = function(e, t) {
   return this.counters[e][t];
- }, u.prototype.prcnt = function(e) {
-  for (var t in this.counters.note) 0 != this.getv("nopr", t) && r("part %d, voice %d has %d skipped non printable notes", [ e, t, this.getv("nopr", t) ]), 
-  0 != this.getv("nopt", t) && r("part %d, voice %d has %d notes without pitch", [ e, t, this.getv("nopt", t) ]), 
-  0 == this.getv("note", t) && r("part %d, skipped empty voice %d", [ e, t ]);
- }, f.prototype.initVoices = function(e) {
+ }, f.prototype.prcnt = function(e) {
+  for (var t in this.counters.note) 0 != this.getv("nopr", t) && i("part %d, voice %d has %d skipped non printable notes", [ e, t, this.getv("nopr", t) ]), 
+  0 != this.getv("nopt", t) && i("part %d, voice %d has %d notes without pitch", [ e, t, this.getv("nopt", t) ]), 
+  0 == this.getv("note", t) && i("part %d, skipped empty voice %d", [ e, t ]);
+ }, p.prototype.initVoices = function(e) {
   for (var t in this.vtimes = {}, this.voices = {}, this.lyrics = {}, this.vnums) this.vtimes[t] = 0, 
   this.voices[t] = [], this.lyrics[t] = [];
   e && this.cnt.clear(this.vnums);
- }, f.prototype.incTime = function(e) {
-  this.tijd += e, this.tijd > this.maxtime && (this.maxtime = this.tijd);
- }, f.prototype.appendElemCv = function(e, t) {
+ }, p.prototype.incTime = function(e) {
+  this.tijd += e, 0 > this.tijd && (this.tijd = 0), this.tijd > this.maxtime && (this.maxtime = this.tijd);
+ }, p.prototype.appendElemCv = function(e, t) {
   for (var n in e) this.appendElem(n, t);
- }, f.prototype.insertElem = function(e, t) {
-  var n = new l(t);
+ }, p.prototype.insertElem = function(e, t) {
+  var n = new u(t);
   n.tijd = 0, this.voices[e].unshift(n);
- }, f.prototype.appendObj = function(e, t, n) {
+ }, p.prototype.appendObj = function(e, t, n) {
   t.tijd = this.tijd, this.voices[e].push(t), this.incTime(n), this.tijd > this.vtimes[e] && (this.vtimes[e] = this.tijd);
- }, f.prototype.appendElem = function(e, t) {
-  this.appendObj(e, new l(t), 0);
- }, f.prototype.appendNote = function(e, t, n) {
-  t.ns.push(n), this.appendObj(e, t, parseInt(t.dur)), "z" != n && (this.lastnote = t, 
-  this.cnt.inc("note", e), t.grace || this.lyrics[e].push(t.lyrs));
- }, f.prototype.getLastRec = function(e) {
+ }, p.prototype.appendElemT = function(e, t, n) {
+  (t = new u(t)).tijd = n, this.voices[e].push(t);
+ }, p.prototype.appendElem = function(e, t, n) {
+  this.appendObj(e, new u(t), 0), n && this.cnt.inc("note", e);
+ }, p.prototype.appendNote = function(e, t, n) {
+  t.ns.push(t.ntdec + n), this.appendObj(e, t, parseInt(t.dur)), this.lastnote = t, 
+  "z" != n && "x" != n && (this.cnt.inc("note", e), t.grace || this.lyrics[e].push(t.lyrs));
+ }, p.prototype.getLastRec = function(e) {
   return this.gMaten.length ? (e = this.gMaten[this.gMaten.length - 1][e])[e.length - 1] : null;
- }, f.prototype.getLastMelis = function(e, t) {
+ }, p.prototype.getLastMelis = function(e, t) {
   if (this.gLyrics.length) {
    var n = this.gLyrics[this.gLyrics.length - 1][e];
    if (t in n) return n[t][1];
   }
   return 0;
- }, f.prototype.addChord = function(e) {
-  this.lastnote.ns.push(e);
- }, f.prototype.addBar = function(e, t) {
-  for (var n in t.mdur && this.maxtime > t.mdur && r("measure %d in part %d longer than metre", [ t.ixm + 1, t.ixp + 1 ]), 
+ }, p.prototype.addChord = function(e, t) {
+  for (var n = 0; n < e.before.length; n++) {
+   var r = e.before[n];
+   0 > this.lastnote.before.indexOf(r) && this.lastnote.before.push(r);
+  }
+  this.lastnote.ns.push(e.ntdec + t);
+ }, p.prototype.addBar = function(e, t) {
+  for (var n in t.mdur && this.maxtime > t.mdur && i("measure %d in part %d longer than metre", [ t.ixm + 1, t.ixp + 1 ]), 
   this.tijd = this.maxtime, this.vnums) {
-   if (t.lline || t.lnum) if (a = this.getLastRec(n)) {
-    var i = a.str;
-    t.lline && (i = (i + t.lline).replace(/:\|:/g, "::").replace(/\|\|/g, "|")), 3 == this.nvlt ? t.ixp + parseInt(n) == Math.min.apply(null, s(this.vnums)) && (i += t.lnum) : 4 == this.nvlt ? parseInt(n) == Math.min.apply(null, s(this.vnums)) && (i += t.lnum) : t.lnum && (i += t.lnum, 
-    this.repbra = 1), a.str = i;
+   if (t.lline || t.lnum) if (s = this.getLastRec(n)) {
+    var r = s.str;
+    t.lline && (r = (r + t.lline).replace(/:\|:/g, "::").replace(/\|\|/g, "|")), 3 == this.nvlt ? t.ixp + parseInt(n) == Math.min.apply(null, a(this.vnums)) && (r += t.lnum) : 4 == this.nvlt ? parseInt(n) == Math.min.apply(null, a(this.vnums)) && (r += t.lnum) : t.lnum && (r += t.lnum, 
+    this.repbra = 1), s.str = r;
    } else t.lline && this.insertElem(n, "|:");
-   e && (a = this.getLastRec(n)) && (a.str += e), t.attr && this.insertElem(n, "" + t.attr), 
-   this.appendElem(n, " " + t.rline), this.voices[n] = b(this.voices[n], t);
-   i = {};
-   for (var a, o = (a = this.lyrics[n]).reduce(function(e, t) {
-    return e.concat(s(t));
+   e && (s = this.getLastRec(n)) && (s.str += e), t.attr && this.insertElem(n, "" + t.attr), 
+   this.appendElem(n, " " + t.rline), this.voices[n] = x(this.voices[n], t);
+   r = {};
+   for (var s, o = (s = this.lyrics[n]).reduce(function(e, t) {
+    return e.concat(a(t));
    }, []), c = Math.max.apply(null, o.concat([ 0 ])); 0 < c; --c) {
-    o = a.map(function(e) {
+    o = s.map(function(e) {
      return e[c] || "";
     });
     var l = this.getLastMelis(n, c);
-    i[c] = d(o, l);
+    r[c] = h(o, l);
    }
-   this.lyrics[n] = i, y(this.voices[n]);
+   this.lyrics[n] = r, _(this.voices[n]);
   }
   this.gMaten.push(this.voices), this.gLyrics.push(this.lyrics), this.tijd = this.maxtime = 0, 
   this.initVoices();
- }, f.prototype.outVoices = function(t, n) {
-  var r, i, o, u, f, p, d, h, v;
-  for (h in f = {}, d = Math.min.apply(null, s(this.vnums)), this.vnums) if (0 != this.cnt.getv("note", h)) {
-   if (C.denL) p = C.denL; else {
-    var g = h, y = this.gMaten;
-    p = t, v = 0, u = T, i = r = void 0;
-    for (var b = [ 4, 8, 16 ]; b.length; ) {
-     var x = b.shift(), w = 0;
-     for (r = 0; r < y.length; ++r) {
-      var k = y[r][g];
-      for (i = 0; i < k.length; ++i) {
-       var E = k[i];
-       E instanceof l || 0 == E.dur || (w += m(E, p, x).length);
+ }, p.prototype.outVoices = function(e, n) {
+  var r, i, s, c, f, p, d, h, m;
+  for (h in f = {}, d = Math.min.apply(null, a(this.vnums) || [ 1 ]), this.vnums) if (0 != this.cnt.getv("note", h)) {
+   if (S.denL) p = S.denL; else {
+    var g, y;
+    p = h, m = this.gMaten, c = e, r = 0, i = O;
+    for (var _ = [ 4, 8, 16 ]; _.length; ) {
+     var x = _.shift(), w = 0;
+     for (y = 0; y < m.length; ++y) {
+      var k = m[y][p];
+      for (g = 0; g < k.length; ++g) {
+       var E = k[g];
+       E instanceof u || 0 == E.dur || (w += v(E, c, x).length);
       }
      }
-     w < u && (v = x, u = w);
+     w < i && (r = x, i = w);
     }
-    p = v;
+    p = r;
    }
-   for (C.cmpL.push(p), g = [], y = {}, v = 0; v < this.gMaten.length; ++v) {
-    if (u = this.gMaten[v][h], g.push(_(u, t, v, n, p)), i = this.gLyrics, 0 != v) for (b in u = this.gMaten[v][h], 
-    r = i[v][h], x = x = b = void 0, i = i[v - 1][h]) if (x = i[b][1], !(b in r) && x) {
-     for (x = u, w = [], k = 0; k < x.length; ++k) if ((E = x[k]) instanceof c && !E.grace) {
-      if ("z" == E.ns[0]) break;
+   for (S.cmpL.push(p), g = [], y = {}, m = 0; m < this.gMaten.length; ++m) {
+    if (c = this.gMaten[m][h], g.push(b(c, e, m, n, p)), c = void 0, _ = this.gLyrics, 
+    0 != m) for (c in r = this.gMaten[m][h], i = _[m][h], _ = _[m - 1][h]) if (x = _[c][1], 
+    !(c in i) && x) {
+     for (x = r, w = [], k = 0; k < x.length; ++k) if ((E = x[k]) instanceof l && !E.grace) {
+      if ("z" == E.ns[0] || "x" == E.ns[0]) break;
       w.push("_");
      }
-     (x = w.join(" ")) && (r[b] = [ x, 0 ]);
+     (x = w.join(" ")) && (i[c] = [ x, 0 ]);
     }
-    for (o in r = this.gLyrics[v][h]) if (u = (u = r[o])[0], o in y) {
-     for (;y[o].length < v; ) y[o].push("");
-     y[o].push(u);
-    } else y[o] = e(v, "").concat([ u ]);
+    for (s in r = this.gLyrics[m][h]) if (c = (c = r[s])[0], s in y) {
+     for (;y[s].length < m; ) y[s].push("");
+     y[s].push(c);
+    } else y[s] = t(m, "").concat([ c ]);
    }
-   for (o in y) u = y[o], p = g.length - u.length, y[o] = u.concat(e(p, ""));
-   for (C.add("V:" + this.vceCnt), this.repbra && (1 == this.nvlt && 1 < this.vceCnt && C.add("I:repbra 0"), 
-   2 == this.nvlt && parseInt(h) > d && C.add("I:repbra 0")), 0 < this.cpl ? this.bpl = 0 : 0 == this.bpl && (this.cpl = 100), 
+   for (s in y) c = y[s], p = g.length - c.length, y[s] = c.concat(t(p, ""));
+   for (S.add("V:" + this.vceCnt), this.repbra && (1 == this.nvlt && 1 < this.vceCnt && S.add("I:repbra 0"), 
+   2 == this.nvlt && parseInt(h) > d && S.add("I:repbra 0")), 0 < this.cpl ? this.bpl = 0 : 0 == this.bpl && (this.cpl = 100), 
    p = 0; g.length; ) {
-    for (v = 1, u = g[0]; v < g.length && !(0 < this.cpl && u.length + g[v].length >= this.cpl) && !(0 < this.bpl && v >= this.bpl); ) u += g[v], 
-    v += 1;
-    for (p += v, C.add(u + " %" + p), g.splice(0, v), r = a(y, 1), i = 0; i < r.length; ++i) o = (u = r[i])[0], 
-    u = u[1], C.add("w: " + u.slice(0, v).join("|") + "|"), u.splice(0, v);
+    for (m = 1, c = g[0]; m < g.length && !(0 < this.cpl && c.length + g[m].length >= this.cpl) && !(0 < this.bpl && m >= this.bpl); ) c += g[m], 
+    m += 1;
+    for (p += m, S.add(c + " %" + p), g.splice(0, m), r = o(y, 1), i = 0; i < r.length; ++i) s = (c = r[i])[0], 
+    c = c[1], S.add("w: " + c.slice(0, m).join("|") + "|"), c.splice(0, m);
    }
    f[h] = this.vceCnt, this.vceCnt += 1;
   }
   return this.gMaten = [], this.gLyrics = [], this.cnt.prcnt(n + 1), f;
- }, p.prototype.add = function(e) {
+ }, d.prototype.add = function(e) {
   this.outlist.push(e + "\n");
- }, p.prototype.info = function(e, t) {
+ }, d.prototype.info = function(e, t) {
   this.infolist.push((void 0 === t || t ? "-- " : "") + e);
- }, p.prototype.mkHeader = function(e, t, i) {
-  var s, o, c, l, u, f, p = [], d = [];
-  for (l = e.slice(), f = 0; f < t.length; ++f) {
-   s = t[f];
+ }, d.prototype.mkHeader = function(e, t, n, s, a) {
+  var c, l, u, f, p, d, h, m = [], v = [];
+  for (f = e.slice(), h = 0; h < t.length; ++h) {
+   c = t[h];
    try {
-    w(s, [ "", "" ], "", e, p, d);
+    k(c, [ "", "" ], "", e, m, v);
    } catch (e) {
-    r("lousy musicxml: error in part-list", []);
+    i("lousy musicxml: error in part-list", []);
    }
   }
-  for (t = d.join(" "), e = {}, f = 0; f < l.length; ++f) o = l[f], c = (s = p[f])[1], 
-  s = s[2], 0 != o.length && (o = o[0][0], c = c.replace(/\n/g, "\\n").replace(/\.:/g, ".").replace(/^:|:$/g, ""), 
-  s = s.replace(/\n/g, "\\n").replace(/\.:/g, ".").replace(/^:|:$/g, ""), e[o] = (c ? 'nm="' + c + '"' : "") + (s ? ' snm="' + s + '"' : ""));
-  for (p = [ n("X:%d\n%s\n", [ this.X, this.title ]) ], "" !== this.scale && p.push("%%scale " + this.scale + "\n"), 
-  "" !== this.pagewidth && p.push("%%pagewidth " + this.pagewidth + "cm\n"), "" !== this.leftmargin && p.push("%%leftmargin " + this.leftmargin + "cm\n"), 
-  "" !== this.rightmargin && p.push("%%rightmargin " + this.rightmargin + "cm\n"), 
-  t && 1 < d.length && p.push("%%score " + t + "\n"), l = this.tempo ? "Q:1/4=" + this.tempo + "\n" : "", 
-  d = [], f = 0; f < this.cmpL.length; ++f) d[s = this.cmpL[f]] = (d[s] || 0) + 1;
-  for (u in d = (d = a(d))[d.length - 1][0], d = this.denL ? this.denL : d, p.push(n("L:1/%d\n%sM:%s\n", [ d, l, this.mtr ])), 
-  p.push(n("I:linebreak $\nK:%s\n", [ this.key ])), this.clefs) {
-   for (f = (s = i[u - 1])[0], t = s[1], c = s[1], o = s[3], l = s.slice(4), s = this.clefs[u], 
-   l.length && 0 > s.indexOf("perc") && (s = (s + " map=perc").trim()), p.push(n("V:%d %s %s\n", [ u, s, e[u] || "" ])), 
-   1 < this.volpan ? (0 < f && f != u && p.push("%%MIDI channel " + f + "\n"), 0 < t && p.push("%%MIDI program " + (t - 1) + "\n"), 
-   0 <= c && p.push("%%MIDI control 7 " + c + "\n"), 0 <= o && p.push("%%MIDI control 10 " + o + "\n")) : 0 < this.volpan && (l.length && 0 < f && p.push("%%MIDI channel " + f + "\n"), 
-   0 < t && p.push("%%MIDI program " + (t - 1) + "\n")), f = 0; f < l.length; ++f) s = l[f].nt, 
-   c = l[f].step, t = l[f].midi, (o = l[f].nhd) || (o = "normal"), (v(s) != t || s != c) && (0 < this.volpan && p.push("%%MIDI drummap " + s + " " + t + "\n"), 
-   p.push("I:percmap " + s + " " + c + " " + t + " " + o + "\n"));
-   d != this.cmpL[u - 1] && p.push("L:1/" + this.cmpL[u - 1] + "\n");
+  for (t = v.join(" "), e = {}, h = 0; h < f.length; ++h) l = f[h], u = (c = m[h])[1], 
+  c = c[2], 0 != l.length && (l = l[0][0], u = u.replace(/\n/g, "\\n").replace(/\.:/g, ".").replace(/^:|:$/g, ""), 
+  c = c.replace(/\n/g, "\\n").replace(/\.:/g, ".").replace(/^:|:$/g, ""), e[l] = (u ? 'nm="' + u + '"' : "") + (c ? ' snm="' + c + '"' : ""));
+  for (m = [ r("X:%d\n%s\n", [ this.X, this.title ]) ], "" !== this.scale && m.push("%%scale " + this.scale + "\n"), 
+  "" !== this.pagewidth && m.push("%%pagewidth " + this.pagewidth + "cm\n"), "" !== this.leftmargin && m.push("%%leftmargin " + this.leftmargin + "cm\n"), 
+  "" !== this.rightmargin && m.push("%%rightmargin " + this.rightmargin + "cm\n"), 
+  t && 1 < v.length && m.push("%%score " + t + "\n"), f = this.tempo ? r("Q:%d/%d=%s\n", [ this.tempo_units[0], this.tempo_units[1], this.tempo ]) : "", 
+  v = [], h = 0; h < this.cmpL.length; ++h) v[c = this.cmpL[h]] = (v[c] || 0) + 1;
+  for (v = (v = o(v))[v.length - 1][0], v = this.denL ? this.denL : v, m.push(r("L:1/%d\n%sM:%s\n", [ v, f, this.mtr ])), 
+  m.push(r("I:linebreak $\nK:%s\n", [ this.key ])), this.stemless && m.push("U:s=!stemless!\n"), 
+  f = Object.keys(s).sort(), h = 0; h < f.length; ++h) m = m.concat(s[f[h]]);
+  for (d in this.dojef = 0, this.clefs) {
+   h = (c = n[d - 1])[0], t = c[1], u = c[2], l = c[3], f = c.slice(4), c = this.clefs[d], 
+   f.length && 0 > c.indexOf("perc") && (c = (c + " map=perc").trim()), m.push(r("V:%d %s %s\n", [ d, c, e[d] || "" ])), 
+   d in s && (m.push(r("%%voicemap tab%d\n", [ d ])), m.push("K:none\nM:none\n%%clef none\n%%staffscale 1.6\n%%flatbeams true\n%%stemdir down\n")), 
+   -1 < c.indexOf("perc") && m.push("K:none\n"), 1 < this.volpan ? (0 < h && h != d && m.push("%%MIDI channel " + h + "\n"), 
+   0 < t && m.push("%%MIDI program " + (t - 1) + "\n"), 0 <= u && m.push("%%MIDI control 7 " + u + "\n"), 
+   0 <= l && m.push("%%MIDI control 10 " + l + "\n")) : 0 < this.volpan && (f.length && 0 < h && m.push("%%MIDI channel " + h + "\n"), 
+   0 < t && m.push("%%MIDI program " + (t - 1) + "\n"));
+   for (h = 0; h < f.length; ++h) c = f[h].nt, u = f[h].step, t = f[h].midi, (l = f[h].nhd) || (l = "normal"), 
+   (g(c) != t || c != u) && (0 < this.volpan && m.push("%%MIDI drummap " + c + " " + t + "\n"), 
+   m.push("I:percmap " + c + " " + u + " " + t + " " + l + "\n"), this.dojef = this.tstep);
+   v != this.cmpL[d - 1] && m.push("L:1/" + this.cmpL[d - 1] + "\n");
   }
-  this.outlist = p.concat(this.outlist);
- }, E.prototype.matchSlur = function(e, t, n, i, s, a) {
+  if (this.outlist = m.concat(this.outlist), (n = Object.keys(a).sort()).length) {
+   p = [];
+   var y = this.shiftStem ? '<g id="kop%s" class="bf"><use xlink:href="#clr"></use><text x="-2" y="3">%s</text></g>\n'.replace("-2", "-5") : '<g id="kop%s" class="bf"><use xlink:href="#clr"></use><text x="-2" y="3">%s</text></g>\n', _ = this.shiftStem ? '<g id="kop%s" class="bf"><use xlink:href="#clr2"></use><text x="-2" y="3">%s</text></g>\n'.replace("-2", "-5") : '<g id="kop%s" class="bf"><use xlink:href="#clr2"></use><text x="-2" y="3">%s</text></g>\n';
+   s = this.shiftStem ? R.map(function(e) {
+    return e.replace("-3", "-6");
+   }) : R, n.forEach(function(e) {
+    p.push(1 < e.length ? r(_, [ e, e ]) : r(y, [ e, e ]));
+   }), this.outlist = s.concat(p, "</defs>\n%%endsvg\n", this.outlist);
+  }
+ }, d.prototype.writeall = function() {
+  var e = S.outlist.join("");
+  return this.dojef && (e = function(e) {
+   var t, n, r, i = {
+    diamond: 1,
+    triangle: 1,
+    square: 1,
+    normal: 1
+   }, s = B, a = "default", o = {
+    default: []
+   };
+   for (e = e.split("\n"), t = 0; t < e.length; ++t) 0 <= (n = e[t]).indexOf("I:percmap") && ((r = (n = n.split(" ").map(function(e) {
+    return e.trim();
+   }))[4]) in i && (r = r + "+," + r), n = "%%map perc" + a + " " + n[1] + " print=" + n[2] + " midi=" + n[3] + " heads=" + r, 
+   o[a].push(n)), 0 <= n.indexOf("V:") && (r = n.match(/V:\s*(\S+)/)) && ((a = r[1]) in o || (o[a] = []));
+   for (i = Object.keys(o).sort(), t = 0; t < i.length; ++t) s = s.concat(o[i[t]]);
+   for (t = 0; t < e.length; ++t) 0 <= (n = e[t]).indexOf("I:percmap") || (0 <= n.indexOf("V:") || 0 <= n.indexOf("K:") ? ((r = n.match(/V:\s*(\S+)/)) && (a = r[1]), 
+   0 == o[a].length && (a = "default"), s.push(n), 0 <= n.indexOf("perc") && -1 == n.indexOf("map=") && (n += " map=perc"), 
+   0 <= n.indexOf("map=perc") && 0 < o[a].length && s.push("%%voicemap perc" + a), 
+   0 <= n.indexOf("map=off") && s.push("%%voicemap")) : s.push(n));
+   return s.join("\n");
+  }(e)), [ e, this.infolist.join("\n") ];
+ }, T.prototype.matchSlur = function(e, t, n, r, s, a) {
   if (-1 != [ "start", "stop" ].indexOf(e)) if (t || (t = "1"), t in this.slurBuf) {
    var o = (u = this.slurBuf[t])[0], c = u[1], l = u[2], u = u[3];
-   e != o ? (n != c || "start" != o || u && a || (l.before = "(" + l.before, i.after += ")"), 
-   delete this.slurBuf[t]) : (r("double slur numbers %s-%s in part %d, measure %d, voice %d note %s, first discarded", [ e, t, this.msr.ixp + 1, this.msr.ixm + 1, n, i.ns ]), 
-   this.slurBuf[t] = [ e, n, i, s ]);
-  } else this.slurBuf[t] = [ e, n, i, s ];
- }, E.prototype.doNotations = function(e, t) {
-  for (var n = Object.keys(S).sort(), r = 0; r < n.length; ++r) {
-   var i = n[r], s = S[i];
-   t.find(i).length && (e.before += s);
+   e != o ? (n != c || "start" != o || u && a || (l.before.unshift("("), r.after += ")"), 
+   delete this.slurBuf[t]) : (i("double slur numbers %s-%s in part %d, measure %d, voice %d note %s, first discarded", [ e, t, this.msr.ixp + 1, this.msr.ixm + 1, n, r.ns ]), 
+   this.slurBuf[t] = [ e, n, r, s ]);
+  } else this.slurBuf[t] = [ e, n, r, s ];
+ }, T.prototype.doNotations = function(t, n, i) {
+  for (var s = Object.keys(A).sort(), a = 0; a < s.length; ++a) {
+   var o = s[a], c = A[o];
+   n.find(o).length && t.before.push(c);
   }
-  if ((n = t.find("technical>fingering")).length && (e.before += "!" + n.text() + "!"), 
-  (n = t.find("ornaments>wavy-line")).length) switch (n.attr("type")) {
+  if ((a = n.find("ornaments>tremolo")).length && (s = "start" == (o = a.attr("type")) ? "-" : "", 
+  "single" != o && (t.fact = null), "stop" != o && (a = e(parseInt(a.text()), "/"), 
+  t.before.unshift("!" + a + s + "!"))), s = n.find("technical>fingering"), i || s.each(function() {
+   t.before.push("!" + $(this).text() + "!");
+  }), (s = n.find("technical>string")).length && i && (this.tstep ? (i = n.find("technical>fret")).length && (t.tab = [ s.eq(0).text(), i.eq(0).text() ]) : s.each(function() {
+   var e = "!" + $(this).text() + "!";
+   0 > t.ntdec.indexOf(e) && (t.ntdec += e);
+  })), (i = n.find("ornaments>wavy-line")).length) switch (i.attr("type")) {
   case "start":
-   e.before = "!trill(!" + e.before;
+   t.before.unshift("!trill(!");
    break;
 
   case "stop":
-   e.after += "!trill)!";
+   t.before.unshift("!trill)!");
   }
- }, E.prototype.ntAbc = function(e, t, n, i) {
-  var s = e;
-  4 < (t += this.clefOct[this.curStf[i]] || 0) && (s = e.toLowerCase()), 5 < t && (s += Array(t - 5 + 1).join("'")), 
-  4 > t && (s += Array(4 - t + 1).join(",")), t = n.find("accidental").text();
-  var a = n.find("pitch>alter").text();
-  !a && this.msralts[e] && (a = 0);
-  var o = s + "#" + i;
-  if ("" === t && "" === a) return s;
-  if ("" != t) a = {
+  0 == (i = n.find("glissando")).length && (i = n.find("slide")), i.length && (n = "wavy" == i.attr("line-type") ? "~" : "-", 
+  "start" == i.attr("type") ? t.before.unshift(r("!%s(!", [ n ])) : "stop" == i.attr("type") && t.before.unshift(r("!%s)!", [ n ])));
+ }, T.prototype.tabnote = function(e, t, n, r, s) {
+  var a, o, c, l, u;
+  for (11 < (l = this.step_map[t] + parseInt(e || "0")) && (n += 1, l -= 12), 0 > l && (--n, 
+  l += 12), e = s.tab[0], t = s.tab[1], u = 0; 4 > u && (a = this.note_alts[u % 3][l], 
+  c = n, -1 < [ "^B", "^^B" ].indexOf(a) && --c, -1 < [ "_C", "__C" ].indexOf(a) && (c += 1), 
+  (-1 < a.indexOf("/") || 3 == u) && (c = 9), a = C(a, c), c = (o = this.tabmap[[ r, a ]] || [ "", "" ])[0], 
+  o = o[1], c); ++u) {
+   if (e == c) return a;
+   3 == u && (i("rejected: voice %d note %s string %s fret %s remains: string %s fret %s", [ r, a, e, t, c, o ]), 
+   s.tab = [ c, o ]);
+  }
+  return this.tabmap[[ r, a ]] = s.tab, a;
+ }, T.prototype.ntAbc = function(e, t, n, r, s, a) {
+  t += this.clefOct[this.curStf[r]] || 0;
+  var o = n.find("accidental").text(), c = n.find("pitch>alter").text();
+  if (s.tab) return this.tabnote(c, e, t, r, s);
+  if (a && this.tstep && i("no string notation found for note %s in voice %d", [ s = [ "__", "_", "", "^", "^^" ][parseInt(c || "0") + 2] + C(e, t), r ]), 
+  t = C(e, t), !c && this.msralts[e] && (c = 0), s = t + "#" + r, !c && s in this.curalts && (c = 0), 
+  "" === o && "" === c) return t;
+  if ("" != o) c = {
    "double-flat": -2,
    "flat-flat": -2,
    flat: -1,
@@ -13868,66 +14063,67 @@ Downloadify = window.Downloadify = {
    sharp: 1,
    "sharp-sharp": 2,
    "double-sharp": 2
-  }[t]; else {
-   if (a = parseInt(a), o in this.curalts) {
-    if (a == this.curalts[o]) return s;
-   } else if (a == (this.msralts[e] || 0)) return s;
-   if (n.find("tie").map(function() {
-    return $(this).attr("type");
-   }).get().some(function(e) {
-    return "stop" == e;
-   })) return s;
-   r("accidental %d added in part %d, measure %d, voice %d note %s", [ a, this.msr.ixp + 1, this.msr.ixm + 1, i + 1, s ]);
+  }[o]; else {
+   if (c = parseFloat(c), s in this.curalts) {
+    if (c == this.curalts[s]) return t;
+   } else if (c == (this.msralts[e] || 0)) return t;
+   if (n.find("tie").add(n.find("notations>tied")).get().some(function(e) {
+    return "stop" == e.getAttribute("type");
+   })) return t;
+   i("accidental %d added in part %d, measure %d, voice %d note %s", [ c, this.msr.ixp + 1, this.msr.ixm + 1, r + 1, t ]);
   }
-  return this.curalts[o] = a, [ "__", "_", "=", "^", "^^" ][a + 2] + s;
- }, E.prototype.doNote = function(e) {
-  var t = new c(0, null), n = parseInt(e.find("voice").text() || "1");
-  this.isSib && (n += 100 * (e.find("staff").text() || 1));
-  var r = 0 < e.find("chord").length, i = e.find("pitch>step").text() || e.find("unpitched>display-step").text(), s = e.find("pitch>octave").text() || e.find("unpitched>display-octave").text(), a = 0 < e.find("rest").length, o = e.find("time-modification>actual-notes").text();
-  if (o) {
-   var l = e.find("time-modification>normal-notes").text();
-   t.fact = [ parseInt(o), parseInt(l) ];
+  return this.curalts[s] = c, [ "__", "_", "=", "^", "^^" ][c + 2] + t;
+ }, T.prototype.doNote = function(t) {
+  var n = new l(0, null), i = parseInt(t.find("voice").text() || "1");
+  this.isSib && (i += 100 * (t.find("staff").text() || 1));
+  var s = 0 < t.find("chord").length, a = t.find("pitch>step").text() || t.find("unpitched>display-step").text(), o = t.find("pitch>octave").text() || t.find("unpitched>display-octave").text(), c = 0 < t.find("rest").length, u = t.find("time-modification>actual-notes").text();
+  if (u) {
+   var f = t.find("time-modification>normal-notes").text();
+   n.fact = [ parseInt(u), parseInt(f) ];
   }
-  if (t.tup = e.find("notations>tuplet").map(function() {
+  if (n.tup = t.find("notations>tuplet").map(function() {
    return $(this).attr("type");
-  }).get(), l = e.find("duration").text(), o = e.find("grace"), t.grace = 0 < o.length, 
-  t.before = "", t.after = "", t.grace && !this.ingrace && (this.ingrace = 1, t.before = "{", 
-  "yes" == o.attr("slash") && (t.before += "/")), (o = !t.grace && this.ingrace) && (this.ingrace = 0, 
-  this.msc.lastnote.after += "}"), a || "no" != e.attr("print-object")) {
-   if (l && !t.grace || (l = 0), t.dur = parseInt(l), a || i && s || (this.msc.cnt.inc("nopt", n), 
-   s = 5, i = "E"), (l = e.find("notations")).length && this.doNotations(t, l), a = a ? "z" : this.ntAbc(i, parseInt(s), e, n), 
-   e.find("unpitched").length) {
-    l = this.curClef[this.curStf[n]], i = function(e, t, n, r) {
-     var i;
-     return i = 0, 0 <= n.indexOf("stafflines=1") && (i += 4), !r && 0 <= n.indexOf("bass") && (i += 12), 
-     i && (e = (n = "CDEFGAB".split(""))[(i = n.indexOf(e) + i) % 7], t += Math.floor(i / 7)), 
-     4 < t && (e = e.toLowerCase()), 5 < t && (e += Array(t - 5 + 1).join("'")), 4 > t && (e += Array(4 - t + 1).join(",")), 
-     e;
-    }(i, parseInt(s), l, this.tstep), s = (s = e.find("instrument")).length ? s.attr("id") : "dummyId", 
-    s = this.drumInst[s] || v(a);
-    var u = (l = e.find("notehead")).text().replace(" ", "-");
-    "yes" == l.attr("filled") && (u += "+"), "x" == u && (a = "^" + a.replace(/\^/g, "").replace(/_/g, "")), 
-    "circle-x" != u && "diamond" != u || (a = "_" + a.replace(/\^/g, "").replace(/_/g, "")), 
-    this.drumNotes[n + ";" + a] = [ i, s, u ];
-   }
-   for (-1 < (i = e.find("tie").map(function() {
-    return $(this).attr("type");
-   }).get()).indexOf("start") && (a += "-"), i = e.find("beam").map(function() {
-    return $(this).text();
-   }).get(), t.beam = -1 < i.indexOf("continue") || -1 < i.indexOf("end") || t.grace, 
-   i = e.find("lyric"), s = l = 0; s < i.length; ++s) {
-    u = $(i[s]);
-    var f = parseInt((u.attr("number") || "1").replace(/^.*verse/, ""));
-    0 == f ? f = l + 1 : l = f, t.lyrs[f] = k(u);
-   }
-   for (r ? this.msc.addChord(a) : (r = parseInt(e.find("staff").text() || "1"), this.curStf[n] != r && (i = r - this.curStf[n], 
-   this.curStf[n] = r, this.msc.appendElem(n, "[I:staff " + (0 < i ? "+" : "") + i + "]")), 
-   this.msc.appendNote(n, t, a)), i = e.find("notations>slur"), s = 0; s < i.length; ++s) e = $(i[s]), 
-   this.matchSlur(e.attr("type"), e.attr("number"), n, this.msc.lastnote, t.grace, o);
-  } else this.msc.cnt.inc("nopr", n);
- }, E.prototype.doAttr = function(n) {
-  var r, i, s, a, o, c, l, u, f, p, d, h;
-  for (r = {
+  }).get(), f = t.find("duration").text(), u = t.find("grace"), n.grace = 0 < u.length, 
+  n.before = [ "" ], n.after = "", n.grace && !this.ingrace && (this.ingrace = 1, 
+  n.before = [ "{" ], "yes" == u.attr("slash") && n.before.push("/")), (u = !n.grace && this.ingrace) && (this.ingrace = 0, 
+  this.msc.lastnote.after += "}"), f && !n.grace || (f = 0), !c && "no" == t.attr("print-object")) {
+   if (s) return;
+   c = 1;
+  }
+  n.dur = parseInt(f), c || a && o || (this.msc.cnt.inc("nopt", i), o = 5, a = "E");
+  f = 0 == (this.curClef && this.curClef[this.curStf[i]] || "").indexOf("tab");
+  (p = t.find("notations")).length && this.doNotations(n, p, f), p = t.find("stem"), 
+  !c && p.length && "none" == p.text() && (!f || i in this.hasStems || this.tstep) && (n.before.push("s"), 
+  S.stemless = 1), (p = t.find("accidental")).length && "yes" == p.attr("parentheses") && (n.ntdec += "!courtesy!"), 
+  c = c ? "no" == t.attr("print-object") || f ? "x" : "z" : this.ntAbc(a, parseInt(o), t, i, n, f), 
+  t.find("unpitched").length && (f = this.curClef[this.curStf[i]], a = function(t, n, r, i) {
+   var s;
+   return s = 0, 0 <= r.indexOf("stafflines=1") && (s += 4), !i && 0 <= r.indexOf("bass") && (s += 12), 
+   s && (t = (r = "CDEFGAB".split(""))[(s = r.indexOf(t) + s) % 7], n += Math.floor(s / 7)), 
+   4 < n && (t = t.toLowerCase()), 5 < n && (t += e(n - 5, "'")), 4 > n && (t += e(4 - n, ",")), 
+   t;
+  }(a, parseInt(o), f, this.tstep), o = (o = t.find("instrument")).length ? o.attr("id") : "dummyId", 
+  o = this.drumInst[o] || g(c), "x" == (p = (f = t.find("notehead")).text().replace(" ", "-")) && (c = "^" + c.replace(/\^/g, "").replace(/_/g, "")), 
+  "circle-x" != p && "diamond" != p && "triangle" != p || (c = "_" + c.replace(/\^/g, "").replace(/_/g, "")), 
+  "yes" == f.attr("filled") && (p += "+"), "no" == f.attr("filled") && (p += "-"), 
+  this.drumNotes[i + ";" + c] = [ a, o, p ]), (a = t.find("tie").add(t.find("notations>tied")).get()).some(function(e) {
+   return "start" == e.getAttribute("type");
+  }) && (c += "-"), a = t.find("beam").map(function() {
+   return $(this).text();
+  }).get(), n.beam = -1 < a.indexOf("continue") || -1 < a.indexOf("end") || n.grace, 
+  a = t.find("lyric");
+  for (o = f = 0; o < a.length; ++o) {
+   var p = $(a[o]), d = parseInt((p.attr("number") || "1").replace(/^.*verse/, ""));
+   0 == d ? d = f + 1 : f = d, n.lyrs[d] = E(p);
+  }
+  for (a = t.find("stem").text(), !this.wstems || "up" != a && "down" != a || a == this.stemDir[i] || (this.stemDir[i] = a, 
+  this.msc.appendElem(i, r("[I:stemdir %s]", [ a ]))), s ? this.msc.addChord(n, c) : (s = parseInt(t.find("staff").text() || "1"), 
+  this.curStf[i] != s && (a = s - this.curStf[i], this.curStf[i] = s, this.msc.appendElem(i, "[I:staff " + (0 < a ? "+" : "") + a + "]")), 
+  this.msc.appendNote(i, n, c)), a = t.find("notations>slur"), o = 0; o < a.length; ++o) t = $(a[o]), 
+  this.matchSlur(t.attr("type"), t.attr("number"), i, this.msc.lastnote, n.grace, u);
+ }, T.prototype.doAttr = function(e) {
+  var i, s, a, o, c, l, u, f, p, d, h, m;
+  i = {
    C1: "alto1",
    C2: "alto2",
    C3: "alto",
@@ -13935,77 +14131,173 @@ Downloadify = window.Downloadify = {
    F4: "bass",
    F3: "bass3",
    G2: "treble",
-   TAB: "",
+   TAB: "tab",
    percussion: "perc"
-  }, (i = n.find("divisions").text()) && (this.msr.divs = parseInt(i)), i = parseInt(n.find("transpose>chromatic").text() || "0"), 
-  s = n.find("key>fifths").first().text(), a = 0 == this.msc.tijd && 0 == this.msr.ixm, 
-  s && (o = parseInt(s), c = n.find("key>mode").first().text() || "major", f = "FCGDAEB".split(""), 
-  u = "Cb Gb Db Ab Eb Bb F C G D A E B F# C#".split(" "), l = "Ab Eb Bb F C G D A E B F# C# G# D# A#".split(" "), 
-  s = "", "major" == c && (s = u[7 + o]), "minor" == c && (s = l[7 + o] + "min"), 
-  s = (o = [ s, o = 0 <= o ? t(f.slice(0, o), e(o, 1)) : t(f.slice(o), e(-o, -1)) ])[0], 
-  this.msralts = o[1], a && !i && "none" == C.key ? C.key = s : s == C.key && a || (this.msr.attr += "[K:" + s + "]")), 
-  (s = n.find("time>beats").text()) && (c = s + "/" + (o = n.find("time>beat-type").text()), 
-  a ? C.mtr = c : this.msr.attr += "[M:" + c + "]", this.msr.mdur = this.msr.divs * parseInt(s) * 4 / parseInt(o)), 
-  (s = n.find("transpose>octave-change").text() || "") && (i += 12 * parseInt(s)), 
-  c = n.find("clef"), o = 0; o < c.length; o++) if (l = $(c[o]), s = parseInt(l.attr("number") || "1"), 
-  f = r[(u = l.find("sign").text()) + (f = "percussion" != u && l.find("line").text() || "")] || "", 
-  f += {
-   "-2": "-15",
-   "-1": "-8",
-   1: "+8",
-   2: "+15"
-  }[u = l.find("clef-octave-change").text() || "0"] || "", this.clefOct[s] = -parseInt(u), 
-  i && (f += " transpose=" + i), (u = n.find("staff-details>staff-lines").text()) && (f += " stafflines=" + u), 
-  this.curClef[s] = f, a) this.clefMap[s] = f; else for (l = this.stfMap[s], h = 0; h < l.length; ++h) p = l[h], 
-  s != this.curStf[p] && (d = s - this.curStf[p], this.curStf[p] = s, u = 0 < d ? "+" : "", 
-  this.msc.appendElem(p, "[I:staff " + u + d + "]")), this.msc.appendElem(p, "[K:" + f + "]");
- }, E.prototype.doDirection = function(e) {
-  var t, n, r, i, s, a, o, c, l;
-  if (r = parseInt(e.find("staff").first().text() || "1"), r = this.stfMap[r][0], 
-  t = e.attr("placement"), (n = e.find("sound")).length) {
-   if (a = n.find("midi-instrument")) {
-    for (l in o = n.find("midi-instrument>midi-program").text(), c = n.find("midi-instrument>midi-channel").text(), 
-    this.vceInst) this.vceInst[l] == a.attr("id") && (r = l);
-    (l = (o ? o - 1 : c) + "") && 0 < C.volpan && this.msc.appendElem(r, "[I:MIDI= " + (o ? "program" : "channel") + " " + l + "]");
+  }, (s = e.find("divisions").text()) && (this.msr.divs = parseInt(s)), s = parseInt(e.find("transpose>chromatic").text() || "0"), 
+  a = e.find("key>fifths").first().text(), o = 0 == this.msc.tijd && 0 == this.msr.ixm, 
+  a && (c = function(e, r) {
+   var i, s;
+   return s = {
+    maj: 8,
+    ion: 8,
+    m: 11,
+    min: 11,
+    aeo: 11,
+    mix: 9,
+    dor: 10,
+    phr: 12,
+    lyd: 7,
+    loc: 13,
+    non: 8
+   }, r = r.slice(0, 3).toLowerCase(), s = "Fb Cb Gb Db Ab Eb Bb F C G D A E B F# C# G# D# A# E# B#".split(" ")[s[r] + e] + (8 != s[r] ? r : ""), 
+   i = "FCGDAEB".split(""), [ s, i = 0 <= e ? n(i.slice(0, e), t(e, 1)) : n(i.slice(e), t(-e, -1)) ];
+  }(parseInt(a), e.find("key>mode").first().text() || "major"), a = c[0], this.msralts = c[1], 
+  o && !s && "none" == S.key ? S.key = a : a == S.key && o || (this.msr.attr += "[K:" + a + "]")), 
+  (a = e.find("time>beats").text()) && (l = a + "/" + (c = e.find("time>beat-type").text()), 
+  o ? S.mtr = l : this.msr.attr += "[M:" + l + "]", this.msr.mdur = this.msr.divs * parseInt(a) * 4 / parseInt(c));
+  var v = this;
+  for (e.find("measure-style").each(function() {
+   var e, t, n, i, s, a, o;
+   e = parseInt($(this).attr("number") || "1"), t = v.stfMap[e], $(this).find("measure-repeat").each(function() {
+    "start" == (n = $(this).attr("type")) ? (v.repeat_str[e] = [ v.msr.ixm, $(this).text() ], 
+    t.forEach(function(t) {
+     v.msc.insertElem(t, v.repeat_str[e]);
+    })) : "stop" == n && (i = v.repeat_str[e][0], a = v.repeat_str[e][1], s = v.msr.ixm - i, 
+    a ? (o = a + " ", s /= parseInt(a)) : o = "", v.repeat_str[e][0] = r("[I:repeat %s%d]", [ o, s ]), 
+    delete v.repeat_str[e]);
+   });
+  }), (a = e.find("transpose>octave-change").text() || "") && (s += 12 * parseInt(a)), 
+  l = e.find("clef"), c = 0; c < l.length; c++) {
+   if (u = $(l[c]), a = parseInt(u.attr("number") || "1"), p = i[(f = u.find("sign").text()) + (p = "percussion" != f && "TAB" != f && u.find("line").text() || "")] || "", 
+   p += {
+    "-2": "-15",
+    "-1": "-8",
+    1: "+8",
+    2: "+15"
+   }[u = u.find("clef-octave-change").text() || "0"] || "", this.clefOct[a] = -parseInt(u), 
+   s && (p += " transpose=" + s), (d = e.find("staff-details")).length && (d.attr("number") || 1) == a) {
+    (u = d.find("staff-lines").text()) && (p += " stafflines=" + (f = "3" == u && "TAB" == f ? "|||" : u), 
+    this.stafflines = parseInt(u));
+    var g = [];
+    d.find("staff-tuning").each(function() {
+     g.push($(this).find("tuning-step").text() + $(this).find("tuning-octave").text());
+    }), g.length && (p += r(" strings=%s", [ g.join(",") ])), (f = d.find("capo").text()) && (p += r(" capo=%s", [ f ]));
    }
-   (n = n.attr("tempo")) && (n = -1 < n.indexOf(".") ? parseFloat(n).toFixed(2) : parseInt(n), 
-   0 == this.msc.tijd && 0 == this.msr.ixm ? C.tempo = n : this.msc.appendElem(r, "[Q:1/4=" + n + "]"));
+   if (this.curClef[a] = p, o) this.clefMap[a] = p; else for (u = this.stfMap[a], m = 0; m < u.length; ++m) d = u[m], 
+   a != this.curStf[d] && (h = a - this.curStf[d], this.curStf[d] = a, f = 0 < h ? "+" : "", 
+   this.msc.appendElem(d, "[I:staff " + f + h + "]")), this.msc.appendElem(d, "[K:" + p + "]");
   }
-  if ((e = e.children("direction-type")).length) {
-   if ((n = e.find("wedge")).length) {
-    switch (n.attr("type")) {
-    case "crescendo":
-     i = "!<(!", this.wedge_type = "<";
+ }, T.prototype.findVoice = function(e, t) {
+  var n, r, i, s;
+  if (i = t.eq(e), n = parseInt(i.find("staff").text() || "1"), r = (r = this.stfMap[n]).length ? r[0] : 1, 
+  this.dirtov1) return {
+   sn: n,
+   v: r,
+   v1: r
+  };
+  for (s = e + 1; s < t.length; ++s) {
+   if ("note" == (i = t.eq(s)).prop("nodeName")) return n = parseInt(i.find("staff").text() || "1"), 
+   i = parseInt(i.find("voice").text() || "1"), this.isSib && (i += 100 * n), {
+    sn: n = this.vce2stf[i],
+    v: i,
+    v1: r
+   };
+   if ("backup" == i.prop("nodeName")) break;
+  }
+  return {
+   sn: n,
+   v: r,
+   v1: r
+  };
+ }, T.prototype.doDirection = function(e, t, n) {
+  function s(e, t, n, r, i) {
+   t && (n = 0 <= t.indexOf("!8v") ? e.stfMap[i] : [ n ]).forEach(function(n) {
+    null != r ? e.msc.appendElemT(n, t.replace("(", ")").replace("ped", "ped-up"), r) : e.msc.appendElem(n, t);
+   });
+  }
+  function a(e, t, n, r) {
+   var a, o, l;
+   if (l = {
+    down: "!8va(!",
+    up: "!8vb(!",
+    crescendo: "!<(!",
+    diminuendo: "!>(!",
+    start: "!ped!"
+   }, u = c.attr("type") || "", a = t + (c.attr("number") || "1"), u in l) l = l[u], 
+   a in e.dirStk ? (o = e.dirStk[a], delete e.dirStk[a], "stop" == o.type ? s(e, l, n, o.tijd, r) : (i("%s direction %s has no stop in part %d, measure %d, voice %d", [ t, o.type, e.msr.ixp + 1, e.msr.ixm + 1, n + 1 ]), 
+   e.dirStk[a] = {
+    type: u,
+    vs: n
+   })) : e.dirStk[a] = {
+    type: u,
+    vs: n
+   }; else {
+    if ("stop" != u) throw "wrong direction type";
+    a in e.dirStk ? (o = e.dirStk[a], delete e.dirStk[a], u = o.type, n = o.vs, "stop" == u ? (i("%s direction %s has double stop in part %d, measure %d, voice %d", [ t, u, e.msr.ixp + 1, e.msr.ixm + 1, n + 1 ]), 
+    l = "") : l = l[o.type].replace("(", ")").replace("ped", "ped-up")) : (e.dirStk[a] = {
+     type: "stop",
+     tijd: e.msc.tijd
+    }, l = "");
+   }
+   s(e, l, n, null, r);
+  }
+  var o, c, l, u, f, p, d, h, v, g, y, _, b = "";
+  o = e.attr("placement"), n = (f = this.findVoice(t, n)).sn, t = f.v, f = f.v1;
+  var x = "", w = {
+   dacapo: "D.C.",
+   dalsegno: "D.S.",
+   tocoda: "dacoda",
+   fine: "fine",
+   coda: "O",
+   segno: "S"
+  };
+  if ((c = e.find("sound")).length) {
+   if ((v = c.find("midi-instrument")).length) {
+    for (y in l = c.find("midi-instrument>midi-program").text(), g = c.find("midi-instrument>midi-channel").text(), 
+    this.vceInst) this.vceInst[y] == v.attr("id") && (t = y);
+    (y = (l ? l - 1 : g) + "") && 0 < S.volpan && this.msc.appendElem(t, "[I:MIDI= " + (l ? "program" : "channel") + " " + y + "]");
+   }
+   for (h in (l = c.attr("tempo")) && (l = parseFloat(l).toFixed(0), _ = [ 1, 4 ]), 
+   w) if (c.attr(h)) {
+    x = w[h];
+    break;
+   }
+  }
+  for (y = e.children("direction-type"), w = 0; w < y.length; ++w) {
+   h = {
+    whole: [ 1, 1 ],
+    half: [ 1, 2 ],
+    quarter: [ 1, 4 ],
+    eighth: [ 1, 8 ]
+   }, (v = (e = $(y[w])).find("metronome")).length && (_ = (c = v.find("beat-unit").text() || "") in h ? h[c] : h.quarter, 
+   v.find("beat-unit-dot").length && (_ = m(3 * _[0], 2 * _[1])), (h = v.find("per-minute").text().match(/[.\d]+/)) && (l = h[0])), 
+   (c = e.find("wedge")).length && a(this, "wedge", t), 0 == (h = e.find("words")).length && (h = e.find("rehearsal"));
+   for (v = 0; v < h.length; ++v) {
+    if (x) {
+     this.msc.appendElem(t, r("!%s!", [ x ]), 1);
      break;
-
-    case "diminuendo":
-     i = "!>(!", this.wedge_type = ">";
-     break;
-
-    case "stop":
-     i = "<" == this.wedge_type ? "!<)!" : "!>)!";
-     break;
-
-    default:
-     raise("wrong wedge type");
     }
-    this.msc.appendElem(r, i);
+    p = "below" == o ? "_" : "^", g = $(h[v]), 0 > parseFloat(g.attr("default-y") || "0") && (p = "_"), 
+    b += g.text().replace(/"/g, '\\"').replace(/\n/g, "\\n");
    }
-   for (s in (i = e.find("words").eq(0)).length && (t = "below" == t ? "_" : "^", 0 > parseFloat(i.attr("default-y") || "0") && (t = "_"), 
-   (i = i.text().replace(/"/g, '\\"').replace(/\n/g, " ").trim()) && this.msc.appendElem(r, '"' + t + i + '"')), 
-   O) t = O[s], e.find("dynamics>" + s).length && this.msc.appendElem(r, t);
-   e.find("coda").length && this.msc.appendElem(r, "O"), e.find("segno").length && this.msc.appendElem(r, "S");
+   for (d in b = b.trim(), N) h = N[d], e.find("dynamics>" + d).length && this.msc.appendElem(t, h, 1);
+   e.find("coda").length && this.msc.appendElem(t, "O", 1), e.find("segno").length && this.msc.appendElem(t, "S", 1), 
+   (c = e.find("octave-shift")).length && a(this, "octave-shift", t, n), (c = e.find("pedal")).length && this.ped && (this.pedVce || (this.pedVce = t), 
+   a(this, "pedal", this.pedVce)), "diatonic fretting" == e.find("other-direction").text() && (this.diafret = 1);
   }
- }, E.prototype.doHarmony = function(e) {
-  var t, n, r, i, s, a, o, c, l;
-  t = parseInt(e.children("staff").text() || "1"), t = this.stfMap[t][0], n = {
+  l && (l = parseFloat(l).toFixed(0), 0 == this.msc.tijd && 0 == this.msr.ixm ? (S.tempo = l, 
+  S.tempo_units = _) : this.msc.appendElem(f, r("[Q:%d/%d=%s]", [ _[0], _[1], l ]))), 
+  b && this.msc.appendElem(t, '"' + p + b + '"', 1);
+ }, T.prototype.doHarmony = function(e, t, n) {
+  var r, i, s, a, o, c, l;
+  n = this.findVoice(t, n).v, r = {
    major: "",
    minor: "m",
    augmented: "+",
    diminished: "dim",
    dominant: "7",
    "half-diminished": "m7b5"
-  }, r = {
+  }, t = {
    major: "maj",
    dominant: "",
    minor: "m",
@@ -14025,27 +14317,27 @@ Downloadify = window.Downloadify = {
    0: "",
    "-1": "b"
   }, a = e.find("root>root-step", "").text(), o = s[e.find("root>root-alter").text()] || "", 
-  c = "", (l = e.find("kind").text()) in n ? l = n[l] : -1 < l.indexOf("-") ? (l = (n = l.split("-"))[0], 
-  n = n[1], 0 == (l = (r[l] || "") + (i[n] || "")).indexOf("sus") && (c = l, l = "")) : "none" == l && (l = e.find("kind").attr("text")), 
-  r = e.find("degree");
-  for (i = 0; i < r.length; ++i) l += (s[(n = $(r[i])).find("degree-alter").text()] || "") + n.find("degree-value").text();
+  c = "", (l = e.find("kind").text()) in r ? l = r[l] : -1 < l.indexOf("-") ? (l = (r = l.split("-"))[0], 
+  r = r[1], 0 == (l = (t[l] || "") + (i[r] || "")).indexOf("sus") && (c = l, l = "")) : "none" == l && (l = e.find("kind").attr("text")), 
+  i = e.find("degree");
+  for (t = 0; t < i.length; ++t) l += (s[(r = $(i[t])).find("degree-alter").text()] || "") + r.find("degree-value").text();
   l = l.replace("79", "9").replace("713", "13").replace("maj6", "6"), e = e.find("bass>bass-step").text() + (s[e.find("bass>bass-alter").text()] || ""), 
-  this.msc.appendElem(t, '"' + a + o + l + c + (e && "/" + e) + '"');
- }, E.prototype.doBarline = function(e) {
+  this.msc.appendElem(n, '"' + a + o + l + c + (e && "/" + e) + '"', 1);
+ }, T.prototype.doBarline = function(e) {
   var t = e.find("repeat"), n = 0;
-  return t.length && (n = t.attr("direction")), this.unfold ? n ? "forward" == n ? 1 : 2 : 0 : ("right" == e.attr("location") && ("light-light" == (t = e.find("bar-style").text()) ? this.msr.rline = "||" : "light-heavy" == t && (this.msr.rline = "|]")), 
+  return t.length && (n = t.attr("direction")), this.unfold ? n ? "forward" == n ? 1 : 2 : 0 : ("right" == (e.attr("location") || "right") && ("light-light" == (t = e.find("bar-style").text()) ? this.msr.rline = "||" : "light-heavy" == t && (this.msr.rline = "|]")), 
   n && ("forward" == n ? this.msr.lline = ":" : this.msr.rline = ":|"), (e = e.find("ending")).length && ("start" == e.attr("type") ? (e = (e.attr("number") || "1").replace(/\./g, "").replace(/ /g, ""), 
   /^[\d,]+$/.test(e) || (e = '"' + e.trim() + '"'), this.msr.lnum = e) : "|" == this.msr.rline && (this.msr.rline = "||")), 
   0);
- }, E.prototype.doPrint = function(e) {
+ }, T.prototype.doPrint = function(e) {
   if ("yes" == e.attr("new-system") || "yes" == e.attr("new-page")) return this.nolbrk ? "" : "$";
- }, E.prototype.doPartList = function(e) {
-  var t, r, i, s, a, o, c, l, u, f;
+ }, T.prototype.doPartList = function(e) {
+  var t, n, i, s, a, o, c, l, u, f;
   for (s = e.find("part-list>score-part"), t = 0; t < s.length; ++t) {
-   for (r = s[t], a = {}, o = $(r).find("midi-instrument"), r = 0; r < o.length; ++r) {
-    for (c = $(o[r]), u = [ "midi-channel", "midi-program", "volume", "pan" ], l = [], 
+   for (n = s[t], a = {}, o = $(n).find("midi-instrument"), n = 0; n < o.length; ++n) {
+    for (c = $(o[n]), u = [ "midi-channel", "midi-program", "volume", "pan" ], l = [], 
     i = 0; i < u.length; ++i) f = u[i], l.push(c.find(f).text() || this.midDflt[i]);
-    -90 <= (i = l[3]) && 90 >= i && (i = (i + 90) / 180 * 127), a[c.attr("id")] = [ parseInt(l[0]), parseInt(l[1]), parseFloat(l[2]), i ], 
+    -90 <= (i = 1 * l[3]) && 90 >= i && (i = (i + 90) / 180 * 127), a[c.attr("id")] = [ parseInt(l[0]), parseInt(l[1]), 1.27 * parseFloat(l[2]), i ], 
     (l = c.find("midi-unpitched").text()) && (this.drumInst[c.attr("id")] = l - 1);
    }
    this.instMid.push(a);
@@ -14070,28 +14362,28 @@ Downloadify = window.Downloadify = {
    return n = (o = e(t, n, r))[0], t = o[1], [ [ [ "name_tuple", i.find("part-name").text() || "", i.find("part-abbreviation").text() || "" ] ].concat(n), t ];
   }(l = function(e) {
    function t(e) {
-    return e = n('<part-group number="%d" type="%s"></part-group>', [ e, "stop" ]), 
-    e = $.parseXML(e).firstChild, $(e);
+    return e = r('<part-group number="%d" type="%s"></part-group>', [ e, "stop" ]), 
+    e = new window.DOMParser().parseFromString(e, "text/xml").firstChild, $(e);
    }
-   var r, i, s, a, o, c, l;
-   for (r = [], i = [], c = e.children(), o = 0; o < c.length; o++) "part-group" == (e = $(c[o]))[0].nodeName ? (s = e.attr("number"), 
-   a = e.attr("type"), l = i.indexOf(s), "start" == a ? -1 < l ? (r.push(t(s)), r.push(e)) : (r.push(e), 
-   i.push(s)) : -1 < l && (i.splice(l, 1), r.push(e))) : r.push(e);
-   for (o = i.length - 1; 0 <= o; --o) s = i[o], r.push(t(s));
-   return r;
+   var n, i, s, a, o, c, l;
+   for (n = [], i = [], c = e.children(), o = 0; o < c.length; o++) "part-group" == (e = $(c[o]))[0].nodeName ? (s = e.attr("number"), 
+   a = e.attr("type"), l = i.indexOf(s), "start" == a ? -1 < l ? (n.push(t(s)), n.push(e)) : (n.push(e), 
+   i.push(s)) : -1 < l && (i.splice(l, 1), n.push(e))) : n.push(e);
+   for (o = i.length - 1; 0 <= o; --o) s = i[o], n.push(t(s));
+   return n;
   }(e = e.find("part-list")), {}, [])[0];
- }, E.prototype.mkTitle = function(e) {
-  var t, n, i, s, a, o, c, l = [], u = [], f = [];
+ }, T.prototype.mkTitle = function(e) {
+  var t, n, r, s, a, o, c, l = [], u = [], f = [];
   for (t = e.find("work>work-title").text().trim(), n = e.find("movement-title").text().trim(), 
-  i = e.find("identification>creator"), s = 0; s < i.length; ++s) o = (a = $(i[s])).text(), 
+  r = e.find("identification>creator"), s = 0; s < r.length; ++s) o = (a = $(r[s])).text(), 
   a = a.attr("type"), o && (o = o.split("\n").map(function(e) {
    return e.trim();
   }), "composer" == a ? l.push.apply(l, o) : "lyricist" != a && "transcriber" != a || u.push.apply(u, o));
-  for (i = e.find("identification>rights"), s = 0; s < i.length; ++s) o = (o = $(i[s]).text()).split("\n").map(function(e) {
+  for (r = e.find("identification>rights"), s = 0; s < r.length; ++s) (o = $(r[s]).text()) && (o = o.split("\n").map(function(e) {
    return e.trim();
-  }), u.push.apply(u, o);
-  for (i = e.find("credit"), s = 0; s < i.length; ++s) {
-   for (o = "", a = $(i[s]).find("credit-words"), c = 0; c < a.length; ++c) o += $(a[c]).text();
+  }), u.push.apply(u, o));
+  for (r = e.find("credit"), s = 0; s < r.length; ++s) {
+   for (o = "", a = $(r[s]).find("credit-words"), c = 0; c < a.length; ++c) o += $(a[c]).text();
    f.push(o.replace(/\s*[\r\n]\s*/g, " "));
   }
   f = function(e) {
@@ -14108,46 +14400,49 @@ Downloadify = window.Downloadify = {
    return "C:" + e;
   }).join("\n") + "\n"), u.length && (t += u.map(function(e) {
    return "Z:" + e;
-  }).join("\n") + "\n"), t && (C.title = t.substr(0, t.length - 1)), (this.isSib = 0 <= e.find("identification>encoding>software").text().indexOf("Sibelius")) && r("Sibelius MusicXMl is unreliable", []);
- }, E.prototype.doDefaults = function(e) {
+  }).join("\n") + "\n"), t && (S.title = t.substr(0, t.length - 1)), (this.isSib = 0 <= e.find("identification>encoding>software").text().indexOf("Sibelius")) && i("Sibelius MusicXMl is unreliable", []);
+ }, T.prototype.doDefaults = function(e) {
   var t, n, r, i;
   this.doPageFmt && ((t = e.find("defaults")).length && (n = (e = t.find("scaling>millimeters").text()) / (n = t.find("scaling>tenths").text()) / 10, 
   e = t.find("page-layout>page-width").text() * n, t = (r = t.find("page-layout>page-margins").first()).find("left-margin").text(), 
-  r = r.find("right-margin").text(), i = 10 * n / .2117, !C.scale && i && (C.scale = i.toFixed(2)), 
-  !C.pagewidth && e && (C.pagewidth = e.toFixed(2)), C.leftmargin || "" == t || (C.leftmargin = (t * n).toFixed(2)), 
-  C.rightmargin || "" == r || (C.rightmargin = (r * n).toFixed(2))));
- }, E.prototype.locStaffMap = function(e) {
-  var t = {};
-  this.vceInst = {}, this.msc.vnums = {}, e = e.find("measure>note");
-  for (var n = 0; n < e.length; n++) {
-   var r = $(e[n]), i = parseInt(r.find("voice").text() || "1");
-   this.isSib && (i += 100 * (r.find("staff").text() || 1)), this.msc.vnums[i] = 1;
-   var s = parseInt(r.find("staff").text() || "1");
-   if (i in t) {
-    var a = t[i];
-    a[s] = (a[s] || 0) + 1;
-   } else (a = {})[s] = 1, t[i] = a;
-   (a = r.find("instrument")).length && (this.vceInst[i] = $(a).attr("id"));
+  r = r.find("right-margin").text(), i = 10 * n / .2117, !S.scale && i && (S.scale = i.toFixed(2)), 
+  !S.pagewidth && e && (S.pagewidth = e.toFixed(2)), S.leftmargin || "" == t || (S.leftmargin = (t * n).toFixed(2)), 
+  S.rightmargin || "" == r || (S.rightmargin = (r * n).toFixed(2))));
+ }, T.prototype.locStaffMap = function(e, t) {
+  var n = {};
+  this.vceInst = {}, this.msc.vnums = {}, this.hasStems = {}, this.stfMap = {}, this.clefMap = {};
+  for (var r = e.find("measure>note"), i = 0; i < r.length; i++) {
+   var s = $(r[i]), a = parseInt(s.find("voice").text() || "1");
+   this.isSib && (a += 100 * (s.find("staff").text() || 1)), this.msc.vnums[a] = 1;
+   var o = parseInt(s.find("staff").text() || "1");
+   if (this.stfMap[o] = [], a in n) {
+    var c = n[a];
+    c[o] = (c[o] || 0) + 1;
+   } else (c = {})[o] = 1, n[a] = c;
+   (c = s.find("instrument")).length && (this.vceInst[a] = $(c).attr("id")), c = s.find("stem"), 
+   0 != s.find("rest").length || 0 != c.length && "none" == c.text() || (this.hasStems[a] = 1);
   }
-  for (i in this.stfMap = {}, this.clefMap = {}, t) {
-   for (s in e = [], n = t[i]) e.push([ n[s], s ]);
-   e.sort(function(e, t) {
+  for (a in n) {
+   for (o in r = [], i = n[a]) r.push([ i[o], o ]);
+   r.sort(function(e, t) {
     return t[0] - e[0];
-   }), e = e[0][1], this.stfMap[e] = (this.stfMap[e] || []).concat([ i ]), this.curStf[i] = e;
+   }), r = r[0][1], this.stfMap[r].push(a), this.vce2stf[a] = r, this.curStf[a] = r;
   }
- }, E.prototype.addStaffMap = function(e) {
-  var t, n, r, i, s, a, o = [], c = Object.keys(this.stfMap).sort();
-  for (n = 0; n < c.length; ++n) {
-   for (s = c[n], i = this.stfMap[s], a = [], t = 0; t < i.length; ++t) (r = i[t]) in e && a.push(e[r]);
-   if (a.length) for ((o.push(a.sort()), i = s in this.clefMap ? this.clefMap[s] : "treble", 
-   t = 0); t < a.length; ++t) r = a[t], C.clefs[r] = i;
+ }, T.prototype.addStaffMap = function(e) {
+  var t, n, r, i, s, a, o, c = [], l = Object.keys(this.stfMap).sort();
+  for (n = 0; n < l.length; ++n) {
+   for (s = l[n], i = this.stfMap[s], a = [], o = [], t = 0; t < i.length; ++t) (r = i[t]) in e && (a.push(e[r]), 
+   o.push(void 0 == this.hasStems[r]));
+   if (a.length) for ((c.push(a), i = s in this.clefMap ? this.clefMap[s] : "treble", 
+   t = 0); t < a.length; ++t) r = a[t], s = "", 0 == i.indexOf("tab") && (o[t] && 0 > i.indexOf("nostems") && (s = " nostems"), 
+   this.diafret && 0 > i.indexOf("diafret") && (s += " diafret")), S.clefs[r] = i + s;
   }
-  this.gStfMap.push(o);
- }, E.prototype.addMidiMap = function(e, t) {
-  var n, r = this.instMid[e], i = Object.keys(r);
-  n = i.length ? r[i[0]] : this.midDflt;
+  this.gStfMap.push(c);
+ }, T.prototype.addMidiMap = function(e, t) {
+  var n, i = this.instMid[e];
+  n = (d = Object.keys(i)).length ? i[d[0]] : this.midDflt;
   var s, a, o, c = [], l = this;
-  for (s in t) o = (i = Object.keys(this.drumNotes).sort().filter(function(e) {
+  for (s in t) o = (d = Object.keys(this.drumNotes).sort().filter(function(e) {
    return e.split(";")[0] == s;
   })).map(function(e) {
    return {
@@ -14156,68 +14451,74 @@ Downloadify = window.Downloadify = {
     midi: l.drumNotes[e][1],
     nhd: l.drumNotes[e][2]
    };
-  }), i = t[s], (a = this.vceInst[s] || "") in r ? c.push([ i, r[a].concat(o) ]) : c.push([ i, n.concat(o) ]);
-  for (c.sort(function(e, t) {
+  }), a = t[s], (d = this.vceInst[s] || "") in i ? c.push([ a, i[d].concat(o) ]) : c.push([ a, n.concat(o) ]);
+  c.sort(function(e, t) {
    return e[0] - t[0];
-  }), r = 0; r < c.length; ++r) i = c[r][0], n = c[r][1], this.midiMap.push(n);
- }, E.prototype.parse = function(e) {
-  var t = $(e);
-  this.mkTitle(t), this.doDefaults(t), partlist = this.doPartList(t), e = t.find("part");
-  for (var n = 0; n < e.length; ++n) {
-   var i = (t = $(e[n])).find("measure");
-   this.locStaffMap(t), this.drumNotes = {}, this.clefOct = {}, this.msc.initVoices(1);
-   var s = 0, a = 0;
-   for (this.msr = new o(n); this.msr.ixm < i.length; ) {
-    var c = $(i[this.msr.ixm]), l = 0, u = "";
+  }), c.forEach(function(e) {
+   l.midiMap.push(e[1]);
+  }), n = "E G B d f a c' e'".split(" ");
+  var u, f, p = "0 1- 1 1+ 2 3 3 4 4 5 6 6+ 7 8- 8 8+ 9 10 10 11 11 12 13 13+ 14".split(" "), d = Object.keys(this.tabmap).sort();
+  for (i = 0; i < d.length; ++i) c = (a = d[i]).match(/(\d+),(.*)/), s = c[1], f = c[2], 
+  o = this.tabmap[a][0], u = this.tabmap[a][1], this.diafret && (u = p[parseInt(u)]), 
+  a = t[s], o = this.stafflines - parseInt(o), (c = this.tabVceMap[a] || []).push(r("%%map tab%d %s print=%s heads=kop%s\n", [ a, f, n[o], u ])), 
+  this.tabVceMap[a] = c, this.koppen[u] = 1;
+ }, T.prototype.parse = function(e) {
+  var t = {}, n = $(e);
+  this.mkTitle(n), this.doDefaults(n), e = this.doPartList(n);
+  for (var s = n.find("part"), a = 0; a < s.length; ++a) {
+   var o = s.eq(a), l = o.find("measure");
+   this.locStaffMap(o, l), this.drumNotes = {}, this.clefOct = {}, this.curClef = {}, 
+   this.stemDir = {}, this.tabmap = {}, this.diafret = 0, this.stafflines = 5, this.msc.initVoices(1);
+   var u = o = 0;
+   for (this.msr = new c(a); this.msr.ixm < l.length; ) {
+    var f = l.eq(this.msr.ixm), p = 0, d = "";
     this.msr.reset(), this.curalts = {};
-    for (var f = c.children(), p = 0; p < f.length; p++) {
-     var d = f[p];
-     t = $(d);
-     switch (d.nodeName) {
-     case "note":
-      this.doNote(t);
-      break;
+    for (var h = f.children(), m = 0; m < h.length; m++) switch (n = h.eq(m), n[0].nodeName) {
+    case "note":
+     this.doNote(n);
+     break;
 
-     case "attributes":
-      this.doAttr(t);
-      break;
+    case "attributes":
+     this.doAttr(n);
+     break;
 
-     case "direction":
-      this.doDirection(t);
-      break;
+    case "direction":
+     this.doDirection(n, m, h);
+     break;
 
-     case "sound":
-      this.doDirection(c);
-      break;
+    case "sound":
+     this.doDirection(f, m, h);
+     break;
 
-     case "harmony":
-      this.doHarmony(t);
-      break;
+    case "harmony":
+     this.doHarmony(n, m, h);
+     break;
 
-     case "barline":
-      l = this.doBarline(t);
-      break;
+    case "barline":
+     p = this.doBarline(n);
+     break;
 
-     case "backup":
-      t = parseInt(t.find("duration").text()), this.msc.incTime(-t);
-      break;
+    case "backup":
+     n = parseInt(n.find("duration").text()), this.msc.incTime(-n);
+     break;
 
-     case "forward":
-      t = parseInt(t.find("duration").text()), this.msc.incTime(t);
-      break;
+    case "forward":
+     n = parseInt(n.find("duration").text()), this.msc.incTime(n);
+     break;
 
-     case "print":
-      u = this.doPrint(t);
-     }
+    case "print":
+     d = this.doPrint(n);
     }
-    this.msc.addBar(u, this.msr), 1 == l ? (a = this.msr.ixm, this.msr.ixm += 1) : 2 == l ? 1 > s ? (this.msr.ixm = a, 
-    s += 1) : (s = 0, this.msr.ixm += 1) : this.msr.ixm += 1;
+    this.msc.addBar(d, this.msr), 1 == p ? (u = this.msr.ixm, this.msr.ixm += 1) : 2 == p ? 1 > o ? (this.msr.ixm = u, 
+    o += 1) : (o = 0, this.msr.ixm += 1) : this.msr.ixm += 1;
    }
-   i = this.msc.outVoices(this.msr.divs, n), this.addStaffMap(i), this.addMidiMap(n, i);
+   for (var v in this.repeat_str) (l = this.repeat_str[v])[0] = r("[I:repeat %s %d]", [ l[1], 1 ]);
+   for (v in l = this.msc.outVoices(this.msr.divs, a), this.addStaffMap(l), this.addMidiMap(a, l), 
+   l) t[v] = l[v];
   }
-  Object.keys(i).length ? C.mkHeader(this.gStfMap, partlist, this.midiMap) : r("nothing written, %s has no notes ...", [ C.fnmext ]);
+  Object.keys(t).length ? S.mkHeader(this.gStfMap, e, this.midiMap, this.tabVceMap, this.koppen) : i("nothing written, %s has no notes ...", [ S.fnmext ]);
  }, vertaal = function(e, t) {
-  var n, i = {
+  var n, r = {
    u: 0,
    b: 0,
    n: 0,
@@ -14227,16 +14528,20 @@ Downloadify = window.Downloadify = {
    m: 0,
    x: 0,
    t: 0,
-   p: "f"
+   v1: 0,
+   noped: 0,
+   stm: 0,
+   p: "f",
+   s: 0
   };
-  for (n in t) i[n] = t[n];
-  i.p = i.p ? i.p.split(",") : [], C = new p(".abc", "", 0, i), i = new E(i);
+  for (n in t) r[n] = t[n];
+  r.p = r.p ? r.p.split(",") : [], S = new d(".abc", "", 0, r), r = new T(r);
   try {
-   i.parse(e);
+   r.parse(e);
   } catch (e) {
-   r("** exception occurred: %s", [ e ]);
+   i("** exception occurred: %s", [ e ]);
   }
-  return [ C.outlist.join(""), C.infolist.join("\n") ];
+  return S.writeall();
  };
 }(), function(e) {
  "use strict";
@@ -14453,7 +14758,7 @@ Downloadify = window.Downloadify = {
 var swfobject = function() {
  var e, t, n, r, i, s, a = "undefined", o = "object", c = "Shockwave Flash", l = "application/x-shockwave-flash", u = "SWFObjectExprInst", f = "onreadystatechange", p = window, d = document, h = navigator, m = !1, v = [ function() {
   m ? function() {
-   var e = d.getElementsByTagName("body")[0], t = D(o);
+   var e = d.getElementsByTagName("body")[0], t = j(o);
    t.setAttribute("type", l);
    var n = e.appendChild(t);
    if (n) {
@@ -14504,7 +14809,7 @@ var swfobject = function() {
  function E() {
   if (!b) {
    try {
-    var e = d.getElementsByTagName("body")[0].appendChild(D("span"));
+    var e = d.getElementsByTagName("body")[0].appendChild(j("span"));
     e.parentNode.removeChild(e);
    } catch (e) {
     return;
@@ -14535,7 +14840,7 @@ var swfobject = function() {
    };
    if (k.pv[0] > 0) {
     var s = M(n);
-    if (s) if (!j(g[t].swfVersion) || k.wk && k.wk < 312) if (g[t].expressInstall && A()) {
+    if (s) if (!D(g[t].swfVersion) || k.wk && k.wk < 312) if (g[t].expressInstall && A()) {
      var o = {};
      o.data = g[t].expressInstall, o.width = s.getAttribute("width") || "0", o.height = s.getAttribute("height") || "0", 
      s.getAttribute("class") && (o.styleclass = s.getAttribute("class")), s.getAttribute("align") && (o.align = s.getAttribute("align"));
@@ -14557,7 +14862,7 @@ var swfobject = function() {
   return t;
  }
  function A() {
-  return !x && j("6.0.65") && (k.win || k.mac) && !(k.wk && k.wk < 312);
+  return !x && D("6.0.65") && (k.win || k.mac) && !(k.wk && k.wk < 312);
  }
  function N(i, s, o, c) {
   x = !0, n = c || null, r = {
@@ -14571,7 +14876,7 @@ var swfobject = function() {
    d.title = d.title.slice(0, 47) + " - Flash Player Installation";
    var f = k.ie && k.win ? "ActiveX" : "PlugIn", h = "MMredirectURL=" + p.location.toString().replace(/&/g, "%26") + "&MMplayerType=" + f + "&MMdoctitle=" + d.title;
    if (typeof s.flashvars != a ? s.flashvars += "&" + h : s.flashvars = h, k.ie && k.win && 4 != l.readyState) {
-    var m = D("div");
+    var m = j("div");
     o += "SWFObjectNew", m.setAttribute("id", o), l.parentNode.insertBefore(m, l), l.style.display = "none", 
     function() {
      4 == l.readyState ? l.parentNode.removeChild(l) : setTimeout(arguments.callee, 10);
@@ -14582,7 +14887,7 @@ var swfobject = function() {
  }
  function B(e) {
   if (k.ie && k.win && 4 != e.readyState) {
-   var t = D("div");
+   var t = j("div");
    e.parentNode.insertBefore(t, e), t.parentNode.replaceChild(R(e), t), e.style.display = "none", 
    function() {
     4 == e.readyState ? e.parentNode.removeChild(e) : setTimeout(arguments.callee, 10);
@@ -14590,7 +14895,7 @@ var swfobject = function() {
   } else e.parentNode.replaceChild(R(e), e);
  }
  function R(e) {
-  var t = D("div");
+  var t = j("div");
   if (k.win && k.ie) t.innerHTML = e.innerHTML; else {
    var n = e.getElementsByTagName(o)[0];
    if (n) {
@@ -14611,7 +14916,7 @@ var swfobject = function() {
    i.outerHTML = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"' + s + ">" + u + "</object>", 
    y[y.length] = e.id, r = M(e.id);
   } else {
-   var p = D(o);
+   var p = j(o);
    for (var d in p.setAttribute("type", l), e) e[d] != Object.prototype[d] && ("styleclass" == d.toLowerCase() ? p.setAttribute("class", e[d]) : "classid" != d.toLowerCase() && p.setAttribute(d, e[d]));
    for (var h in t) t[h] != Object.prototype[h] && "movie" != h.toLowerCase() && I(p, h, t[h]);
    i.parentNode.replaceChild(p, i), r = p;
@@ -14619,7 +14924,7 @@ var swfobject = function() {
   return r;
  }
  function I(e, t, n) {
-  var r = D("param");
+  var r = j("param");
   r.setAttribute("name", t), r.setAttribute("value", n), e.appendChild(r);
  }
  function L(e) {
@@ -14641,10 +14946,10 @@ var swfobject = function() {
   } catch (e) {}
   return t;
  }
- function D(e) {
+ function j(e) {
   return d.createElement(e);
  }
- function j(e) {
+ function D(e) {
   var t = k.pv, n = e.split(".");
   return n[0] = parseInt(n[0], 10), n[1] = parseInt(n[1], 10) || 0, n[2] = parseInt(n[2], 10) || 0, 
   t[0] > n[0] || t[0] == n[0] && t[1] > n[1] || t[0] == n[0] && t[1] == n[1] && t[2] >= n[2];
@@ -14655,7 +14960,7 @@ var swfobject = function() {
    if (c) {
     var l = n && "string" == typeof n ? n : "screen";
     if (r && (i = null, s = null), !i || s != l) {
-     var u = D("style");
+     var u = j("style");
      u.setAttribute("type", "text/css"), u.setAttribute("media", l), i = c.appendChild(u), 
      k.ie && k.win && typeof d.styleSheets != a && d.styleSheets.length > 0 && (i = d.styleSheets[d.styleSheets.length - 1]), 
      s = l;
@@ -14707,7 +15012,7 @@ var swfobject = function() {
     var m = {};
     if (l && typeof l === o) for (var v in l) m[v] = l[v];
     if (c && typeof c === o) for (var g in c) typeof m.flashvars != a ? m.flashvars += "&" + g + "=" + c[g] : m.flashvars = g + "=" + c[g];
-    if (j(i)) {
+    if (D(i)) {
      var y = P(d, m, t);
      d.id == t && F(t, !0), p.success = !0, p.ref = y;
     } else {
@@ -14728,7 +15033,7 @@ var swfobject = function() {
     release: k.pv[2]
    };
   },
-  hasFlashPlayerVersion: j,
+  hasFlashPlayerVersion: D,
   createSWF: function(e, t, n) {
    return k.w3 ? P(e, t, n) : void 0;
   },
@@ -17864,7 +18169,7 @@ var __extends = this && this.__extends || function(e, t) {
  */
 function AbcDE() {
  "use strict";
- let t, n, r, i, s, a, o, c, l = [], u = [], f = "", p = !1, d = 1, h = {}, m = [], v = void 0, g = "", y = "noname.abc", _ = 0, b = [], x = !1, w = [], k = 0, E = [], C = [], T = {}, S = {}, O = [], A = !1, N = {}, B = {}, R = [], P = 0, I = !1, L = [], M = !1, D = !1, j = "../../corpora", V = "./abcde_help.html", F = "../image", q = "../lib/media", z = 5, H = /\s/g, U = /</g, Q = />/g, W = /[><]/g, J = /([,;\.])/, X = /&/g, K = /.*([<>])[^<>]+$/, G = /^% abcDidactyl v([\d\.]+)$/, Y = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Z = /^% abcDidactyl END$/, ee = /^% Authority: ([^\(]+)(\s+\((\d\d\d\d)\))?$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, se = 4e3, ae = "abcde", oe = "abc_source", ce = "source", le = "abcde_prefs", ue = "abcde_controls", fe = "abcde_metadata", pe = "abcde_keypad", de = "abcde_rendering", he = "abcde_target", me = "abcde_error", ve = .1, ge = 3, ye = .3, _e = 90, be = 89, xe = 13, we = 8, ke = 9, Ee = 37, Ce = 39, Te = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Se = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
+ let t, n, r, i, s, a, o, c, l = [], u = [], f = "", p = !1, d = 1, h = {}, m = [], v = void 0, g = "", y = "noname.abc", _ = 0, b = [], x = !1, w = [], k = 0, E = [], C = [], T = {}, S = {}, O = [], A = !1, N = {}, B = {}, R = [], P = 0, I = !1, L = [], M = !1, j = !1, D = "../../corpora", V = "./abcde_help.html", F = "../image", q = "../lib/media", z = 5, H = /\s/g, U = /</g, Q = />/g, W = /[><]/g, J = /([,;\.])/, X = /&/g, K = /.*([<>])[^<>]+$/, G = /^% abcDidactyl v([\d\.]+)$/, Y = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Z = /^% abcDidactyl END$/, ee = /^% Authority: ([^\(]+)(\s+\((\d\d\d\d)\))?$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, se = 4e3, ae = "abcde", oe = "abc_source", ce = "source", le = "abcde_prefs", ue = "abcde_controls", fe = "abcde_metadata", pe = "abcde_keypad", de = "abcde_rendering", he = "abcde_target", me = "abcde_error", ve = .1, ge = 3, ye = .3, _e = 90, be = 89, xe = 13, we = 8, ke = 9, Ee = 37, Ce = 39, Te = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Se = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
  function Oe() {
   v && clearInterval(v), l = [], u = [], g = "", p = !1, y = "noname.abc", n = void 0, 
   i = "", s = void 0, b = [], x = !1, w = [], a = void 0, k = 0, E = [], C = [], T = {}, 
@@ -17930,16 +18235,16 @@ function AbcDE() {
   let n = document.getElementById(e).value, r = Re(e, t);
   localStorage.setItem(r, n);
  }
- function De(e) {
+ function je(e) {
   let t = document.getElementsByName(e);
   for (let e = 0; e < t.length; e++) {
    let n = t[e];
    if (n.checked) return n.id;
   }
  }
- function je(e) {
+ function De(e) {
   let t = "";
-  if ("preset_preference" === e || "output" === e || "keypad" === e || "restore" == e) t = De(e); else {
+  if ("preset_preference" === e || "output" === e || "keypad" === e || "restore" == e) t = je(e); else {
    t = document.getElementById(e).value;
   }
   h[e] = t, localStorage.setItem(e, t);
@@ -17961,7 +18266,7 @@ function AbcDE() {
   if ("measure_number_interval" === e) {
    return document.getElementById(e).value;
   }
-  let n = De(e);
+  let n = je(e);
   return n || "";
  }
  function ze() {
@@ -17995,7 +18300,7 @@ function AbcDE() {
   }
   return s;
  }
- function Ue() {
+ function $e() {
   let e = document.getElementById("sequence_spinner");
   e.min = 1, e.max = m.length || 1;
   let t = function() {
@@ -18006,7 +18311,7 @@ function AbcDE() {
   }();
   e.value = t;
  }
- function $e(e) {
+ function Ue(e) {
   if (e) {
    let t = e - 1;
    return parseInt(e) <= m.length ? m[t] : ze();
@@ -18095,7 +18400,7 @@ function AbcDE() {
  }
  function Ze() {
   let e = Ve();
-  Ye(Pe(e), $e(e)), function() {
+  Ye(Pe(e), Ue(e)), function() {
    let e = Ie("authority"), t = Ie("default_authority");
    !e && t && We("authority", t);
    let n = Ie("authority_year"), r = Ie("default_authority_year");
@@ -18114,7 +18419,7 @@ function AbcDE() {
  function nt() {
   if (!i) return;
   if (confirm("All changes you have made to this fingering sequence will be discarded, and the initial sequence will be restored. Are you sure you want to proceed?")) {
-   Ye(void 0, $e(Ve())), Kt(), yn(a = C[0][0][0]);
+   Ye(void 0, Ue(Ve())), Kt(), yn(a = C[0][0][0]);
   }
  }
  function rt(e) {
@@ -18180,8 +18485,8 @@ function AbcDE() {
   d < ge && (d += ve, Kt());
  }
  function ft(e) {
-  je("preset_preference"), je("output"), je("restore"), je("keypad"), je("measure_number_interval"), 
-  je("default_authority"), je("default_authority_year"), je("default_transcriber"), 
+  De("preset_preference"), De("output"), De("restore"), De("keypad"), De("measure_number_interval"), 
+  De("default_authority"), De("default_authority_year"), De("default_transcriber"), 
   document.getElementById("prefs_modal_wrapper").className = "", i && (Kt(), yn(a)), 
   bt(), ln(), e.preventDefault ? e.preventDefault() : e.returnValue = !1;
  }
@@ -18236,7 +18541,7 @@ function AbcDE() {
   }, r.send()) : alert(n);
  }
  function vt() {
-  let e = j + "/clementi/11.abc";
+  let e = D + "/clementi/11.abc";
   if (f) e = f; else {
    let t = qe("default_url");
    t && (e = t);
@@ -18381,7 +18686,7 @@ function AbcDE() {
   function() {
    let e = document.getElementById(ae);
    for (;e.firstChild; ) e.removeChild(e.firstChild);
-   e.remove(), D = !1, v && clearInterval(v);
+   e.remove(), j = !1, v && clearInterval(v);
   }(), p = !1, t.enableNextButton(), t.enablePreviousButton(), t.clickNextButton()) : (t.enableNextButton(), 
   t.enablePreviousButton(), t.clickPreviousButton());
  }
@@ -18595,15 +18900,15 @@ function AbcDE() {
   let t = "$1";
   return e.match(Q) && (t = "$1"), e.match(U) && (t = "$2"), t;
  }
- function Dt(e) {
+ function jt(e) {
   let t = "^";
   return /^</.test(e) && (t = "_"), t;
  }
- function jt(e) {
+ function Dt(e) {
   let t = Mt("<"), n = Mt(">"), r = e.replace(/[\)\(]/g, ""), i = it(r), s = "";
   for (let e = 0; e < i.length; e++) i[e] = i[e].replace(U, t), i[e] = i[e].replace(Q, n), 
   s += i[e];
-  return s += '"', s = '"' + Dt(r) + s;
+  return s += '"', s = '"' + jt(r) + s;
  }
  function Vt(e, t, n) {
   let r = !1, i = Mt("<"), s = Mt(">"), a = [];
@@ -18613,8 +18918,8 @@ function AbcDE() {
     if (!n) break;
     if (!e[t] || e[t] && "x" === e[t]) continue;
    }
-   if (c.match(/^\(/)) o = jt(c); else {
-    o = '"' + Dt(c) + (c = (c = c.replace(U, i)).replace(Q, s)) + '"';
+   if (c.match(/^\(/)) o = Dt(c); else {
+    o = '"' + jt(c) + (c = (c = c.replace(U, i)).replace(Q, s)) + '"';
    }
    o = o.replace(J, ""), a.unshift(o);
   }
@@ -18657,14 +18962,14 @@ function AbcDE() {
   }
   return r;
  }
- function Ut(e) {
+ function $t(e) {
   let t = 0;
   for (let n = 0; n < e.length; n++) e[n].grace && t++;
   return t;
  }
- function $t(e) {
+ function Ut(e) {
   if (e.size > 1 && console.log("BIGGIE"), e.grace) return Ft(e);
-  let t = N[e.staff][e.time], n = Ut(t);
+  let t = N[e.staff][e.time], n = $t(t);
   if (t.length - n < 2) return Ft(e);
   t.sort(Lt);
   let r = 0, i = t[0];
@@ -18763,7 +19068,7 @@ function AbcDE() {
     e += Qt(s);
    } else {
     let n = parseInt(s.start), r = parseInt(s.end);
-    a = i.substring(parseInt(t), n), e += a += Jt(s), t = r, Wt(s) && (e += $t(s)), 
+    a = i.substring(parseInt(t), n), e += a += Jt(s), t = r, Wt(s) && (e += Ut(s)), 
     s.fingered_start = e.length, e += s.string;
    }
    S[s.fingered_start] = s;
@@ -18922,7 +19227,7 @@ function AbcDE() {
  }
  function fn() {
   if (function() {
-   if (D) return;
+   if (j) return;
    let e = document.getElementById(ae);
    e.align = "center";
    let t = document.getElementById(oe);
@@ -18944,7 +19249,7 @@ function AbcDE() {
    let c = document.createElement(pe);
    c.id = pe, e.appendChild(c);
   }(), Oe(), function() {
-   if (D) return;
+   if (j) return;
    Tt(), Ct();
    let e = F + "/download_36_x4.png", n = document.getElementById(ue), r = document.createElement("table"), i = document.createElement("tbody"), s = document.createElement("tr");
    n.appendChild(r), r.appendChild(i), r.style.backgroundColor = "LightGray", r.align = "center", 
@@ -19028,7 +19333,7 @@ function AbcDE() {
     width: "36",
     height: "36",
     append: !1
-   }), Bt(), D = !0;
+   }), Bt(), j = !0;
   }(), function() {
    Qe("preset_preference", localStorage.getItem("preset_preference")), Qe("output", localStorage.getItem("output")), 
    Qe("restore", localStorage.getItem("restore")), Qe("keypad", localStorage.getItem("keypad"));
@@ -19039,7 +19344,7 @@ function AbcDE() {
    let e = qe("default_url");
    e && (mt(e), i = document.getElementById(oe).value);
   }
-  p = !0, i && (m = He(i), Ue(), mn(), yn(a = C[0][0][0]), ln()), bt(), $(function() {
+  p = !0, i && (m = He(i), $e(), mn(), yn(a = C[0][0][0]), ln()), bt(), $(function() {
    FastClick.attach(document.body);
   });
  }
@@ -19143,7 +19448,7 @@ function AbcDE() {
  }
  function xn(e) {
   if (e.grace) return bn(e);
-  let t = N[e.staff][e.time], n = Ut(t);
+  let t = N[e.staff][e.time], n = $t(t);
   if (t.length - n < 2) return bn(e);
   t.sort(Lt);
   let r = 0, i = t[0];

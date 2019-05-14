@@ -1,4 +1,4 @@
-/* abcDE_full.js v6.0.97 */
+/* abcDE_full.js v6.0.98 */
 !function(a, b) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = a.document ? b(a, !0) : function(a) {
   if (!a.document) throw new Error("jQuery requires a window with a document");
@@ -24736,81 +24736,230 @@ if (typeof MooTools != "undefined") {
  }, {}, [ 9 ])(9);
 });
 
+var $jscomp = $jscomp || {};
+
+$jscomp.scope = {};
+
+$jscomp.defineProperty = "function" == typeof Object.defineProperties ? Object.defineProperty : function(m, w, r) {
+ if (r.get || r.set) throw new TypeError("ES3 does not support getters and setters.");
+ m != Array.prototype && m != Object.prototype && (m[w] = r.value);
+};
+
+$jscomp.getGlobal = function(m) {
+ return "undefined" != typeof window && window === m ? m : "undefined" != typeof global && null != global ? global : m;
+};
+
+$jscomp.global = $jscomp.getGlobal(this);
+
+$jscomp.SYMBOL_PREFIX = "jscomp_symbol_";
+
+$jscomp.initSymbol = function() {
+ $jscomp.initSymbol = function() {};
+ $jscomp.global.Symbol || ($jscomp.global.Symbol = $jscomp.Symbol);
+};
+
+$jscomp.symbolCounter_ = 0;
+
+$jscomp.Symbol = function(m) {
+ return $jscomp.SYMBOL_PREFIX + (m || "") + $jscomp.symbolCounter_++;
+};
+
+$jscomp.initSymbolIterator = function() {
+ $jscomp.initSymbol();
+ var m = $jscomp.global.Symbol.iterator;
+ m || (m = $jscomp.global.Symbol.iterator = $jscomp.global.Symbol("iterator"));
+ "function" != typeof Array.prototype[m] && $jscomp.defineProperty(Array.prototype, m, {
+  configurable: !0,
+  writable: !0,
+  value: function() {
+   return $jscomp.arrayIterator(this);
+  }
+ });
+ $jscomp.initSymbolIterator = function() {};
+};
+
+$jscomp.arrayIterator = function(m) {
+ var w = 0;
+ return $jscomp.iteratorPrototype(function() {
+  return w < m.length ? {
+   done: !1,
+   value: m[w++]
+  } : {
+   done: !0
+  };
+ });
+};
+
+$jscomp.iteratorPrototype = function(m) {
+ $jscomp.initSymbolIterator();
+ m = {
+  next: m
+ };
+ m[$jscomp.global.Symbol.iterator] = function() {
+  return this;
+ };
+ return m;
+};
+
+$jscomp.iteratorFromArray = function(m, w) {
+ $jscomp.initSymbolIterator();
+ m instanceof String && (m += "");
+ var r = 0, u = {
+  next: function() {
+   if (r < m.length) {
+    var t = r++;
+    return {
+     value: w(t, m[t]),
+     done: !1
+    };
+   }
+   u.next = function() {
+    return {
+     done: !0,
+     value: void 0
+    };
+   };
+   return u.next();
+  }
+ };
+ u[Symbol.iterator] = function() {
+  return u;
+ };
+ return u;
+};
+
+$jscomp.polyfill = function(m, w, r, u) {
+ if (w) {
+  r = $jscomp.global;
+  m = m.split(".");
+  for (u = 0; u < m.length - 1; u++) {
+   var t = m[u];
+   t in r || (r[t] = {});
+   r = r[t];
+  }
+  m = m[m.length - 1];
+  u = r[m];
+  w = w(u);
+  w != u && null != w && $jscomp.defineProperty(r, m, {
+   configurable: !0,
+   writable: !0,
+   value: w
+  });
+ }
+};
+
+$jscomp.polyfill("Array.prototype.keys", function(m) {
+ return m ? m : function() {
+  return $jscomp.iteratorFromArray(this, function(m) {
+   return m;
+  });
+ };
+}, "es6-impl", "es3");
+
+$jscomp.findInternal = function(m, w, r) {
+ m instanceof String && (m = String(m));
+ for (var u = m.length, t = 0; t < u; t++) {
+  var z = m[t];
+  if (w.call(r, z, t, m)) return {
+   i: t,
+   v: z
+  };
+ }
+ return {
+  i: -1,
+  v: void 0
+ };
+};
+
+$jscomp.polyfill("Array.prototype.find", function(m) {
+ return m ? m : function(m, r) {
+  return $jscomp.findInternal(this, m, r).v;
+ };
+}, "es6-impl", "es3");
+
+var xml2abc_VERSION = 104, vertaal;
+
 (function() {
- function x(b, a) {
-  for (var c = []; b; ) c.push(a), --b;
+ function m(a, b) {
+  return Array(a + 1).join(b);
+ }
+ function w(a, b) {
+  for (var c = []; a; ) c.push(b), --a;
   return c;
  }
- function y(b, a) {
-  for (var c = 0, d = {}; c < b.length; ++c) d[b[c]] = a[c];
+ function r(a, b) {
+  for (var c = 0, d = {}; c < a.length; ++c) d[a[c]] = b[c];
   return d;
  }
- function s(b, a) {
-  var c = b.split(/%[ds]/);
-  c.length > a.length && a.push("");
-  return a.map(function(a, b) {
+ function u(a, b) {
+  var c = a.split(/%[ds]/);
+  c.length > b.length && b.push("");
+  return b.map(function(a, b) {
    return c[b] + a;
   }).join("");
  }
- function q(b, a) {
-  p.info(s(b, a));
+ function t(a, b) {
+  v.info(u(a, b));
  }
- function B(b, a) {
-  return -1 !== b.indexOf(a, b.length - a.length);
+ function z(a, b) {
+  return -1 !== a.indexOf(b, a.length - b.length);
  }
- function C(b) {
-  return Object.keys(b).map(function(a) {
+ function F(a) {
+  return Object.keys(a).map(function(a) {
    return parseInt(a);
   });
  }
- function G(b, a) {
+ function J(a, b) {
   var c = [], d;
-  if (Array.isArray(b)) for (d = 0; d < b.length; ++d) d in b && c.push([ d, b[d] ]); else for (d in b) c.push([ d, b[d] ]);
-  c.sort(a ? function(a, b) {
+  if (Array.isArray(a)) for (d = 0; d < a.length; ++d) d in a && c.push([ d, a[d] ]); else for (d in a) c.push([ d, a[d] ]);
+  c.sort(b ? function(a, b) {
    return a[0] - b[0];
   } : function(a, b) {
    return a[1] - b[1] || b[0] - a[0];
   });
   return c;
  }
- function H(b) {
+ function K(a) {
   this.reset();
-  this.ixp = b;
+  this.ixp = a;
   this.divs = this.mdur = this.ixm = 0;
  }
- function w(b, a) {
+ function A(a, b) {
   this.tijd = 0;
-  this.dur = b;
+  this.dur = a;
   this.fact = null;
   this.tup = [ "" ];
   this.tupabc = "";
   this.grace = this.beam = 0;
-  this.after = this.before = "";
-  this.ns = a ? [ a ] : [];
+  this.before = [];
+  this.after = "";
+  this.ns = b ? [ b ] : [];
   this.lyrs = {};
   this.pos = 0;
+  this.tab = null;
+  this.ntdec = "";
  }
- function z(b) {
+ function C(a) {
   this.tijd = 0;
-  this.str = b;
+  this.str = a;
   this.pos = 0;
  }
- function A() {}
- function r(b) {
+ function D() {}
+ function y(a) {
   this.maxtime = this.tijd = 0;
   this.gMaten = [];
   this.gLyrics = [];
   this.vnums = {};
-  this.cnt = new A();
+  this.cnt = new D();
   this.vceCnt = 1;
   this.lastnote = null;
-  this.bpl = b.b;
-  this.cpl = b.n;
+  this.bpl = a.b;
+  this.cpl = a.n;
   this.repbra = 0;
-  this.nvlt = b.v;
+  this.nvlt = a.v;
  }
- function D(b, a, c, d) {
-  this.fnmext = b;
+ function E(a, b, c, d) {
+  this.fnmext = a;
   this.outlist = [];
   this.infolist = [];
   this.title = "T:Title";
@@ -24818,273 +24967,336 @@ if (typeof MooTools != "undefined") {
   this.clefs = {};
   this.mtr = "none";
   this.tempo = 0;
-  this.pad = a;
+  this.tempo_units = [ 1, 4 ];
+  this.pad = b;
   this.X = c + 1;
   this.denL = d.d;
   this.volpan = d.m;
   this.cmpL = [];
-  this.rightmargin = this.leftmargin = this.pagewidth = this.scale = "";
+  this.scale = "";
+  this.tstep = d.t;
+  this.stemless = 0;
+  this.rightmargin = this.leftmargin = this.pagewidth = "";
+  this.shiftStem = d.s;
   4 == d.p.length && (this.scale = "" != d.p[0] ? parseFloat(d.p[0]) : "", this.pagewidth = "" != d.p[1] ? parseFloat(d.p[1]) : "", 
   this.leftmargin = "" != d.p[2] ? parseFloat(d.p[2]) : "", this.rightmargin = "" != d.p[3] ? parseFloat(d.p[3]) : "");
  }
- function P(b, a) {
-  if (!b.join("")) return [ "", 0 ];
-  for (var c = [], d = 0; d < b.length; ++d) {
-   var f = b[d];
-   "" == f ? f = a ? "_" : "*" : B(f, "_") && !B(f, "\\_") ? (f = f.replace("_", ""), 
-   a = 1) : a = 0;
-   c.push(f);
+ function T(a, b) {
+  if (!a.join("")) return [ "", 0 ];
+  for (var c = [], d = 0; d < a.length; ++d) {
+   var e = a[d];
+   "" == e ? e = b ? "_" : "*" : z(e, "_") && !z(e, "\\_") ? (e = e.replace("_", ""), 
+   b = 1) : b = 0;
+   c.push(e);
   }
-  return [ c.join(" "), a ];
+  return [ c.join(" "), b ];
  }
- function F(b, a) {
-  for (var c = b, d = a, f; a; ) f = b % a, b = a, a = f;
-  return [ c / b, d / b ];
+ function G(a, b) {
+  for (var c = a, d = b, e; b; ) e = a % b, a = b, b = e;
+  return [ c / a, d / a ];
  }
- function I(b, a, c) {
-  if (0 == b.dur) return "";
+ function L(a, b, c) {
+  if (0 == a.dur) return "";
   var d;
-  d = F(c * b.dur, 4 * a);
-  a = d[0];
+  d = G(c * a.dur, 4 * b);
+  b = d[0];
   c = d[1];
-  b.fact && (d = b.fact[0], b = b.fact[1], d = F(a * d, c * b), a = d[0], c = d[1]);
-  64 < c && (d = F(Math.round(64 * a / c) || 1, 64), q("denominator too small: %d/%d rounded to %d/%d", [ a, c, d[0], d[1] ]), 
-  a = d[0], c = d[1]);
-  return 1 == a ? 1 == c ? "" : 2 == c ? "/" : "/" + c : 1 == c ? "" + a : a + "/" + c;
+  a.fact && (d = a.fact[0], a = a.fact[1], d = G(b * d, c * a), b = d[0], c = d[1]);
+  64 < c && (a = b / c, d = Math.floor(a), a - d < .1 * a && (b = d, c = 1), d = G(Math.round(64 * b / c) || 1, 64), 
+  t("denominator too small: %d/%d rounded to %d/%d", [ b, c, d[0], d[1] ]), b = d[0], 
+  c = d[1]);
+  return 1 == b ? 1 == c ? "" : 2 == c ? "/" : "/" + c : 1 == c ? "" + b : b + "/" + c;
  }
- function J(b) {
-  var a = b.match(/([_^]*)([A-Ga-g])([',]*)/);
-  if (!a) return -1;
-  b = a[1];
-  var c = a[2], a = a[3], d;
+ function M(a) {
+  var b = a.match(/([_^]*)([A-Ga-g])([',]*)/);
+  if (!b) return -1;
+  a = b[1];
+  var c = b[2], b = b[3], d;
   d = c.toUpperCase();
   c = 60 + [ 0, 2, 4, 5, 7, 9, 11 ]["CDEFGAB".indexOf(d)] + (d != c ? 12 : 0);
-  b && (c += ("^" == b[0] ? 1 : -1) * b.length);
-  a && (c += ("'" == a[0] ? 12 : -12) * a.length);
+  a && (c += ("^" == a[0] ? 1 : -1) * a.length);
+  b && (c += ("'" == b[0] ? 12 : -12) * b.length);
   return c;
  }
- function Q(b, a, c, d) {
-  var f;
-  f = 0;
-  0 <= c.indexOf("stafflines=1") && (f += 4);
-  !d && 0 <= c.indexOf("bass") && (f += 12);
-  f && (c = "CDEFGAB".split(""), f = c.indexOf(b) + f, b = c[f % 7], a += Math.floor(f / 7));
-  4 < a && (b = b.toLowerCase());
-  5 < a && (b += Array(a - 5 + 1).join("'"));
-  4 > a && (b += Array(4 - a + 1).join(","));
-  return b;
+ function U(a, b, c, d) {
+  var e;
+  e = 0;
+  0 <= c.indexOf("stafflines=1") && (e += 4);
+  !d && 0 <= c.indexOf("bass") && (e += 12);
+  e && (c = "CDEFGAB".split(""), e = c.indexOf(a) + e, a = c[e % 7], b += Math.floor(e / 7));
+  4 < b && (a = a.toLowerCase());
+  5 < b && (a += m(b - 5, "'"));
+  4 > b && (a += m(4 - b, ","));
+  return a;
  }
- function K(b, a, c) {
-  var d = 0, f, e, g = a[b];
-  e = g.tup.indexOf("start");
-  -1 < e && g.tup.splice(e, 1);
-  var l = b;
-  for (c = [ g.fact[0] / c[0], g.fact[1] / c[1] ]; b < a.length; ) {
-   g = a[b];
-   if (!(g instanceof z || g.grace)) {
-    -1 < g.tup.indexOf("start") ? (e = K(b, a, c), b = e[0], e = e[1], d += e) : g.fact && (d += 1);
-    e = g.tup.indexOf("stop");
-    if (-1 < e) {
-     g.tup.splice(e, 1);
+ function V(a, b) {
+  var c, d;
+  d = {
+   maj: 8,
+   ion: 8,
+   m: 11,
+   min: 11,
+   aeo: 11,
+   mix: 9,
+   dor: 10,
+   phr: 12,
+   lyd: 7,
+   loc: 13,
+   non: 8
+  };
+  b = b.slice(0, 3).toLowerCase();
+  d = "Fb Cb Gb Db Ab Eb Bb F C G D A E B F# C# G# D# A# E# B#".split(" ")[d[b] + a] + (8 != d[b] ? b : "");
+  c = "FCGDAEB".split("");
+  c = 0 <= a ? r(c.slice(0, a), w(a, 1)) : r(c.slice(a), w(-a, -1));
+  return [ d, c ];
+ }
+ function N(a, b, c) {
+  var d = 0, e, f, g = b[a];
+  f = g.tup.indexOf("start");
+  -1 < f && g.tup.splice(f, 1);
+  var h = a;
+  for (c = [ g.fact[0] / c[0], g.fact[1] / c[1] ]; a < b.length; ) {
+   g = b[a];
+   if (!(g instanceof C || g.grace)) {
+    -1 < g.tup.indexOf("start") ? (f = N(a, b, c), a = f[0], f = f[1], d += f) : g.fact && (d += 1);
+    f = g.tup.indexOf("stop");
+    if (-1 < f) {
+     g.tup.splice(f, 1);
      break;
     }
     if (!g.fact) {
-     b = f;
+     a = e;
      break;
     }
-    f = b;
+    e = a;
    }
-   b += 1;
-  }
-  f = [ c[0], c[1], d ];
-  f = "3,2,3" == f.toString() ? "(3" : s("(%d:%d:%d", f);
-  a[l].tupabc = f + a[l].tupabc;
-  return [ b, d ];
- }
- function R(b) {
-  b = b.filter(function(a) {
-   return a instanceof w;
-  });
-  for (var a = 0; a < b.length - 1; ) {
-   var c = b[a], d = b[a + 1];
-   !c.fact && !d.fact && 0 < c.dur && d.beam && (3 * c.dur == d.dur ? (d.dur = 2 * d.dur / 3, 
-   c.dur *= 2, c.after = "<" + c.after, a += 1) : 3 * d.dur == c.dur && (c.dur = 2 * c.dur / 3, 
-   d.dur *= 2, c.after = ">" + c.after, a += 1));
    a += 1;
   }
+  e = [ c[0], c[1], d ];
+  e = "3,2,3" == e.toString() ? "(3" : u("(%d:%d:%d", e);
+  b[h].tupabc = e + b[h].tupabc;
+  return [ a, d ];
  }
- function S(b, a, c, d, f) {
-  for (d = 0; d < b.length; ) c = b[d], c instanceof w && c.fact && (c = K(d, b, [ 1, 1 ]), 
+ function W(a) {
+  a = a.filter(function(a) {
+   return a instanceof A;
+  });
+  for (var b = 0; b < a.length - 1; ) {
+   var c = a[b], d = a[b + 1];
+   !c.fact && !d.fact && 0 < c.dur && d.beam && (3 * c.dur == d.dur ? (d.dur = 2 * d.dur / 3, 
+   c.dur *= 2, c.after = "<" + c.after, b += 1) : 3 * d.dur == c.dur && (c.dur = 2 * c.dur / 3, 
+   d.dur *= 2, c.after = ">" + c.after, b += 1));
+   b += 1;
+  }
+ }
+ function X(a, b, c, d, e) {
+  for (d = 0; d < a.length; ) c = a[d], c instanceof A && c.fact && !c.grace && (c = N(d, a, [ 1, 1 ]), 
   d = c[0]), d += 1;
   d = [];
-  for (var e, g = 0; g < b.length; ++g) {
-   c = b[g];
-   if (c instanceof w) {
-    var l = I(c, a, f), k = 1 < c.ns.length;
-    e = c.ns.filter(function(a) {
-     return B(a, "-");
+  for (var f, g = 0; g < a.length; ++g) {
+   c = a[g];
+   if (c instanceof A) {
+    var h = L(c, b, e), k = 1 < c.ns.length;
+    f = c.ns.filter(function(a) {
+     return z(a, "-");
     });
-    e = e.map(function(a) {
+    f = f.map(function(a) {
      return a.slice(0, -1);
     });
-    var h = "";
-    k && e.length == c.ns.length && (c.ns = e, h = "-");
-    e = c.tupabc + c.before;
-    k && (e += "[");
-    e += c.ns.join("");
-    k && (e += "]" + h);
-    B(e, "-") && (e = e.slice(0, -1), h = "-");
-    e += l + h;
-    e += c.after;
+    var l = "";
+    k && f.length == c.ns.length && (c.ns = f, l = "-");
+    f = c.tupabc + c.before.join("");
+    k && (f += "[");
+    f += c.ns.join("");
+    k && (f += "]" + l);
+    z(f, "-") && (f = f.slice(0, -1), l = "-");
+    f += h + l;
+    f += c.after;
     c = c.beam;
-   } else e = c.str, c = 1;
-   c ? d.push(e) : d.push(" " + e);
+   } else c.str instanceof Array && (c.str = c.str[0]), f = c.str, c = 1;
+   c ? d.push(f) : d.push(" " + f);
   }
-  return d.join("");
+  for (d = d.join(""); 0 <= d.indexOf("!ped!!ped!"); ) d = d.replace(/!ped!!ped!/g, "!ped!");
+  for (;0 <= d.indexOf("!ped-up!!ped-up!"); ) d = d.replace(/!ped-up!!ped-up!/g, "!ped-up!");
+  for (;0 <= d.indexOf("!8va(!!8va)!"); ) d = d.replace(/!8va\(!!8va\)!/g, "");
+  return d;
  }
- function T(b, a) {
-  b.map(function(a, b) {
+ function Y(a, b) {
+  a.map(function(a, b) {
    a.pos = b;
   });
-  b.sort(function(a, b) {
+  a.sort(function(a, b) {
    return a.tijd - b.tijd || a.pos - b.pos;
   });
-  for (var c = 0, d = [], f = 0; f < b.length; ++f) {
-   var e = b[f];
-   e.tijd > c && d.push(new w(e.tijd - c, "x"));
-   if (e instanceof z) e.tijd < c && (e.tijd = c), d.push(e), c = e.tijd; else {
-    if (e.tijd < c) {
-     if ("z" == e.ns[0]) continue;
-     var g = d[d.length - 1];
-     if (g.tijd <= e.tijd) if ("z" == g.ns[0]) g.dur = e.tijd - g.tijd, 0 == g.dur && pop(d), 
-     q("overlap in part %d, measure %d: rest shortened", [ a.ixp + 1, a.ixm + 1 ]); else {
-      g.ns = g.ns.concat(e.ns);
-      q("overlap in part %d, measure %d: added chord", [ a.ixp + 1, a.ixm + 1 ]);
-      e.dur = e.tijd + e.dur - c;
-      if (0 >= e.dur) continue;
-      e.tijd = c;
+  for (var c = 0, d = [], e = [], f = 0; f < a.length; ++f) {
+   var g = a[f];
+   g.tijd > c && (d.push(new A(g.tijd - c, "x")), e.push(d.length - 1));
+   if (g instanceof C) g.tijd < c && (g.tijd = c), d.push(g), c = g.tijd; else {
+    if (g.tijd < c) {
+     if ("z" == g.ns[0]) continue;
+     var h = d[d.length - 1];
+     if (h.tijd <= g.tijd) if ("z" == h.ns[0]) h.dur = g.tijd - h.tijd, 0 == h.dur && d.pop(), 
+     t("overlap in part %d, measure %d: rest shortened", [ b.ixp + 1, b.ixm + 1 ]); else {
+      h.ns = h.ns.concat(g.ns);
+      t("overlap in part %d, measure %d: added chord", [ b.ixp + 1, b.ixm + 1 ]);
+      g.dur = g.tijd + g.dur - c;
+      if (0 >= g.dur) continue;
+      g.tijd = c;
      } else {
-      q("overlapping notes in one voice! part %d, measure %d, note %s discarded", [ a.ixp + 1, a.ixm + 1, e instanceof w ? e.ns : e.str ]);
+      t("overlapping notes in one voice! part %d, measure %d, note %s discarded", [ b.ixp + 1, b.ixm + 1, g instanceof A ? g.ns : g.str ]);
       continue;
      }
     }
-    d.push(e);
-    c = e.tijd + e.dur;
+    d.push(g);
+    if (g instanceof A) if (c = g.ns[0], "x" == c || "z" == c) e.push(d.length - 1); else if (e.length) {
+     if (g.beam && !g.grace) for (c = 0; c < e.length; ++c) d[e[c]].beam = g.beam;
+     e = [];
+    }
+    c = g.tijd + g.dur;
    }
   }
-  0 == c && q("empty measure in part %d, measure %d, it should contain at least a rest to advance the time!", [ a.ixp + 1, a.ixm + 1 ]);
+  0 == c && t("empty measure in part %d, measure %d, it should contain at least a rest to advance the time!", [ b.ixp + 1, b.ixm + 1 ]);
   return d;
  }
- function U(b) {
-  function a(a) {
-   a = s('<part-group number="%d" type="%s"></part-group>', [ a, "stop" ]);
-   a = $.parseXML(a).firstChild;
+ function Z(a) {
+  function b(a) {
+   a = u('<part-group number="%d" type="%s"></part-group>', [ a, "stop" ]);
+   a = new window.DOMParser().parseFromString(a, "text/xml").firstChild;
    return $(a);
   }
-  var c, d, f, e, g, l, k;
+  var c, d, e, f, g, h, k;
   c = [];
   d = [];
-  l = b.children();
-  for (g = 0; g < l.length; g++) b = $(l[g]), "part-group" == b[0].nodeName ? (f = b.attr("number"), 
-  e = b.attr("type"), k = d.indexOf(f), "start" == e ? -1 < k ? (c.push(a(f)), c.push(b)) : (c.push(b), 
-  d.push(f)) : -1 < k && (d.splice(k, 1), c.push(b))) : c.push(b);
-  for (g = d.length - 1; 0 <= g; --g) f = d[g], c.push(a(f));
+  h = a.children();
+  for (g = 0; g < h.length; g++) a = $(h[g]), "part-group" == a[0].nodeName ? (e = a.attr("number"), 
+  f = a.attr("type"), k = d.indexOf(e), "start" == f ? -1 < k ? (c.push(b(e)), c.push(a)) : (c.push(a), 
+  d.push(e)) : -1 < k && (d.splice(k, 1), c.push(a))) : c.push(a);
+  for (g = d.length - 1; 0 <= g; --g) e = d[g], c.push(b(e));
   return c;
  }
- function E(b, a, c) {
-  var d, f, e, g;
-  if (0 == b.length) return [ [], [] ];
-  d = b.shift();
+ function H(a, b, c) {
+  var d, e, f, g;
+  if (0 == a.length) return [ [], [] ];
+  d = a.shift();
   if ("part-group" == d[0].nodeName) {
-   f = d.attr("number");
-   e = d.attr("type");
-   if ("start" == e) {
-    e = [];
+   e = d.attr("number");
+   f = d.attr("type");
+   if ("start" == f) {
+    f = [];
     for (g in {
      "group-symbol": 0,
      "group-barline": 0,
      "group-name": 0,
      "group-abbreviation": 0
-    }) e.push(d.find(g).text() || "");
-    a[f] = e;
-    c.push(f);
-    g = E(b, a, c);
-    b = g[0];
-    d = g[1];
-    g = E(d, a, c);
+    }) f.push(d.find(g).text() || "");
+    b[e] = f;
+    c.push(e);
+    g = H(a, b, c);
     a = g[0];
+    d = g[1];
+    g = H(d, b, c);
+    b = g[0];
     c = g[1];
-    return [ [ b ].concat(a), c ];
+    return [ [ a ].concat(b), c ];
    }
    c = c.pop();
-   b.length && "stop" == b[0].attr("type") && f != c && (g = a[c], a[c] = a[f], a[f] = g);
-   a = a[f];
-   return [ [ a ], b ];
+   a.length && "stop" == a[0].attr("type") && e != c && (g = b[c], b[c] = b[e], b[e] = g);
+   b = b[e];
+   return [ [ b ], a ];
   }
-  g = E(b, a, c);
-  a = g[0];
-  b = g[1];
-  return [ [ [ "name_tuple", d.find("part-name").text() || "", d.find("part-abbreviation").text() || "" ] ].concat(a), b ];
+  g = H(a, b, c);
+  b = g[0];
+  a = g[1];
+  return [ [ [ "name_tuple", d.find("part-name").text() || "", d.find("part-abbreviation").text() || "" ] ].concat(b), a ];
  }
- function L(b) {
-  var a, c, d, f;
-  if (0 == b.length) return [];
-  a = [];
-  for (d = 0; d < b.length; ++d) {
-   c = b[d];
-   if (1 == c.length) a.push("" + c[0]); else {
-    a.push("(");
-    for (f = 0; f < c.length; ++f) a.push("" + c[f]);
-    a.push(")");
+ function O(a) {
+  var b, c, d, e;
+  if (0 == a.length) return [];
+  b = [];
+  for (d = 0; d < a.length; ++d) {
+   c = a[d];
+   if (1 == c.length) b.push("" + c[0]); else {
+    b.push("(");
+    for (e = 0; e < c.length; ++e) b.push("" + c[e]);
+    b.push(")");
    }
-   a.push("|");
+   b.push("|");
   }
-  a.splice(-1, 1);
-  1 < b.length && (a = [ "{" ].concat(a).concat([ "}" ]));
-  return a;
+  b.splice(-1, 1);
+  1 < a.length && (b = [ "{" ].concat(b).concat([ "}" ]));
+  return b;
  }
- function M(b, a, c, d, f, e) {
-  if ("name_tuple" == b[0]) d = d.shift(), a[0] && (b[1] = a[0] + ":" + b[1], b[2] = a[1] + ":" + b[2]), 
-  f.push(b), e.push.apply(e, L(d)); else if (2 == b.length) d = d.shift(), c = [ "name_tuple", "", "" ], 
-  c[1] = b[0][1] + ":" + b[1][2], c[2] = b[0][2] + ":" + b[1][3], f.push(c), e.push.apply(e, L(d)); else {
-   var g, l, k;
-   k = b[b.length - 1];
-   a = k[0];
+ function P(a, b, c, d, e, f) {
+  if ("name_tuple" == a[0]) d = d.shift(), b[0] && (a[1] = b[0] + ":" + a[1], a[2] = b[1] + ":" + a[2]), 
+  e.push(a), f.push.apply(f, O(d)); else if (2 == a.length) d = d.shift(), c = [ "name_tuple", "", "" ], 
+  c[1] = a[0][1] + ":" + a[1][2], c[2] = a[0][2] + ":" + a[1][3], e.push(c), f.push.apply(f, O(d)); else {
+   var g, h, k;
+   k = a[a.length - 1];
+   b = k[0];
    g = k[1];
-   l = k[2];
+   h = k[2];
    k = k[3];
    g = "yes" == g || c;
-   e.push("brace" == a ? "{" : "[");
-   for (c = 0; c < b.length - 1; ++c) M(b[c], [ l, k ], g, d, f, e), g && e.push("|");
-   g && e.splice(-1, 1);
-   e.push("brace" == a ? "}" : "]");
+   f.push("brace" == b ? "{" : "[");
+   for (c = 0; c < a.length - 1; ++c) P(a[c], [ h, k ], g, d, e, f), g && f.push("|");
+   g && f.splice(-1, 1);
+   f.push("brace" == b ? "}" : "]");
   }
  }
- function V(b) {
-  for (var a = "", c = b.children(), d = 0; d < c.length; ++d) {
-   var f = c[d];
-   switch (f.nodeName) {
+ function aa(a) {
+  for (var b = "", c = a.children(), d = 0; d < c.length; ++d) {
+   var e = c[d];
+   switch (e.nodeName) {
    case "elision":
-    a += "~";
+    b += "~";
     break;
 
    case "text":
-    a += $(f).text().replace(/_/g, "\\_").replace(/-/g, "\\-").replace(/ /g, "~");
+    b += $(e).text().replace(/_/g, "\\_").replace(/-/g, "\\-").replace(/ /g, "~");
    }
   }
-  if (!a) return a;
-  c = b.find("syllabic").text();
-  if ("begin" == c || "middle" == c) a += "-";
-  b.find("extend").length && (a += "_");
-  return a;
+  if (!b) return b;
+  c = a.find("syllabic").text();
+  if ("begin" == c || "middle" == c) b += "-";
+  a.find("extend").length && (b += "_");
+  return b;
  }
- function n(b) {
+ function ba(a) {
+  var b = {
+   diamond: 1,
+   triangle: 1,
+   square: 1,
+   normal: 1
+  }, c = ca, d, e, f, g = "default", h = {
+   default: []
+  };
+  a = a.split("\n");
+  for (d = 0; d < a.length; ++d) if (e = a[d], 0 <= e.indexOf("I:percmap") && (e = e.split(" ").map(function(a) {
+   return a.trim();
+  }), f = e[4], f in b && (f = f + "+," + f), e = "%%map perc" + g + " " + e[1] + " print=" + e[2] + " midi=" + e[3] + " heads=" + f, 
+  h[g].push(e)), 0 <= e.indexOf("V:") && (f = e.match(/V:\s*(\S+)/))) g = f[1], g in h || (h[g] = []);
+  b = Object.keys(h).sort();
+  for (d = 0; d < b.length; ++d) c = c.concat(h[b[d]]);
+  for (d = 0; d < a.length; ++d) e = a[d], 0 <= e.indexOf("I:percmap") || (0 <= e.indexOf("V:") || 0 <= e.indexOf("K:") ? ((f = e.match(/V:\s*(\S+)/)) && (g = f[1]), 
+  0 == h[g].length && (g = "default"), c.push(e), 0 <= e.indexOf("perc") && -1 == e.indexOf("map=") && (e += " map=perc"), 
+  0 <= e.indexOf("map=perc") && 0 < h[g].length && c.push("%%voicemap perc" + g), 
+  0 <= e.indexOf("map=off") && c.push("%%voicemap")) : c.push(e));
+  return c.join("\n");
+ }
+ function I(a, b) {
+  var c = a;
+  4 < b && (c = a.toLowerCase());
+  5 < b && (c += m(b - 5, "'"));
+  4 > b && (c += m(4 - b, ","));
+  return c;
+ }
+ function x(a) {
   this.slurBuf = {};
-  this.wedge_type = "";
+  this.dirStk = {};
   this.ingrace = 0;
-  this.msc = new r(b);
-  this.unfold = b.u;
-  this.ctf = b.c;
+  this.msc = new y(a);
+  this.unfold = a.u;
+  this.ctf = a.c;
   this.gStfMap = [];
   this.midiMap = [];
   this.drumInst = {};
@@ -25094,307 +25306,403 @@ if (typeof MooTools != "undefined") {
   this.msralts = {};
   this.curalts = {};
   this.stfMap = {};
+  this.vce2stf = {};
   this.clefMap = {};
   this.curClef = {};
+  this.stemDir = {};
   this.clefOct = {};
   this.curStf = {};
-  this.nolbrk = b.x;
-  this.doPageFmt = 1 == b.p.length;
-  this.tstep = b.t;
+  this.nolbrk = a.x;
+  this.doPageFmt = 1 == a.p.length;
+  this.tstep = a.t;
+  this.dirtov1 = a.v1;
+  this.ped = !a.noped;
+  this.wstems = a.stm;
+  this.pedVce = null;
+  this.repeat_str = {};
+  this.tabVceMap = {};
+  this.koppen = {};
+  this.note_alts = [ "=C ^C =D ^D =E =F ^F =G ^G =A ^A =B".split(" "), "^B _D ^^C _E _F ^E _G ^^F _A ^^G _B _C".split(" "), "__D ^^B __E __F ^^D __G ^^E __A _/A __B __C ^^A".split(" ") ];
+  this.step_map = {
+   C: 0,
+   D: 2,
+   E: 4,
+   F: 5,
+   G: 7,
+   A: 9,
+   B: 11
+  };
  }
- var W = Math.pow(2, 53), N = {
+ var da = Math.pow(2, 53), Q = {
   "ornaments>trill-mark": "T",
   "ornaments>mordent": "M",
   "ornaments>inverted-mordent": "P",
   "ornaments>turn": "!turn!",
   "ornaments>inverted-turn": "!invertedturn!",
-  "ornaments>tremolo": "!///!",
   "technical>up-bow": "u",
   "technical>down-bow": "v",
   "technical>harmonic": "!open!",
   "technical>open-string": "!open!",
   "technical>stopped": "!plus!",
+  "technical>snap-pizzicato": "!snap!",
+  "technical>thumb-position": "!thumb!",
   "articulations>accent": "!>!",
-  "articulations>strong-accent": "!>!",
+  "articulations>strong-accent": "!^!",
   "articulations>staccato": ".",
   "articulations>staccatissimo": "!wedge!",
+  "articulations>scoop": "!slide!",
   fermata: "!fermata!",
   arpeggiate: "!arpeggio!",
   "articulations>tenuto": "!tenuto!",
-  "articulations>staccatissimo": "!wedge!",
   "articulations>spiccato": "!wedge!",
   "articulations>breath-mark": "!breath!",
   "articulations>detached-legato": "!tenuto!."
- }, O = {
+ }, R = {
   p: "!p!",
   pp: "!pp!",
   ppp: "!ppp!",
+  pppp: "!pppp!",
   f: "!f!",
   ff: "!ff!",
   fff: "!fff!",
+  ffff: "!ffff!",
   mp: "!mp!",
   mf: "!mf!",
   sfz: "!sfz!"
- }, p;
- xml2abc_VERSION = 62;
- H.prototype.reset = function() {
+ }, ca = '%%beginsvg\n<defs>,<text id="x" x="-3" y="0">&#xe263;</text>,<text id="x-" x="-3" y="0">&#xe263;</text>,<text id="x+" x="-3" y="0">&#xe263;</text>,<text id="normal" x="-3.7" y="0">&#xe0a3;</text>,<text id="normal-" x="-3.7" y="0">&#xe0a3;</text>,<text id="normal+" x="-3.7" y="0">&#xe0a4;</text>,<g id="circle-x"><text x="-3" y="0">&#xe263;</text><circle r="4" class="stroke"></circle></g>,<g id="circle-x-"><text x="-3" y="0">&#xe263;</text><circle r="4" class="stroke"></circle></g>,<path id="triangle" d="m-4 -3.2l4 6.4 4 -6.4z" class="stroke" style="stroke-width:1.4"></path>,<path id="triangle-" d="m-4 -3.2l4 6.4 4 -6.4z" class="stroke" style="stroke-width:1.4"></path>,<path id="triangle+" d="m-4 -3.2l4 6.4 4 -6.4z" class="stroke" style="fill:#000"></path>,<path id="square" d="m-3.5 3l0 -6.2 7.2 0 0 6.2z" class="stroke" style="stroke-width:1.4"></path>,<path id="square-" d="m-3.5 3l0 -6.2 7.2 0 0 6.2z" class="stroke" style="stroke-width:1.4"></path>,<path id="square+" d="m-3.5 3l0 -6.2 7.2 0 0 6.2z" class="stroke" style="fill:#000"></path>,<path id="diamond" d="m0 -3l4.2 3.2 -4.2 3.2 -4.2 -3.2z" class="stroke" style="stroke-width:1.4"></path>,<path id="diamond-" d="m0 -3l4.2 3.2 -4.2 3.2 -4.2 -3.2z" class="stroke" style="stroke-width:1.4"></path>,<path id="diamond+" d="m0 -3l4.2 3.2 -4.2 3.2 -4.2 -3.2z" class="stroke" style="fill:#000"></path>,</defs>\n%%endsvg'.split(","), S = '%%beginsvg\n,<style type="text/css">\n,.bf {font-family:sans-serif; font-size:7px}\n,</style>\n,<defs>\n,<rect id="clr" x="-3" y="-1" width="6" height="5" fill="white"></rect>\n,<rect id="clr2" x="-3" y="-1" width="11" height="5" fill="white"></rect>\n'.split(","), v;
+ K.prototype.reset = function() {
   this.lline = this.attr = "";
   this.rline = "|";
   this.lnum = "";
  };
- A.prototype.inc = function(b, a) {
-  this.counters[b][a] = (this.counters[b][a] || 0) + 1;
+ D.prototype.inc = function(a, b) {
+  this.counters[a][b] = (this.counters[a][b] || 0) + 1;
  };
- A.prototype.clear = function(b) {
-  b = Object.keys(b);
-  var a = x(b.length, 0);
+ D.prototype.clear = function(a) {
+  a = Object.keys(a);
+  var b = w(a.length, 0);
   this.counters = {
-   note: y(b, a),
-   nopr: y(b, a),
-   nopt: y(b, a)
+   note: r(a, b),
+   nopr: r(a, b),
+   nopt: r(a, b)
   };
  };
- A.prototype.getv = function(b, a) {
-  return this.counters[b][a];
+ D.prototype.getv = function(a, b) {
+  return this.counters[a][b];
  };
- A.prototype.prcnt = function(b) {
-  for (var a in this.counters.note) 0 != this.getv("nopr", a) && q("part %d, voice %d has %d skipped non printable notes", [ b, a, this.getv("nopr", a) ]), 
-  0 != this.getv("nopt", a) && q("part %d, voice %d has %d notes without pitch", [ b, a, this.getv("nopt", a) ]), 
-  0 == this.getv("note", a) && q("part %d, skipped empty voice %d", [ b, a ]);
+ D.prototype.prcnt = function(a) {
+  for (var b in this.counters.note) 0 != this.getv("nopr", b) && t("part %d, voice %d has %d skipped non printable notes", [ a, b, this.getv("nopr", b) ]), 
+  0 != this.getv("nopt", b) && t("part %d, voice %d has %d notes without pitch", [ a, b, this.getv("nopt", b) ]), 
+  0 == this.getv("note", b) && t("part %d, skipped empty voice %d", [ a, b ]);
  };
- r.prototype.initVoices = function(b) {
+ y.prototype.initVoices = function(a) {
   this.vtimes = {};
   this.voices = {};
   this.lyrics = {};
-  for (var a in this.vnums) this.vtimes[a] = 0, this.voices[a] = [], this.lyrics[a] = [];
-  b && this.cnt.clear(this.vnums);
+  for (var b in this.vnums) this.vtimes[b] = 0, this.voices[b] = [], this.lyrics[b] = [];
+  a && this.cnt.clear(this.vnums);
  };
- r.prototype.incTime = function(b) {
-  this.tijd += b;
+ y.prototype.incTime = function(a) {
+  this.tijd += a;
+  0 > this.tijd && (this.tijd = 0);
   this.tijd > this.maxtime && (this.maxtime = this.tijd);
  };
- r.prototype.appendElemCv = function(b, a) {
-  for (var c in b) this.appendElem(c, a);
+ y.prototype.appendElemCv = function(a, b) {
+  for (var c in a) this.appendElem(c, b);
  };
- r.prototype.insertElem = function(b, a) {
-  var c = new z(a);
+ y.prototype.insertElem = function(a, b) {
+  var c = new C(b);
   c.tijd = 0;
-  this.voices[b].unshift(c);
+  this.voices[a].unshift(c);
  };
- r.prototype.appendObj = function(b, a, c) {
-  a.tijd = this.tijd;
-  this.voices[b].push(a);
+ y.prototype.appendObj = function(a, b, c) {
+  b.tijd = this.tijd;
+  this.voices[a].push(b);
   this.incTime(c);
-  this.tijd > this.vtimes[b] && (this.vtimes[b] = this.tijd);
+  this.tijd > this.vtimes[a] && (this.vtimes[a] = this.tijd);
  };
- r.prototype.appendElem = function(b, a) {
-  this.appendObj(b, new z(a), 0);
+ y.prototype.appendElemT = function(a, b, c) {
+  b = new C(b);
+  b.tijd = c;
+  this.voices[a].push(b);
  };
- r.prototype.appendNote = function(b, a, c) {
-  a.ns.push(c);
-  this.appendObj(b, a, parseInt(a.dur));
-  "z" != c && (this.lastnote = a, this.cnt.inc("note", b), a.grace || this.lyrics[b].push(a.lyrs));
+ y.prototype.appendElem = function(a, b, c) {
+  this.appendObj(a, new C(b), 0);
+  c && this.cnt.inc("note", a);
  };
- r.prototype.getLastRec = function(b) {
-  return this.gMaten.length ? (b = this.gMaten[this.gMaten.length - 1][b], b[b.length - 1]) : null;
+ y.prototype.appendNote = function(a, b, c) {
+  b.ns.push(b.ntdec + c);
+  this.appendObj(a, b, parseInt(b.dur));
+  this.lastnote = b;
+  "z" != c && "x" != c && (this.cnt.inc("note", a), b.grace || this.lyrics[a].push(b.lyrs));
  };
- r.prototype.getLastMelis = function(b, a) {
+ y.prototype.getLastRec = function(a) {
+  return this.gMaten.length ? (a = this.gMaten[this.gMaten.length - 1][a], a[a.length - 1]) : null;
+ };
+ y.prototype.getLastMelis = function(a, b) {
   if (this.gLyrics.length) {
-   var c = this.gLyrics[this.gLyrics.length - 1][b];
-   if (a in c) return c[a][1];
+   var c = this.gLyrics[this.gLyrics.length - 1][a];
+   if (b in c) return c[b][1];
   }
   return 0;
  };
- r.prototype.addChord = function(b) {
-  this.lastnote.ns.push(b);
+ y.prototype.addChord = function(a, b) {
+  for (var c = 0; c < a.before.length; c++) {
+   var d = a.before[c];
+   0 > this.lastnote.before.indexOf(d) && this.lastnote.before.push(d);
+  }
+  this.lastnote.ns.push(a.ntdec + b);
  };
- r.prototype.addBar = function(b, a) {
-  a.mdur && this.maxtime > a.mdur && q("measure %d in part %d longer than metre", [ a.ixm + 1, a.ixp + 1 ]);
+ y.prototype.addBar = function(a, b) {
+  b.mdur && this.maxtime > b.mdur && t("measure %d in part %d longer than metre", [ b.ixm + 1, b.ixp + 1 ]);
   this.tijd = this.maxtime;
   for (var c in this.vnums) {
-   if (a.lline || a.lnum) {
+   if (b.lline || b.lnum) {
     var d = this.getLastRec(c);
     if (d) {
-     var f = d.str;
-     a.lline && (f = (f + a.lline).replace(/:\|:/g, "::").replace(/\|\|/g, "|"));
-     3 == this.nvlt ? a.ixp + parseInt(c) == Math.min.apply(null, C(this.vnums)) && (f += a.lnum) : 4 == this.nvlt ? parseInt(c) == Math.min.apply(null, C(this.vnums)) && (f += a.lnum) : a.lnum && (f += a.lnum, 
+     var e = d.str;
+     b.lline && (e = (e + b.lline).replace(/:\|:/g, "::").replace(/\|\|/g, "|"));
+     3 == this.nvlt ? b.ixp + parseInt(c) == Math.min.apply(null, F(this.vnums)) && (e += b.lnum) : 4 == this.nvlt ? parseInt(c) == Math.min.apply(null, F(this.vnums)) && (e += b.lnum) : b.lnum && (e += b.lnum, 
      this.repbra = 1);
-     d.str = f;
-    } else a.lline && this.insertElem(c, "|:");
+     d.str = e;
+    } else b.lline && this.insertElem(c, "|:");
    }
-   b && (d = this.getLastRec(c)) && (d.str += b);
-   a.attr && this.insertElem(c, "" + a.attr);
-   this.appendElem(c, " " + a.rline);
-   this.voices[c] = T(this.voices[c], a);
-   for (var d = this.lyrics[c], f = {}, e = d.reduce(function(a, b) {
-    return a.concat(C(b));
-   }, []), g = Math.max.apply(null, e.concat([ 0 ])); 0 < g; --g) {
-    var e = d.map(function(a) {
+   a && (d = this.getLastRec(c)) && (d.str += a);
+   b.attr && this.insertElem(c, "" + b.attr);
+   this.appendElem(c, " " + b.rline);
+   this.voices[c] = Y(this.voices[c], b);
+   for (var d = this.lyrics[c], e = {}, f = d.reduce(function(a, b) {
+    return a.concat(F(b));
+   }, []), g = Math.max.apply(null, f.concat([ 0 ])); 0 < g; --g) {
+    var f = d.map(function(a) {
      return a[g] || "";
-    }), l = this.getLastMelis(c, g);
-    f[g] = P(e, l);
+    }), h = this.getLastMelis(c, g);
+    e[g] = T(f, h);
    }
-   this.lyrics[c] = f;
-   R(this.voices[c]);
+   this.lyrics[c] = e;
+   W(this.voices[c]);
   }
   this.gMaten.push(this.voices);
   this.gLyrics.push(this.lyrics);
   this.tijd = this.maxtime = 0;
   this.initVoices();
  };
- r.prototype.outVoices = function(b, a) {
-  var c, d, f, e, g, l, k, h, m;
+ y.prototype.outVoices = function(a, b) {
+  var c, d, e, f, g, h, k, l, p;
   g = {};
-  k = Math.min.apply(null, C(this.vnums));
-  for (h in this.vnums) if (0 != this.cnt.getv("note", h)) {
-   if (p.denL) l = p.denL; else {
-    var t = h, u = this.gMaten;
-    l = b;
-    m = 0;
-    e = W;
-    d = c = void 0;
+  k = Math.min.apply(null, F(this.vnums) || [ 1 ]);
+  for (l in this.vnums) if (0 != this.cnt.getv("note", l)) {
+   if (v.denL) h = v.denL; else {
+    var m, q;
+    h = l;
+    p = this.gMaten;
+    f = a;
+    c = 0;
+    d = da;
     for (var n = [ 4, 8, 16 ]; n.length; ) {
-     var v = n.shift(), q = 0;
-     for (c = 0; c < u.length; ++c) {
-      var r = u[c][t];
-      for (d = 0; d < r.length; ++d) {
-       var s = r[d];
-       s instanceof z || 0 == s.dur || (q += I(s, l, v).length);
+     var B = n.shift(), u = 0;
+     for (q = 0; q < p.length; ++q) {
+      var t = p[q][h];
+      for (m = 0; m < t.length; ++m) {
+       var r = t[m];
+       r instanceof C || 0 == r.dur || (u += L(r, f, B).length);
       }
      }
-     q < e && (m = v, e = q);
+     u < d && (c = B, d = u);
     }
-    l = m;
+    h = c;
    }
-   p.cmpL.push(l);
-   t = [];
-   u = {};
-   for (m = 0; m < this.gMaten.length; ++m) {
-    e = this.gMaten[m][h];
-    t.push(S(e, b, m, a, l));
-    d = this.gLyrics;
-    if (0 != m) for (n in e = this.gMaten[m][h], c = d[m][h], d = d[m - 1][h], v = v = n = void 0, 
-    d) if (v = d[n][1], !(n in c) && v) {
-     v = e;
-     q = [];
-     for (r = 0; r < v.length; ++r) if (s = v[r], s instanceof w && !s.grace) {
-      if ("z" == s.ns[0]) break;
-      q.push("_");
+   v.cmpL.push(h);
+   m = [];
+   q = {};
+   for (p = 0; p < this.gMaten.length; ++p) {
+    f = this.gMaten[p][l];
+    m.push(X(f, a, p, b, h));
+    f = void 0;
+    n = this.gLyrics;
+    if (0 != p) for (f in c = this.gMaten[p][l], d = n[p][l], n = n[p - 1][l], n) if (B = n[f][1], 
+    !(f in d) && B) {
+     B = c;
+     u = [];
+     for (t = 0; t < B.length; ++t) if (r = B[t], r instanceof A && !r.grace) {
+      if ("z" == r.ns[0] || "x" == r.ns[0]) break;
+      u.push("_");
      }
-     (v = q.join(" ")) && (c[n] = [ v, 0 ]);
+     (B = u.join(" ")) && (d[f] = [ B, 0 ]);
     }
-    c = this.gLyrics[m][h];
-    for (f in c) if (e = c[f], e = e[0], f in u) {
-     for (;u[f].length < m; ) u[f].push("");
-     u[f].push(e);
-    } else u[f] = x(m, "").concat([ e ]);
+    c = this.gLyrics[p][l];
+    for (e in c) if (f = c[e], f = f[0], e in q) {
+     for (;q[e].length < p; ) q[e].push("");
+     q[e].push(f);
+    } else q[e] = w(p, "").concat([ f ]);
    }
-   for (f in u) e = u[f], l = t.length - e.length, u[f] = e.concat(x(l, ""));
-   p.add("V:" + this.vceCnt);
-   this.repbra && (1 == this.nvlt && 1 < this.vceCnt && p.add("I:repbra 0"), 2 == this.nvlt && parseInt(h) > k && p.add("I:repbra 0"));
+   for (e in q) f = q[e], h = m.length - f.length, q[e] = f.concat(w(h, ""));
+   v.add("V:" + this.vceCnt);
+   this.repbra && (1 == this.nvlt && 1 < this.vceCnt && v.add("I:repbra 0"), 2 == this.nvlt && parseInt(l) > k && v.add("I:repbra 0"));
    0 < this.cpl ? this.bpl = 0 : 0 == this.bpl && (this.cpl = 100);
-   for (l = 0; t.length; ) {
-    m = 1;
-    for (e = t[0]; m < t.length && !(0 < this.cpl && e.length + t[m].length >= this.cpl) && !(0 < this.bpl && m >= this.bpl); ) e += t[m], 
-    m += 1;
-    l += m;
-    p.add(e + " %" + l);
-    t.splice(0, m);
-    c = G(u, 1);
-    for (d = 0; d < c.length; ++d) e = c[d], f = e[0], e = e[1], p.add("w: " + e.slice(0, m).join("|") + "|"), 
-    e.splice(0, m);
+   for (h = 0; m.length; ) {
+    p = 1;
+    for (f = m[0]; p < m.length && !(0 < this.cpl && f.length + m[p].length >= this.cpl) && !(0 < this.bpl && p >= this.bpl); ) f += m[p], 
+    p += 1;
+    h += p;
+    v.add(f + " %" + h);
+    m.splice(0, p);
+    c = J(q, 1);
+    for (d = 0; d < c.length; ++d) f = c[d], e = f[0], f = f[1], v.add("w: " + f.slice(0, p).join("|") + "|"), 
+    f.splice(0, p);
    }
-   g[h] = this.vceCnt;
+   g[l] = this.vceCnt;
    this.vceCnt += 1;
   }
   this.gMaten = [];
   this.gLyrics = [];
-  this.cnt.prcnt(a + 1);
+  this.cnt.prcnt(b + 1);
   return g;
  };
- D.prototype.add = function(b) {
-  this.outlist.push(b + "\n");
+ E.prototype.add = function(a) {
+  this.outlist.push(a + "\n");
  };
- D.prototype.info = function(b, a) {
-  this.infolist.push(("undefined" == typeof a || a ? "-- " : "") + b);
+ E.prototype.info = function(a, b) {
+  this.infolist.push(("undefined" == typeof b || b ? "-- " : "") + a);
  };
- D.prototype.mkHeader = function(b, a, c) {
-  var d = [], f = [], e, g, l, k, h, m;
-  k = b.slice();
-  for (m = 0; m < a.length; ++m) {
-   e = a[m];
+ E.prototype.mkHeader = function(a, b, c, d, e) {
+  var f = [], g = [], h, k, l, p, m, q, n;
+  p = a.slice();
+  for (n = 0; n < b.length; ++n) {
+   h = b[n];
    try {
-    M(e, [ "", "" ], "", b, d, f);
-   } catch (t) {
-    q("lousy musicxml: error in part-list", []);
+    P(h, [ "", "" ], "", a, f, g);
+   } catch (ea) {
+    t("lousy musicxml: error in part-list", []);
    }
   }
-  a = f.join(" ");
-  b = {};
-  for (m = 0; m < k.length; ++m) g = k[m], e = d[m], l = e[1], e = e[2], 0 != g.length && (g = g[0][0], 
-  l = l.replace(/\n/g, "\\n").replace(/\.:/g, ".").replace(/^:|:$/g, ""), e = e.replace(/\n/g, "\\n").replace(/\.:/g, ".").replace(/^:|:$/g, ""), 
-  b[g] = (l ? 'nm="' + l + '"' : "") + (e ? ' snm="' + e + '"' : ""));
-  d = [ s("X:%d\n%s\n", [ this.X, this.title ]) ];
-  "" !== this.scale && d.push("%%scale " + this.scale + "\n");
-  "" !== this.pagewidth && d.push("%%pagewidth " + this.pagewidth + "cm\n");
-  "" !== this.leftmargin && d.push("%%leftmargin " + this.leftmargin + "cm\n");
-  "" !== this.rightmargin && d.push("%%rightmargin " + this.rightmargin + "cm\n");
-  a && 1 < f.length && d.push("%%score " + a + "\n");
-  k = this.tempo ? "Q:1/4=" + this.tempo + "\n" : "";
-  f = [];
-  for (m = 0; m < this.cmpL.length; ++m) e = this.cmpL[m], f[e] = (f[e] || 0) + 1;
-  f = G(f);
-  f = f[f.length - 1][0];
-  f = this.denL ? this.denL : f;
-  d.push(s("L:1/%d\n%sM:%s\n", [ f, k, this.mtr ]));
-  d.push(s("I:linebreak $\nK:%s\n", [ this.key ]));
-  for (h in this.clefs) {
-   e = c[h - 1];
-   m = e[0];
-   a = e[1];
-   l = e[1];
-   g = e[3];
-   k = e.slice(4);
-   e = this.clefs[h];
-   k.length && 0 > e.indexOf("perc") && (e = (e + " map=perc").trim());
-   d.push(s("V:%d %s %s\n", [ h, e, b[h] || "" ]));
-   1 < this.volpan ? (0 < m && m != h && d.push("%%MIDI channel " + m + "\n"), 0 < a && d.push("%%MIDI program " + (a - 1) + "\n"), 
-   0 <= l && d.push("%%MIDI control 7 " + l + "\n"), 0 <= g && d.push("%%MIDI control 10 " + g + "\n")) : 0 < this.volpan && (k.length && 0 < m && d.push("%%MIDI channel " + m + "\n"), 
-   0 < a && d.push("%%MIDI program " + (a - 1) + "\n"));
-   for (m = 0; m < k.length; ++m) if (e = k[m].nt, l = k[m].step, a = k[m].midi, (g = k[m].nhd) || (g = "normal"), 
-   J(e) != a || e != l) 0 < this.volpan && d.push("%%MIDI drummap " + e + " " + a + "\n"), 
-   d.push("I:percmap " + e + " " + l + " " + a + " " + g + "\n");
-   f != this.cmpL[h - 1] && d.push("L:1/" + this.cmpL[h - 1] + "\n");
+  b = g.join(" ");
+  a = {};
+  for (n = 0; n < p.length; ++n) k = p[n], h = f[n], l = h[1], h = h[2], 0 != k.length && (k = k[0][0], 
+  l = l.replace(/\n/g, "\\n").replace(/\.:/g, ".").replace(/^:|:$/g, ""), h = h.replace(/\n/g, "\\n").replace(/\.:/g, ".").replace(/^:|:$/g, ""), 
+  a[k] = (l ? 'nm="' + l + '"' : "") + (h ? ' snm="' + h + '"' : ""));
+  f = [ u("X:%d\n%s\n", [ this.X, this.title ]) ];
+  "" !== this.scale && f.push("%%scale " + this.scale + "\n");
+  "" !== this.pagewidth && f.push("%%pagewidth " + this.pagewidth + "cm\n");
+  "" !== this.leftmargin && f.push("%%leftmargin " + this.leftmargin + "cm\n");
+  "" !== this.rightmargin && f.push("%%rightmargin " + this.rightmargin + "cm\n");
+  b && 1 < g.length && f.push("%%score " + b + "\n");
+  p = this.tempo ? u("Q:%d/%d=%s\n", [ this.tempo_units[0], this.tempo_units[1], this.tempo ]) : "";
+  g = [];
+  for (n = 0; n < this.cmpL.length; ++n) h = this.cmpL[n], g[h] = (g[h] || 0) + 1;
+  g = J(g);
+  g = g[g.length - 1][0];
+  g = this.denL ? this.denL : g;
+  f.push(u("L:1/%d\n%sM:%s\n", [ g, p, this.mtr ]));
+  f.push(u("I:linebreak $\nK:%s\n", [ this.key ]));
+  this.stemless && f.push("U:s=!stemless!\n");
+  p = Object.keys(d).sort();
+  for (n = 0; n < p.length; ++n) f = f.concat(d[p[n]]);
+  this.dojef = 0;
+  for (q in this.clefs) {
+   h = c[q - 1];
+   n = h[0];
+   b = h[1];
+   l = h[2];
+   k = h[3];
+   p = h.slice(4);
+   h = this.clefs[q];
+   p.length && 0 > h.indexOf("perc") && (h = (h + " map=perc").trim());
+   f.push(u("V:%d %s %s\n", [ q, h, a[q] || "" ]));
+   q in d && (f.push(u("%%voicemap tab%d\n", [ q ])), f.push("K:none\nM:none\n%%clef none\n%%staffscale 1.6\n%%flatbeams true\n%%stemdir down\n"));
+   -1 < h.indexOf("perc") && f.push("K:none\n");
+   1 < this.volpan ? (0 < n && n != q && f.push("%%MIDI channel " + n + "\n"), 0 < b && f.push("%%MIDI program " + (b - 1) + "\n"), 
+   0 <= l && f.push("%%MIDI control 7 " + l + "\n"), 0 <= k && f.push("%%MIDI control 10 " + k + "\n")) : 0 < this.volpan && (p.length && 0 < n && f.push("%%MIDI channel " + n + "\n"), 
+   0 < b && f.push("%%MIDI program " + (b - 1) + "\n"));
+   for (n = 0; n < p.length; ++n) if (h = p[n].nt, l = p[n].step, b = p[n].midi, (k = p[n].nhd) || (k = "normal"), 
+   M(h) != b || h != l) 0 < this.volpan && f.push("%%MIDI drummap " + h + " " + b + "\n"), 
+   f.push("I:percmap " + h + " " + l + " " + b + " " + k + "\n"), this.dojef = this.tstep;
+   g != this.cmpL[q - 1] && f.push("L:1/" + this.cmpL[q - 1] + "\n");
   }
-  this.outlist = d.concat(this.outlist);
- };
- n.prototype.matchSlur = function(b, a, c, d, f, e) {
-  if (-1 != [ "start", "stop" ].indexOf(b)) if (a || (a = "1"), a in this.slurBuf) {
-   var g = this.slurBuf[a], l = g[0], k = g[1], h = g[2], g = g[3];
-   b != l ? (c != k || "start" != l || g && e || (h.before = "(" + h.before, d.after += ")"), 
-   delete this.slurBuf[a]) : (q("double slur numbers %s-%s in part %d, measure %d, voice %d note %s, first discarded", [ b, a, this.msr.ixp + 1, this.msr.ixm + 1, c, d.ns ]), 
-   this.slurBuf[a] = [ b, c, d, f ]);
-  } else this.slurBuf[a] = [ b, c, d, f ];
- };
- n.prototype.doNotations = function(b, a) {
-  for (var c = Object.keys(N).sort(), d = 0; d < c.length; ++d) {
-   var f = c[d], e = N[f];
-   a.find(f).length && (b.before += e);
+  this.outlist = f.concat(this.outlist);
+  c = Object.keys(e).sort();
+  if (c.length) {
+   m = [];
+   var B = this.shiftStem ? '<g id="kop%s" class="bf"><use xlink:href="#clr"></use><text x="-2" y="3">%s</text></g>\n'.replace("-2", "-5") : '<g id="kop%s" class="bf"><use xlink:href="#clr"></use><text x="-2" y="3">%s</text></g>\n', r = this.shiftStem ? '<g id="kop%s" class="bf"><use xlink:href="#clr2"></use><text x="-2" y="3">%s</text></g>\n'.replace("-2", "-5") : '<g id="kop%s" class="bf"><use xlink:href="#clr2"></use><text x="-2" y="3">%s</text></g>\n';
+   d = this.shiftStem ? S.map(function(a) {
+    return a.replace("-3", "-6");
+   }) : S;
+   c.forEach(function(a) {
+    m.push(1 < a.length ? u(r, [ a, a ]) : u(B, [ a, a ]));
+   });
+   this.outlist = d.concat(m, "</defs>\n%%endsvg\n", this.outlist);
   }
-  c = a.find("technical>fingering");
-  c.length && (b.before += "!" + c.text() + "!");
-  c = a.find("ornaments>wavy-line");
+ };
+ E.prototype.writeall = function() {
+  var a = v.outlist.join("");
+  this.dojef && (a = ba(a));
+  return [ a, this.infolist.join("\n") ];
+ };
+ x.prototype.matchSlur = function(a, b, c, d, e, f) {
+  if (-1 != [ "start", "stop" ].indexOf(a)) if (b || (b = "1"), b in this.slurBuf) {
+   var g = this.slurBuf[b], h = g[0], k = g[1], l = g[2], g = g[3];
+   a != h ? (c != k || "start" != h || g && f || (l.before.unshift("("), d.after += ")"), 
+   delete this.slurBuf[b]) : (t("double slur numbers %s-%s in part %d, measure %d, voice %d note %s, first discarded", [ a, b, this.msr.ixp + 1, this.msr.ixm + 1, c, d.ns ]), 
+   this.slurBuf[b] = [ a, c, d, e ]);
+  } else this.slurBuf[b] = [ a, c, d, e ];
+ };
+ x.prototype.doNotations = function(a, b, c) {
+  for (var d = Object.keys(Q).sort(), e = 0; e < d.length; ++e) {
+   var f = d[e], g = Q[f];
+   b.find(f).length && a.before.push(g);
+  }
+  e = b.find("ornaments>tremolo");
+  e.length && (f = e.attr("type"), d = "start" == f ? "-" : "", "single" != f && (a.fact = null), 
+  "stop" != f && (e = m(parseInt(e.text()), "/"), a.before.unshift("!" + e + d + "!")));
+  d = b.find("technical>fingering");
+  c || d.each(function() {
+   a.before.push("!" + $(this).text() + "!");
+  });
+  d = b.find("technical>string");
+  d.length && c && (this.tstep ? (c = b.find("technical>fret"), c.length && (a.tab = [ d.eq(0).text(), c.eq(0).text() ])) : d.each(function() {
+   var b = "!" + $(this).text() + "!";
+   0 > a.ntdec.indexOf(b) && (a.ntdec += b);
+  }));
+  c = b.find("ornaments>wavy-line");
   if (c.length) switch (c.attr("type")) {
   case "start":
-   b.before = "!trill(!" + b.before;
+   a.before.unshift("!trill(!");
    break;
 
   case "stop":
-   b.after += "!trill)!";
+   a.before.unshift("!trill)!");
   }
+  c = b.find("glissando");
+  0 == c.length && (c = b.find("slide"));
+  c.length && (b = "wavy" == c.attr("line-type") ? "~" : "-", "start" == c.attr("type") ? a.before.unshift(u("!%s(!", [ b ])) : "stop" == c.attr("type") && a.before.unshift(u("!%s)!", [ b ])));
  };
- n.prototype.ntAbc = function(b, a, c, d) {
-  var f = {
+ x.prototype.tabnote = function(a, b, c, d, e) {
+  var f, g, h, k, l;
+  k = this.step_map[b] + parseInt(a || "0");
+  11 < k && (c += 1, k -= 12);
+  0 > k && (--c, k += 12);
+  a = e.tab[0];
+  b = e.tab[1];
+  for (l = 0; 4 > l; ++l) {
+   f = this.note_alts[l % 3][k];
+   h = c;
+   -1 < [ "^B", "^^B" ].indexOf(f) && --h;
+   -1 < [ "_C", "__C" ].indexOf(f) && (h += 1);
+   if (-1 < f.indexOf("/") || 3 == l) h = 9;
+   f = I(f, h);
+   g = this.tabmap[[ d, f ]] || [ "", "" ];
+   h = g[0];
+   g = g[1];
+   if (!h) break;
+   if (a == h) return f;
+   3 == l && (t("rejected: voice %d note %s string %s fret %s remains: string %s fret %s", [ d, f, a, b, h, g ]), 
+   e.tab = [ h, g ]);
+  }
+  this.tabmap[[ d, f ]] = e.tab;
+  return f;
+ };
+ x.prototype.ntAbc = function(a, b, c, d, e, f) {
+  var g = {
    "double-flat": -2,
    "flat-flat": -2,
    flat: -1,
@@ -25403,87 +25711,102 @@ if (typeof MooTools != "undefined") {
    "sharp-sharp": 2,
    "double-sharp": 2
   };
-  a += this.clefOct[this.curStf[d]] || 0;
-  var e = b;
-  4 < a && (e = b.toLowerCase());
-  5 < a && (e += Array(a - 5 + 1).join("'"));
-  4 > a && (e += Array(4 - a + 1).join(","));
-  a = c.find("accidental").text();
-  var g = c.find("pitch>alter").text();
-  !g && this.msralts[b] && (g = 0);
-  var l = e + "#" + d;
-  if ("" === a && "" === g) return e;
-  if ("" != a) g = f[a]; else {
-   g = parseInt(g);
-   if (l in this.curalts) {
-    if (g == this.curalts[l]) return e;
-   } else if (g == (this.msralts[b] || 0)) return e;
-   if (c.find("tie").map(function() {
-    return $(this).attr("type");
-   }).get().some(function(a) {
-    return "stop" == a;
-   })) return e;
-   q("accidental %d added in part %d, measure %d, voice %d note %s", [ g, this.msr.ixp + 1, this.msr.ixm + 1, d + 1, e ]);
+  b += this.clefOct[this.curStf[d]] || 0;
+  var h = c.find("accidental").text(), k = c.find("pitch>alter").text();
+  if (e.tab) return this.tabnote(k, a, b, d, e);
+  f && this.tstep && (e = [ "__", "_", "", "^", "^^" ][parseInt(k || "0") + 2] + I(a, b), 
+  t("no string notation found for note %s in voice %d", [ e, d ]));
+  b = I(a, b);
+  !k && this.msralts[a] && (k = 0);
+  e = b + "#" + d;
+  !k && e in this.curalts && (k = 0);
+  if ("" === h && "" === k) return b;
+  if ("" != h) k = g[h]; else {
+   k = parseFloat(k);
+   if (e in this.curalts) {
+    if (k == this.curalts[e]) return b;
+   } else if (k == (this.msralts[a] || 0)) return b;
+   if (c.find("tie").add(c.find("notations>tied")).get().some(function(a) {
+    return "stop" == a.getAttribute("type");
+   })) return b;
+   t("accidental %d added in part %d, measure %d, voice %d note %s", [ k, this.msr.ixp + 1, this.msr.ixm + 1, d + 1, b ]);
   }
-  this.curalts[l] = g;
-  return e = [ "__", "_", "=", "^", "^^" ][g + 2] + e;
+  this.curalts[e] = k;
+  return b = [ "__", "_", "=", "^", "^^" ][k + 2] + b;
  };
- n.prototype.doNote = function(b) {
-  var a = new w(0, null), c = parseInt(b.find("voice").text() || "1");
-  this.isSib && (c += 100 * (b.find("staff").text() || 1));
-  var d = 0 < b.find("chord").length, f = b.find("pitch>step").text() || b.find("unpitched>display-step").text(), e = b.find("pitch>octave").text() || b.find("unpitched>display-octave").text(), g = 0 < b.find("rest").length, l = b.find("time-modification>actual-notes").text();
-  if (l) {
-   var k = b.find("time-modification>normal-notes").text();
-   a.fact = [ parseInt(l), parseInt(k) ];
+ x.prototype.doNote = function(a) {
+  var b = new A(0, null), c = parseInt(a.find("voice").text() || "1");
+  this.isSib && (c += 100 * (a.find("staff").text() || 1));
+  var d = 0 < a.find("chord").length, e = a.find("pitch>step").text() || a.find("unpitched>display-step").text(), f = a.find("pitch>octave").text() || a.find("unpitched>display-octave").text(), g = 0 < a.find("rest").length, h = a.find("time-modification>actual-notes").text();
+  if (h) {
+   var k = a.find("time-modification>normal-notes").text();
+   b.fact = [ parseInt(h), parseInt(k) ];
   }
-  a.tup = b.find("notations>tuplet").map(function() {
+  b.tup = a.find("notations>tuplet").map(function() {
    return $(this).attr("type");
   }).get();
-  k = b.find("duration").text();
-  l = b.find("grace");
-  a.grace = 0 < l.length;
-  a.before = "";
-  a.after = "";
-  a.grace && !this.ingrace && (this.ingrace = 1, a.before = "{", "yes" == l.attr("slash") && (a.before += "/"));
-  if (l = !a.grace && this.ingrace) this.ingrace = 0, this.msc.lastnote.after += "}";
-  if (g || "no" != b.attr("print-object")) {
-   if (!k || a.grace) k = 0;
-   a.dur = parseInt(k);
-   g || f && e || (this.msc.cnt.inc("nopt", c), e = 5, f = "E");
-   k = b.find("notations");
-   k.length && this.doNotations(a, k);
-   g = g ? "z" : this.ntAbc(f, parseInt(e), b, c);
-   if (b.find("unpitched").length) {
-    var k = this.curClef[this.curStf[c]], f = Q(f, parseInt(e), k, this.tstep), e = b.find("instrument"), e = e.length ? e.attr("id") : "dummyId", e = this.drumInst[e] || J(g), k = b.find("notehead"), h = k.text().replace(" ", "-");
-    "yes" == k.attr("filled") && (h += "+");
-    "x" == h && (g = "^" + g.replace(/\^/g, "").replace(/_/g, ""));
-    if ("circle-x" == h || "diamond" == h) g = "_" + g.replace(/\^/g, "").replace(/_/g, "");
-    this.drumNotes[c + ";" + g] = [ f, e, h ];
-   }
-   f = b.find("tie").map(function() {
-    return $(this).attr("type");
-   }).get();
-   -1 < f.indexOf("start") && (g += "-");
-   f = b.find("beam").map(function() {
-    return $(this).text();
-   }).get();
-   a.beam = -1 < f.indexOf("continue") || -1 < f.indexOf("end") || a.grace;
-   f = b.find("lyric");
-   for (e = k = 0; e < f.length; ++e) {
-    var h = $(f[e]), m = parseInt((h.attr("number") || "1").replace(/^.*verse/, ""));
-    0 == m ? m = k + 1 : k = m;
-    a.lyrs[m] = V(h);
-   }
-   d ? this.msc.addChord(g) : (d = parseInt(b.find("staff").text() || "1"), this.curStf[c] != d && (f = d - this.curStf[c], 
-   this.curStf[c] = d, this.msc.appendElem(c, "[I:staff " + (0 < f ? "+" : "") + f + "]")), 
-   this.msc.appendNote(c, a, g));
-   f = b.find("notations>slur");
-   for (e = 0; e < f.length; ++e) b = $(f[e]), this.matchSlur(b.attr("type"), b.attr("number"), c, this.msc.lastnote, a.grace, l);
-  } else this.msc.cnt.inc("nopr", c);
+  k = a.find("duration").text();
+  h = a.find("grace");
+  b.grace = 0 < h.length;
+  b.before = [ "" ];
+  b.after = "";
+  b.grace && !this.ingrace && (this.ingrace = 1, b.before = [ "{" ], "yes" == h.attr("slash") && b.before.push("/"));
+  if (h = !b.grace && this.ingrace) this.ingrace = 0, this.msc.lastnote.after += "}";
+  if (!k || b.grace) k = 0;
+  if (!g && "no" == a.attr("print-object")) {
+   if (d) return;
+   g = 1;
+  }
+  b.dur = parseInt(k);
+  g || e && f || (this.msc.cnt.inc("nopt", c), f = 5, e = "E");
+  var k = 0 == (this.curClef && this.curClef[this.curStf[c]] || "").indexOf("tab"), l = a.find("notations");
+  l.length && this.doNotations(b, l, k);
+  l = a.find("stem");
+  !g && l.length && "none" == l.text() && (!k || c in this.hasStems || this.tstep) && (b.before.push("s"), 
+  v.stemless = 1);
+  l = a.find("accidental");
+  l.length && "yes" == l.attr("parentheses") && (b.ntdec += "!courtesy!");
+  g = g ? "no" == a.attr("print-object") || k ? "x" : "z" : this.ntAbc(e, parseInt(f), a, c, b, k);
+  if (a.find("unpitched").length) {
+   k = this.curClef[this.curStf[c]];
+   e = U(e, parseInt(f), k, this.tstep);
+   f = a.find("instrument");
+   f = f.length ? f.attr("id") : "dummyId";
+   f = this.drumInst[f] || M(g);
+   k = a.find("notehead");
+   l = k.text().replace(" ", "-");
+   "x" == l && (g = "^" + g.replace(/\^/g, "").replace(/_/g, ""));
+   if ("circle-x" == l || "diamond" == l || "triangle" == l) g = "_" + g.replace(/\^/g, "").replace(/_/g, "");
+   "yes" == k.attr("filled") && (l += "+");
+   "no" == k.attr("filled") && (l += "-");
+   this.drumNotes[c + ";" + g] = [ e, f, l ];
+  }
+  e = a.find("tie").add(a.find("notations>tied")).get();
+  e.some(function(a) {
+   return "start" == a.getAttribute("type");
+  }) && (g += "-");
+  e = a.find("beam").map(function() {
+   return $(this).text();
+  }).get();
+  b.beam = -1 < e.indexOf("continue") || -1 < e.indexOf("end") || b.grace;
+  e = a.find("lyric");
+  for (f = k = 0; f < e.length; ++f) {
+   var l = $(e[f]), p = parseInt((l.attr("number") || "1").replace(/^.*verse/, ""));
+   0 == p ? p = k + 1 : k = p;
+   b.lyrs[p] = aa(l);
+  }
+  e = a.find("stem").text();
+  !this.wstems || "up" != e && "down" != e || e == this.stemDir[c] || (this.stemDir[c] = e, 
+  this.msc.appendElem(c, u("[I:stemdir %s]", [ e ])));
+  d ? this.msc.addChord(b, g) : (d = parseInt(a.find("staff").text() || "1"), this.curStf[c] != d && (e = d - this.curStf[c], 
+  this.curStf[c] = d, this.msc.appendElem(c, "[I:staff " + (0 < e ? "+" : "") + e + "]")), 
+  this.msc.appendNote(c, b, g));
+  e = a.find("notations>slur");
+  for (f = 0; f < e.length; ++f) a = $(e[f]), this.matchSlur(a.attr("type"), a.attr("number"), c, this.msc.lastnote, b.grace, h);
  };
- n.prototype.doAttr = function(b) {
-  var a, c, d, f, e, g, l, k, h, m, t, n;
-  a = {
+ x.prototype.doAttr = function(a) {
+  var b, c, d, e, f, g, h, k, l, p, m, q;
+  b = {
    C1: "alto1",
    C2: "alto2",
    C3: "alto",
@@ -25491,87 +25814,198 @@ if (typeof MooTools != "undefined") {
    F4: "bass",
    F3: "bass3",
    G2: "treble",
-   TAB: "",
+   TAB: "tab",
    percussion: "perc"
   };
-  if (c = b.find("divisions").text()) this.msr.divs = parseInt(c);
-  c = parseInt(b.find("transpose>chromatic").text() || "0");
-  d = b.find("key>fifths").first().text();
-  f = 0 == this.msc.tijd && 0 == this.msr.ixm;
-  d && (e = parseInt(d), g = b.find("key>mode").first().text() || "major", h = "FCGDAEB".split(""), 
-  k = "Cb Gb Db Ab Eb Bb F C G D A E B F# C#".split(" "), l = "Ab Eb Bb F C G D A E B F# C# G# D# A#".split(" "), 
-  d = "", "major" == g && (d = k[7 + e]), "minor" == g && (d = l[7 + e] + "min"), 
-  e = 0 <= e ? y(h.slice(0, e), x(e, 1)) : y(h.slice(e), x(-e, -1)), e = [ d, e ], 
-  d = e[0], this.msralts = e[1], f && !c && "none" == p.key ? p.key = d : d == p.key && f || (this.msr.attr += "[K:" + d + "]"));
-  if (d = b.find("time>beats").text()) e = b.find("time>beat-type").text(), g = d + "/" + e, 
-  f ? p.mtr = g : this.msr.attr += "[M:" + g + "]", this.msr.mdur = this.msr.divs * parseInt(d) * 4 / parseInt(e);
-  (d = b.find("transpose>octave-change").text() || "") && (c += 12 * parseInt(d));
-  g = b.find("clef");
-  for (e = 0; e < g.length; e++) if (l = $(g[e]), d = parseInt(l.attr("number") || "1"), 
-  k = l.find("sign").text(), h = "percussion" != k ? l.find("line").text() || "" : "", 
-  h = a[k + h] || "", k = l.find("clef-octave-change").text() || "0", h += {
-   "-2": "-15",
-   "-1": "-8",
-   1: "+8",
-   2: "+15"
-  }[k] || "", this.clefOct[d] = -parseInt(k), c && (h += " transpose=" + c), (k = b.find("staff-details>staff-lines").text()) && (h += " stafflines=" + k), 
-  this.curClef[d] = h, f) this.clefMap[d] = h; else for (l = this.stfMap[d], n = 0; n < l.length; ++n) m = l[n], 
-  d != this.curStf[m] && (t = d - this.curStf[m], this.curStf[m] = d, k = 0 < t ? "+" : "", 
-  this.msc.appendElem(m, "[I:staff " + k + t + "]")), this.msc.appendElem(m, "[K:" + h + "]");
- };
- n.prototype.doDirection = function(b) {
-  var a, c, d, f, e, g, l, k, h;
-  d = parseInt(b.find("staff").first().text() || "1");
-  d = this.stfMap[d][0];
-  a = b.attr("placement");
-  c = b.find("sound");
-  if (c.length) {
-   if (g = c.find("midi-instrument")) {
-    l = c.find("midi-instrument>midi-program").text();
-    k = c.find("midi-instrument>midi-channel").text();
-    for (h in this.vceInst) this.vceInst[h] == g.attr("id") && (d = h);
-    (h = (l ? l - 1 : k) + "") && 0 < p.volpan && this.msc.appendElem(d, "[I:MIDI= " + (l ? "program" : "channel") + " " + h + "]");
+  if (c = a.find("divisions").text()) this.msr.divs = parseInt(c);
+  c = parseInt(a.find("transpose>chromatic").text() || "0");
+  d = a.find("key>fifths").first().text();
+  e = 0 == this.msc.tijd && 0 == this.msr.ixm;
+  d && (f = V(parseInt(d), a.find("key>mode").first().text() || "major"), d = f[0], 
+  this.msralts = f[1], e && !c && "none" == v.key ? v.key = d : d == v.key && e || (this.msr.attr += "[K:" + d + "]"));
+  if (d = a.find("time>beats").text()) f = a.find("time>beat-type").text(), g = d + "/" + f, 
+  e ? v.mtr = g : this.msr.attr += "[M:" + g + "]", this.msr.mdur = this.msr.divs * parseInt(d) * 4 / parseInt(f);
+  var n = this;
+  a.find("measure-style").each(function() {
+   var a, b, c, d, e, f, g;
+   a = parseInt($(this).attr("number") || "1");
+   b = n.stfMap[a];
+   $(this).find("measure-repeat").each(function() {
+    c = $(this).attr("type");
+    "start" == c ? (n.repeat_str[a] = [ n.msr.ixm, $(this).text() ], b.forEach(function(b) {
+     n.msc.insertElem(b, n.repeat_str[a]);
+    })) : "stop" == c && (d = n.repeat_str[a][0], f = n.repeat_str[a][1], e = n.msr.ixm - d, 
+    f ? (g = f + " ", e /= parseInt(f)) : g = "", n.repeat_str[a][0] = u("[I:repeat %s%d]", [ g, e ]), 
+    delete n.repeat_str[a]);
+   });
+  });
+  (d = a.find("transpose>octave-change").text() || "") && (c += 12 * parseInt(d));
+  g = a.find("clef");
+  for (f = 0; f < g.length; f++) {
+   h = $(g[f]);
+   d = parseInt(h.attr("number") || "1");
+   k = h.find("sign").text();
+   l = "percussion" != k && "TAB" != k ? h.find("line").text() || "" : "";
+   l = b[k + l] || "";
+   h = h.find("clef-octave-change").text() || "0";
+   l += {
+    "-2": "-15",
+    "-1": "-8",
+    1: "+8",
+    2: "+15"
+   }[h] || "";
+   this.clefOct[d] = -parseInt(h);
+   c && (l += " transpose=" + c);
+   p = a.find("staff-details");
+   if (p.length && (p.attr("number") || 1) == d) {
+    if (h = p.find("staff-lines").text()) k = "3" == h && "TAB" == k ? "|||" : h, l += " stafflines=" + k, 
+    this.stafflines = parseInt(h);
+    var t = [];
+    p.find("staff-tuning").each(function() {
+     t.push($(this).find("tuning-step").text() + $(this).find("tuning-octave").text());
+    });
+    t.length && (l += u(" strings=%s", [ t.join(",") ]));
+    (k = p.find("capo").text()) && (l += u(" capo=%s", [ k ]));
    }
-   if (c = c.attr("tempo")) c = -1 < c.indexOf(".") ? parseFloat(c).toFixed(2) : parseInt(c), 
-   0 == this.msc.tijd && 0 == this.msr.ixm ? p.tempo = c : this.msc.appendElem(d, "[Q:1/4=" + c + "]");
+   this.curClef[d] = l;
+   if (e) this.clefMap[d] = l; else for (h = this.stfMap[d], q = 0; q < h.length; ++q) p = h[q], 
+   d != this.curStf[p] && (m = d - this.curStf[p], this.curStf[p] = d, k = 0 < m ? "+" : "", 
+   this.msc.appendElem(p, "[I:staff " + k + m + "]")), this.msc.appendElem(p, "[K:" + l + "]");
   }
-  b = b.children("direction-type");
-  if (b.length) {
-   c = b.find("wedge");
-   if (c.length) {
-    switch (c.attr("type")) {
-    case "crescendo":
-     f = "!<(!";
-     this.wedge_type = "<";
+ };
+ x.prototype.findVoice = function(a, b) {
+  var c, d, e, f;
+  e = b.eq(a);
+  c = parseInt(e.find("staff").text() || "1");
+  d = this.stfMap[c];
+  d = d.length ? d[0] : 1;
+  if (this.dirtov1) return {
+   sn: c,
+   v: d,
+   v1: d
+  };
+  for (f = a + 1; f < b.length; ++f) {
+   e = b.eq(f);
+   if ("note" == e.prop("nodeName")) return c = parseInt(e.find("staff").text() || "1"), 
+   e = parseInt(e.find("voice").text() || "1"), this.isSib && (e += 100 * c), c = this.vce2stf[e], 
+   {
+    sn: c,
+    v: e,
+    v1: d
+   };
+   if ("backup" == e.prop("nodeName")) break;
+  }
+  return {
+   sn: c,
+   v: d,
+   v1: d
+  };
+ };
+ x.prototype.doDirection = function(a, b, c) {
+  function d(a, b, c, d, e) {
+   b && (c = 0 <= b.indexOf("!8v") ? a.stfMap[e] : [ c ], c.forEach(function(c) {
+    null != d ? a.msc.appendElemT(c, b.replace("(", ")").replace("ped", "ped-up"), d) : a.msc.appendElem(c, b);
+   }));
+  }
+  function e(a, b, c, e) {
+   var f, h, l;
+   l = {
+    down: "!8va(!",
+    up: "!8vb(!",
+    crescendo: "!<(!",
+    diminuendo: "!>(!",
+    start: "!ped!"
+   };
+   k = g.attr("type") || "";
+   f = b + (g.attr("number") || "1");
+   if (k in l) l = l[k], f in a.dirStk ? (h = a.dirStk[f], delete a.dirStk[f], "stop" == h.type ? d(a, l, c, h.tijd, e) : (t("%s direction %s has no stop in part %d, measure %d, voice %d", [ b, h.type, a.msr.ixp + 1, a.msr.ixm + 1, c + 1 ]), 
+   a.dirStk[f] = {
+    type: k,
+    vs: c
+   })) : a.dirStk[f] = {
+    type: k,
+    vs: c
+   }; else if ("stop" == k) f in a.dirStk ? (h = a.dirStk[f], delete a.dirStk[f], k = h.type, 
+   c = h.vs, "stop" == k ? (t("%s direction %s has double stop in part %d, measure %d, voice %d", [ b, k, a.msr.ixp + 1, a.msr.ixm + 1, c + 1 ]), 
+   l = "") : l = l[h.type].replace("(", ")").replace("ped", "ped-up")) : (a.dirStk[f] = {
+    type: "stop",
+    tijd: a.msc.tijd
+   }, l = ""); else throw "wrong direction type";
+   d(a, l, c, null, e);
+  }
+  var f, g, h, k, l, p, m, q, n, r, w, x = "", y;
+  f = a.attr("placement");
+  l = this.findVoice(b, c);
+  c = l.sn;
+  b = l.v;
+  l = l.v1;
+  var A = "", z = {
+   dacapo: "D.C.",
+   dalsegno: "D.S.",
+   tocoda: "dacoda",
+   fine: "fine",
+   coda: "O",
+   segno: "S"
+  };
+  g = a.find("sound");
+  if (g.length) {
+   n = g.find("midi-instrument");
+   if (n.length) {
+    h = g.find("midi-instrument>midi-program").text();
+    r = g.find("midi-instrument>midi-channel").text();
+    for (w in this.vceInst) this.vceInst[w] == n.attr("id") && (b = w);
+    (w = (h ? h - 1 : r) + "") && 0 < v.volpan && this.msc.appendElem(b, "[I:MIDI= " + (h ? "program" : "channel") + " " + w + "]");
+   }
+   if (h = g.attr("tempo")) h = parseFloat(h).toFixed(0), y = [ 1, 4 ];
+   for (q in z) if (g.attr(q)) {
+    A = z[q];
+    break;
+   }
+  }
+  w = a.children("direction-type");
+  for (z = 0; z < w.length; ++z) {
+   a = $(w[z]);
+   q = {
+    whole: [ 1, 1 ],
+    half: [ 1, 2 ],
+    quarter: [ 1, 4 ],
+    eighth: [ 1, 8 ]
+   };
+   n = a.find("metronome");
+   n.length && (g = n.find("beat-unit").text() || "", y = g in q ? q[g] : q.quarter, 
+   n.find("beat-unit-dot").length && (y = G(3 * y[0], 2 * y[1])), (q = n.find("per-minute").text().match(/[.\d]+/)) && (h = q[0]));
+   g = a.find("wedge");
+   g.length && e(this, "wedge", b);
+   q = a.find("words");
+   0 == q.length && (q = a.find("rehearsal"));
+   for (n = 0; n < q.length; ++n) {
+    if (A) {
+     this.msc.appendElem(b, u("!%s!", [ A ]), 1);
      break;
-
-    case "diminuendo":
-     f = "!>(!";
-     this.wedge_type = ">";
-     break;
-
-    case "stop":
-     f = "<" == this.wedge_type ? "!<)!" : "!>)!";
-     break;
-
-    default:
-     raise("wrong wedge type");
     }
-    this.msc.appendElem(d, f);
+    p = "below" == f ? "_" : "^";
+    r = $(q[n]);
+    0 > parseFloat(r.attr("default-y") || "0") && (p = "_");
+    x += r.text().replace(/"/g, '\\"').replace(/\n/g, "\\n");
    }
-   f = b.find("words").eq(0);
-   f.length && (a = "below" == a ? "_" : "^", 0 > parseFloat(f.attr("default-y") || "0") && (a = "_"), 
-   (f = f.text().replace(/"/g, '\\"').replace(/\n/g, " ").trim()) && this.msc.appendElem(d, '"' + a + f + '"'));
-   for (e in O) a = O[e], b.find("dynamics>" + e).length && this.msc.appendElem(d, a);
-   b.find("coda").length && this.msc.appendElem(d, "O");
-   b.find("segno").length && this.msc.appendElem(d, "S");
+   x = x.trim();
+   for (m in R) q = R[m], a.find("dynamics>" + m).length && this.msc.appendElem(b, q, 1);
+   a.find("coda").length && this.msc.appendElem(b, "O", 1);
+   a.find("segno").length && this.msc.appendElem(b, "S", 1);
+   g = a.find("octave-shift");
+   g.length && e(this, "octave-shift", b, c);
+   g = a.find("pedal");
+   g.length && this.ped && (this.pedVce || (this.pedVce = b), e(this, "pedal", this.pedVce));
+   "diatonic fretting" == a.find("other-direction").text() && (this.diafret = 1);
   }
+  h && (h = parseFloat(h).toFixed(0), 0 == this.msc.tijd && 0 == this.msr.ixm ? (v.tempo = h, 
+  v.tempo_units = y) : this.msc.appendElem(l, u("[Q:%d/%d=%s]", [ y[0], y[1], h ])));
+  x && this.msc.appendElem(b, '"' + p + x + '"', 1);
  };
- n.prototype.doHarmony = function(b) {
-  var a, c, d, f, e, g, l, k, h;
-  a = parseInt(b.children("staff").text() || "1");
-  a = this.stfMap[a][0];
-  c = {
+ x.prototype.doHarmony = function(a, b, c) {
+  var d, e, f, g, h, k, l;
+  c = this.findVoice(b, c).v;
+  d = {
    major: "",
    minor: "m",
    augmented: "+",
@@ -25579,7 +26013,7 @@ if (typeof MooTools != "undefined") {
    dominant: "7",
    "half-diminished": "m7b5"
   };
-  d = {
+  b = {
    major: "maj",
    dominant: "",
    minor: "m",
@@ -25587,7 +26021,7 @@ if (typeof MooTools != "undefined") {
    augmented: "+",
    suspended: "sus"
   };
-  f = {
+  e = {
    second: "2",
    fourth: "4",
    seventh: "7",
@@ -25596,242 +26030,259 @@ if (typeof MooTools != "undefined") {
    "11th": "11",
    "13th": "13"
   };
-  e = {
+  f = {
    1: "#",
    0: "",
    "-1": "b"
   };
-  g = b.find("root>root-step", "").text();
-  l = e[b.find("root>root-alter").text()] || "";
+  g = a.find("root>root-step", "").text();
+  h = f[a.find("root>root-alter").text()] || "";
   k = "";
-  h = b.find("kind").text();
-  h in c ? h = c[h] : -1 < h.indexOf("-") ? (c = h.split("-"), h = c[0], c = c[1], 
-  h = (d[h] || "") + (f[c] || ""), 0 == h.indexOf("sus") && (k = h, h = "")) : "none" == h && (h = b.find("kind").attr("text"));
-  d = b.find("degree");
-  for (f = 0; f < d.length; ++f) c = $(d[f]), h += (e[c.find("degree-alter").text()] || "") + c.find("degree-value").text();
-  h = h.replace("79", "9").replace("713", "13").replace("maj6", "6");
-  b = b.find("bass>bass-step").text() + (e[b.find("bass>bass-alter").text()] || "");
-  this.msc.appendElem(a, '"' + g + l + h + k + (b && "/" + b) + '"');
+  l = a.find("kind").text();
+  l in d ? l = d[l] : -1 < l.indexOf("-") ? (d = l.split("-"), l = d[0], d = d[1], 
+  l = (b[l] || "") + (e[d] || ""), 0 == l.indexOf("sus") && (k = l, l = "")) : "none" == l && (l = a.find("kind").attr("text"));
+  e = a.find("degree");
+  for (b = 0; b < e.length; ++b) d = $(e[b]), l += (f[d.find("degree-alter").text()] || "") + d.find("degree-value").text();
+  l = l.replace("79", "9").replace("713", "13").replace("maj6", "6");
+  a = a.find("bass>bass-step").text() + (f[a.find("bass>bass-alter").text()] || "");
+  this.msc.appendElem(c, '"' + g + h + l + k + (a && "/" + a) + '"', 1);
  };
- n.prototype.doBarline = function(b) {
-  var a = b.find("repeat"), c = 0;
-  a.length && (c = a.attr("direction"));
+ x.prototype.doBarline = function(a) {
+  var b = a.find("repeat"), c = 0;
+  b.length && (c = b.attr("direction"));
   if (this.unfold) return c ? "forward" == c ? 1 : 2 : 0;
-  "right" == b.attr("location") && (a = b.find("bar-style").text(), "light-light" == a ? this.msr.rline = "||" : "light-heavy" == a && (this.msr.rline = "|]"));
+  "right" == (a.attr("location") || "right") && (b = a.find("bar-style").text(), "light-light" == b ? this.msr.rline = "||" : "light-heavy" == b && (this.msr.rline = "|]"));
   c && ("forward" == c ? this.msr.lline = ":" : this.msr.rline = ":|");
-  b = b.find("ending");
-  b.length && ("start" == b.attr("type") ? (b = (b.attr("number") || "1").replace(/\./g, "").replace(/ /g, ""), 
-  /^[\d,]+$/.test(b) || (b = '"' + b.trim() + '"'), this.msr.lnum = b) : "|" == this.msr.rline && (this.msr.rline = "||"));
+  a = a.find("ending");
+  a.length && ("start" == a.attr("type") ? (a = (a.attr("number") || "1").replace(/\./g, "").replace(/ /g, ""), 
+  /^[\d,]+$/.test(a) || (a = '"' + a.trim() + '"'), this.msr.lnum = a) : "|" == this.msr.rline && (this.msr.rline = "||"));
   return 0;
  };
- n.prototype.doPrint = function(b) {
-  if ("yes" == b.attr("new-system") || "yes" == b.attr("new-page")) return this.nolbrk ? "" : "$";
+ x.prototype.doPrint = function(a) {
+  if ("yes" == a.attr("new-system") || "yes" == a.attr("new-page")) return this.nolbrk ? "" : "$";
  };
- n.prototype.doPartList = function(b) {
-  var a, c, d, f, e, g, l, k, h, m;
-  f = b.find("part-list>score-part");
-  for (a = 0; a < f.length; ++a) {
-   c = f[a];
-   e = {};
+ x.prototype.doPartList = function(a) {
+  var b, c, d, e, f, g, h, k, l, m;
+  e = a.find("part-list>score-part");
+  for (b = 0; b < e.length; ++b) {
+   c = e[b];
+   f = {};
    g = $(c).find("midi-instrument");
    for (c = 0; c < g.length; ++c) {
-    l = $(g[c]);
-    h = [ "midi-channel", "midi-program", "volume", "pan" ];
+    h = $(g[c]);
+    l = [ "midi-channel", "midi-program", "volume", "pan" ];
     k = [];
-    for (d = 0; d < h.length; ++d) m = h[d], k.push(l.find(m).text() || this.midDflt[d]);
-    d = k[3];
+    for (d = 0; d < l.length; ++d) m = l[d], k.push(h.find(m).text() || this.midDflt[d]);
+    d = 1 * k[3];
     -90 <= d && 90 >= d && (d = (d + 90) / 180 * 127);
-    e[l.attr("id")] = [ parseInt(k[0]), parseInt(k[1]), parseFloat(k[2]), d ];
-    (k = l.find("midi-unpitched").text()) && (this.drumInst[l.attr("id")] = k - 1);
+    f[h.attr("id")] = [ parseInt(k[0]), parseInt(k[1]), 1.27 * parseFloat(k[2]), d ];
+    (k = h.find("midi-unpitched").text()) && (this.drumInst[h.attr("id")] = k - 1);
    }
-   this.instMid.push(e);
+   this.instMid.push(f);
   }
-  b = b.find("part-list");
-  k = U(b);
-  return E(k, {}, [])[0];
+  a = a.find("part-list");
+  k = Z(a);
+  return H(k, {}, [])[0];
  };
- n.prototype.mkTitle = function(b) {
-  var a, c, d = [], f = [], e = [], g, l, k, h, m;
-  a = b.find("work>work-title").text().trim();
-  c = b.find("movement-title").text().trim();
-  g = b.find("identification>creator");
-  for (l = 0; l < g.length; ++l) k = $(g[l]), h = k.text(), k = k.attr("type"), h && (h = h.split("\n").map(function(a) {
+ x.prototype.mkTitle = function(a) {
+  var b, c, d = [], e = [], f = [], g, h, k, l, m;
+  b = a.find("work>work-title").text().trim();
+  c = a.find("movement-title").text().trim();
+  g = a.find("identification>creator");
+  for (h = 0; h < g.length; ++h) k = $(g[h]), l = k.text(), k = k.attr("type"), l && (l = l.split("\n").map(function(a) {
    return a.trim();
-  }), "composer" == k ? d.push.apply(d, h) : "lyricist" != k && "transcriber" != k || f.push.apply(f, h));
-  g = b.find("identification>rights");
-  for (l = 0; l < g.length; ++l) h = $(g[l]).text(), h = h.split("\n").map(function(a) {
+  }), "composer" == k ? d.push.apply(d, l) : "lyricist" != k && "transcriber" != k || e.push.apply(e, l));
+  g = a.find("identification>rights");
+  for (h = 0; h < g.length; ++h) if (l = $(g[h]).text()) l = l.split("\n").map(function(a) {
    return a.trim();
-  }), f.push.apply(f, h);
-  g = b.find("credit");
-  for (l = 0; l < g.length; ++l) {
-   h = "";
-   k = $(g[l]).find("credit-words");
-   for (m = 0; m < k.length; ++m) h += $(k[m]).text();
-   e.push(h.replace(/\s*[\r\n]\s*/g, " "));
+  }), e.push.apply(e, l);
+  g = a.find("credit");
+  for (h = 0; h < g.length; ++h) {
+   l = "";
+   k = $(g[h]).find("credit-words");
+   for (m = 0; m < k.length; ++m) l += $(k[m]).text();
+   f.push(l.replace(/\s*[\r\n]\s*/g, " "));
   }
-  e = function(b) {
+  f = function(a) {
    function g(a) {
-    return a && -1 < h.indexOf(a);
+    return a && -1 < k.indexOf(a);
    }
-   var k = [], h, l;
-   for (l = 0; l < e.length; ++l) h = e[l], 6 > b && (h && -1 < a.indexOf(h) || h && -1 < c.indexOf(h)) || 5 > b && (h && -1 < d.indexOf(h) || h && -1 < f.indexOf(h)) || 4 > b && (a && -1 < h.indexOf(a) || c && -1 < h.indexOf(c)) || 3 > b && (d.some(g) || f.some(g)) || 2 > b && /^[\d\W]*$/.test(h) || k.push(h);
-   0 == b && a + c && (k = "");
-   return k;
+   var h = [], k, l;
+   for (l = 0; l < f.length; ++l) k = f[l], 6 > a && (k && -1 < b.indexOf(k) || k && -1 < c.indexOf(k)) || 5 > a && (k && -1 < d.indexOf(k) || k && -1 < e.indexOf(k)) || 4 > a && (b && -1 < k.indexOf(b) || c && -1 < k.indexOf(c)) || 3 > a && (d.some(g) || e.some(g)) || 2 > a && /^[\d\W]*$/.test(k) || h.push(k);
+   0 == a && b + c && (h = "");
+   return h;
   }(this.ctf);
-  a && (a = "T:" + a.replace(/\n/g, "\nT:") + "\n");
-  c && (a += "T:" + c.replace(/\n/g, "\nT:") + "\n");
-  e.length && (a += e.map(function(a) {
+  b && (b = "T:" + b.replace(/\n/g, "\nT:") + "\n");
+  c && (b += "T:" + c.replace(/\n/g, "\nT:") + "\n");
+  f.length && (b += f.map(function(a) {
    return "T:" + a;
   }).join("\n") + "\n");
-  d.length && (a += d.map(function(a) {
+  d.length && (b += d.map(function(a) {
    return "C:" + a;
   }).join("\n") + "\n");
-  f.length && (a += f.map(function(a) {
+  e.length && (b += e.map(function(a) {
    return "Z:" + a;
   }).join("\n") + "\n");
-  a && (p.title = a.substr(0, a.length - 1));
-  (this.isSib = 0 <= b.find("identification>encoding>software").text().indexOf("Sibelius")) && q("Sibelius MusicXMl is unreliable", []);
+  b && (v.title = b.substr(0, b.length - 1));
+  (this.isSib = 0 <= a.find("identification>encoding>software").text().indexOf("Sibelius")) && t("Sibelius MusicXMl is unreliable", []);
  };
- n.prototype.doDefaults = function(b) {
-  var a, c, d, f;
-  this.doPageFmt && (a = b.find("defaults"), a.length && (b = a.find("scaling>millimeters").text(), 
-  c = a.find("scaling>tenths").text(), c = b / c / 10, b = a.find("page-layout>page-width").text() * c, 
-  d = a.find("page-layout>page-margins").first(), a = d.find("left-margin").text(), 
-  d = d.find("right-margin").text(), f = 10 * c / .2117, !p.scale && f && (p.scale = f.toFixed(2)), 
-  !p.pagewidth && b && (p.pagewidth = b.toFixed(2)), p.leftmargin || "" == a || (p.leftmargin = (a * c).toFixed(2)), 
-  p.rightmargin || "" == d || (p.rightmargin = (d * c).toFixed(2))));
+ x.prototype.doDefaults = function(a) {
+  var b, c, d, e;
+  this.doPageFmt && (b = a.find("defaults"), b.length && (a = b.find("scaling>millimeters").text(), 
+  c = b.find("scaling>tenths").text(), c = a / c / 10, a = b.find("page-layout>page-width").text() * c, 
+  d = b.find("page-layout>page-margins").first(), b = d.find("left-margin").text(), 
+  d = d.find("right-margin").text(), e = 10 * c / .2117, !v.scale && e && (v.scale = e.toFixed(2)), 
+  !v.pagewidth && a && (v.pagewidth = a.toFixed(2)), v.leftmargin || "" == b || (v.leftmargin = (b * c).toFixed(2)), 
+  v.rightmargin || "" == d || (v.rightmargin = (d * c).toFixed(2))));
  };
- n.prototype.locStaffMap = function(b) {
-  var a = {};
+ x.prototype.locStaffMap = function(a, b) {
+  var c = {};
   this.vceInst = {};
   this.msc.vnums = {};
-  b = b.find("measure>note");
-  for (var c = 0; c < b.length; c++) {
-   var d = $(b[c]), f = parseInt(d.find("voice").text() || "1");
-   this.isSib && (f += 100 * (d.find("staff").text() || 1));
-   this.msc.vnums[f] = 1;
-   var e = parseInt(d.find("staff").text() || "1");
-   if (f in a) {
-    var g = a[f];
-    g[e] = (g[e] || 0) + 1;
-   } else g = {}, g[e] = 1, a[f] = g;
-   g = d.find("instrument");
-   g.length && (this.vceInst[f] = $(g).attr("id"));
-  }
+  this.hasStems = {};
   this.stfMap = {};
   this.clefMap = {};
-  for (f in a) {
-   b = [];
-   c = a[f];
-   for (e in c) b.push([ c[e], e ]);
-   b.sort(function(a, b) {
+  for (var d = a.find("measure>note"), e = 0; e < d.length; e++) {
+   var f = $(d[e]), g = parseInt(f.find("voice").text() || "1");
+   this.isSib && (g += 100 * (f.find("staff").text() || 1));
+   this.msc.vnums[g] = 1;
+   var h = parseInt(f.find("staff").text() || "1");
+   this.stfMap[h] = [];
+   if (g in c) {
+    var k = c[g];
+    k[h] = (k[h] || 0) + 1;
+   } else k = {}, k[h] = 1, c[g] = k;
+   k = f.find("instrument");
+   k.length && (this.vceInst[g] = $(k).attr("id"));
+   k = f.find("stem");
+   0 != f.find("rest").length || 0 != k.length && "none" == k.text() || (this.hasStems[g] = 1);
+  }
+  for (g in c) {
+   d = [];
+   e = c[g];
+   for (h in e) d.push([ e[h], h ]);
+   d.sort(function(a, b) {
     return b[0] - a[0];
    });
-   b = b[0][1];
-   this.stfMap[b] = (this.stfMap[b] || []).concat([ f ]);
-   this.curStf[f] = b;
+   d = d[0][1];
+   this.stfMap[d].push(g);
+   this.vce2stf[g] = d;
+   this.curStf[g] = d;
   }
  };
- n.prototype.addStaffMap = function(b) {
-  var a, c, d, f, e, g, l = [], k = Object.keys(this.stfMap).sort();
-  for (c = 0; c < k.length; ++c) {
-   e = k[c];
-   f = this.stfMap[e];
+ x.prototype.addStaffMap = function(a) {
+  var b, c, d, e, f, g, h, k = [], l = Object.keys(this.stfMap).sort();
+  for (c = 0; c < l.length; ++c) {
+   f = l[c];
+   e = this.stfMap[f];
    g = [];
-   for (a = 0; a < f.length; ++a) d = f[a], d in b && g.push(b[d]);
-   if (g.length) for ((l.push(g.sort()), f = e in this.clefMap ? this.clefMap[e] : "treble", 
-   a = 0); a < g.length; ++a) d = g[a], p.clefs[d] = f;
+   h = [];
+   for (b = 0; b < e.length; ++b) d = e[b], d in a && (g.push(a[d]), h.push(void 0 == this.hasStems[d]));
+   if (g.length) for ((k.push(g), e = f in this.clefMap ? this.clefMap[f] : "treble", 
+   b = 0); b < g.length; ++b) d = g[b], f = "", 0 == e.indexOf("tab") && (h[b] && 0 > e.indexOf("nostems") && (f = " nostems"), 
+   this.diafret && 0 > e.indexOf("diafret") && (f += " diafret")), v.clefs[d] = e + f;
   }
-  this.gStfMap.push(l);
+  this.gStfMap.push(k);
  };
- n.prototype.addMidiMap = function(b, a) {
-  var c = this.instMid[b], d, f = Object.keys(c);
-  d = f.length ? c[f[0]] : this.midDflt;
-  var e = [], g, l, k, h = this;
-  for (g in a) f = Object.keys(this.drumNotes).sort().filter(function(a) {
+ x.prototype.addMidiMap = function(a, b) {
+  var c = this.instMid[a], d, e = Object.keys(c);
+  d = e.length ? c[e[0]] : this.midDflt;
+  var f = [], g, h, k, l = this;
+  for (g in b) e = Object.keys(this.drumNotes).sort().filter(function(a) {
    return a.split(";")[0] == g;
-  }), k = f.map(function(a) {
+  }), k = e.map(function(a) {
    return {
     nt: a.split(";")[1],
-    step: h.drumNotes[a][0],
-    midi: h.drumNotes[a][1],
-    nhd: h.drumNotes[a][2]
+    step: l.drumNotes[a][0],
+    midi: l.drumNotes[a][1],
+    nhd: l.drumNotes[a][2]
    };
-  }), f = a[g], l = this.vceInst[g] || "", l in c ? e.push([ f, c[l].concat(k) ]) : e.push([ f, d.concat(k) ]);
-  e.sort(function(a, b) {
+  }), h = b[g], e = this.vceInst[g] || "", e in c ? f.push([ h, c[e].concat(k) ]) : f.push([ h, d.concat(k) ]);
+  f.sort(function(a, b) {
    return a[0] - b[0];
   });
-  for (c = 0; c < e.length; ++c) f = e[c][0], d = e[c][1], this.midiMap.push(d);
+  f.forEach(function(a) {
+   l.midiMap.push(a[1]);
+  });
+  d = "E G B d f a c' e'".split(" ");
+  for (var m, t, q = "0 1- 1 1+ 2 3 3 4 4 5 6 6+ 7 8- 8 8+ 9 10 10 11 11 12 13 13+ 14".split(" "), e = Object.keys(this.tabmap).sort(), c = 0; c < e.length; ++c) h = e[c], 
+  f = h.match(/(\d+),(.*)/), g = f[1], t = f[2], k = this.tabmap[h][0], m = this.tabmap[h][1], 
+  this.diafret && (m = q[parseInt(m)]), h = b[g], k = this.stafflines - parseInt(k), 
+  f = this.tabVceMap[h] || [], f.push(u("%%map tab%d %s print=%s heads=kop%s\n", [ h, t, d[k], m ])), 
+  this.tabVceMap[h] = f, this.koppen[m] = 1;
  };
- n.prototype.parse = function(b) {
-  var a = $(b);
-  this.mkTitle(a);
-  this.doDefaults(a);
-  partlist = this.doPartList(a);
-  b = a.find("part");
-  for (var c = 0; c < b.length; ++c) {
-   var a = $(b[c]), d = a.find("measure");
-   this.locStaffMap(a);
+ x.prototype.parse = function(a) {
+  var b = {}, c = $(a);
+  this.mkTitle(c);
+  this.doDefaults(c);
+  a = this.doPartList(c);
+  for (var d = c.find("part"), e = 0; e < d.length; ++e) {
+   var f = d.eq(e), g = f.find("measure");
+   this.locStaffMap(f, g);
    this.drumNotes = {};
    this.clefOct = {};
+   this.curClef = {};
+   this.stemDir = {};
+   this.tabmap = {};
+   this.diafret = 0;
+   this.stafflines = 5;
    this.msc.initVoices(1);
-   var f = 0, e = 0;
-   for (this.msr = new H(c); this.msr.ixm < d.length; ) {
-    var g = $(d[this.msr.ixm]), l = 0, k = "";
+   var h = f = 0;
+   for (this.msr = new K(e); this.msr.ixm < g.length; ) {
+    var k = g.eq(this.msr.ixm), l = 0, m = "";
     this.msr.reset();
     this.curalts = {};
-    for (var h = g.children(), m = 0; m < h.length; m++) {
-     var n = h[m], a = $(n);
-     switch (n.nodeName) {
-     case "note":
-      this.doNote(a);
-      break;
+    for (var r = k.children(), q = 0; q < r.length; q++) switch (c = r.eq(q), c[0].nodeName) {
+    case "note":
+     this.doNote(c);
+     break;
 
-     case "attributes":
-      this.doAttr(a);
-      break;
+    case "attributes":
+     this.doAttr(c);
+     break;
 
-     case "direction":
-      this.doDirection(a);
-      break;
+    case "direction":
+     this.doDirection(c, q, r);
+     break;
 
-     case "sound":
-      this.doDirection(g);
-      break;
+    case "sound":
+     this.doDirection(k, q, r);
+     break;
 
-     case "harmony":
-      this.doHarmony(a);
-      break;
+    case "harmony":
+     this.doHarmony(c, q, r);
+     break;
 
-     case "barline":
-      l = this.doBarline(a);
-      break;
+    case "barline":
+     l = this.doBarline(c);
+     break;
 
-     case "backup":
-      a = parseInt(a.find("duration").text());
-      this.msc.incTime(-a);
-      break;
+    case "backup":
+     c = parseInt(c.find("duration").text());
+     this.msc.incTime(-c);
+     break;
 
-     case "forward":
-      a = parseInt(a.find("duration").text());
-      this.msc.incTime(a);
-      break;
+    case "forward":
+     c = parseInt(c.find("duration").text());
+     this.msc.incTime(c);
+     break;
 
-     case "print":
-      k = this.doPrint(a);
-     }
+    case "print":
+     m = this.doPrint(c);
     }
-    this.msc.addBar(k, this.msr);
-    1 == l ? (e = this.msr.ixm, this.msr.ixm += 1) : 2 == l ? 1 > f ? (this.msr.ixm = e, 
+    this.msc.addBar(m, this.msr);
+    1 == l ? (h = this.msr.ixm, this.msr.ixm += 1) : 2 == l ? 1 > f ? (this.msr.ixm = h, 
     f += 1) : (f = 0, this.msr.ixm += 1) : this.msr.ixm += 1;
    }
-   d = this.msc.outVoices(this.msr.divs, c);
-   this.addStaffMap(d);
-   this.addMidiMap(c, d);
+   for (var n in this.repeat_str) g = this.repeat_str[n], g[0] = u("[I:repeat %s %d]", [ g[1], 1 ]);
+   g = this.msc.outVoices(this.msr.divs, e);
+   this.addStaffMap(g);
+   this.addMidiMap(e, g);
+   for (n in g) b[n] = g[n];
   }
-  Object.keys(d).length ? p.mkHeader(this.gStfMap, partlist, this.midiMap) : q("nothing written, %s has no notes ...", [ p.fnmext ]);
+  Object.keys(b).length ? v.mkHeader(this.gStfMap, a, this.midiMap, this.tabVceMap, this.koppen) : t("nothing written, %s has no notes ...", [ v.fnmext ]);
  };
- vertaal = function(b, a) {
+ vertaal = function(a, b) {
   var c = {
    u: 0,
    b: 0,
@@ -25842,18 +26293,22 @@ if (typeof MooTools != "undefined") {
    m: 0,
    x: 0,
    t: 0,
-   p: "f"
+   v1: 0,
+   noped: 0,
+   stm: 0,
+   p: "f",
+   s: 0
   }, d;
-  for (d in a) c[d] = a[d];
+  for (d in b) c[d] = b[d];
   c.p = c.p ? c.p.split(",") : [];
-  p = new D(".abc", "", 0, c);
-  c = new n(c);
+  v = new E(".abc", "", 0, c);
+  c = new x(c);
   try {
-   c.parse(b);
-  } catch (f) {
-   q("** exception occurred: %s", [ f ]);
+   c.parse(a);
+  } catch (e) {
+   t("** exception occurred: %s", [ e ]);
   }
-  return [ p.outlist.join(""), p.infolist.join("\n") ];
+  return v.writeall();
  };
 })();
 
