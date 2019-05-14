@@ -185,7 +185,7 @@ let INTERPOLATION_EXIT_JSON = {
                 {
                     type: "comment",
                     name: "problems",
-                    title: "Please describe any difficulties you had in completing the fingering of this piece. In particular, highlight any ambiguity you felt in annotating individual notes."
+                    title: "Please describe any difficulties you had in completing the fingering of this piece. In particular, highlight any ambiguity you noticed in annotating individual notes."
                 }
             ]
         }
