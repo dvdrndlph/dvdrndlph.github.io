@@ -1,0 +1,62 @@
+% abcDidactyl v6
+% abcD fingering 1: >43235534321531232124423@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:52
+% abcD fingering 2: >31235534321531232124423@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:52
+% abcD fingering 3: >43235523121531232124423@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:52
+% abcD fingering 4: >43235534321531232124421@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:52
+% abcD fingering 5: >53235534321531232124423@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:52
+% abcD fingering 6: >43214423121531232124423@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:52
+% abcD fingering 7: >43235534321521232124423@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:52
+% abcD fingering 8: >43235534321421232124423@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:52
+% abcD fingering 9: >43235534321531343235534@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:52
+% abcD fingering 10: >31235523121531232124423@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:52
+% abcDidactyl END
+X:513
+T:Sonatina 5.1.3
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:4/4
+Q:1/4=140
+I:linebreak $
+K:G
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+"^Presto." z8 z4{/A} (3(G2F2G2 | .B4) .B4 .G4{/A} (3(G2F2G2 |$ %676
+ d8 .B4) .G4 | .c4{/d} (3(c2B2c2 .e4) .e4 | (^c4 .d4) z8|]
+V:3
+[K:bass]  z8|z8|z8|z8|z8|]

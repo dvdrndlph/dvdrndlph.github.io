@@ -1,4 +1,4 @@
-/* abcDE_min.js v6.0.96 */
+/* abcDE_min.js v6.0.97 */
 /** @license
  *
  * Copyright (c) 2015, 2016 David A. Randolph.
@@ -30,159 +30,168 @@
  */
 function AbcDE() {
  "use strict";
- var t, n, r, i, a, o, s, c, l = [], u = [], d = "", f = !1, p = 1, g = {}, h = [], m = void 0, v = "", _ = "noname.abc", y = 0, b = [], E = !1, k = [], w = 0, C = [], x = [], I = {}, B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, L = !1, F = [], P = !1, M = !1, H = "../../corpora", z = "./abcde_help.html", R = "../image", O = "../lib/media", V = 5, X = /\s/g, G = /</g, U = />/g, j = /[><]/g, Y = /([,;\.])/, K = /&/g, Z = /.*([<>])[^<>]+$/, W = /^% abcDidactyl v([\d\.]+)$/, J = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Q = /^% abcDidactyl END$/, ee = /^% Authority: ([^\(]+)(\s+\((\d\d\d\d)\))?$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, re = /^% (.*)$/, ie = 300, ae = 4e3, oe = "abcde", se = "abc_source", ce = "source", le = "abcde_prefs", ue = "abcde_controls", de = "abcde_metadata", fe = "abcde_keypad", pe = "abcde_rendering", ge = "abcde_target", he = "abcde_error", me = .1, ve = 3, _e = .3, ye = 90, be = 89, Ee = 13, ke = 8, we = 9, Ce = 37, xe = 39, Ie = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Be = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
+ let t, n, i, r, l, o, a, s, c = [], u = [], d = "", f = !1, p = 1, g = {}, h = [], m = void 0, _ = "", y = "noname.abc", b = 0, v = [], E = !1, k = [], w = 0, C = [], x = [], I = {}, B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, L = !1, F = [], P = !1, M = !1, H = "../../corpora", z = "./abcde_help.html", R = "../image", O = "../lib/media", V = 5, X = /\s/g, G = /</g, U = />/g, j = /[><]/g, Y = /([,;\.])/, K = /&/g, Z = /.*([<>])[^<>]+$/, W = /^% abcDidactyl v([\d\.]+)$/, J = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/, Q = /^% abcDidactyl END$/, ee = /^% Authority: ([^\(]+)(\s+\((\d\d\d\d)\))?$/, te = /^% Transcriber: (.*)$/, ne = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/, ie = /^% (.*)$/, re = 300, le = 4e3, oe = "abcde", ae = "abc_source", se = "source", ce = "abcde_prefs", ue = "abcde_controls", de = "abcde_metadata", fe = "abcde_keypad", pe = "abcde_rendering", ge = "abcde_target", he = "abcde_error", me = .1, _e = 3, ye = .3, be = 90, ve = 89, Ee = 13, ke = 8, we = 9, Ce = 37, xe = 39, Ie = "%%setfont-1 Bookman 11\n%%setfont-2 Helvetica-Bold 11", Be = "%%deco 1 3 fng 8 1 1 1\n%%deco 2 3 fng 8 1 1 2\n%%deco 3 3 fng 8 1 1 3\n%%deco 4 3 fng 8 1 1 4\n%%deco 5 3 fng 8 1 1 5";
  function Te() {
-  m && clearInterval(m), l = [], u = [], v = "", f = !1, _ = "noname.abc", n = void 0, 
-  i = "", a = void 0, b = [], E = !1, k = [], o = void 0, w = 0, C = [], x = [], I = {}, 
-  B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, s = void 0, c = void 0, F = [];
+  m && clearInterval(m), c = [], u = [], _ = "", f = !1, y = "noname.abc", n = void 0, 
+  r = "", l = void 0, v = [], E = !1, k = [], o = void 0, w = 0, C = [], x = [], I = {}, 
+  B = {}, T = [], D = !1, S = {}, A = {}, q = [], N = 0, a = void 0, s = void 0, F = [];
  }
  function De(e) {
-  var t, n = S[e], r = [];
-  for (t in n) n.hasOwnProperty(t) && r.push(t);
-  return r.sort(function(e, t) {
+  let t, n = S[e], i = [];
+  for (t in n) n.hasOwnProperty(t) && i.push(t);
+  return i.sort(function(e, t) {
    return parseInt(e) - parseInt(t);
-  }), r;
+  }), i;
  }
  function Se(e, t) {
   if (!e) return console.log("MISSING fingers have no hands."), "";
   if ("x" === e) return e;
-  for (var n = t, r = [], i = e.split(""), a = 0; a < i.length; a++) {
-   var o = i[a];
-   "<" === o || ">" === o ? n = o : o.match(/\d/) ? r.push(n + o) : r.push(o);
+  let n = t, i = [], r = e.split("");
+  for (let e = 0; e < r.length; e++) {
+   let t = r[e];
+   "<" === t || ">" === t ? n = t : t.match(/\d/) ? i.push(n + t) : i.push(t);
   }
-  return r.join("");
+  return i.join("");
  }
  function Ae() {
   return "undefined" != typeof Storage;
  }
  function qe(e, n) {
-  v || (v = md5(i));
-  var r = e + "_" + n + "_" + v;
-  return t.experiment_id && (r = t.experiment_id + "_" + r), r;
+  _ || (_ = md5(r));
+  let i = e + "_" + n + "_" + _;
+  return t.experiment_id && (i = t.experiment_id + "_" + i), i;
  }
  function Ne(e) {
   if (!Ae()) return {};
-  var t = {
+  let t = {
    sequence: ""
-  }, n = qe("sequence", e), r = localStorage.getItem(n) || "";
-  r.match(/[^x&@]/) && (t.sequence = r), n = qe("authority", e);
-  var i = localStorage.getItem(n) || "";
-  t.authority = i, n = qe("authority_year", e);
-  var a = localStorage.getItem(n) || "";
-  t.authority_year = a, n = qe("transcriber", e);
-  var o = localStorage.getItem(n) || "";
+  }, n = qe("sequence", e), i = localStorage.getItem(n) || "";
+  i.match(/[^x&@]/) && (t.sequence = i), n = qe("authority", e);
+  let r = localStorage.getItem(n) || "";
+  t.authority = r, n = qe("authority_year", e);
+  let l = localStorage.getItem(n) || "";
+  t.authority_year = l, n = qe("transcriber", e);
+  let o = localStorage.getItem(n) || "";
   t.transcriber = o, n = qe("comments", e);
-  var s = localStorage.getItem(n) || "";
-  return t.comments = s, t;
+  let a = localStorage.getItem(n) || "";
+  return t.comments = a, t;
  }
  function Le(e) {
-  var t = document.getElementById(e);
+  let t = document.getElementById(e);
   return t.value ? t.value : "";
  }
  function Fe(e) {
-  var t = new Date(), n = t.getFullYear() + "-" + sprintf("%02d", t.getMonth() + 1) + "-" + sprintf("%02d", t.getDate()) + " " + sprintf("%02d", t.getHours()) + ":" + sprintf("%02d", t.getMinutes()) + ":" + sprintf("%02d", t.getSeconds()), r = "", i = "";
-  return (e || $e("include_pii")) && (r = Le("authority"), i = Le("transcriber")), 
+  let t = new Date(), n = t.getFullYear() + "-" + sprintf("%02d", t.getMonth() + 1) + "-" + sprintf("%02d", t.getDate()) + " " + sprintf("%02d", t.getHours()) + ":" + sprintf("%02d", t.getMinutes()) + ":" + sprintf("%02d", t.getSeconds()), i = "", r = "";
+  return (e || $e("include_pii")) && (i = Le("authority"), r = Le("transcriber")), 
   {
    sequence: Sn(),
-   authority: r,
+   authority: i,
    authority_year: Le("authority_year"),
-   transcriber: i,
+   transcriber: r,
    transcription_date: n,
    comments: Le("comments")
   };
  }
  function Pe(e, t) {
-  var n = document.getElementById(e).value, r = qe(e, t);
-  localStorage.setItem(r, n);
+  let n = document.getElementById(e).value, i = qe(e, t);
+  localStorage.setItem(i, n);
  }
  function Me(e) {
-  for (var t = document.getElementsByName(e), n = 0; n < t.length; n++) {
-   var r = t[n];
-   if (r.checked) return r.id;
+  let t = document.getElementsByName(e);
+  for (let e = 0; e < t.length; e++) {
+   let n = t[e];
+   if (n.checked) return n.id;
   }
  }
  function He(e) {
-  var t = "";
-  "preset_preference" === e || "output" === e || "keypad" === e || "restore" == e ? t = Me(e) : t = document.getElementById(e).value;
+  let t = "";
+  if ("preset_preference" === e || "output" === e || "keypad" === e || "restore" == e) t = Me(e); else {
+   t = document.getElementById(e).value;
+  }
   g[e] = t, localStorage.setItem(e, t);
  }
  function ze() {
-  var e = document.getElementById("sequence_spinner");
+  let e = document.getElementById("sequence_spinner");
   return e ? e.value : (alert("Sequence DOM element has gone missing."), "1");
  }
  function Re() {
-  if (Ae()) if (document.getElementById("sequence_spinner")) {
-   var e = ze(), t = qe("sequence", e), n = Sn();
-   localStorage.setItem(t, n), Pe("authority", e), Pe("authority_year", e), Pe("transcriber", e), 
-   Pe("comments", e);
-  } else clearInterval(m); else clearInterval(m);
+  if (!Ae()) return void clearInterval(m);
+  if (!document.getElementById("sequence_spinner")) return void clearInterval(m);
+  let e = ze(), t = qe("sequence", e), n = Sn();
+  localStorage.setItem(t, n), Pe("authority", e), Pe("authority_year", e), Pe("transcriber", e), 
+  Pe("comments", e);
  }
  function $e(e) {
   if (t && t[e]) return t[e];
   if ("preset" === e) return "";
-  if ("measure_number_interval" === e) return document.getElementById(e).value;
-  var n = Me(e);
+  if ("measure_number_interval" === e) {
+   return document.getElementById(e).value;
+  }
+  let n = Me(e);
   return n || "";
  }
  function Oe() {
-  var e = {};
+  let e = {};
   return e.authority = Le("default_authority"), e.authority_year = Le("default_authority_year"), 
   e.transcriber = Le("default_transcriber"), e.sequence = "x", e.comments = "", e;
  }
  function Ve(e) {
-  for (var t, n = e.split("\n"), r = !1, i = {}, a = [], o = "", s = 0; s < n.length; s++) {
-   var c = n[s];
-   if (!o && (t = W.exec(c)) && t[1]) o = t[1], r = !0; else if (r) if ((t = J.exec(c)) && t[1] && t[2]) i = {
+  let t, n = e.split("\n"), i = !1, r = {}, l = [], o = "";
+  for (let e = 0; e < n.length; e++) {
+   let a = n[e];
+   if (!o && (t = W.exec(a)) && t[1]) o = t[1], i = !0; else if (i) if ((t = J.exec(a)) && t[1] && t[2]) r = {
     sequence: t[2],
     comments: ""
-   }, a.push(i); else {
-    if (t = Q.exec(c)) break;
-    if ((t = ee.exec(c)) && t[1]) {
-     i.authority = t[1], t[2] && (i.authority_year = t[3]);
+   }, l.push(r); else {
+    if (t = Q.exec(a)) break;
+    if ((t = ee.exec(a)) && t[1]) {
+     r.authority = t[1], t[2] && (r.authority_year = t[3]);
      continue;
     }
-    if ((t = te.exec(c)) && t[1]) {
-     i.transcriber = t[1];
+    if ((t = te.exec(a)) && t[1]) {
+     r.transcriber = t[1];
      continue;
     }
-    if ((t = ne.exec(c)) && t[1]) {
-     i.transcription_date = t[1];
+    if ((t = ne.exec(a)) && t[1]) {
+     r.transcription_date = t[1];
      continue;
     }
-    (t = re.exec(c)) && t[1] && (i.comments += t[1] + "\n");
+    (t = ie.exec(a)) && t[1] && (r.comments += t[1] + "\n");
    }
   }
-  return a;
+  return l;
  }
  function Xe() {
-  var e = document.getElementById("sequence_spinner");
+  let e = document.getElementById("sequence_spinner");
   e.min = 1, e.max = h.length || 1;
-  var t = function() {
-   var e = $e("preset");
+  let t = function() {
+   let e = $e("preset");
    if (e) return e;
-   var t = 1;
+   let t = 1;
    return "last" === (e = $e("preset_preference")) && (t = h.length || 1), t;
   }();
   e.value = t;
  }
  function Ge(e) {
   if (e) {
-   var t = e - 1;
+   let t = e - 1;
    return parseInt(e) <= h.length ? h[t] : Oe();
   }
   return function() {
    let e = $e("preset");
-   return e ? h[e - 1] : (e = $e("preset_preference")) && "none" !== e ? "first" === e ? h[0] : "last" === e ? h[h.length - 1] : "" : Oe();
+   if (e) return h[e - 1];
+   return (e = $e("preset_preference")) && "none" !== e ? "first" === e ? h[0] : "last" === e ? h[h.length - 1] : "" : Oe();
   }();
  }
  function Ue(e, t) {
-  for (var n = document.getElementsByName(e), r = 0; r < n.length; r++) {
-   var i = n[r];
+  let n = document.getElementsByName(e);
+  for (let e = 0; e < n.length; e++) {
+   let i = n[e];
    i.id === t && (i.checked = !0);
   }
  }
  function je(e, t) {
-  var n = document.getElementById(e);
+  let n = document.getElementById(e);
   n.value = void 0 !== t ? t : "";
  }
  function Ye(e) {
@@ -190,176 +199,187 @@ function AbcDE() {
   je("comments", e.comments);
  }
  function Ke(e, t) {
-  for (var n = 0; n < e.length; n++) if (e[n] === t) return !0;
+  for (let n = 0; n < e.length; n++) if (e[n] === t) return !0;
   return !1;
  }
  function Ze(e, t) {
-  for (var n = 0; n < e.length; n++) if (e[n] === t) return n;
+  for (let n = 0; n < e.length; n++) if (e[n] === t) return n;
   return null;
  }
  function We(e, t) {
-  if (e) {
-   console.log("Setting fingers: ", e);
-   var n, r, i, a = {}, o = e.split("@");
-   for (n = 0; n < o.length; n++) {
-    var s = Qt(n);
-    a = [];
-    var c = o[n].split("&");
-    for (r = 0; r < c.length; r++) {
-     var l = it(c[r]);
-     a = a.concat(l);
+  if (!e) return;
+  console.log("Setting fingers: ", e);
+  let n, i, r, l = {}, o = e.split("@");
+  for (n = 0; n < o.length; n++) {
+   let e = Qt(n);
+   l = [];
+   let a = o[n].split("&");
+   for (i = 0; i < a.length; i++) {
+    let e = rt(a[i]);
+    l = l.concat(e);
+   }
+   let s = De(n);
+   for (let i = 0; i < s.length; i++) {
+    let o = s[i], a = S[n][o];
+    a.sort(Ft);
+    let c = 0;
+    for (;a[c].grace; ) {
+     let n = "";
+     a[c][t] = "";
+     for (let i = 0; i < a[c].size; i++) (r = l.shift()) || (console.log(t + " MISSING for grace note:"), 
+     qt(t + " grace note", a[c])), e = Cn(r = Se(r, e), e), n += r;
+     "fingering" === t ? a[c].set_fingering(n) : "preset_fingering" === t && a[c].set_preset_fingering(n), 
+     c++;
     }
-    for (var u = De(n), d = 0; d < u.length; d++) {
-     var f = u[d], p = S[n][f];
-     p.sort(Ft);
-     for (var g = 0; p[g].grace; ) {
-      var h = "";
-      p[g][t] = "";
-      for (var m = 0; m < p[g].size; m++) (i = a.shift()) || (console.log(t + " MISSING for grace note:"), 
-      qt(t + " grace note", p[g])), s = Cn(i = Se(i, s), s), h += i;
-      "fingering" === t ? p[g].set_fingering(h) : "preset_fingering" === t && p[g].set_preset_fingering(h), 
-      g++;
+    let u = Ot(a), d = $t(u), f = [], p = [], g = null;
+    for (let n = 0; n < d.length; n++) {
+     let i = d[n];
+     for (let n = 0; n < u[i].length; n++) {
+      if ((g = u[i][n]).grace) continue;
+      Ke(p, g) || (f.push(""), p.push(g));
+      let o = Ze(p, g);
+      (r = l.shift()) || (console.log(t + " MISSING for note:"), qt(t + " pit note", g)), 
+      e = Cn(r = Se(r, e), e), f[o] += r;
      }
-     var v = Ot(p), _ = $t(v), y = [], b = [], E = null;
-     for (m = 0; m < _.length; m++) for (var k = _[m], w = 0; w < v[k].length; w++) if (!(E = v[k][w]).grace) {
-      Ke(b, E) || (y.push(""), b.push(E));
-      var C = Ze(b, E);
-      (i = a.shift()) || (console.log(t + " MISSING for note:"), qt(t + " pit note", E)), 
-      s = Cn(i = Se(i, s), s), y[C] += i;
-     }
-     for (m = 0; m < y.length; m++) i = y[m], console.log("FingerING " + i), E = b[m], 
-     "fingering" === t ? E.set_fingering(i) : "preset_fingering" === t && E.set_preset_fingering(i);
     }
+    for (let e = 0; e < f.length; e++) r = f[e], console.log("FingerING " + r), g = p[e], 
+    "fingering" === t ? g.set_fingering(r) : "preset_fingering" === t && g.set_preset_fingering(r);
    }
   }
  }
  function Je(e, t) {
-  var n = t.sequence, r = t.sequence, i = !0, a = $e("preset_preference");
-  a && "none" !== a || (i = !1, n = "");
-  var o = !1;
+  let n = t.sequence, i = t.sequence, r = !0, l = $e("preset_preference");
+  l && "none" !== l || (r = !1, n = "");
+  let o = !1;
   if (e && e.sequence && e.sequence !== n) {
-   var s = $e("restore");
-   (o = "always" === s || "never" !== s && confirm("You have previously entered data for this piece (or suggestion). Do you want to restore them?")) && (n = e.sequence);
+   let t = $e("restore");
+   (o = "always" === t || "never" !== t && confirm("You have previously entered data for this piece (or suggestion). Do you want to restore them?")) && (n = e.sequence);
   }
-  o ? Ye(e) : i && Ye(t), We(r, "preset_fingering"), We(n, "fingering"), m = setInterval(function() {
+  o ? Ye(e) : r && Ye(t), We(i, "preset_fingering"), We(n, "fingering"), m = setInterval(function() {
    Re();
-  }, ae);
+  }, le);
  }
  function Qe() {
-  var e = ze();
+  let e = ze();
   Je(Ne(e), Ge(e)), function() {
-   var e = Le("authority"), t = Le("default_authority");
+   let e = Le("authority"), t = Le("default_authority");
    !e && t && je("authority", t);
-   var n = Le("authority_year"), r = Le("default_authority_year");
-   !n && r && je("authority_year", r);
-   var i = Le("transcriber"), a = Le("default_transcriber");
-   !i && a && je("transcriber", a);
+   let n = Le("authority_year"), i = Le("default_authority_year");
+   !n && i && je("authority_year", i);
+   let r = Le("transcriber"), l = Le("default_transcriber");
+   !r && l && je("transcriber", l);
   }();
  }
  function et(e) {
   return xn();
  }
  function tt() {
-  var e = window.prompt("Please enter a fingering string for the current piece.", "");
+  let e = window.prompt("Please enter a fingering string for the current piece.", "");
   null !== e && (We(e, "fingering"), Zt());
  }
  function nt() {
-  i && (confirm("All changes you have made to this fingering sequence will be discarded, and the initial sequence will be restored. Are you sure you want to proceed?") && (Je(void 0, Ge(ze())), 
-  Zt(), _n(o = x[0][0][0])));
+  if (!r) return;
+  if (confirm("All changes you have made to this fingering sequence will be discarded, and the initial sequence will be restored. Are you sure you want to proceed?")) {
+   Je(void 0, Ge(ze())), Zt(), yn(o = x[0][0][0]);
+  }
  }
- function rt(e) {
+ function it(e) {
   return function e(t, n) {
    if (null == t) return n;
-   for (var r = 0; r < t.length; r++) t[r] instanceof Array ? e(t[r], n) : t[r] && n.push(t[r]);
+   for (let i = 0; i < t.length; i++) t[i] instanceof Array ? e(t[i], n) : t[i] && n.push(t[i]);
    return n;
   }(e, []).join("");
  }
- function it(e, t = 0) {
+ function rt(e, t = 0) {
   if (!e) return [];
   console.log("abcdf string: " + e);
-  var n = function(e, t = 0, n = !1) {
-   var r = [];
-   if (n) {
-    for (var i = 0; i < e[t].length; i++) for (var a = 0; a < e[t][i].length; a++) if ((s = e[t][i][a]) instanceof Array) {
-     var o = rt(s);
-     r.push(o);
+  let n = function(e, t = 0, n = !1) {
+   let i = [];
+   if (n) for (let n = 0; n < e[t].length; n++) for (let r = 0; r < e[t][n].length; r++) {
+    let l = e[t][n][r];
+    if (l instanceof Array) {
+     let e = it(l);
+     i.push(e);
     }
-   } else for (a = 0; a < e[t].length; a++) {
-    var s;
-    (s = e[t][a]) instanceof Array && (o = rt(s), r.push(o));
+   } else for (let n = 0; n < e[t].length; n++) {
+    let r = e[t][n];
+    if (r instanceof Array) {
+     let e = it(r);
+     i.push(e);
+    }
    }
-   return r;
+   return i;
   }(AbcdfRaw_Parser.parse(e), t, K.exec(line));
   return n = n.filter(function(e) {
    return "&" != e && "@" != e;
   });
  }
- function at() {
+ function lt() {
   window.open(z, "_blank").focus();
  }
  function ot(e) {
   un();
-  var t = document.getElementById("prefs_modal_wrapper"), n = document.getElementById("prefs_modal_window");
+  let t = document.getElementById("prefs_modal_wrapper"), n = document.getElementById("prefs_modal_window");
   t.className = "overlay";
-  var r = n.offsetHeight - document.documentElement.clientHeight;
-  r > 0 && (n.style.maxHeight = parseInt(window.getComputedStyle(n).height) - r + "px"), 
+  let i = n.offsetHeight - document.documentElement.clientHeight;
+  i > 0 && (n.style.maxHeight = parseInt(window.getComputedStyle(n).height) - i + "px"), 
+  n.style.marginTop = -n.offsetHeight / 2 + "px", n.style.marginLeft = -n.offsetWidth / 2 + "px", 
+  e.preventDefault ? e.preventDefault() : e.returnValue = !1;
+ }
+ function at(e) {
+  un();
+  let t = document.getElementById("metadata_modal_wrapper"), n = document.getElementById("metadata_modal_window");
+  t.className = "overlay";
+  let i = n.offsetHeight - document.documentElement.clientHeight;
+  i > 0 && (n.style.maxHeight = parseInt(window.getComputedStyle(n).height) - i + "px"), 
   n.style.marginTop = -n.offsetHeight / 2 + "px", n.style.marginLeft = -n.offsetWidth / 2 + "px", 
   e.preventDefault ? e.preventDefault() : e.returnValue = !1;
  }
  function st(e) {
-  un();
-  var t = document.getElementById("metadata_modal_wrapper"), n = document.getElementById("metadata_modal_window");
-  t.className = "overlay";
-  var r = n.offsetHeight - document.documentElement.clientHeight;
-  r > 0 && (n.style.maxHeight = parseInt(window.getComputedStyle(n).height) - r + "px"), 
-  n.style.marginTop = -n.offsetHeight / 2 + "px", n.style.marginLeft = -n.offsetWidth / 2 + "px", 
+  document.getElementById("metadata_modal_wrapper").className = "", Re(), vt(), cn(), 
   e.preventDefault ? e.preventDefault() : e.returnValue = !1;
  }
- function ct(e) {
-  document.getElementById("metadata_modal_wrapper").className = "", Re(), bt(), ln(), 
-  e.preventDefault ? e.preventDefault() : e.returnValue = !1;
- }
- function lt() {
-  p > _e && (p -= me, Zt());
+ function ct() {
+  p > ye && (p -= me, Zt());
  }
  function ut() {
-  p < ve && (p += me, Zt());
+  p < _e && (p += me, Zt());
  }
  function dt(e) {
   He("preset_preference"), He("output"), He("restore"), He("keypad"), He("measure_number_interval"), 
   He("default_authority"), He("default_authority_year"), He("default_transcriber"), 
-  document.getElementById("prefs_modal_wrapper").className = "", i && (Zt(), _n(o)), 
-  bt(), ln(), e.preventDefault ? e.preventDefault() : e.returnValue = !1;
+  document.getElementById("prefs_modal_wrapper").className = "", r && (Zt(), yn(o)), 
+  vt(), cn(), e.preventDefault ? e.preventDefault() : e.returnValue = !1;
  }
  function ft(e) {
-  var t = e.slice(0, 100);
+  let t = e.slice(0, 100);
   if (-1 == t.indexOf("<?xml")) return !1;
-  var n = t.match(/encoding="([^"]+)"/), r = "utf-8";
-  return n && 2 == n.length && (r = n[1]), r;
+  let n = t.match(/encoding="([^"]+)"/), i = "utf-8";
+  return n && 2 == n.length && (i = n[1]), i;
  }
  function pt(e) {
-  var t = $.parseXML(e), n = vertaal(t, {}), r = n[0], i = n[1];
-  return i && console.log("xml2abc ERROR: " + i), r || alert("Unable to open MusicXML file: " + i), 
-  r;
+  let t = $.parseXML(e), n = vertaal(t, {}), i = n[0], r = n[1];
+  return r && console.log("xml2abc ERROR: " + r), i || alert("Unable to open MusicXML file: " + r), 
+  i;
  }
  function gt(e) {
-  var t = e.split(".");
+  let t = e.split(".");
   return t[t.length - 1];
  }
  function ht(e) {
-  var t = gt(e), n = 'The server hosting file does not allow access from this domain. Please download the file outside abcDE and then "Choose file" to work with it.', r = function(e, t) {
-   var n = new XMLHttpRequest();
+  let t = gt(e), n = 'The server hosting file does not allow access from this domain. Please download the file outside abcDE and then "Choose file" to work with it.', i = function(e, t) {
+   let n = new XMLHttpRequest();
    return "withCredentials" in n ? n.open(e, t, !0) : "undefined" != typeof XDomainRequest ? (n = new XDomainRequest()).open(e, t) : n = null, 
    n;
   }("GET", e);
-  r ? ("mxl" === t && (r.responseType = "arraybuffer"), r.onload = function() {
+  i ? ("mxl" === t && (i.responseType = "arraybuffer"), i.onload = function() {
    console.log("File has been retrieved.");
-   var n = "";
+   let n = "";
    if ("mxl" === t) {
     if (!(n = function(e) {
-     var t = "";
+     let t = "";
      try {
-      var n = new JSZip(e);
+      let n = new JSZip(e);
       $.each(n.files, function(e, n) {
        t = n.asText();
       });
@@ -368,181 +388,181 @@ function AbcDE() {
      }
      return "UTF-8" !== ft(t) ? (alert("Input mxl is not UTF-8 encoded. Cannot open."), 
      "") : t = pt(t);
-    }(r.response))) return;
+    }(i.response))) return;
    } else {
-    var i = ft(n = r.responseText);
-    if (i) {
-     if (!/^utf/i.test(i)) return void alert("Input xml is not UTF-8 encoded. Cannot open.");
+    let e = ft(n = i.responseText);
+    if (e) {
+     if (!/^utf/i.test(e)) return void alert("Input xml is not UTF-8 encoded. Cannot open.");
      n = pt(n);
     }
    }
-   n && (d = e, document.getElementById(se).value = n, dn());
-  }, r.onerror = function() {
+   n && (d = e, document.getElementById(ae).value = n, dn());
+  }, i.onerror = function() {
    alert(n);
-  }, r.send()) : alert(n);
+  }, i.send()) : alert(n);
  }
  function mt() {
-  var e = H + "/clementi/11.abc";
+  let e = H + "/clementi/11.abc";
   if (d) e = d; else {
-   var t = $e("default_url");
+   let t = $e("default_url");
    t && (e = t);
   }
-  var n = window.prompt("Please enter URL to open.", e);
-  n && ht(n);
- }
- function vt() {
-  var e = document.getElementById("file_input").files;
-  if (e.length) {
-   var t = e[0];
-   if ("mxl" !== gt(t.name)) {
-    var n = !1, r = new FileReader();
-    r.onload = function(e) {
-     var i = ft(r.result), a = new FileReader();
-     i ? n = !0 : i = "UTF-8", a.onload = function(e) {
-      var t = "";
-      t = n ? pt(a.result) : e.target.result, document.getElementById(se).value = t, dn();
-     }, a.readAsText(t, i);
-    }, r.readAsText(t, "UTF-8");
-   } else !function(e) {
-    var t = new FileReader(), n = "";
-    t.onload = function(e) {
-     try {
-      var t = new JSZip(e.target.result);
-      $.each(t.files, function(e, t) {
-       n = t.asText();
-      });
-     } catch (e) {
-      return void alert("Could not open compressed MusicXML file: " + e.message);
-     }
-     "UTF-8" === ft(n) ? (n = pt(n), document.getElementById(se).value = n, dn()) : alert("Input xml is not UTF-8 encoded. Cannot open.");
-    }, t.readAsArrayBuffer(e);
-   }(t);
-  } else alert("Please select a valid abc file.");
+  let t = window.prompt("Please enter URL to open.", e);
+  t && ht(t);
  }
  function _t() {
+  let e = document.getElementById("file_input").files;
+  if (!e.length) return void alert("Please select a valid abc file.");
+  let t = e[0];
+  if ("mxl" === gt(t.name)) return void function(e) {
+   let t = new FileReader(), n = "";
+   t.onload = function(e) {
+    try {
+     let t = new JSZip(e.target.result);
+     $.each(t.files, function(e, t) {
+      n = t.asText();
+     });
+    } catch (e) {
+     return void alert("Could not open compressed MusicXML file: " + e.message);
+    }
+    "UTF-8" === ft(n) ? (n = pt(n), document.getElementById(ae).value = n, dn()) : alert("Input xml is not UTF-8 encoded. Cannot open.");
+   }, t.readAsArrayBuffer(e);
+  }(t);
+  let n = !1, i = new FileReader();
+  i.onload = function(e) {
+   let r = ft(i.result), l = new FileReader();
+   r ? n = !0 : r = "UTF-8", l.onload = function(e) {
+    let t = "";
+    t = n ? pt(l.result) : e.target.result, document.getElementById(ae).value = t, dn();
+   }, l.readAsText(t, r);
+  }, i.readAsText(t, "UTF-8");
+ }
+ function yt() {
   P = !P;
  }
- function yt(e, t) {
-  for (var n = e.children, r = 0; r < n.length; r++) n[r].style.display = t;
+ function bt(e, t) {
+  let n = e.children;
+  for (let e = 0; e < n.length; e++) n[e].style.display = t;
  }
- function bt() {
-  var e = document.getElementById(fe), t = document.getElementById("number_div"), n = document.getElementById("symbol_div");
+ function vt() {
+  let e = document.getElementById(fe), t = document.getElementById("number_div"), n = document.getElementById("symbol_div");
   if ("show" === $e("keypad")) e.style.display = "block", t.style.display = "block", 
-  n.style.display = "block", yt(t, "inline"), yt(n, "inline"); else {
-   yt(n, "none"), yt(t, "none");
-   var r = $e("qualtrics"), i = $e("submit_button_id");
-   if (r) {
+  n.style.display = "block", bt(t, "inline"), bt(n, "inline"); else {
+   bt(n, "none"), bt(t, "none");
+   let i = $e("qualtrics"), r = $e("submit_button_id");
+   if (i) {
     document.getElementById("q_next").style.display = "inline";
-    var a = document.getElementById("q_back");
-    a && (a.style.display = "inline");
-   } else if (i) {
-    document.getElementById(i).style.display = "inline";
+    let e = document.getElementById("q_back");
+    e && (e.style.display = "inline");
+   } else if (r) {
+    document.getElementById(r).style.display = "inline";
    } else t.style.display = "block", n.style.display = "block", e.style.display = "none";
   }
  }
  function Et(e) {
-  var t = e.keyCode || e.which;
+  let t = e.keyCode || e.which;
   t = String.fromCharCode(t);
   /[0-9]/.test(t) || (e.returnValue = !1, e.preventDefault && e.preventDefault());
  }
- function kt(e, t, n, r, i, a) {
-  var o = document.createElement("input");
-  o.type = "text", o.class = r, o.id = t, i && (o.onkeypress = i), "year" === r && (o.size = "4");
-  var s = document.createElement("label");
-  s.htmlFor = t, s.appendChild(document.createTextNode(n)), e.appendChild(s), e.appendChild(o), 
-  a && e.appendChild(document.createElement("br"));
+ function kt(e, t, n, i, r, l) {
+  let o = document.createElement("input");
+  o.type = "text", o.class = i, o.id = t, r && (o.onkeypress = r), "year" === i && (o.size = "4");
+  let a = document.createElement("label");
+  a.htmlFor = t, a.appendChild(document.createTextNode(n)), e.appendChild(a), e.appendChild(o), 
+  l && e.appendChild(document.createElement("br"));
  }
  function wt(e, t, n) {
-  var r = document.createElement("label");
-  r.class = n;
-  var i = document.createTextNode(t);
-  r.appendChild(i), e.appendChild(r);
+  let i = document.createElement("label");
+  i.class = n;
+  let r = document.createTextNode(t);
+  i.appendChild(r), e.appendChild(i);
  }
- function Ct(e, t, n, r, i, a, o) {
-  var s = document.createElement("div");
-  s.class = "radio_div", wt(e, t, "prompt");
-  for (var c = 0; c < r.length; c++) {
-   var l = document.createElement("input");
-   l.type = "radio", l.id = r[c], l.id === a && (l.checked = !0), l.name = n, s.appendChild(l), 
-   wt(s, i[c], "radio_label");
-   var u = document.createElement("span");
-   u.innerHTML = "&nbsp;&nbsp", s.appendChild(u);
+ function Ct(e, t, n, i, r, l, o) {
+  let a = document.createElement("div");
+  a.class = "radio_div", wt(e, t, "prompt");
+  for (let e = 0; e < i.length; e++) {
+   let t = document.createElement("input");
+   t.type = "radio", t.id = i[e], t.id === l && (t.checked = !0), t.name = n, a.appendChild(t), 
+   wt(a, r[e], "radio_label");
+   let o = document.createElement("span");
+   o.innerHTML = "&nbsp;&nbsp", a.appendChild(o);
   }
-  return e.appendChild(s), o && e.appendChild(document.createElement("br")), s;
+  return e.appendChild(a), o && e.appendChild(document.createElement("br")), a;
  }
  function xt() {
-  var e = document.getElementById(de), t = document.createElement("div");
+  let e = document.getElementById(de), t = document.createElement("div");
   t.id = "metadata_modal_wrapper", e.appendChild(t);
-  var n = document.createElement("div");
+  let n = document.createElement("div");
   n.id = "metadata_modal_window", t.appendChild(n);
-  var r = document.createElement("div");
-  r.style.textAlign = "right";
-  var i = document.createElement("a");
-  i.id = "metadata_modal_close", i.href = "#", i.innerHTML = "Close <b>X</b>", r.appendChild(i), 
-  i.addEventListener("click", ct, !1), n.appendChild(r), kt(n, "authority", "Authority", "name", void 0, !1), 
+  let i = document.createElement("div");
+  i.style.textAlign = "right";
+  let r = document.createElement("a");
+  r.id = "metadata_modal_close", r.href = "#", r.innerHTML = "Close <b>X</b>", i.appendChild(r), 
+  r.addEventListener("click", st, !1), n.appendChild(i), kt(n, "authority", "Authority", "name", void 0, !1), 
   kt(n, "authority_year", "Year", "year", Et, !0), kt(n, "transcriber", "Transcriber", "name", void 0, !0), 
-  function(e, t, n, r, i, a) {
-   var o = document.createElement("textarea");
-   o.class = r, o.id = t, o.rows = i, o.cols = a;
-   var s = document.createElement("label");
-   s.htmlFor = t, s.appendChild(document.createTextNode(n)), e.appendChild(s), e.appendChild(o);
+  function(e, t, n, i, r, l) {
+   let o = document.createElement("textarea");
+   o.class = i, o.id = t, o.rows = r, o.cols = l;
+   let a = document.createElement("label");
+   a.htmlFor = t, a.appendChild(document.createTextNode(n)), e.appendChild(a), e.appendChild(o);
   }(n, "comments", "Comments", "comments", 10, 50);
  }
  function It() {
-  var e = document.getElementById(le), n = document.createElement("div");
+  let e = document.getElementById(ce), n = document.createElement("div");
   n.id = "prefs_modal_wrapper", e.appendChild(n);
-  var r = document.createElement("div");
-  r.id = "prefs_modal_window", n.appendChild(r);
-  var i = document.createElement("div");
-  i.style.textAlign = "right";
-  var a = document.createElement("a");
-  a.id = "prefs_modal_close", a.href = "#", a.innerHTML = "Close <b>X</b>", i.appendChild(a), 
-  a.addEventListener("click", dt, !1), r.appendChild(i);
-  var o = document.createElement("h3");
-  o.innerText = "Preferences", r.appendChild(o);
-  var s = "restore", c = [ "always", "never", "ask" ], l = [ "Always", "Never", "Ask" ];
-  t && t[s] || Ct(r, "Restore Data", s, c, l, "ask", !0), s = "output", t && t[s] || Ct(r, "Output", s, c = [ "append", "replace" ], l = [ "Append", "Replace" ], "append", !0), 
-  s = "preset_preference", t && t[s] || Ct(r, "Preset", s, c = [ "first", "last", "none" ], l = [ "First", "Last", "None" ], "first", !0), 
-  s = "keypad", c = [ "show", "hide" ], l = [ "Show", "Hide" ];
-  var u = "hide";
-  "ontouchstart" in window && (u = "show"), Ct(r, "Keypad", s, c, l, u, !0), function(e, t, n, r, i, a, o, s) {
-   var c = document.createElement("div");
-   c.class = "spinner_div", wt(c, t, "prompt");
-   var l = document.createElement("input");
-   l.id = n, l.min = r, l.max = i, l.size = a, l.type = "number", l.value = o, c.appendChild(l), 
-   e.appendChild(c), s && e.appendChild(document.createElement("br"));
-  }(r, "Measure Number Interval", "measure_number_interval", 0, 20, 2, 5, !0), kt(r, "default_authority", "Default Authority", "name", void 0, !0), 
-  kt(r, "default_authority_year", "Year", "year", Et, !0), kt(r, "default_transcriber", "Transcriber Name", "name", void 0, !0);
+  let i = document.createElement("div");
+  i.id = "prefs_modal_window", n.appendChild(i);
+  let r = document.createElement("div");
+  r.style.textAlign = "right";
+  let l = document.createElement("a");
+  l.id = "prefs_modal_close", l.href = "#", l.innerHTML = "Close <b>X</b>", r.appendChild(l), 
+  l.addEventListener("click", dt, !1), i.appendChild(r);
+  let o = document.createElement("h3");
+  o.innerText = "Preferences", i.appendChild(o);
+  let a = "restore", s = [ "always", "never", "ask" ], c = [ "Always", "Never", "Ask" ];
+  t && t[a] || Ct(i, "Restore Data", a, s, c, "ask", !0), a = "output", t && t[a] || Ct(i, "Output", a, s = [ "append", "replace" ], c = [ "Append", "Replace" ], "append", !0), 
+  a = "preset_preference", t && t[a] || Ct(i, "Preset", a, s = [ "first", "last", "none" ], c = [ "First", "Last", "None" ], "first", !0), 
+  a = "keypad", s = [ "show", "hide" ], c = [ "Show", "Hide" ];
+  let u = "hide";
+  "ontouchstart" in window && (u = "show"), Ct(i, "Keypad", a, s, c, u, !0), function(e, t, n, i, r, l, o, a) {
+   let s = document.createElement("div");
+   s.class = "spinner_div", wt(s, t, "prompt");
+   let c = document.createElement("input");
+   c.id = n, c.min = i, c.max = r, c.size = l, c.type = "number", c.value = o, s.appendChild(c), 
+   e.appendChild(s), a && e.appendChild(document.createElement("br"));
+  }(i, "Measure Number Interval", "measure_number_interval", 0, 20, 2, 5, !0), kt(i, "default_authority", "Default Authority", "name", void 0, !0), 
+  kt(i, "default_authority_year", "Year", "year", Et, !0), kt(i, "default_transcriber", "Transcriber Name", "name", void 0, !0);
  }
  function Bt(e, t, n) {
-  var r = document.createElement("input");
-  r.type = "button", r.class = "keypad-button", r.id = t, r.value = n, r.onclick = function() {
+  let i = document.createElement("input");
+  i.type = "button", i.class = "keypad-button", i.id = t, i.value = n, i.onclick = function() {
    on(n);
-  }, e.appendChild(r);
+  }, e.appendChild(i);
  }
  function Tt(e) {
-  var t = $e("qualtrics"), n = yn(i), r = "abcDF_" + n, a = "abcD_" + n, o = Sn();
-  Qualtrics.SurveyEngine.setEmbeddedData(r, o);
-  var s = qn();
-  Qualtrics.SurveyEngine.setEmbeddedData(a, s), Re(), "q_next" === e ? (Te(), Zt(), 
+  let t = $e("qualtrics"), n = bn(r), i = "abcDF_" + n, l = "abcD_" + n, o = Sn();
+  Qualtrics.SurveyEngine.setEmbeddedData(i, o);
+  let a = qn();
+  Qualtrics.SurveyEngine.setEmbeddedData(l, a), Re(), "q_next" === e ? (Te(), Zt(), 
   function() {
-   for (var e = document.getElementById(oe); e.firstChild; ) e.removeChild(e.firstChild);
+   let e = document.getElementById(oe);
+   for (;e.firstChild; ) e.removeChild(e.firstChild);
    e.remove(), M = !1, m && clearInterval(m);
   }(), f = !1, t.enableNextButton(), t.enablePreviousButton(), t.clickNextButton()) : (t.enableNextButton(), 
   t.enablePreviousButton(), t.clickPreviousButton());
  }
  function Dt(e, t, n) {
-  var r = document.createElement("input");
-  r.type = "button", r.class = "keypad-button", r.id = t, r.value = n, r.onclick = function() {
+  let i = document.createElement("input");
+  i.type = "button", i.class = "keypad-button", i.id = t, i.value = n, i.onclick = function() {
    Tt(t);
-  }, e.appendChild(r);
+  }, e.appendChild(i);
  }
- function St(t, n, r, i) {
-  var a = document.createElement("input");
-  a.id = n, a.class = "keypad_button", a.type = "image", a.src = R + "/" + r, a.alt = i, 
-  a.onclick = function() {
+ function St(t, n, i, r) {
+  let l = document.createElement("input");
+  l.id = n, l.class = "keypad_button", l.type = "image", l.src = R + "/" + i, l.alt = r, 
+  l.onclick = function() {
    !function(t) {
-    var n = we;
+    let n = we;
     switch (t) {
     case "previous":
      n = Ce;
@@ -561,31 +581,33 @@ function AbcDE() {
      break;
 
     case "undo":
-     n = ye;
+     n = be;
      break;
 
     case "redo":
-     n = be;
+     n = ve;
     }
-    var r = Wt(n);
-    r && e.preventDefault();
+    let i = Wt(n);
+    i && e.preventDefault();
    }(n);
-  }, t.appendChild(a);
+  }, t.appendChild(l);
  }
  function At() {
-  var e = document.getElementById(fe), t = document.createElement("number_div");
+  let e = document.getElementById(fe), t = document.createElement("number_div");
   t.id = "number_div";
-  var n = document.createElement("symbol_div");
+  let n = document.createElement("symbol_div");
   n.id = "symbol_div", e.appendChild(n), e.appendChild(document.createElement("br")), 
   e.appendChild(t), St(t, "undo", "action-undo.svg", "undo"), St(t, "redo", "action-redo.svg", "redo"), 
   Bt(t, "one", "1"), Bt(t, "two", "2"), Bt(t, "three", "3"), Bt(t, "four", "4"), Bt(t, "five", "5"), 
   Bt(t, "toggle", "T"), St(t, "previous", "arrow-circle-left.svg", "<-"), St(t, "next", "arrow-circle-right.svg", "->"), 
   $e("qualtrics") && ($e("qualtrics_back") && Dt(t, "q_back", "BACK"), Dt(t, "q_next", "NEXT"));
-  var r, i, a, o, s = $e("submit_button_id");
-  if (s) {
-   var c = $e("submit_button_label");
-   c || (c = "NEXT"), r = t, i = s, a = c, (o = document.createElement("input")).type = "button", 
-   o.class = "keypad-button", o.id = i, o.value = a, r.appendChild(o);
+  let i = $e("submit_button_id");
+  if (i) {
+   let e = $e("submit_button_label");
+   e || (e = "NEXT"), function(e, t, n) {
+    let i = document.createElement("input");
+    i.type = "button", i.class = "keypad-button", i.id = t, i.value = n, e.appendChild(i);
+   }(t, i, e);
   }
   St(n, "pencil", "target.svg", "..."), Bt(n, "hyphen", "-"), Bt(n, "slash", "/"), 
   Bt(n, "open_paren", "("), Bt(n, "close_paren", ")"), Bt(n, "short_phrase", ","), 
@@ -601,40 +623,40 @@ function AbcDE() {
   this.start = -1, this.end = -1, this.starts = [], this.stops = [], this.phrase_break = "", 
   this.preset_phrase_break = "", "note" === e[n.type]) {
    this.size = n.notes.length;
-   for (var r = 0; r < this.size; r++) this.pitches.push(n.notes[r].pit);
+   for (let e = 0; e < this.size; e++) this.pitches.push(n.notes[e].pit);
    this.pitches.sort(function(e, t) {
     return parseInt(e) - parseInt(t);
    }), this.start = n.istart, this.end = n.iend;
   } else {
    this.grace = !0, this.start = n.extra.istart, this.size = 1;
-   var a = n.extra;
-   if (!a.notes) return alert("Who turned off the notes?!"), {};
+   let e = n.extra;
+   if (!e.notes) return alert("Who turned off the notes?!"), {};
    for (;;) {
-    if (a.notes.length > 1 && alert('Chords not supported in a grace "note."'), this.starts.push(a.istart), 
-    this.stops.push(a.iend), this.pitches.push(a.notes[0].pit), !a.next) {
-     this.end = a.iend;
+    if (e.notes.length > 1 && alert('Chords not supported in a grace "note."'), this.starts.push(e.istart), 
+    this.stops.push(e.iend), this.pitches.push(e.notes[0].pit), !e.next) {
+     this.end = e.iend;
      break;
     }
-    a = a.next, this.size++;
+    e = e.next, this.size++;
    }
   }
-  return this.istart = n.istart, this.time = n.time, this.string = i.substring(this.start, this.end), 
+  return this.istart = n.istart, this.time = n.time, this.string = r.substring(this.start, this.end), 
   this.voice = n.v, this.staff = n.st, this.prior_fingerings = [], this.undone_fingerings = [], 
   this.locked = !1, this.init = function() {
    this.fingering = "";
-   for (var e = 0; e < this.size; e++) this.fingering += "x";
+   for (let e = 0; e < this.size; e++) this.fingering += "x";
    this.phrase_break = "";
   }, this.preset_init = function() {
    this.preset_fingering = "";
-   for (var e = 0; e < this.size; e++) this.preset_fingering += "x";
+   for (let e = 0; e < this.size; e++) this.preset_fingering += "x";
    this.preset_phrase_break = "";
   }, this.init(), this.set_fingering = function(e) {
    if (this.locked) this.fingering = this.preset_fingering; else {
     if (function() {
-     for (var e = 0; e < C.length; e++) C[e].undone_fingerings = [];
-     l = [];
+     for (let e = 0; e < C.length; e++) C[e].undone_fingerings = [];
+     c = [];
     }(), "x" != this.fingering && this.prior_fingerings.push(this.fingering), e) {
-     var t = Y.exec(e);
+     let t = Y.exec(e);
      t ? (this.phrase_break = t[1], this.fingering = e.replace(Y, "")) : this.fingering = e;
     } else this.init();
     u.push(this);
@@ -642,42 +664,43 @@ function AbcDE() {
   }, this.set_preset_fingering = function(e) {
    if (e) {
     t.preset_lock && (/x/.test(e) || (this.locked = !0));
-    var n = Y.exec(e);
+    let n = Y.exec(e);
     n ? (this.preset_phrase_break = n[1], this.preset_fingering = e.replace(Y, "")) : this.preset_fingering = e;
    } else this.preset_init();
   }, this.get_pitch_fingering = function(e) {
-   var t = function(e) {
+   let t = function(e) {
     if (L) return 0 == e.staff ? "<" : ">";
     return Qt(e.staff);
    }(this);
    if (!e.fingering.strike) return "x";
-   var n = e.fingering.strike.hand || t, r = n + e.fingering.strike.digit;
-   return e.fingering.release && (r += "-" + (n = e.fingering.release.hand || t) + e.fingering.release.digit), 
-   r;
+   let n = e.fingering.strike.hand || t, i = n + e.fingering.strike.digit;
+   return e.fingering.release && (i += "-" + (n = e.fingering.release.hand || t) + e.fingering.release.digit), 
+   i;
   }, this.get_fingering_from_score_fingering = function(e) {
-   var t, n, r = "", i = [];
+   let t, n, i = "", r = [];
    if (e.first.ornaments) {
-    for (i = e.first.ornaments, r += "(", n = 0; n < i.length; n++) t = i[n], r += this.get_pitch_fingering(t);
-    r += ")";
-   } else r += this.get_pitch_fingering(e.first);
+    for (r = e.first.ornaments, i += "(", n = 0; n < r.length; n++) t = r[n], i += this.get_pitch_fingering(t);
+    i += ")";
+   } else i += this.get_pitch_fingering(e.first);
    if (e.last && e.last.ornaments) {
-    for (i = e.last.ornaments, r += "(", n = 0; n < i.length; n++) t = e.last.ornaments[n], 
-    r += "/" + this.get_pitch_fingering(t);
-    r += ")";
-   } else e.last && (r += "/" + this.get_pitch_fingering(e.last));
-   return r;
+    for (r = e.last.ornaments, i += "(", n = 0; n < r.length; n++) t = e.last.ornaments[n], 
+    i += "/" + this.get_pitch_fingering(t);
+    i += ")";
+   } else e.last && (i += "/" + this.get_pitch_fingering(e.last));
+   return i;
   }, this.update_from_score_fingerings = function(e) {
    this.init();
-   for (var t = "", n = 0; n < this.size; ) {
-    var r = e.shift(), i = this.get_fingering_from_score_fingering(r);
-    if (r.segmenter && (this.phrase_break = r.segmenter || ""), t += i, n++, 0 === e.length) break;
+   let t = "", n = 0;
+   for (;n < this.size; ) {
+    let i = e.shift(), r = this.get_fingering_from_score_fingering(i);
+    if (i.segmenter && (this.phrase_break = i.segmenter || ""), t += r, n++, 0 === e.length) break;
    }
    if (n === this.size) return this.set_fingering(t), !0;
    for (;n < this.size; n++) t += "x";
    return this.set_fingering(t), !1;
   }, this.undo_fingering_change = function() {
    this.prior_fingerings.length > 0 && (this.undone_fingerings.push(this.fingering), 
-   this.fingering = this.prior_fingerings.pop()), l.push(this);
+   this.fingering = this.prior_fingerings.pop()), c.push(this);
   }, this.redo_fingering_change = function() {
    this.undone_fingerings.length > 0 && (this.fingering && this.prior_fingerings.push(this.fingering), 
    this.fingering = this.undone_fingerings.pop()), u.push(this);
@@ -696,135 +719,152 @@ function AbcDE() {
   }, this;
  }
  function Lt() {
-  var e;
   this.read_file = function(e) {
    return "";
   }, this.errmsg = function(e, t, n) {
-   var r = document.getElementById(he);
-   r.innerHTML += t ? '<b onclick="gotoabc(' + t + "," + n + ')" style="cursor: pointer; display: inline-block">' + e + "</b><br/>\n" : e + "<br/>\n";
+   let i = document.getElementById(he);
+   i.innerHTML += t ? '<b onclick="gotoabc(' + t + "," + n + ')" style="cursor: pointer; display: inline-block">' + e + "</b><br/>\n" : e + "<br/>\n";
   }, this.img_out = function(e) {
-   var t = /<svg /;
-   e.match(t) && (e = e.replace(t, '<svg id="line_' + w + '" '), w++), r += e;
-  }, this.anno_start = function(e, t, n, r, i, o, s) {
+   let t = /<svg /;
+   e.match(t) && (e = e.replace(t, '<svg id="line_' + w + '" '), w++), i += e;
+  }, this.anno_start = function(e, t, n, i, r, o, a) {
    !D && t in I ? I[t].line = w : "grace" === e && console.log(e + " ANNO_START start: " + t + " stop: " + n), 
-   q.push([ t, n ]), a.out_svg('<g class="e_' + t + '">\n');
-  }, this.anno_stop = function(e, t, n, r, i, o, s) {
-   "grace" === e && console.log(e + " ANNO_STOP start: " + t + " stop: " + n), a.out_svg("</g>\n"), 
-   a.out_svg('<rect class="abcr _' + t + '" x="'), a.out_sxsy(r, '" y="', i), a.out_svg('" width="' + o.toFixed(2) + '" height="' + s.toFixed(2) + '"/>\n');
+   q.push([ t, n ]), l.out_svg('<g class="e_' + t + '">\n');
+  }, this.anno_stop = function(e, t, n, i, r, o, a) {
+   "grace" === e && console.log(e + " ANNO_STOP start: " + t + " stop: " + n), l.out_svg("</g>\n"), 
+   l.out_svg('<rect class="abcr _' + t + '" x="'), l.out_sxsy(i, '" y="', r), l.out_svg('" width="' + o.toFixed(2) + '" height="' + a.toFixed(2) + '"/>\n');
   }, this.get_abcmodel = function(e, t, n) {
-   if (!D) {
-    console.log(n);
-    for (var r = 0; r < t.length; r++) {
-     console.log("Voice: " + r);
-     var i = t[r].st;
-     A[r] = i;
-    }
-    for (var a = e; a; ) {
-     var o = new Nt(n, a);
-     o.istart && (C.push(o), I[o.istart] = o, o.staff in S || (S[o.staff] = {}), o.time in S[o.staff] || (S[o.staff][o.time] = []), 
-     S[o.staff][o.time].push(o)), a = a.ts_next;
-    }
+   if (D) return;
+   console.log(n);
+   for (let e = 0; e < t.length; e++) {
+    console.log("Voice: " + e);
+    let n = t[e].st;
+    A[e] = n;
    }
-  }, this.page_format = !1, this.imagesize = (e = 8.5, 1 !== p && (e *= p), 'width="' + e + 'in"');
+   let i = e;
+   for (;i; ) {
+    let e = new Nt(n, i);
+    e.istart && (C.push(e), I[e.istart] = e, e.staff in S || (S[e.staff] = {}), e.time in S[e.staff] || (S[e.staff][e.time] = []), 
+    S[e.staff][e.time].push(e)), i = i.ts_next;
+   }
+  }, this.page_format = !1, this.imagesize = function() {
+   let e = 8.5;
+   return 1 !== p && (e *= p), 'width="' + e + 'in"';
+  }();
  }
  function Ft(e, t) {
-  var n = parseInt(e.time) - parseInt(t.time);
+  let n = parseInt(e.time) - parseInt(t.time);
   return 0 !== n ? n : e.grace && !t.grace ? -1 : t.grace && !e.grace ? 1 : e.pitches[e.pitches.length - 1] < t.pitches[0] ? -1 : e.pitches[0] > t.pitches[t.pitches.length - 1] ? 1 : e.voice < t.voice ? (console.log("NOTES SORTED BY VOICE!"), 
   -1) : 1;
  }
  function Pt(e) {
-  var t = "$1";
+  let t = "$1";
   return e.match(U) && (t = "$1"), e.match(G) && (t = "$2"), t;
  }
  function Mt(e) {
-  var t = "^";
+  let t = "^";
   return /^</.test(e) && (t = "_"), t;
  }
  function Ht(e) {
-  for (var t = Pt("<"), n = Pt(">"), r = e.replace(/[\)\(]/g, ""), i = it(r), a = "", o = 0; o < i.length; o++) i[o] = i[o].replace(G, t), 
-  i[o] = i[o].replace(U, n), a += i[o];
-  return a += '"', a = '"' + Mt(r) + a;
+  let t = Pt("<"), n = Pt(">"), i = e.replace(/[\)\(]/g, ""), r = rt(i), l = "";
+  for (let e = 0; e < r.length; e++) r[e] = r[e].replace(G, t), r[e] = r[e].replace(U, n), 
+  l += r[e];
+  return l += '"', l = '"' + Mt(i) + l;
  }
  function zt(e, t, n) {
-  for (var r = !1, i = Pt("<"), a = Pt(">"), o = [], s = 0; s < e.length; s++) {
-   var c = "", l = "x";
-   if (e[s] && "x" !== e[s]) r = !0, l = e[s]; else {
+  let i = !1, r = Pt("<"), l = Pt(">"), o = [];
+  for (let t = 0; t < e.length; t++) {
+   let a = "", s = "x";
+   if (e[t] && "x" !== e[t]) i = !0, s = e[t]; else {
     if (!n) break;
-    if (!e[s] || e[s] && "x" === e[s]) continue;
+    if (!e[t] || e[t] && "x" === e[t]) continue;
    }
-   if (l.match(/^\(/)) c = Ht(l); else c = '"' + Mt(l) + (l = (l = l.replace(G, i)).replace(U, a)) + '"';
-   c = c.replace(Y, ""), o.unshift(c);
+   if (s.match(/^\(/)) a = Ht(s); else {
+    a = '"' + Mt(s) + (s = (s = s.replace(G, r)).replace(U, l)) + '"';
+   }
+   a = a.replace(Y, ""), o.unshift(a);
   }
-  var u = "";
-  return r && (u = o.join("")), u;
+  let a = "";
+  return i && (a = o.join("")), a;
  }
  function Rt(e) {
-  var t = e.fingering;
-  return "x" === t ? "" : zt(it(t = t.replace(X, "")), e.staff, !1);
+  let t = e.fingering;
+  return "x" === t ? "" : zt(rt(t = t.replace(X, "")), e.staff, !1);
  }
  function $t(e) {
-  var t = [];
-  for (var n in e) e.hasOwnProperty(n) && t.push(n);
+  let t = [];
+  for (let n in e) e.hasOwnProperty(n) && t.push(n);
   return t.sort(function(e, t) {
    return parseInt(e) - parseInt(t);
   }), t;
  }
  function Ot(e) {
-  for (var t = [], n = {}, r = 0; r < e.length; r++) {
-   var i = e[r];
-   if (!i.grace) for (var a = 0; a < i.pitches.length; a++) {
-    var o = i.pitches[a];
-    t.push(o), o in n || (n[o] = []), n[o].push(i);
+  let t = [], n = {};
+  for (let i = 0; i < e.length; i++) {
+   let r = e[i];
+   if (!r.grace) for (let e = 0; e < r.pitches.length; e++) {
+    let i = r.pitches[e];
+    t.push(i), i in n || (n[i] = []), n[i].push(r);
    }
   }
-  for (r = 0; r < n.length; r++) n[r].sort(Ft);
+  for (let e = 0; e < n.length; e++) n[e].sort(Ft);
   return n;
  }
  function Vt(e) {
-  for (var t = Ot(e), n = $t(t), r = [], i = 0; i < n.length; i++) for (var a = n[i], o = 0; o < t[a].length; o++) for (var s = t[a][o], c = it(s.fingering), l = 0; l < s.pitches.length; l++) {
-   s.pitches[l] === parseInt(a) && ("x" !== c[l] ? r.push(c[l]) : r.push(""));
+  let t = Ot(e), n = $t(t), i = [];
+  for (let e = 0; e < n.length; e++) {
+   let r = n[e];
+   for (let e = 0; e < t[r].length; e++) {
+    let n = t[r][e], l = rt(n.fingering);
+    for (let e = 0; e < n.pitches.length; e++) {
+     n.pitches[e] === parseInt(r) && ("x" !== l[e] ? i.push(l[e]) : i.push(""));
+    }
+   }
   }
-  return r;
+  return i;
  }
  function Xt(e) {
-  for (var t = 0, n = 0; n < e.length; n++) e[n].grace && t++;
+  let t = 0;
+  for (let n = 0; n < e.length; n++) e[n].grace && t++;
   return t;
  }
  function Gt(e) {
   if (e.size > 1 && console.log("BIGGIE"), e.grace) return Rt(e);
-  var t = S[e.staff][e.time], n = Xt(t);
+  let t = S[e.staff][e.time], n = Xt(t);
   if (t.length - n < 2) return Rt(e);
   t.sort(Ft);
-  for (var r = 0, i = t[0]; i.grace; ) i = t[++r];
-  return e !== i ? "" : zt(Vt(t), e.staff, !0);
+  let i = 0, r = t[0];
+  for (;r.grace; ) r = t[++i];
+  return e !== r ? "" : zt(Vt(t), e.staff, !0);
  }
  function Ut(e) {
-  var t = "{", n = function(e) {
-   for (var t = [], n = e.string, r = e.starts, i = e.stops, a = [], o = [], s = 0; s < r.length; s++) a.push(r[s] - r[0]), 
-   o.push(i[s] - r[0]);
-   for (var c = 0; c < a.length; c++) {
-    var l = n.substring(a[c], o[c]);
-    t.push(l);
+  let t = "{", n = function(e) {
+   let t = [], n = e.string, i = e.starts, r = e.stops, l = [], o = [];
+   for (let e = 0; e < i.length; e++) l.push(i[e] - i[0]), o.push(r[e] - i[0]);
+   for (let e = 0; e < l.length; e++) {
+    let i = n.substring(l[e], o[e]);
+    t.push(i);
    }
    return t;
-  }(e), r = [];
-  e.fingering && (r = it(e.fingering));
-  for (var i = 0; i < n.length; i++) {
-   if (r[i]) {
-    var a = r[i];
-    "x" !== (a = a.replace(j, "")) && (t += "!" + a + "!");
+  }(e), i = [];
+  e.fingering && (i = rt(e.fingering));
+  for (let e = 0; e < n.length; e++) {
+   if (i[e]) {
+    let n = i[e];
+    "x" !== (n = n.replace(j, "")) && (t += "!" + n + "!");
    }
-   t += n[i];
+   t += n[e];
   }
   return t += "}";
  }
  function jt(e) {
   if (e.fingering) return !0;
-  for (var t = S[e.staff][e.time], n = 0; n < t.length; n++) if (!t[n].grace && t[n].fingering) return !0;
+  let t = S[e.staff][e.time];
+  for (let e = 0; e < t.length; e++) if (!t[e].grace && t[e].fingering) return !0;
   return !1;
  }
  function Yt(e) {
-  var t = "";
+  let t = "";
   switch (e.get_phrase_break()) {
   case ",":
    t = "!shortphrase!";
@@ -840,23 +880,24 @@ function AbcDE() {
   return t;
  }
  function Kt() {
-  var e = "";
+  let e = "";
   if (function() {
-   if (void 0 !== s) return s;
-   s = !1;
-   for (var e = !1, t = !1, n = i.split("\n"), r = 0; r < n.length; r++) {
-    var a = n[r];
-    if (a.match(/^%%setfont-1/) && (e = !0), a.match(/^%%setfont-2/) && (t = !0), e && t) {
-     s = !0;
+   if (void 0 !== a) return a;
+   a = !1;
+   let e = !1, t = !1, n = r.split("\n");
+   for (let i = 0; i < n.length; i++) {
+    let r = n[i];
+    if (r.match(/^%%setfont-1/) && (e = !0), r.match(/^%%setfont-2/) && (t = !0), e && t) {
+     a = !0;
      break;
     }
    }
-   return s;
+   return a;
   }() || (e += Ie + "\n", function() {
    if (void 0 !== n) return n;
    n = !1;
-   for (var e = 0; e < T.length; e++) {
-    var t = T[e];
+   for (let e = 0; e < T.length; e++) {
+    let t = T[e];
     if (I[t].grace) {
      n = !0;
      break;
@@ -864,321 +905,329 @@ function AbcDE() {
    }
    return n;
   }() && (e += Be + "\n")), !function() {
-   if (void 0 !== c) return c;
-   c = !1;
-   for (var e = i.split("\n"), t = 0; t < e.length; t++) if (e[t].match(/^%%measurenb\s+\d+/)) {
-    c = !0;
+   if (void 0 !== s) return s;
+   s = !1;
+   let e = r.split("\n");
+   for (let t = 0; t < e.length; t++) if (e[t].match(/^%%measurenb\s+\d+/)) {
+    s = !0;
     break;
    }
-   return c;
+   return s;
   }()) {
-   var t = $e("measure_number_interval");
+   let t = $e("measure_number_interval");
    t && (e += "%%measurenb " + t + "\n");
   }
-  for (var r = 0, a = 0; a < T.length; a++) {
-   var o = T[a], l = I[o], u = "";
+  let t = 0;
+  for (let n = 0; n < T.length; n++) {
+   let i = T[n], l = I[i], o = "";
    if (l.grace) {
-    if (u = i.substring(parseInt(r), parseInt(l.start - 1)), r = l.end + 1, e += u, 
+    if (o = r.substring(parseInt(t), parseInt(l.start - 1)), t = l.end + 1, e += o, 
     l.fingered_start = e.length + l.anno_start - l.start + 1, l.fingering && "x" !== l.fingering) {
-     var d = it(l.fingering);
-     l.fingered_start += 3 * d.length;
+     let e = rt(l.fingering);
+     l.fingered_start += 3 * e.length;
     }
     e += Ut(l);
    } else {
-    var f = parseInt(l.start), p = parseInt(l.end);
-    u = i.substring(parseInt(r), f), e += u += Yt(l), r = p, jt(l) && (e += Gt(l)), 
+    let n = parseInt(l.start), i = parseInt(l.end);
+    o = r.substring(parseInt(t), n), e += o += Yt(l), t = i, jt(l) && (e += Gt(l)), 
     l.fingered_start = e.length, e += l.string;
    }
    B[l.fingered_start] = l;
   }
-  return e += i.substring(r);
+  return e += r.substring(t);
  }
  function Zt() {
   f = !0, N++, console.log("RERENDERING NUMBER " + N);
-  var e = new Date().getTime(), t = document.getElementById(ge), n = document.getElementById(he), i = new Lt();
-  a = new Abc(i);
-  var o = Kt(), s = new Date().getTime(), c = s - e;
-  console.log("MY LAG: " + c), document.getElementById(se).value = o, e = new Date().getTime(), 
-  r = "", a.tosvg("edit", '%%bgcolor white\n%%beginsvg\n<style type="text/css">\n\trect.abcr {fill:#a08000; fill-opacity:0}\n\trect.abcr:hover {fill-opacity:0.3}\n</style>\n%%endsvg\n'), 
+  let e = new Date().getTime(), t = document.getElementById(ge), n = document.getElementById(he), r = new Lt();
+  l = new Abc(r);
+  let o = Kt(), a = new Date().getTime(), s = a - e;
+  console.log("MY LAG: " + s), document.getElementById(ae).value = o, e = new Date().getTime(), 
+  i = "", l.tosvg("edit", '%%bgcolor white\n%%beginsvg\n<style type="text/css">\n\trect.abcr {fill:#a08000; fill-opacity:0}\n\trect.abcr:hover {fill-opacity:0.3}\n</style>\n%%endsvg\n'), 
   w = 0, n.innerHTML = "", q = [];
   try {
-   a.tosvg(_, document.getElementById(se).value);
+   l.tosvg(y, document.getElementById(ae).value);
   } catch (e) {
    return void alert(e.message + "\nabc2svg tosvg bug - stack:\n" + e.stack);
   }
   try {
-   t.innerHTML = r;
+   t.innerHTML = i;
   } catch (e) {
    return void alert(e.message + "\nabc2svg image bug - abort:\n" + e.stack);
   }
   setTimeout(function() {
-   for (var e, t = document.getElementsByClassName("abcr"), n = t.length; --n >= 0; ) (e = t[n]).onclick = function() {
+   let e, t = document.getElementsByClassName("abcr"), n = t.length;
+   for (;--n >= 0; ) (e = t[n]).onclick = function() {
     fn(this);
    }, e.ondblclick = function() {
     gn(this);
    };
-  }, 300), c = (s = new Date().getTime()) - e, console.log("LIB LAG: " + c), bt();
+  }, 300), s = (a = new Date().getTime()) - e, console.log("LIB LAG: " + s), vt();
  }
  function Wt(e) {
   if (console.log(String.fromCharCode(e) + " --\x3e " + e), e === ke) {
    tn();
-   var t = nn();
-   t.length > 0 && t[0] ? (o.set_fingering(""), o.phrase_break = "", Zt()) : o.prior_note && ((o = o.prior_note).set_fingering(""), 
-   Zt()), _n(o);
-  } else if (e == we || e == xe) an(), k = [], o.next_note && (o = o.next_note); else if (e == Ce) an(), 
-  k = [], o.prior_note && (o = o.prior_note); else if (e == Ee) pn(); else if (e == ye) !function() {
+   let e = nn();
+   e.length > 0 && e[0] ? (o.set_fingering(""), o.phrase_break = "", Zt()) : o.prior_note && ((o = o.prior_note).set_fingering(""), 
+   Zt()), yn(o);
+  } else if (e == we || e == xe) ln(), k = [], o.next_note && (o = o.next_note); else if (e == Ce) ln(), 
+  k = [], o.prior_note && (o = o.prior_note); else if (e == Ee) pn(); else if (e == be) !function() {
    tn();
-   var e = u.pop();
-   e && (e.undo_fingering_change(), o = e, Zt(), _n(o));
+   let e = u.pop();
+   e && (e.undo_fingering_change(), o = e, Zt(), yn(o));
   }(); else {
-   if (e != be) return !1;
+   if (e != ve) return !1;
    !function() {
     tn();
-    var e = l.pop();
-    e && (e.redo_fingering_change(), o = e.next_note ? e.next_note : e, Zt(), _n(o));
+    let e = c.pop();
+    e && (e.redo_fingering_change(), o = e.next_note ? e.next_note : e, Zt(), yn(o));
    }();
   }
-  return _n(o), !0;
+  return yn(o), !0;
  }
  function Jt(e) {
-  var t = Wt(e.keyCode);
+  let t = Wt(e.keyCode);
   return t && e.preventDefault(), t;
  }
  function Qt(e) {
   return 0 == e ? ">" : "<";
  }
  function en(e) {
-  for (var t = e.upper.score_fingerings; t.length > 0; ) o.update_from_score_fingerings(t) && o.next_note && (o = o.next_note);
+  let t = e.upper.score_fingerings;
+  for (;t.length > 0; ) o.update_from_score_fingerings(t) && o.next_note && (o = o.next_note);
   E && (o = o.prior_note);
  }
  function tn() {
-  E = !1, b = [], k = [], Zt(), _n(o);
+  E = !1, v = [], k = [], Zt(), yn(o);
  }
  function nn() {
-  for (var e = [], t = o.get_fingering().split(""), n = 0; n < t.length; n++) {
-   var r = t[n];
-   "x" === r ? e.push("") : e.push(r);
+  let e = [], t = o.get_fingering().split("");
+  for (let n = 0; n < t.length; n++) {
+   let i = t[n];
+   "x" === i ? e.push("") : e.push(i);
   }
   return e;
  }
  function rn() {
-  for (var e = nn(); e.length; ) {
-   var t = e.pop();
-   t && b.unshift(t);
+  let e = nn();
+  for (;e.length; ) {
+   let t = e.pop();
+   t && v.unshift(t);
   }
  }
- function an() {
-  var e = !1;
-  k.length > 0 && (Array.prototype.unshift.apply(b, k), function() {
-   for (var e = 0; e < k.length; e++) if ("(" === k[e]) return !0;
+ function ln() {
+  let e = !1;
+  k.length > 0 && (Array.prototype.unshift.apply(v, k), function() {
+   for (let e = 0; e < k.length; e++) if ("(" === k[e]) return !0;
    return !1;
   }() || (e = !0)), k = [];
-  for (var t = b.length - 1; t >= 0 && /[\-\/\(]/.test(b[t]); t--) k.unshift(b.pop());
-  if (0 !== b.length) {
-   if (/[\-\/]/.test(b[0]) && (e = !0), E) {
-    var n = nn();
-    ")" === n[n.length - 1] ? n.pop() : (alert("Something wonky with parentheses."), 
-    tn()), Array.prototype.unshift.apply(b, n), E = !1;
-   }
-   e ? o.prior_note ? (o = o.prior_note, rn()) : b.pop() : o.fingering && o.fingering.match(/x/) && rn();
-   for (var r = b.join(""), i = 1; ;) try {
-    var a = Abcdf_Parser.parse(r);
-    E = !1, 2 === i && (E = !0), en(a);
-    break;
-   } catch (e) {
-    if (1 === i ? b.push(")") : 2 === i ? (b.pop(), b.pop(), 0) : 3 === i && (i = 0), 
-    0 == b.length) break;
-    r = b.join(""), i++;
-   }
-   b = [], Zt(), _n(o);
+  for (let e = v.length - 1; e >= 0 && /[\-\/\(]/.test(v[e]); e--) k.unshift(v.pop());
+  if (0 === v.length) return;
+  if (/[\-\/]/.test(v[0]) && (e = !0), E) {
+   let e = nn();
+   ")" === e[e.length - 1] ? e.pop() : (alert("Something wonky with parentheses."), 
+   tn()), Array.prototype.unshift.apply(v, e), E = !1;
   }
+  e ? o.prior_note ? (o = o.prior_note, rn()) : v.pop() : o.fingering && o.fingering.match(/x/) && rn();
+  let t = v.join(""), n = 1;
+  for (;;) try {
+   let e = Abcdf_Parser.parse(t);
+   E = !1, 2 === n && (E = !0), en(e);
+   break;
+  } catch (e) {
+   if (1 === n ? v.push(")") : 2 === n ? (v.pop(), v.pop(), 0) : 3 === n && (n = 0), 
+   0 == v.length) break;
+   t = v.join(""), n++;
+  }
+  v = [], Zt(), yn(o);
  }
  function on(e) {
-  clearTimeout(y);
-  var t = !1;
-  return /[\(\)\/\-1-5]/.test(e) && (b.push(e), t = !0), "t" !== e && "T" !== e || (an(), 
+  clearTimeout(b);
+  let t = !1;
+  return /[\(\)\/\-1-5]/.test(e) && (v.push(e), t = !0), "t" !== e && "T" !== e || (ln(), 
   L ? (L = !1, f && (document.body.style.backgroundColor = "white")) : (L = !0, f && (document.body.style.backgroundColor = "black")), 
-  _n(o), t = !0), "," !== e && ";" !== e && "." !== e || (an(), function(e) {
+  yn(o), t = !0), "," !== e && ";" !== e && "." !== e || (ln(), function(e) {
    o.phrase_break = e;
-  }(e), Zt(), t = !0), y = setTimeout(an, ie), console.log("Done " + y), t;
+  }(e), Zt(), t = !0), b = setTimeout(ln, re), console.log("Done " + b), t;
  }
- function sn(e) {
+ function an(e) {
   var t;
   return on((t = e, null == t.which ? String.fromCharCode(t.keyCode) : 0 != t.which && 0 != t.charCode ? String.fromCharCode(t.which) : null).toLowerCase());
  }
- function cn(e, t) {
-  var n = [], r = [];
-  r.push("% abcDidactyl v6");
-  for (var i, a = Ve(e), o = e.split("\n"), s = "", c = !1, l = 0; l < o.length; l++) {
-   var u = o[l];
-   s ? c ? n.push(u) : (i = Q.exec(u)) && (c = !0) : (i = W.exec(u)) && i[1] ? s = i[1] : n.push(u);
+ function sn(e, t) {
+  let n = [], i = [];
+  i.push("% abcDidactyl v6");
+  let r, l = Ve(e), o = e.split("\n"), a = "", s = !1;
+  for (let e = 0; e < o.length; e++) {
+   let t = o[e];
+   a ? s ? n.push(t) : (r = Q.exec(t)) && (s = !0) : (r = W.exec(t)) && r[1] ? a = r[1] : n.push(t);
   }
-  var d, f, p, g, h, m = ze(), v = Fe(t);
-  "replace" === $e("output") ? a[m - 1] = v : a.push(v);
-  for (l = 0; l < a.length; l++) {
-   var _ = l + 1;
+  let c, u, d, f, p, g = ze(), h = Fe(t);
+  if ("replace" === $e("output")) {
+   l[g - 1] = h;
+  } else l.push(h);
+  for (let e = 0; e < l.length; e++) {
+   let t = e + 1;
    try {
-    Abcdf_Parser.parse(a[l].sequence);
+    Abcdf_Parser.parse(l[e].sequence);
    } catch (e) {
     alert("Bad abcDF parse of fingering string: " + e.message);
    }
-   d = "% abcD fingering " + _ + ": " + a[l].sequence, r.push(d), a[l].authority && (f = "% Authority: " + a[l].authority, 
-   a[l].authority_year && (f += " (" + a[l].authority_year + ")"), r.push(f)), a[l].transcriber && (p = "% Transcriber: " + a[l].transcriber, 
-   r.push(p)), a[l].transcription_date && (g = "% Transcription date: " + a[l].transcription_date, 
-   r.push(g)), h = a[l].comments.split("\n");
-   for (var y = 0; y < h.length; y++) (y !== h.length - 1 || h[y]) && r.push("% " + h[y]);
+   c = "% abcD fingering " + t + ": " + l[e].sequence, i.push(c), l[e].authority && (u = "% Authority: " + l[e].authority, 
+   l[e].authority_year && (u += " (" + l[e].authority_year + ")"), i.push(u)), l[e].transcriber && (d = "% Transcriber: " + l[e].transcriber, 
+   i.push(d)), l[e].transcription_date && (f = "% Transcription date: " + l[e].transcription_date, 
+   i.push(f)), p = l[e].comments.split("\n");
+   for (let e = 0; e < p.length; e++) (e !== p.length - 1 || p[e]) && i.push("% " + p[e]);
   }
-  return r.push("% abcDidactyl END"), r.join("\n") + "\n" + n.join("\n");
+  return i.push("% abcDidactyl END"), i.join("\n") + "\n" + n.join("\n");
  }
- function ln() {
-  document.body.addEventListener("keydown", Jt), document.body.addEventListener("keypress", sn);
+ function cn() {
+  document.body.addEventListener("keydown", Jt), document.body.addEventListener("keypress", an);
  }
  function un() {
-  document.body.removeEventListener("keydown", Jt), document.body.removeEventListener("keypress", sn);
+  document.body.removeEventListener("keydown", Jt), document.body.removeEventListener("keypress", an);
  }
  function dn() {
   if (function() {
-   if (!M) {
-    var e = document.getElementById(oe);
-    e.align = "center";
-    var t = document.getElementById(se);
-    t || ((t = document.createElement("div")).id = se, t.style.display = "none", e.appendChild(t)), 
-    t.class = ce;
-    var n = document.createElement(le);
-    n.id = le, e.appendChild(n);
-    var r = document.createElement(ue);
-    r.id = ue, e.appendChild(r);
-    var i = document.createElement(de);
-    i.id = de, e.appendChild(i);
-    var a = document.createElement(pe);
-    a.id = pe, e.appendChild(a);
-    var o = document.createElement(ge);
-    o.id = ge, a.appendChild(o);
-    var s = document.createElement(he);
-    s.id = he, a.appendChild(s);
-    for (var c = 0; c < 7; c++) a.appendChild(document.createElement("br"));
-    var l = document.createElement(fe);
-    l.id = fe, e.appendChild(l);
-   }
+   if (M) return;
+   let e = document.getElementById(oe);
+   e.align = "center";
+   let t = document.getElementById(ae);
+   t || ((t = document.createElement("div")).id = ae, t.style.display = "none", e.appendChild(t)), 
+   t.class = se;
+   let n = document.createElement(ce);
+   n.id = ce, e.appendChild(n);
+   let i = document.createElement(ue);
+   i.id = ue, e.appendChild(i);
+   let r = document.createElement(de);
+   r.id = de, e.appendChild(r);
+   let l = document.createElement(pe);
+   l.id = pe, e.appendChild(l);
+   let o = document.createElement(ge);
+   o.id = ge, l.appendChild(o);
+   let a = document.createElement(he);
+   a.id = he, l.appendChild(a);
+   for (let e = 0; e < 7; e++) l.appendChild(document.createElement("br"));
+   let s = document.createElement(fe);
+   s.id = fe, e.appendChild(s);
   }(), Te(), function() {
-   if (!M) {
-    It(), xt();
-    var e = R + "/download_36_x4.png", n = document.getElementById(ue), r = document.createElement("table"), i = document.createElement("tbody"), a = document.createElement("tr");
-    n.appendChild(r), r.appendChild(i), r.style.backgroundColor = "LightGray", r.align = "center", 
-    i.appendChild(a);
-    var o = document.createElement("p");
-    o.setAttribute("id", "downloadify"), (l = document.createElement("td")).appendChild(o), 
-    a.appendChild(l);
-    var s = document.createElement("input");
-    s.id = "sequence_spinner", s.min = "1", s.max = "999", s.size = 3, s.type = "number", 
-    s.alt = "fingering_number", s.value = 1, s.onchange = Bn, wt(l = document.createElement("td"), "Suggestion", "sequence_prompt"), 
-    l.appendChild(s), a.appendChild(l), t.preset_select || (l.style.display = "none"), 
-    t.preset && (s.value = t.preset);
-    var c = document.createElement("input");
-    c.type = "image", c.src = R + "/eye.svg", c.width = "36", c.alt = "View", c.onclick = Dn, 
-    (l = document.createElement("td")).appendChild(c), a.appendChild(l), t.hide_view && (l.style.display = "none");
-    var l, u = document.createElement("input");
-    u.type = "image", u.src = R + "/print.svg", u.width = "36", u.alt = "Print...", 
-    u.onclick = In, (l = document.createElement("td")).appendChild(u), a.appendChild(l), 
-    t.hide_print && (l.style.display = "none"), l = document.createElement("td");
-    var d = document.createElement("input");
-    d.type = "checkbox", d.value = "annotated", d.checked = P, d.id = "view_annotated", 
-    d.onclick = _t;
-    var f = document.createElement("label");
-    f.htmlFor = "view_annotated", f.appendChild(document.createTextNode("Annotated")), 
-    l.appendChild(d), t.hide_annotated && (l.style.display = "none"), l.appendChild(f), 
-    a.appendChild(l), t.hide_annotated && (l.style.display = "none");
-    var p = document.createElement("input");
-    p.type = "image", p.src = R + "/reload.svg", p.width = "36", p.alt = "reset", p.onclick = nt, 
-    (l = document.createElement("td")).appendChild(p), a.appendChild(l), t.hide_reset && (l.style.display = "none");
-    var g = document.createElement("input");
-    g.id = "copy_fingerings_button", g.type = "image", g.src = R + "/clipboard.svg", 
-    g.width = "36", g.alt = "copy", (l = document.createElement("td")).appendChild(g), 
-    a.appendChild(l), t.hide_copy ? g.style.display = "none" : new Clipboard("#copy_fingerings_button", {
-     text: et
-    });
-    var h = document.createElement("input");
-    h.type = "image", h.src = R + "/paperclip.svg", h.width = "36", h.alt = "paste", 
-    h.onclick = tt, (l = document.createElement("td")).appendChild(h), a.appendChild(l), 
-    t.hide_paste && (h.style.display = "none");
-    var m = document.createElement("input");
-    m.type = "image", m.src = R + "/globe.svg", m.width = "36", m.alt = "URL", m.onclick = mt, 
-    (l = document.createElement("td")).appendChild(m), a.appendChild(l), t.url_input || (m.style.display = "none");
-    var v = document.createElement("input");
-    v.setAttribute("type", "file"), v.setAttribute("accept", "text/vnd.abc"), v.onchange = vt, 
-    v.setAttribute("id", "file_input"), (l = document.createElement("td")).appendChild(v), 
-    a.appendChild(l), t.file_input || (v.style.display = "none");
-    var y = document.createElement("input");
-    y.type = "image", y.src = R + "/tags.svg", y.alt = "Metadata...", y.width = "36", 
-    y.onclick = st, (l = document.createElement("td")).appendChild(y), a.appendChild(l), 
-    t.hide_metadata && (y.style.display = "none");
-    var b = document.createElement("input");
-    b.type = "image", b.src = R + "/zoom-out.svg", b.alt = "Zoom In", b.width = "36", 
-    b.onclick = lt, (l = document.createElement("td")).appendChild(b), a.appendChild(l);
-    var E = document.createElement("input");
-    E.type = "image", E.src = R + "/zoom-in.svg", E.alt = "Zoom In", E.width = "36", 
-    E.onclick = ut, (l = document.createElement("td")).appendChild(E), a.appendChild(l);
-    var k = document.createElement("input");
-    k.type = "image", k.src = R + "/cog.svg", k.alt = "Preferences...", k.width = "36", 
-    k.onclick = ot, (l = document.createElement("td")).appendChild(k), a.appendChild(l), 
-    t.hide_prefs && (k.style.display = "none");
-    var w = document.createElement("input");
-    w.type = "image", w.src = R + "/info.svg", w.alt = "Help", w.width = "36", w.onclick = at, 
-    (l = document.createElement("td")).appendChild(w), a.appendChild(l), Downloadify.create("downloadify", {
-     filename: function() {
-      return _;
-     },
-     data: Tn,
-     onComplete: function() {
-      alert("Your file has been saved.");
-     },
-     onCancel: function() {
-      alert("File save has been cancelled.");
-     },
-     onError: function() {
-      alert("File save failed!");
-     },
-     transparent: !1,
-     swf: O + "/downloadify.swf",
-     downloadImage: e,
-     width: "36",
-     height: "36",
-     append: !1
-    }), At(), M = !0;
-   }
+   if (M) return;
+   It(), xt();
+   let e = R + "/download_36_x4.png", n = document.getElementById(ue), i = document.createElement("table"), r = document.createElement("tbody"), l = document.createElement("tr");
+   n.appendChild(i), i.appendChild(r), i.style.backgroundColor = "LightGray", i.align = "center", 
+   r.appendChild(l);
+   let o = document.createElement("p");
+   o.setAttribute("id", "downloadify");
+   let a = document.createElement("td");
+   a.appendChild(o), l.appendChild(a);
+   let s = document.createElement("input");
+   s.id = "sequence_spinner", s.min = "1", s.max = "999", s.size = 3, s.type = "number", 
+   s.alt = "fingering_number", s.value = 1, s.onchange = Bn, wt(a = document.createElement("td"), "Suggestion", "sequence_prompt"), 
+   a.appendChild(s), l.appendChild(a), t.preset_select || (a.style.display = "none"), 
+   t.preset && (s.value = t.preset);
+   let c = document.createElement("input");
+   c.type = "image", c.src = R + "/eye.svg", c.width = "36", c.alt = "View", c.onclick = Dn, 
+   (a = document.createElement("td")).appendChild(c), l.appendChild(a), t.hide_view && (a.style.display = "none");
+   let u = document.createElement("input");
+   u.type = "image", u.src = R + "/print.svg", u.width = "36", u.alt = "Print...", 
+   u.onclick = In, (a = document.createElement("td")).appendChild(u), l.appendChild(a), 
+   t.hide_print && (a.style.display = "none"), a = document.createElement("td");
+   let d = document.createElement("input");
+   d.type = "checkbox", d.value = "annotated", d.checked = P, d.id = "view_annotated", 
+   d.onclick = yt;
+   let f = document.createElement("label");
+   f.htmlFor = "view_annotated", f.appendChild(document.createTextNode("Annotated")), 
+   a.appendChild(d), t.hide_annotated && (a.style.display = "none"), a.appendChild(f), 
+   l.appendChild(a), t.hide_annotated && (a.style.display = "none");
+   let p = document.createElement("input");
+   p.type = "image", p.src = R + "/reload.svg", p.width = "36", p.alt = "reset", p.onclick = nt, 
+   (a = document.createElement("td")).appendChild(p), l.appendChild(a), t.hide_reset && (a.style.display = "none");
+   let g = document.createElement("input");
+   g.id = "copy_fingerings_button", g.type = "image", g.src = R + "/clipboard.svg", 
+   g.width = "36", g.alt = "copy", (a = document.createElement("td")).appendChild(g), 
+   l.appendChild(a), t.hide_copy ? g.style.display = "none" : new Clipboard("#copy_fingerings_button", {
+    text: et
+   });
+   let h = document.createElement("input");
+   h.type = "image", h.src = R + "/paperclip.svg", h.width = "36", h.alt = "paste", 
+   h.onclick = tt, (a = document.createElement("td")).appendChild(h), l.appendChild(a), 
+   t.hide_paste && (h.style.display = "none");
+   let m = document.createElement("input");
+   m.type = "image", m.src = R + "/globe.svg", m.width = "36", m.alt = "URL", m.onclick = mt, 
+   (a = document.createElement("td")).appendChild(m), l.appendChild(a), t.url_input || (m.style.display = "none");
+   let _ = document.createElement("input");
+   _.setAttribute("type", "file"), _.setAttribute("accept", "text/vnd.abc"), _.onchange = _t, 
+   _.setAttribute("id", "file_input"), (a = document.createElement("td")).appendChild(_), 
+   l.appendChild(a), t.file_input || (_.style.display = "none");
+   let b = document.createElement("input");
+   b.type = "image", b.src = R + "/tags.svg", b.alt = "Metadata...", b.width = "36", 
+   b.onclick = at, (a = document.createElement("td")).appendChild(b), l.appendChild(a), 
+   t.hide_metadata && (b.style.display = "none");
+   let v = document.createElement("input");
+   v.type = "image", v.src = R + "/zoom-out.svg", v.alt = "Zoom In", v.width = "36", 
+   v.onclick = ct, (a = document.createElement("td")).appendChild(v), l.appendChild(a);
+   let E = document.createElement("input");
+   E.type = "image", E.src = R + "/zoom-in.svg", E.alt = "Zoom In", E.width = "36", 
+   E.onclick = ut, (a = document.createElement("td")).appendChild(E), l.appendChild(a);
+   let k = document.createElement("input");
+   k.type = "image", k.src = R + "/cog.svg", k.alt = "Preferences...", k.width = "36", 
+   k.onclick = ot, (a = document.createElement("td")).appendChild(k), l.appendChild(a), 
+   t.hide_prefs && (k.style.display = "none");
+   let w = document.createElement("input");
+   w.type = "image", w.src = R + "/info.svg", w.alt = "Help", w.width = "36", w.onclick = lt, 
+   (a = document.createElement("td")).appendChild(w), l.appendChild(a), Downloadify.create("downloadify", {
+    filename: function() {
+     return y;
+    },
+    data: Tn,
+    onComplete: function() {
+     alert("Your file has been saved.");
+    },
+    onCancel: function() {
+     alert("File save has been cancelled.");
+    },
+    onError: function() {
+     alert("File save failed!");
+    },
+    transparent: !1,
+    swf: O + "/downloadify.swf",
+    downloadImage: e,
+    width: "36",
+    height: "36",
+    append: !1
+   }), At(), M = !0;
   }(), function() {
    Ue("preset_preference", localStorage.getItem("preset_preference")), Ue("output", localStorage.getItem("output")), 
    Ue("restore", localStorage.getItem("restore")), Ue("keypad", localStorage.getItem("keypad"));
-   var e = localStorage.getItem("measure_number_interval");
+   let e = localStorage.getItem("measure_number_interval");
    void 0 !== e && "" !== e || (e = V), je("measure_number_interval", e), je("default_authority", localStorage.getItem("default_authority")), 
    je("default_authority_year", localStorage.getItem("default_authority_year")), je("default_transcriber", localStorage.getItem("default_transcriber"));
-  }(), !(i = document.getElementById(se).value)) {
-   var e = $e("default_url");
-   e && (ht(e), i = document.getElementById(se).value);
+  }(), !(r = document.getElementById(ae).value)) {
+   let e = $e("default_url");
+   e && (ht(e), r = document.getElementById(ae).value);
   }
-  f = !0, i && (h = Ve(i), Xe(), hn(), _n(o = x[0][0][0]), ln()), bt(), $(function() {
+  f = !0, r && (h = Ve(r), Xe(), hn(), yn(o = x[0][0][0]), cn()), vt(), $(function() {
    FastClick.attach(document.body);
   });
  }
  function fn(e) {
   console.log("Processing note click....");
-  var t = e.getAttribute("class");
+  let t = e.getAttribute("class");
   console.log("Click " + t);
-  var n = t.split("_")[1];
+  let n = t.split("_")[1];
   if (n in B) {
-   var r = B[n];
-   qt("process_note_click", r), _n(r), o = r;
+   let e = B[n];
+   qt("process_note_click", e), yn(e), o = e;
   }
  }
  function pn() {
   tn();
-  var e = "";
+  let e = "";
   o.preset_fingering && (e += "Preset (recommended) fingering: " + o.get_preset_fingering() + "\n\n"), 
   e += "Please enter a fingering string for the selected note.";
-  var t = o.fingering, n = window.prompt(e, t);
+  let t = o.fingering, n = window.prompt(e, t);
   try {
    if (null === n) return;
-   n = (n = n.replace(K, "")).replace(X, ""), en(Abcdf_Parser.parse(n)), Zt(), _n(o);
+   n = (n = n.replace(K, "")).replace(X, ""), en(Abcdf_Parser.parse(n)), Zt(), yn(o);
   } catch (e) {
    alert("Bad abcDF parse of fingering string: " + e.message + e.stack);
   }
@@ -1187,27 +1236,28 @@ function AbcDE() {
   console.log("Processing note double-click...."), fn(e), pn();
  }
  function hn() {
-  var e = new Lt(), t = document.getElementById(ge), n = document.getElementById(he);
-  t.align = "center", a = new Abc(e), r = "", a.tosvg("edit", '%%bgcolor white\n%%beginsvg\n<style type="text/css">\n\trect.abcr {fill:#a08000; fill-opacity:0}\n\trect.abcr:hover {fill-opacity:0.3}\n</style>\n%%endsvg\n'), 
+  let e = new Lt(), t = document.getElementById(ge), n = document.getElementById(he);
+  t.align = "center", l = new Abc(e), i = "", l.tosvg("edit", '%%bgcolor white\n%%beginsvg\n<style type="text/css">\n\trect.abcr {fill:#a08000; fill-opacity:0}\n\trect.abcr:hover {fill-opacity:0.3}\n</style>\n%%endsvg\n'), 
   n.innerHTML = "", q = [];
   try {
-   i && a.tosvg(_, i);
+   r && l.tosvg(y, r);
   } catch (e) {
    return void alert(e.message + "\nabc2svg tosvg bug - stack:\n" + e.stack);
   }
   try {
-   i && (t.innerHTML = r, function() {
-    for (var e, t, n, r, i, a = 0; a < C.length; a++) t = (e = C[a]).line, n = e.staff, 
-    t in x || (x[t] = [], x[t][0] = [], x[t][1] = []), x[t][n].push(e);
-    for (t = 0; t < x.length; t++) for (n = 0; n < 2; n++) (o = x[t][n]).sort(Ft);
+   r && (t.innerHTML = i, function() {
+    let e, t, n, i, r;
+    for (let i = 0; i < C.length; i++) t = (e = C[i]).line, n = e.staff, t in x || (x[t] = [], 
+    x[t][0] = [], x[t][1] = []), x[t][n].push(e);
+    for (t = 0; t < x.length; t++) for (n = 0; n < 2; n++) x[t][n].sort(Ft);
     for (n = 0; n < 2; n++) for (t = 0; t < x.length; t++) {
-     var o = x[t][n];
-     for (a = 0; a < o.length; a++) r = o[a], i ? (i.next_note = r, r.prior_note = i, 
-     i = r) : (i = r, r.prior_note = void 0);
+     let e = x[t][n];
+     for (let t = 0; t < e.length; t++) i = e[t], r ? (r.next_note = i, i.prior_note = r, 
+     r = i) : (r = i, i.prior_note = void 0);
     }
-    r.next_note = void 0;
+    i.next_note = void 0;
    }(), function() {
-    var e;
+    let e;
     for (e in I) I.hasOwnProperty(e) && T.push(e);
     T.sort(function(e, t) {
      return parseInt(e) - parseInt(t);
@@ -1218,125 +1268,133 @@ function AbcDE() {
   }
  }
  function mn(e, t) {
-  for (var n = document.getElementsByClassName(e), r = n.length; --r >= 0; ) n[r].setAttribute("color", t);
- }
- function vn(e) {
-  var t, n = F.length;
-  for (t = 0; t < n; t++) mn(F[t], e);
+  let n, i = document.getElementsByClassName(e), r = i.length;
+  for (;--r >= 0; ) (n = i[r]).setAttribute("color", t);
  }
  function _n(e) {
-  var t = e.fingered_start;
-  0 != F.length && (vn("black"), F = []), F.push("e_" + t), L ? 0 === e.staff ? vn("dodgerblue") : vn("red") : 1 === e.staff ? vn("dodgerblue") : vn("red");
-  var n = "line_" + e.line, r = document.getElementById(n);
-  if (!function(e) {
-   var t = $(e), n = $(window), r = document.getElementById(fe), i = n.scrollTop(), a = i + n.height() - r.offsetHeight, o = t.offset().top;
-   return o + t.height() <= a && o >= i;
-  }(r)) {
-   r.scrollIntoView(!1);
-   var i = document.getElementById(fe), a = document.body.scrollTop;
-   window.scrollTo(0, a + i.offsetHeight);
-  }
+  let t, n = F.length;
+  for (t = 0; t < n; t++) mn(F[t], e);
  }
  function yn(e) {
-  e || (e = i);
-  for (var t = e.split("\n"), n = 0; n < t.length; n++) {
-   var r = t[n];
-   if (/^\s*X:/.test(r)) {
-    var a = r.split(":");
-    return 2 != a.length ? "" : a[1].trim();
+  let t = e.fingered_start;
+  0 != F.length && (_n("black"), F = []), F.push("e_" + t), L ? 0 === e.staff ? _n("dodgerblue") : _n("red") : 1 === e.staff ? _n("dodgerblue") : _n("red");
+  let n = "line_" + e.line, i = document.getElementById(n);
+  if (!function(e) {
+   let t = $(e), n = $(window), i = document.getElementById(fe), r = n.scrollTop(), l = r + n.height() - i.offsetHeight, o = t.offset().top;
+   return o + t.height() <= l && o >= r;
+  }(i)) {
+   i.scrollIntoView(!1);
+   let e = document.getElementById(fe), t = document.body.scrollTop;
+   window.scrollTo(0, t + e.offsetHeight);
+  }
+ }
+ function bn(e) {
+  e || (e = r);
+  let t = e.split("\n");
+  for (let e = 0; e < t.length; e++) {
+   let n = t[e];
+   if (/^\s*X:/.test(n)) {
+    let e = n.split(":");
+    return 2 != e.length ? "" : e[1].trim();
    }
   }
   return "";
  }
- function bn(e) {
-  var t = [];
-  e.fingering && (t = it(e.fingering));
-  for (var n = e.fingering || "", r = t.length; r < e.size; r++) n += "x";
+ function vn(e) {
+  let t = [];
+  e.fingering && (t = rt(e.fingering));
+  let n = e.fingering || "";
+  for (let i = t.length; i < e.size; i++) n += "x";
   return n += e.phrase_break;
  }
  function En(e) {
-  if (e.grace) return bn(e);
-  var t = S[e.staff][e.time], n = Xt(t);
-  if (t.length - n < 2) return bn(e);
+  if (e.grace) return vn(e);
+  let t = S[e.staff][e.time], n = Xt(t);
+  if (t.length - n < 2) return vn(e);
   t.sort(Ft);
-  for (var r = 0, i = t[0]; i.grace; ) i = t[++r];
-  if (e !== i) return "";
-  var a = Vt(t), o = "";
-  for (r = 0; r < a.length; r++) a[r] ? o += a[r] : o += "x";
+  let i = 0, r = t[0];
+  for (;r.grace; ) r = t[++i];
+  if (e !== r) return "";
+  let l = Vt(t), o = "";
+  for (let e = 0; e < l.length; e++) l[e] ? o += l[e] : o += "x";
   return o;
  }
  function kn(e, t) {
-  for (var n = [], r = t, i = e.split(""), a = 0; a < i.length; a++) {
-   var o = i[a];
-   o.match(j) ? o !== r && (n.push(o), r = o) : n.push(o);
+  let n = [], i = t, r = e.split("");
+  for (let e = 0; e < r.length; e++) {
+   let t = r[e];
+   t.match(j) ? t !== i && (n.push(t), i = t) : n.push(t);
   }
   return n.join("");
  }
  function wn(e, t) {
-  for (var n = x[t][e], r = "", i = 0; i < n.length; i++) {
-   r += En(n[i]);
+  let n = x[t][e], i = "";
+  for (let e = 0; e < n.length; e++) {
+   i += En(n[e]);
   }
-  return r;
+  return i;
  }
  function Cn(e, t) {
   let n = Z.exec(e);
   return n && n[1] ? n[1] : t;
  }
  function xn() {
-  for (var e = "", t = "", n = Qt(0), r = Qt(1), i = 0; i < x.length; i++) {
-   var a = wn(0, i);
-   if (a && (n = Cn(a = kn(a, n), n), e += a, i < x.length - 1 && (e += "&")), x[i][1]) {
-    var o = wn(1, i);
-    o && (r = Cn(o = kn(o, r), r), t += o, i < x.length - 1 && (t += "&"));
+  let e, t = "", n = "", i = Qt(0), r = Qt(1);
+  for (let e = 0; e < x.length; e++) {
+   let l = wn(0, e);
+   if (l && (i = Cn(l = kn(l, i), i), t += l, e < x.length - 1 && (t += "&")), x[e][1]) {
+    let t = wn(1, e);
+    t && (r = Cn(t = kn(t, r), r), n += t, e < x.length - 1 && (n += "&"));
    }
   }
-  return e + "@" + t;
+  return e = t + "@" + n;
  }
  function In() {
   console.log("Print that score.");
-  var e = window.open("", "print_window");
-  e.document.write(r), e.document.close(), e.focus(), e.print(), e.close();
+  let e = window.open("", "print_window");
+  e.document.write(i), e.document.close(), e.focus(), e.print(), e.close();
  }
  function Bn() {
-  document.getElementById(se).value = i, Te(), i = document.getElementById(se).value, 
-  hn(), _n(o = x[0][0][0]), ln();
+  document.getElementById(ae).value = r, Te(), r = document.getElementById(ae).value, 
+  hn(), yn(o = x[0][0][0]), cn();
  }
  function Tn() {
-  return cn(P ? Kt() : i, !0);
+  let e, t;
+  return t = sn(P ? e = Kt() : r, !0);
  }
  function Dn() {
-  var e = Tn();
+  let e = Tn();
   window.open().document.write("<pre>" + e + "</pre>");
  }
  function Sn() {
   return xn();
  }
  function An(e) {
-  var t = function(e) {
+  let t = function(e) {
    try {
     Abcdf_Parser.parse(e);
    } catch (e) {
     return "Bad abcDF parse of string: " + e.message + e.stack;
    }
-   var t = 0, n = $e("validate");
+   let t = 0, n = $e("validate");
    if ("complete" === n) t = e.split("x").length - 1; else if ("none" === n) t = 0; else if ("auto" === n) return "Validation of autofill is not yet implemented.";
    return 1 === t ? "One note is missing a fingering annotation." : t > 1 ? t + " notes are missing fingering annotations." : "";
   }(e);
   return !t || (alert(t), !1);
  }
  function qn() {
-  var e = P;
+  let e = P;
   P = !1;
-  var t = Tn();
+  let t = Tn();
   return P = e, t;
  }
  return this.renderUI = function(e) {
   !function(e) {
    t || (t = e).experiment_id || (t.experiment_id = "");
   }(e), dn();
-  var n = $e("qualtrics");
+  let n = $e("qualtrics");
   n && (n.disableNextButton(), n.disablePreviousButton());
- }, this.getXValue = yn, this.getAuthority = function() {
+ }, this.getXValue = bn, this.getAuthority = function() {
   return $e("include_pii") ? Le("authority") : "";
  }, this.getAuthorityYear = function() {
   return Le("authority_year");
@@ -1346,18 +1404,20 @@ function AbcDE() {
   return Le("comments");
  }, this.getEnteredCollection = Sn, this.getEnteredAbcDF = Sn, this.getEnteredAbcD = qn, 
  this.getValidatedCollection = function() {
-  var e = xn();
+  let e = xn();
   return An(e) ? e : "";
  }, this.getValidatedAbcD = function() {
   if (An(xn())) {
-   var e = Tn();
+   let e = Tn();
    return /^\s*X:/m.test(e) ? /^% abcDidactyl/m.test(e) ? e : (alert("File is not valid abcD."), 
    "") : (alert("File is not valid abc."), "");
   }
   return "";
  }, this.setEnteredCollection = function(e) {
   o = x[0][0][0];
-  var t = ze(), n = Fe(!0);
-  n.sequence = e, Je(Ne(t), n), Zt(), _n(o);
- }, this.handleKeys = ln, this.unhandleKeys = un, this;
+  let t = ze(), n = Fe(!0);
+  n.sequence = e, Je(Ne(t), n), Zt(), yn(o);
+ }, this.handleKeys = cn, this.unhandleKeys = un, this.stopAutoSaving = function() {
+  m && clearInterval(m);
+ }, this;
 }

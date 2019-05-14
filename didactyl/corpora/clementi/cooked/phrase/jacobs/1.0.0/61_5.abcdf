@@ -1,0 +1,66 @@
+% abcDidactyl v6
+% abcD fingering 1: >3211523123443325432251215322432121231242435354534532424353512312345123123453213214321245@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:54:38
+% abcD fingering 2: >4322512123443325432251215322432121231242435354534532424353512312345123123453213214321245@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:54:38
+% abcD fingering 3: >3211523123443325432251215322432121241242435354534532424353512312345123123453213214321245@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:54:38
+% abcD fingering 4: >3211523123443325432251215322432121231232324243434532424353512312345123123453213214321245@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:54:38
+% abcD fingering 5: >3211523123443325432251215322432121231242435353434532424353512312345123123453213214321245@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:54:38
+% abcD fingering 6: >3211523123443325432251215322432121231242435354534532324353512312345123123453213214321245@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:54:38
+% abcD fingering 7: >5433523123443325432251215322432121231242435354534532424353512312345123123453213214321245@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:54:38
+% abcD fingering 8: >4322512123443325432251215322432121241242435354534532424353512312345123123453213214321245@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:54:38
+% abcD fingering 9: >4322512123443325432251215322432121231232324243434532424353512312345123123453213214321245@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:54:38
+% abcD fingering 10: >4322512123443325432251215322432121231242435353434532424353512312345123123453213214321245@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:54:38
+% abcDidactyl END
+X:615
+T:Sonatina 6.1.5
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:4/4
+Q:1/4=101
+I:linebreak $
+K:D
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+"^Allegro con spirito." (d2c2 | %972
+"_dolce." B4) (B4 e4 ^G4 | B8 A4) (B2c2 | d4 d4 c4 c4 |$ B4 e8 d2c2 | %976
+ B4) (B4 e4 ^G4 | B8 A4) (a2e2 | c4) (c6 e2d2B2 |$ %979
+ A)(BAB .c2).A2 (FAFA ^GBGB | ABAB .c2).A2 (FAFA ^GBGB | %981
+ ABcd ef^ga)!ff! (ABcd efga |$ fedc BA^GF .E2) z2 .[DEG]2 z2 | %983
+ A zz2z8|]
+V:3
+[K:bass] z2|z8|z8|z8|z8|z8|z8|z8|z8|z8|z8|z8|zzz4|]

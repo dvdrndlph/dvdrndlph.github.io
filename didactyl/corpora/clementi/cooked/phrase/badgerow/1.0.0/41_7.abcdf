@@ -1,0 +1,62 @@
+% abcDidactyl v6
+% abcD fingering 1: >12312312312345125@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:55:10
+% abcD fingering 2: >12312312312345124@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:55:10
+% abcD fingering 3: >23123412312345125@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:55:10
+% abcD fingering 4: >12313412312345125@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:55:10
+% abcD fingering 5: >12312412312345125@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:55:10
+% abcD fingering 6: >12312313412345125@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:55:10
+% abcD fingering 7: >12312312412345125@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:55:10
+% abcD fingering 8: >12312312312345135@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:55:10
+% abcD fingering 9: >23123412312345124@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:55:10
+% abcD fingering 10: >12123412312345125@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:55:10
+% abcDidactyl END
+X:417
+T:Sonatina 4.1.7
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:3/4
+Q:1/4=120
+I:linebreak $
+K:F
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+ z6 (DE FGA=B | %524
+ c6) (de fga=b | .c'4) .[EGc]4 z4 |]
+V:3
+z6|z6|z6|]

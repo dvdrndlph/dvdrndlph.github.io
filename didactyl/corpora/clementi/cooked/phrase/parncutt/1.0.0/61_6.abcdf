@@ -1,0 +1,64 @@
+% abcDidactyl v6
+% abcD fingering 1: >35432132424353513543213242435351231234532132132124242424352313112351235@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:07
+% abcD fingering 2: >35432132424353513543213242435351231234532132132124242424352424112351235@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:07
+% abcD fingering 3: >35432132424353513543213242435351231234532132132124242424352312112351235@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:07
+% abcD fingering 4: >35432132424353513543213242435351231234532132132124242424352412112351235@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:07
+% abcD fingering 5: >35432132424353513543213242324241231234532132132124242424352313112351235@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:07
+% abcD fingering 6: >35432132424353513543213242435351231234532132132124131313241212112351235@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:07
+% abcD fingering 7: >35432132424353513543213242435351231234532132132124241424352313112351235@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:07
+% abcD fingering 8: >35432132424353513543213242435351231234532132132124242414352313112351235@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:07
+% abcD fingering 9: >35432132424353513543213242435351231234532132132124242424352413112351235@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:07
+% abcD fingering 10: >35432132424353513543213242435351231234532132132124142424352313112351235@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:07
+% abcDidactyl END
+X:616
+T:Sonatina 6.1.6
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:4/4
+Q:1/4=101
+I:linebreak $
+K:D
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+"^Allegro con spirito." z!p!c(ed cBA^G FAFA GBGB | Aced cBA^G FAFA GBGB |$ %985
+!<(! ABcd ef^ga fedc BA^GF!<)! | %986
+!f! E2.[Ac]2).[Ac]2.[Ac]2 ([Ac]2.[Bd]2).[^GB]2.[GB]2 | %987
+ .A2 z2 .[Acea]2 z2 .[Acea]2 z2 z4|]
+V:3
+[K:bass] z8|z8|z8|z8|z8|]

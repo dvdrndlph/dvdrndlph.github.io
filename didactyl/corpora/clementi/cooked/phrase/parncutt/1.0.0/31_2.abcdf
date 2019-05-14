@@ -1,0 +1,61 @@
+% abcDidactyl v6
+% abcD fingering 1: >24241313123535242412532153212421353122131324@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:40
+% abcD fingering 2: >35352424123535242412532153212421353122131324@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:40
+% abcD fingering 3: >24241313123535242412532153213531242122131324@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:40
+% abcD fingering 4: >24241313123535242412532153212421242122131324@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:40
+% abcD fingering 5: >35352424123535242412532153213531242122131324@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:40
+% abcD fingering 6: >35352424123535242412532153212421242122131324@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:40
+% abcD fingering 7: >24241213123535242412532153212421353122131324@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:40
+% abcD fingering 8: >24241313123535242412532153212421353122131325@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:40
+% abcD fingering 9: >14241313123535242412532153212421353122131324@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:40
+% abcD fingering 10: >35351313123535242412532153212421353122131324@
+% Authority: Parncutt Model (1997)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:51:40
+% abcDidactyl END
+X:312
+T:Sonatina 3.1.2
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:C
+I:linebreak $
+K:C
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+!p! .[d=f]2.[df]2.[ce]2.[ce]2 [Bd]4 z4 | .[eg]2.[eg]2.[df]2.[df]2 [ce]4 z4 | %340
+ (afed afed egec dfdB | .c2).c2.[Bd]2.[Bd]2 .[ce]4 z4 |]$ %342
+V:3
+[K:treble] z8|z8|z8|z8|]$ %360

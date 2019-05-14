@@ -1,4 +1,4 @@
-/* abcDE_full.js v6.0.96 */
+/* abcDE_full.js v6.0.97 */
 !function(a, b) {
  "object" == typeof module && "object" == typeof module.exports ? module.exports = a.document ? b(a, !0) : function(a) {
   if (!a.document) throw new Error("jQuery requires a window with a document");
@@ -34330,51 +34330,51 @@ var Survey;
  */
 function AbcDE() {
  "use strict";
- var Options, Redo = [], Undo = [], Previous_Url = "", Toggling_Background = false, Magnification = 1, Preferences = {}, Sequences = [], Grace_Notes_In_Source, Autosaver = undefined, Md5_Key = "", Abc_Images, Abc_Fname = "noname.abc", Org_Abc_Str, My_Abc, Timer = 0, Input_Buffer = [], Open_Ornament = false, Trailing_Characters = [], Current_Note, Current_Line_Number = 0, Notes = [], Notes_On_Line = [], Note_At = {}, Fingered_Note_At = {}, Sorted_Note_Locations = [], Preprocessing_Completed = false, Staff_Notes_At_Time = {}, Voice_Staff = {}, Ref = [], Rerender_Count = 0, Fonts_Set_In_Source, Numbering_Set_In_Source, Toggled = false, Colcl = [], Persist_Annotated = false, Ui_In_Place = false;
- var DIDACTYL_URL = "..";
- var CORPORA_URL = DIDACTYL_URL + "/../corpora";
- var HELP_URL = "./abcde_help.html";
- var IMAGE_DIR = DIDACTYL_URL + "/image";
- var MEDIA_DIR = DIDACTYL_URL + "/lib/media";
- var DEFAULT_NUMBERING_INTERVAL = 5;
- var SPACE_RE = /\s/g;
- var LH_RE = /</g;
- var RH_RE = />/g;
- var RL_RE = /[><]/g;
- var PHRASE_RE = /([,;\.])/;
- var LINE_RE = /&/g;
- var LAST_HAND_RE = /.*([<>])[^<>]+$/;
- var ABCD_HDR_RE = /^% abcDidactyl v([\d\.]+)$/;
- var ABCD_FINGERING_RE = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/;
- var ABCD_TERMINAL_RE = /^% abcDidactyl END$/;
- var ABCD_AUTHORITY_RE = /^% Authority: ([^\(]+)(\s+\((\d\d\d\d)\))?$/;
- var ABCD_TRANSCRIBER_RE = /^% Transcriber: (.*)$/;
- var ABCD_TRANSCRIPTION_DATE_RE = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/;
- var ABCD_COMMENT_RE = /^% (.*)$/;
- var TIMEOUT_MS = 300;
- var AUTOSAVE_MS = 4e3;
- var ABCDE_DIV_ID = "abcde";
- var SOURCE_ID = "abc_source";
- var SOURCE_CLASS_ID = "source";
- var PREFS_DIV_ID = "abcde_prefs";
- var CONTROLS_DIV_ID = "abcde_controls";
- var METADATA_DIV_ID = "abcde_metadata";
- var KEYPAD_DIV_ID = "abcde_keypad";
- var RENDERING_DIV_ID = "abcde_rendering";
- var TARGET_DIV_ID = "abcde_target";
- var ERROR_DIV_ID = "abcde_error";
- var MAGNIFICATION_INCREMENT = .1;
- var MAX_MAGNIFICATION = 3;
- var MIN_MAGNIFICATION = .3;
- var Z_CODE = 90;
- var Y_CODE = 89;
- var ENTER_CODE = 13;
- var BACKSPACE_CODE = 8;
- var TAB_CODE = 9;
- var LEFT_ARROW_CODE = 37;
- var RIGHT_ARROW_CODE = 39;
- var SETFONT_COMMANDS = "%%setfont-1 Bookman 11\n" + "%%setfont-2 Helvetica-Bold 11";
- var GRACE_NOTE_DECORATIONS = "%%deco 1 3 fng 8 1 1 1\n" + "%%deco 2 3 fng 8 1 1 2\n" + "%%deco 3 3 fng 8 1 1 3\n" + "%%deco 4 3 fng 8 1 1 4\n" + "%%deco 5 3 fng 8 1 1 5";
+ let Options, Redo = [], Undo = [], Previous_Url = "", Toggling_Background = false, Magnification = 1, Preferences = {}, Sequences = [], Grace_Notes_In_Source, Autosaver = undefined, Md5_Key = "", Abc_Images, Abc_Fname = "noname.abc", Org_Abc_Str, My_Abc, Timer = 0, Input_Buffer = [], Open_Ornament = false, Trailing_Characters = [], Current_Note, Current_Line_Number = 0, Notes = [], Notes_On_Line = [], Note_At = {}, Fingered_Note_At = {}, Sorted_Note_Locations = [], Preprocessing_Completed = false, Staff_Notes_At_Time = {}, Voice_Staff = {}, Ref = [], Rerender_Count = 0, Fonts_Set_In_Source, Numbering_Set_In_Source, Toggled = false, Colcl = [], Persist_Annotated = false, Ui_In_Place = false;
+ let DIDACTYL_URL = "..";
+ let CORPORA_URL = DIDACTYL_URL + "/../corpora";
+ let HELP_URL = "./abcde_help.html";
+ let IMAGE_DIR = DIDACTYL_URL + "/image";
+ let MEDIA_DIR = DIDACTYL_URL + "/lib/media";
+ let DEFAULT_NUMBERING_INTERVAL = 5;
+ let SPACE_RE = /\s/g;
+ let LH_RE = /</g;
+ let RH_RE = />/g;
+ let RL_RE = /[><]/g;
+ let PHRASE_RE = /([,;\.])/;
+ let LINE_RE = /&/g;
+ let LAST_HAND_RE = /.*([<>])[^<>]+$/;
+ let ABCD_HDR_RE = /^% abcDidactyl v([\d\.]+)$/;
+ let ABCD_FINGERING_RE = /^% abcD fingering (\d+): ([<>1-5\-\/\(\)@&x,;\.]+)$/;
+ let ABCD_TERMINAL_RE = /^% abcDidactyl END$/;
+ let ABCD_AUTHORITY_RE = /^% Authority: ([^\(]+)(\s+\((\d\d\d\d)\))?$/;
+ let ABCD_TRANSCRIBER_RE = /^% Transcriber: (.*)$/;
+ let ABCD_TRANSCRIPTION_DATE_RE = /^% Transcription date: ((\d\d\d\d\-[01]\d\-[0-3]\d)\s?([0-2]\d:[0-5]\d:[0-5]\d)?)$/;
+ let ABCD_COMMENT_RE = /^% (.*)$/;
+ let TIMEOUT_MS = 300;
+ let AUTOSAVE_MS = 4e3;
+ let ABCDE_DIV_ID = "abcde";
+ let SOURCE_ID = "abc_source";
+ let SOURCE_CLASS_ID = "source";
+ let PREFS_DIV_ID = "abcde_prefs";
+ let CONTROLS_DIV_ID = "abcde_controls";
+ let METADATA_DIV_ID = "abcde_metadata";
+ let KEYPAD_DIV_ID = "abcde_keypad";
+ let RENDERING_DIV_ID = "abcde_rendering";
+ let TARGET_DIV_ID = "abcde_target";
+ let ERROR_DIV_ID = "abcde_error";
+ let MAGNIFICATION_INCREMENT = .1;
+ let MAX_MAGNIFICATION = 3;
+ let MIN_MAGNIFICATION = .3;
+ let Z_CODE = 90;
+ let Y_CODE = 89;
+ let ENTER_CODE = 13;
+ let BACKSPACE_CODE = 8;
+ let TAB_CODE = 9;
+ let LEFT_ARROW_CODE = 37;
+ let RIGHT_ARROW_CODE = 39;
+ let SETFONT_COMMANDS = "%%setfont-1 Bookman 11\n" + "%%setfont-2 Helvetica-Bold 11";
+ let GRACE_NOTE_DECORATIONS = "%%deco 1 3 fng 8 1 1 1\n" + "%%deco 2 3 fng 8 1 1 2\n" + "%%deco 3 3 fng 8 1 1 3\n" + "%%deco 4 3 fng 8 1 1 4\n" + "%%deco 5 3 fng 8 1 1 5";
  function initialize_globals() {
   if (Autosaver) {
    clearInterval(Autosaver);
@@ -34407,9 +34407,9 @@ function AbcDE() {
   Colcl = [];
  }
  function get_sorted_staff_note_times(staff) {
-  var notes_at_time = Staff_Notes_At_Time[staff];
-  var sorted_note_times = [];
-  var key;
+  let notes_at_time = Staff_Notes_At_Time[staff];
+  let sorted_note_times = [];
+  let key;
   for (key in notes_at_time) {
    if (notes_at_time.hasOwnProperty(key)) {
     sorted_note_times.push(key);
@@ -34428,11 +34428,11 @@ function AbcDE() {
   if (fingering === "x") {
    return fingering;
   }
-  var hand = starting_hand;
-  var handed_tokens = [];
-  var chars = fingering.split("");
-  for (var i = 0; i < chars.length; i++) {
-   var char = chars[i];
+  let hand = starting_hand;
+  let handed_tokens = [];
+  let chars = fingering.split("");
+  for (let i = 0; i < chars.length; i++) {
+   let char = chars[i];
    if (char === "<" || char === ">") {
     hand = char;
    } else if (char.match(/\d/)) {
@@ -34453,7 +34453,7 @@ function AbcDE() {
   if (!Md5_Key) {
    Md5_Key = md5(Org_Abc_Str);
   }
-  var storage_key = field_name + "_" + sequence_number + "_" + Md5_Key;
+  let storage_key = field_name + "_" + sequence_number + "_" + Md5_Key;
   if (Options["experiment_id"]) {
    storage_key = Options["experiment_id"] + "_" + storage_key;
   }
@@ -34463,45 +34463,45 @@ function AbcDE() {
   if (!local_storage_is_supported()) {
    return {};
   }
-  var saved_seq = {
+  let saved_seq = {
    sequence: ""
   };
-  var storage_key = get_storage_key("sequence", sequence_number);
-  var stored_fingerings = localStorage.getItem(storage_key) || "";
+  let storage_key = get_storage_key("sequence", sequence_number);
+  let stored_fingerings = localStorage.getItem(storage_key) || "";
   if (stored_fingerings.match(/[^x&@]/)) {
    saved_seq.sequence = stored_fingerings;
   }
   storage_key = get_storage_key("authority", sequence_number);
-  var stored_authority = localStorage.getItem(storage_key) || "";
+  let stored_authority = localStorage.getItem(storage_key) || "";
   saved_seq.authority = stored_authority;
   storage_key = get_storage_key("authority_year", sequence_number);
-  var stored_year = localStorage.getItem(storage_key) || "";
+  let stored_year = localStorage.getItem(storage_key) || "";
   saved_seq.authority_year = stored_year;
   storage_key = get_storage_key("transcriber", sequence_number);
-  var stored_transcriber = localStorage.getItem(storage_key) || "";
+  let stored_transcriber = localStorage.getItem(storage_key) || "";
   saved_seq.transcriber = stored_transcriber;
   storage_key = get_storage_key("comments", sequence_number);
-  var stored_comments = localStorage.getItem(storage_key) || "";
+  let stored_comments = localStorage.getItem(storage_key) || "";
   saved_seq.comments = stored_comments;
   return saved_seq;
  }
  function get_field_value(field_id) {
-  var field = document.getElementById(field_id);
+  let field = document.getElementById(field_id);
   if (field.value) {
    return field.value;
   }
   return "";
  }
  function get_current_sequence(force) {
-  var current_date = new Date();
-  var date_str = current_date.getFullYear() + "-" + sprintf("%02d", current_date.getMonth() + 1) + "-" + sprintf("%02d", current_date.getDate()) + " " + sprintf("%02d", current_date.getHours()) + ":" + sprintf("%02d", current_date.getMinutes()) + ":" + sprintf("%02d", current_date.getSeconds());
-  var authority = "";
-  var transcriber = "";
+  let current_date = new Date();
+  let date_str = current_date.getFullYear() + "-" + sprintf("%02d", current_date.getMonth() + 1) + "-" + sprintf("%02d", current_date.getDate()) + " " + sprintf("%02d", current_date.getHours()) + ":" + sprintf("%02d", current_date.getMinutes()) + ":" + sprintf("%02d", current_date.getSeconds());
+  let authority = "";
+  let transcriber = "";
   if (force || get_setting("include_pii")) {
    authority = get_field_value("authority");
    transcriber = get_field_value("transcriber");
   }
-  var sequence = {
+  let sequence = {
    sequence: getEnteredCollection(),
    authority: authority,
    authority_year: get_field_value("authority_year"),
@@ -34512,15 +34512,15 @@ function AbcDE() {
   return sequence;
  }
  function store_sequence_field(field_id, sequence_id) {
-  var field = document.getElementById(field_id);
-  var setting = field.value;
-  var storage_key = get_storage_key(field_id, sequence_id);
+  let field = document.getElementById(field_id);
+  let setting = field.value;
+  let storage_key = get_storage_key(field_id, sequence_id);
   localStorage.setItem(storage_key, setting);
  }
  function get_radio_setting(group_name) {
-  var group = document.getElementsByName(group_name);
-  for (var i = 0; i < group.length; i++) {
-   var button = group[i];
+  let group = document.getElementsByName(group_name);
+  for (let i = 0; i < group.length; i++) {
+   let button = group[i];
    if (button.checked) {
     return button.id;
    }
@@ -34528,18 +34528,18 @@ function AbcDE() {
   return undefined;
  }
  function store_preference(field_id) {
-  var setting = "";
+  let setting = "";
   if (field_id === "preset_preference" || field_id === "output" || field_id === "keypad" || field_id == "restore") {
    setting = get_radio_setting(field_id);
   } else {
-   var field = document.getElementById(field_id);
+   let field = document.getElementById(field_id);
    setting = field.value;
   }
   Preferences[field_id] = setting;
   localStorage.setItem(field_id, setting);
  }
  function get_current_sequence_number() {
-  var sequence_spinner = document.getElementById("sequence_spinner");
+  let sequence_spinner = document.getElementById("sequence_spinner");
   if (!sequence_spinner) {
    alert("Sequence DOM element has gone missing.");
    return "1";
@@ -34551,14 +34551,14 @@ function AbcDE() {
    clearInterval(Autosaver);
    return;
   }
-  var sequence_spinner = document.getElementById("sequence_spinner");
+  let sequence_spinner = document.getElementById("sequence_spinner");
   if (!sequence_spinner) {
    clearInterval(Autosaver);
    return;
   }
-  var sequence_number = get_current_sequence_number();
-  var storage_key = get_storage_key("sequence", sequence_number);
-  var fingerings = getEnteredCollection();
+  let sequence_number = get_current_sequence_number();
+  let storage_key = get_storage_key("sequence", sequence_number);
+  let fingerings = getEnteredCollection();
   localStorage.setItem(storage_key, fingerings);
   store_sequence_field("authority", sequence_number);
   store_sequence_field("authority_year", sequence_number);
@@ -34573,29 +34573,29 @@ function AbcDE() {
    return "";
   }
   if (arg === "measure_number_interval") {
-   var field = document.getElementById(arg);
+   let field = document.getElementById(arg);
    return field.value;
   }
-  var preference = get_radio_setting(arg);
+  let preference = get_radio_setting(arg);
   if (preference) {
    return preference;
   }
   return "";
  }
  function get_default_sequence_number() {
-  var setting = get_setting("preset");
+  let setting = get_setting("preset");
   if (setting) {
    return setting;
   }
   setting = get_setting("preset_preference");
-  var number = 1;
+  let number = 1;
   if (setting === "last") {
    number = Sequences.length || 1;
   }
   return number;
  }
  function get_dummy_sequence() {
-  var seq = {};
+  let seq = {};
   seq.authority = get_field_value("default_authority");
   seq.authority_year = get_field_value("default_authority_year");
   seq.transcriber = get_field_value("default_transcriber");
@@ -34604,14 +34604,14 @@ function AbcDE() {
   return seq;
  }
  function get_sequences(abcd_str) {
-  var lines = abcd_str.split("\n");
-  var match;
-  var within_abcd_block = false;
-  var seq = {};
-  var sequences = [];
-  var input_abcde_version = "";
-  for (var i = 0; i < lines.length; i++) {
-   var line = lines[i];
+  let lines = abcd_str.split("\n");
+  let match;
+  let within_abcd_block = false;
+  let seq = {};
+  let sequences = [];
+  let input_abcde_version = "";
+  for (let i = 0; i < lines.length; i++) {
+   let line = lines[i];
    if (!input_abcde_version) {
     match = ABCD_HDR_RE.exec(line);
     if (match && match[1]) {
@@ -34661,16 +34661,16 @@ function AbcDE() {
   return sequences;
  }
  function set_default_sequence() {
-  var sequence_spinner = document.getElementById("sequence_spinner");
+  let sequence_spinner = document.getElementById("sequence_spinner");
   sequence_spinner.min = 1;
   sequence_spinner.max = Sequences.length || 1;
-  var default_sequence_number = get_default_sequence_number();
+  let default_sequence_number = get_default_sequence_number();
   sequence_spinner.value = default_sequence_number;
  }
  function get_default_sequence() {
   let setting = get_setting("preset");
   if (setting) {
-   var index = setting - 1;
+   let index = setting - 1;
    return Sequences[index];
   }
   setting = get_setting("preset_preference");
@@ -34685,7 +34685,7 @@ function AbcDE() {
  }
  function get_preset_sequence(sequence_number) {
   if (sequence_number) {
-   var sequence_index = sequence_number - 1;
+   let sequence_index = sequence_number - 1;
    if (parseInt(sequence_number) <= Sequences.length) {
     return Sequences[sequence_index];
    } else {
@@ -34695,16 +34695,16 @@ function AbcDE() {
   return get_default_sequence();
  }
  function set_radio(group_name, value) {
-  var group = document.getElementsByName(group_name);
-  for (var i = 0; i < group.length; i++) {
-   var button = group[i];
+  let group = document.getElementsByName(group_name);
+  for (let i = 0; i < group.length; i++) {
+   let button = group[i];
    if (button.id === value) {
     button.checked = true;
    }
   }
  }
  function set_field(field_id, value) {
-  var field = document.getElementById(field_id);
+  let field = document.getElementById(field_id);
   if (value !== undefined) {
    field.value = value;
   } else {
@@ -34716,7 +34716,7 @@ function AbcDE() {
   set_radio("output", localStorage.getItem("output"));
   set_radio("restore", localStorage.getItem("restore"));
   set_radio("keypad", localStorage.getItem("keypad"));
-  var numbering_setting = localStorage.getItem("measure_number_interval");
+  let numbering_setting = localStorage.getItem("measure_number_interval");
   if (numbering_setting === undefined || numbering_setting === "") {
    numbering_setting = DEFAULT_NUMBERING_INTERVAL;
   }
@@ -34732,24 +34732,24 @@ function AbcDE() {
   set_field("comments", metadata["comments"]);
  }
  function preset_blank_metadata() {
-  var authority = get_field_value("authority");
-  var default_authority = get_field_value("default_authority");
+  let authority = get_field_value("authority");
+  let default_authority = get_field_value("default_authority");
   if (!authority && default_authority) {
    set_field("authority", default_authority);
   }
-  var year = get_field_value("authority_year");
-  var default_year = get_field_value("default_authority_year");
+  let year = get_field_value("authority_year");
+  let default_year = get_field_value("default_authority_year");
   if (!year && default_year) {
    set_field("authority_year", default_year);
   }
-  var transcriber = get_field_value("transcriber");
-  var default_transcriber = get_field_value("default_transcriber");
+  let transcriber = get_field_value("transcriber");
+  let default_transcriber = get_field_value("default_transcriber");
   if (!transcriber && default_transcriber) {
    set_field("transcriber", default_transcriber);
   }
  }
  function array_contains_object(array, obj) {
-  for (var i = 0; i < array.length; i++) {
+  for (let i = 0; i < array.length; i++) {
    if (array[i] === obj) {
     return true;
    }
@@ -34757,7 +34757,7 @@ function AbcDE() {
   return false;
  }
  function index_of_object(array, obj) {
-  for (var i = 0; i < array.length; i++) {
+  for (let i = 0; i < array.length; i++) {
    if (array[i] === obj) {
     return i;
    }
@@ -34769,30 +34769,30 @@ function AbcDE() {
    return;
   }
   console.log("Setting fingers: ", finger_str);
-  var staff_fingerings = {};
-  var staff_lines = finger_str.split("@");
-  var staff_num;
-  var line_num;
-  var fingering;
+  let staff_fingerings = {};
+  let staff_lines = finger_str.split("@");
+  let staff_num;
+  let line_num;
+  let fingering;
   for (staff_num = 0; staff_num < staff_lines.length; staff_num++) {
-   var hand = get_staff_hand(staff_num);
+   let hand = get_staff_hand(staff_num);
    staff_fingerings = [];
-   var finger_lines = staff_lines[staff_num].split("&");
+   let finger_lines = staff_lines[staff_num].split("&");
    for (line_num = 0; line_num < finger_lines.length; line_num++) {
-    var finger_line = finger_lines[line_num];
-    var tokens = get_abcdf_note_tokens(finger_line);
+    let finger_line = finger_lines[line_num];
+    let tokens = get_abcdf_note_tokens(finger_line);
     staff_fingerings = staff_fingerings.concat(tokens);
    }
-   var sorted_staff_note_times = get_sorted_staff_note_times(staff_num);
-   for (var time_index = 0; time_index < sorted_staff_note_times.length; time_index++) {
-    var time = sorted_staff_note_times[time_index];
-    var notes = Staff_Notes_At_Time[staff_num][time];
+   let sorted_staff_note_times = get_sorted_staff_note_times(staff_num);
+   for (let time_index = 0; time_index < sorted_staff_note_times.length; time_index++) {
+    let time = sorted_staff_note_times[time_index];
+    let notes = Staff_Notes_At_Time[staff_num][time];
     notes.sort(order_notes);
-    var g = 0;
+    let g = 0;
     while (notes[g].grace) {
-     var grace_note_fingering = "";
+     let grace_note_fingering = "";
      notes[g][field_name] = "";
-     for (var i = 0; i < notes[g].size; i++) {
+     for (let i = 0; i < notes[g].size; i++) {
       fingering = staff_fingerings.shift();
       if (!fingering) {
        console.log(field_name + " MISSING for grace note:");
@@ -34809,14 +34809,14 @@ function AbcDE() {
      }
      g++;
     }
-    var notes_with_pit = get_sorted_synchronous_notes_with_pit(notes);
-    var pits = get_sorted_synchronous_pits(notes_with_pit);
-    var note_fingerings = [];
-    var notes_to_finger = [];
-    var pit_note = null;
-    for (i = 0; i < pits.length; i++) {
-     var pit = pits[i];
-     for (var j = 0; j < notes_with_pit[pit].length; j++) {
+    let notes_with_pit = get_sorted_synchronous_notes_with_pit(notes);
+    let pits = get_sorted_synchronous_pits(notes_with_pit);
+    let note_fingerings = [];
+    let notes_to_finger = [];
+    let pit_note = null;
+    for (let i = 0; i < pits.length; i++) {
+     let pit = pits[i];
+     for (let j = 0; j < notes_with_pit[pit].length; j++) {
       pit_note = notes_with_pit[pit][j];
       if (pit_note.grace) {
        continue;
@@ -34825,7 +34825,7 @@ function AbcDE() {
        note_fingerings.push("");
        notes_to_finger.push(pit_note);
       }
-      var note_index = index_of_object(notes_to_finger, pit_note);
+      let note_index = index_of_object(notes_to_finger, pit_note);
       fingering = staff_fingerings.shift();
       if (!fingering) {
        console.log(field_name + " MISSING for note:");
@@ -34836,7 +34836,7 @@ function AbcDE() {
       note_fingerings[note_index] += fingering;
      }
     }
-    for (i = 0; i < note_fingerings.length; i++) {
+    for (let i = 0; i < note_fingerings.length; i++) {
      fingering = note_fingerings[i];
      console.log("FingerING " + fingering);
      pit_note = notes_to_finger[i];
@@ -34850,17 +34850,17 @@ function AbcDE() {
   }
  }
  function set_preferred_sequence(autosaved, preset) {
-  var finger_str = preset.sequence;
-  var preset_finger_str = preset.sequence;
-  var presetting = true;
-  var setting = get_setting("preset_preference");
+  let finger_str = preset.sequence;
+  let preset_finger_str = preset.sequence;
+  let presetting = true;
+  let setting = get_setting("preset_preference");
   if (!setting || setting === "none") {
    presetting = false;
    finger_str = "";
   }
-  var should_restore = false;
+  let should_restore = false;
   if (autosaved && autosaved.sequence && autosaved.sequence !== finger_str) {
-   var restore_setting = get_setting("restore");
+   let restore_setting = get_setting("restore");
    if (restore_setting === "always") {
     should_restore = true;
    } else if (restore_setting === "never") {
@@ -34884,19 +34884,19 @@ function AbcDE() {
   }, AUTOSAVE_MS);
  }
  function preset_sequence() {
-  var sequence_number = get_current_sequence_number();
-  var autosaved = get_autosaved_sequence(sequence_number);
-  var preset = get_preset_sequence(sequence_number);
+  let sequence_number = get_current_sequence_number();
+  let autosaved = get_autosaved_sequence(sequence_number);
+  let preset = get_preset_sequence(sequence_number);
   set_preferred_sequence(autosaved, preset);
   preset_blank_metadata();
  }
  function copy_fingerings(trigger) {
-  var fingerings = current_collection();
+  let fingerings = current_collection();
   return fingerings;
  }
  function paste_fingerings() {
-  var prompt = "Please enter a fingering string for the current piece.";
-  var new_fingerings = window.prompt(prompt, "");
+  let prompt = "Please enter a fingering string for the current piece.";
+  let new_fingerings = window.prompt(prompt, "");
   if (new_fingerings !== null) {
    set_sequence(new_fingerings, "fingering");
    rerender();
@@ -34906,10 +34906,10 @@ function AbcDE() {
   if (!Org_Abc_Str) {
    return;
   }
-  var should_restore = confirm("All changes you have made to this fingering sequence will be discarded, " + "and the initial sequence will be restored. Are you sure you want to proceed?");
+  let should_restore = confirm("All changes you have made to this fingering sequence will be discarded, " + "and the initial sequence will be restored. Are you sure you want to proceed?");
   if (should_restore) {
-   var sequence_number = get_current_sequence_number();
-   var preset = get_preset_sequence(sequence_number);
+   let sequence_number = get_current_sequence_number();
+   let preset = get_preset_sequence(sequence_number);
    set_preferred_sequence(undefined, preset);
    rerender();
    Current_Note = Notes_On_Line[0][0][0];
@@ -34920,7 +34920,7 @@ function AbcDE() {
   if (parsimony == null) {
    return tokens;
   }
-  for (var i = 0; i < parsimony.length; i++) {
+  for (let i = 0; i < parsimony.length; i++) {
    if (parsimony[i] instanceof Array) {
     parse_to_abcdf_tokens(parsimony[i], tokens);
    } else if (parsimony[i]) {
@@ -34930,26 +34930,26 @@ function AbcDE() {
   return tokens;
  }
  function parse_to_abcdf(parsimony) {
-  var tokens = parse_to_abcdf_tokens(parsimony, []);
+  let tokens = parse_to_abcdf_tokens(parsimony, []);
   return tokens.join("");
  }
  function get_separated_abcdf_note_tokens(parsimony, staff_num = 0, lined = false) {
-  var tokens = [];
+  let tokens = [];
   if (lined) {
-   for (var line_num = 0; line_num < parsimony[staff_num].length; line_num++) {
-    for (var note_num = 0; note_num < parsimony[staff_num][line_num].length; note_num++) {
-     var parse_part = parsimony[staff_num][line_num][note_num];
+   for (let line_num = 0; line_num < parsimony[staff_num].length; line_num++) {
+    for (let note_num = 0; note_num < parsimony[staff_num][line_num].length; note_num++) {
+     let parse_part = parsimony[staff_num][line_num][note_num];
      if (parse_part instanceof Array) {
-      var token = parse_to_abcdf(parse_part);
+      let token = parse_to_abcdf(parse_part);
       tokens.push(token);
      }
     }
    }
   } else {
-   for (var note_num = 0; note_num < parsimony[staff_num].length; note_num++) {
-    var parse_part = parsimony[staff_num][note_num];
+   for (let note_num = 0; note_num < parsimony[staff_num].length; note_num++) {
+    let parse_part = parsimony[staff_num][note_num];
     if (parse_part instanceof Array) {
-     var token = parse_to_abcdf(parse_part);
+     let token = parse_to_abcdf(parse_part);
      tokens.push(token);
     }
    }
@@ -34961,9 +34961,9 @@ function AbcDE() {
    return [];
   }
   console.log("abcdf string: " + abcdf_str);
-  var parsimony = AbcdfRaw_Parser.parse(abcdf_str);
-  var lined = LINE_RE.exec(line);
-  var tokens = get_separated_abcdf_note_tokens(parsimony, staff_num, lined);
+  let parsimony = AbcdfRaw_Parser.parse(abcdf_str);
+  let lined = LINE_RE.exec(line);
+  let tokens = get_separated_abcdf_note_tokens(parsimony, staff_num, lined);
   tokens = tokens.filter(function(elem) {
    return elem != "&" && elem != "@";
   });
@@ -34973,13 +34973,13 @@ function AbcDE() {
   if (!line) {
    return [];
   }
-  var matches = [];
-  var match;
-  var start_index = 0;
-  var end_index = 0;
+  let matches = [];
+  let match;
+  let start_index = 0;
+  let end_index = 0;
   while ((match = re.exec(line)) != null) {
    end_index = re.lastIndex;
-   var token_str;
+   let token_str;
    if (start_index === end_index) {
     token_str = line.substr(start_index);
    } else {
@@ -34988,9 +34988,9 @@ function AbcDE() {
    matches.push(token_str);
    start_index = re.lastIndex;
   }
-  var remainder = line.substr(start_index);
+  let remainder = line.substr(start_index);
   if (remainder) {
-   var last_match = "";
+   let last_match = "";
    if (matches.length > 0) {
     last_match = matches.pop();
    }
@@ -35000,15 +35000,15 @@ function AbcDE() {
   return matches;
  }
  function show_help() {
-  var help_window = window.open(HELP_URL, "_blank");
+  let help_window = window.open(HELP_URL, "_blank");
   help_window.focus();
  }
  function open_preferences(e) {
   unhandle_keys();
-  var prefs_modal_wrapper = document.getElementById("prefs_modal_wrapper");
-  var prefs_modal_window = document.getElementById("prefs_modal_window");
+  let prefs_modal_wrapper = document.getElementById("prefs_modal_wrapper");
+  let prefs_modal_window = document.getElementById("prefs_modal_window");
   prefs_modal_wrapper.className = "overlay";
-  var overflow = prefs_modal_window.offsetHeight - document.documentElement.clientHeight;
+  let overflow = prefs_modal_window.offsetHeight - document.documentElement.clientHeight;
   if (overflow > 0) {
    prefs_modal_window.style.maxHeight = parseInt(window.getComputedStyle(prefs_modal_window).height) - overflow + "px";
   }
@@ -35018,10 +35018,10 @@ function AbcDE() {
  }
  function open_metadata(e) {
   unhandle_keys();
-  var metadata_modal_wrapper = document.getElementById("metadata_modal_wrapper");
-  var metadata_modal_window = document.getElementById("metadata_modal_window");
+  let metadata_modal_wrapper = document.getElementById("metadata_modal_wrapper");
+  let metadata_modal_window = document.getElementById("metadata_modal_window");
   metadata_modal_wrapper.className = "overlay";
-  var overflow = metadata_modal_window.offsetHeight - document.documentElement.clientHeight;
+  let overflow = metadata_modal_window.offsetHeight - document.documentElement.clientHeight;
   if (overflow > 0) {
    metadata_modal_window.style.maxHeight = parseInt(window.getComputedStyle(metadata_modal_window).height) - overflow + "px";
   }
@@ -35030,7 +35030,7 @@ function AbcDE() {
   e.preventDefault ? e.preventDefault() : e.returnValue = false;
  }
  function close_metadata(e) {
-  var metadata_modal_wrapper = document.getElementById("metadata_modal_wrapper");
+  let metadata_modal_wrapper = document.getElementById("metadata_modal_wrapper");
   metadata_modal_wrapper.className = "";
   autosave();
   show_keypad();
@@ -35058,7 +35058,7 @@ function AbcDE() {
   store_preference("default_authority");
   store_preference("default_authority_year");
   store_preference("default_transcriber");
-  var prefs_modal_wrapper = document.getElementById("prefs_modal_wrapper");
+  let prefs_modal_wrapper = document.getElementById("prefs_modal_wrapper");
   prefs_modal_wrapper.className = "";
   if (Org_Abc_Str) {
    rerender();
@@ -35069,23 +35069,23 @@ function AbcDE() {
   e.preventDefault ? e.preventDefault() : e.returnValue = false;
  }
  function get_xml_encoding(data) {
-  var head = data.slice(0, 100);
+  let head = data.slice(0, 100);
   if (head.indexOf("<?xml") == -1) {
    return false;
   }
-  var encoding_match = head.match(/encoding="([^"]+)"/);
-  var encoding = "utf-8";
+  let encoding_match = head.match(/encoding="([^"]+)"/);
+  let encoding = "utf-8";
   if (encoding_match && encoding_match.length == 2) {
    encoding = encoding_match[1];
   }
   return encoding;
  }
  function xml2abc(data) {
-  var xml_options = {};
-  var xml_data = $.parseXML(data);
-  var result = vertaal(xml_data, xml_options);
-  var abc = result[0];
-  var error_txt = result[1];
+  let xml_options = {};
+  let xml_data = $.parseXML(data);
+  let result = vertaal(xml_data, xml_options);
+  let abc = result[0];
+  let error_txt = result[1];
   if (error_txt) {
    console.log("xml2abc ERROR: " + error_txt);
   }
@@ -35095,7 +35095,7 @@ function AbcDE() {
   return abc;
  }
  function create_cors_request(method, url) {
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
    xhr.open(method, url, true);
   } else if (typeof XDomainRequest != "undefined") {
@@ -35107,13 +35107,13 @@ function AbcDE() {
   return xhr;
  }
  function get_extension(file_path) {
-  var name_tokens = file_path.split(".");
+  let name_tokens = file_path.split(".");
   return name_tokens[name_tokens.length - 1];
  }
  function mxl2abc(data) {
-  var content = "";
+  let content = "";
   try {
-   var zip = new JSZip(data);
+   let zip = new JSZip(data);
    $.each(zip.files, function(index, zip_entry) {
     content = zip_entry.asText();
    });
@@ -35121,7 +35121,7 @@ function AbcDE() {
    alert("Could not open compressed MusicXML file: " + e.message);
    return "";
   }
-  var encoding = get_xml_encoding(content);
+  let encoding = get_xml_encoding(content);
   if (encoding !== "UTF-8") {
    alert("Input mxl is not UTF-8 encoded. Cannot open.");
    return "";
@@ -35131,9 +35131,9 @@ function AbcDE() {
   return content;
  }
  function make_cors_request(url) {
-  var extension = get_extension(url);
-  var error_msg = "The server hosting file does not allow access from this domain. " + 'Please download the file outside abcDE and then "Choose file" to work with it.';
-  var xhr = create_cors_request("GET", url);
+  let extension = get_extension(url);
+  let error_msg = "The server hosting file does not allow access from this domain. " + 'Please download the file outside abcDE and then "Choose file" to work with it.';
+  let xhr = create_cors_request("GET", url);
   if (!xhr) {
    alert(error_msg);
    return;
@@ -35143,7 +35143,7 @@ function AbcDE() {
   }
   xhr.onload = function() {
    console.log("File has been retrieved.");
-   var content = "";
+   let content = "";
    if (extension === "mxl") {
     content = mxl2abc(xhr.response);
     if (!content) {
@@ -35151,7 +35151,7 @@ function AbcDE() {
     }
    } else {
     content = xhr.responseText;
-    var xml_encoding = get_xml_encoding(content);
+    let xml_encoding = get_xml_encoding(content);
     if (xml_encoding) {
      if (!/^utf/i.test(xml_encoding)) {
       alert("Input xml is not UTF-8 encoded. Cannot open.");
@@ -35173,27 +35173,27 @@ function AbcDE() {
   xhr.send();
  }
  function import_url() {
-  var prompt = "Please enter URL to open.";
-  var default_url = CORPORA_URL + "/clementi/11.abc";
+  let prompt = "Please enter URL to open.";
+  let default_url = CORPORA_URL + "/clementi/11.abc";
   if (Previous_Url) {
    default_url = Previous_Url;
   } else {
-   var preferred_url = get_setting("default_url");
+   let preferred_url = get_setting("default_url");
    if (preferred_url) {
     default_url = preferred_url;
    }
   }
-  var url = window.prompt(prompt, default_url);
+  let url = window.prompt(prompt, default_url);
   if (url) {
    make_cors_request(url);
   }
  }
  function import_mxl_file(file) {
-  var reader = new FileReader();
-  var content = "";
+  let reader = new FileReader();
+  let content = "";
   reader.onload = function(e) {
    try {
-    var zip = new JSZip(e.target.result);
+    let zip = new JSZip(e.target.result);
     $.each(zip.files, function(index, zip_entry) {
      content = zip_entry.asText();
     });
@@ -35201,7 +35201,7 @@ function AbcDE() {
     alert("Could not open compressed MusicXML file: " + e.message);
     return;
    }
-   var encoding = get_xml_encoding(content);
+   let encoding = get_xml_encoding(content);
    if (encoding !== "UTF-8") {
     alert("Input xml is not UTF-8 encoded. Cannot open.");
     return;
@@ -35214,30 +35214,30 @@ function AbcDE() {
   reader.readAsArrayBuffer(file);
  }
  function import_file() {
-  var file_control = document.getElementById("file_input");
-  var files = file_control.files;
+  let file_control = document.getElementById("file_input");
+  let files = file_control.files;
   if (!files.length) {
    alert("Please select a valid abc file.");
    return;
   }
-  var file = files[0];
-  var extension = get_extension(file.name);
+  let file = files[0];
+  let extension = get_extension(file.name);
   if (extension === "mxl") {
    import_mxl_file(file);
    return;
   }
-  var is_xml = false;
-  var encoding_reader = new FileReader();
+  let is_xml = false;
+  let encoding_reader = new FileReader();
   encoding_reader.onload = function(e) {
-   var encoding = get_xml_encoding(encoding_reader.result);
-   var reader = new FileReader();
+   let encoding = get_xml_encoding(encoding_reader.result);
+   let reader = new FileReader();
    if (encoding) {
     is_xml = true;
    } else {
     encoding = "UTF-8";
    }
    reader.onload = function(e) {
-    var content = "";
+    let content = "";
     if (is_xml) {
      content = xml2abc(reader.result);
     } else {
@@ -35258,16 +35258,16 @@ function AbcDE() {
   }
  }
  function display_kids(container, how) {
-  var kids = container.children;
-  for (var i = 0; i < kids.length; i++) {
+  let kids = container.children;
+  for (let i = 0; i < kids.length; i++) {
    kids[i].style.display = how;
   }
  }
  function show_keypad() {
-  var keypad_div = document.getElementById(KEYPAD_DIV_ID);
-  var number_div = document.getElementById("number_div");
-  var symbol_div = document.getElementById("symbol_div");
-  var setting = get_setting("keypad");
+  let keypad_div = document.getElementById(KEYPAD_DIV_ID);
+  let number_div = document.getElementById("number_div");
+  let symbol_div = document.getElementById("symbol_div");
+  let setting = get_setting("keypad");
   if (setting === "show") {
    keypad_div.style.display = "block";
    number_div.style.display = "block";
@@ -35277,17 +35277,17 @@ function AbcDE() {
   } else {
    display_kids(symbol_div, "none");
    display_kids(number_div, "none");
-   var qualtrics = get_setting("qualtrics");
-   var submit_button_id = get_setting("submit_button_id");
+   let qualtrics = get_setting("qualtrics");
+   let submit_button_id = get_setting("submit_button_id");
    if (qualtrics) {
-    var next_button = document.getElementById("q_next");
+    let next_button = document.getElementById("q_next");
     next_button.style.display = "inline";
-    var back_button = document.getElementById("q_back");
+    let back_button = document.getElementById("q_back");
     if (back_button) {
      back_button.style.display = "inline";
     }
    } else if (submit_button_id) {
-    var button = document.getElementById(submit_button_id);
+    let button = document.getElementById(submit_button_id);
     button.style.display = "inline";
    } else {
     number_div.style.display = "block";
@@ -35297,9 +35297,9 @@ function AbcDE() {
   }
  }
  function digits_only(event) {
-  var key = event.keyCode || event.which;
+  let key = event.keyCode || event.which;
   key = String.fromCharCode(key);
-  var regex = /[0-9]/;
+  let regex = /[0-9]/;
   if (!regex.test(key)) {
    event.returnValue = false;
    if (event.preventDefault) {
@@ -35308,7 +35308,7 @@ function AbcDE() {
   }
  }
  function insert_text_field(container, id, prompt, html_class, validator, add_break) {
-  var field = document.createElement("input");
+  let field = document.createElement("input");
   field.type = "text";
   field.class = html_class;
   field.id = id;
@@ -35318,7 +35318,7 @@ function AbcDE() {
   if (html_class === "year") {
    field.size = "4";
   }
-  var label = document.createElement("label");
+  let label = document.createElement("label");
   label.htmlFor = id;
   label.appendChild(document.createTextNode(prompt));
   container.appendChild(label);
@@ -35328,30 +35328,30 @@ function AbcDE() {
   }
  }
  function insert_text_area(container, id, prompt, html_class, row_count, column_count) {
-  var field = document.createElement("textarea");
+  let field = document.createElement("textarea");
   field.class = html_class;
   field.id = id;
   field.rows = row_count;
   field.cols = column_count;
-  var label = document.createElement("label");
+  let label = document.createElement("label");
   label.htmlFor = id;
   label.appendChild(document.createTextNode(prompt));
   container.appendChild(label);
   container.appendChild(field);
  }
  function insert_label(container, text, html_class) {
-  var label = document.createElement("label");
+  let label = document.createElement("label");
   label.class = html_class;
-  var text_node = document.createTextNode(text);
+  let text_node = document.createTextNode(text);
   label.appendChild(text_node);
   container.appendChild(label);
  }
  function insert_radio_buttons(container, prompt, name, ids, labels, selected, add_break) {
-  var radio_div = document.createElement("div");
+  let radio_div = document.createElement("div");
   radio_div.class = "radio_div";
   insert_label(container, prompt, "prompt");
-  for (var i = 0; i < ids.length; i++) {
-   var radio = document.createElement("input");
+  for (let i = 0; i < ids.length; i++) {
+   let radio = document.createElement("input");
    radio.type = "radio";
    radio.id = ids[i];
    if (radio.id === selected) {
@@ -35360,7 +35360,7 @@ function AbcDE() {
    radio.name = name;
    radio_div.appendChild(radio);
    insert_label(radio_div, labels[i], "radio_label");
-   var space = document.createElement("span");
+   let space = document.createElement("span");
    space.innerHTML = "&nbsp;&nbsp";
    radio_div.appendChild(space);
   }
@@ -35371,10 +35371,10 @@ function AbcDE() {
   return radio_div;
  }
  function insert_spinner(container, prompt, id, min, max, size, value, add_break) {
-  var div = document.createElement("div");
+  let div = document.createElement("div");
   div.class = "spinner_div";
   insert_label(div, prompt, "prompt");
-  var spinner = document.createElement("input");
+  let spinner = document.createElement("input");
   spinner.id = id;
   spinner.min = min;
   spinner.max = max;
@@ -35389,16 +35389,16 @@ function AbcDE() {
   return div;
  }
  function insert_metadata_fields() {
-  var metadata_holder = document.getElementById(METADATA_DIV_ID);
-  var modal_wrapper = document.createElement("div");
+  let metadata_holder = document.getElementById(METADATA_DIV_ID);
+  let modal_wrapper = document.createElement("div");
   modal_wrapper.id = "metadata_modal_wrapper";
   metadata_holder.appendChild(modal_wrapper);
-  var modal_window = document.createElement("div");
+  let modal_window = document.createElement("div");
   modal_window.id = "metadata_modal_window";
   modal_wrapper.appendChild(modal_window);
-  var close_div = document.createElement("div");
+  let close_div = document.createElement("div");
   close_div.style.textAlign = "right";
-  var closer = document.createElement("a");
+  let closer = document.createElement("a");
   closer.id = "metadata_modal_close";
   closer.href = "#";
   closer.innerHTML = "Close <b>X</b>";
@@ -35411,28 +35411,28 @@ function AbcDE() {
   insert_text_area(modal_window, "comments", "Comments", "comments", 10, 50);
  }
  function insert_preference_fields() {
-  var prefs_holder = document.getElementById(PREFS_DIV_ID);
-  var prefs_modal_wrapper = document.createElement("div");
+  let prefs_holder = document.getElementById(PREFS_DIV_ID);
+  let prefs_modal_wrapper = document.createElement("div");
   prefs_modal_wrapper.id = "prefs_modal_wrapper";
   prefs_holder.appendChild(prefs_modal_wrapper);
-  var prefs_modal_window = document.createElement("div");
+  let prefs_modal_window = document.createElement("div");
   prefs_modal_window.id = "prefs_modal_window";
   prefs_modal_wrapper.appendChild(prefs_modal_window);
-  var close_div = document.createElement("div");
+  let close_div = document.createElement("div");
   close_div.style.textAlign = "right";
-  var closer = document.createElement("a");
+  let closer = document.createElement("a");
   closer.id = "prefs_modal_close";
   closer.href = "#";
   closer.innerHTML = "Close <b>X</b>";
   close_div.appendChild(closer);
   closer.addEventListener("click", close_preferences, false);
   prefs_modal_window.appendChild(close_div);
-  var h = document.createElement("h3");
+  let h = document.createElement("h3");
   h.innerText = "Preferences";
   prefs_modal_window.appendChild(h);
-  var radio_name = "restore";
-  var button_ids = [ "always", "never", "ask" ];
-  var button_labels = [ "Always", "Never", "Ask" ];
+  let radio_name = "restore";
+  let button_ids = [ "always", "never", "ask" ];
+  let button_labels = [ "Always", "Never", "Ask" ];
   if (!Options || !Options[radio_name]) {
    insert_radio_buttons(prefs_modal_window, "Restore Data", radio_name, button_ids, button_labels, "ask", true);
   }
@@ -35451,8 +35451,8 @@ function AbcDE() {
   radio_name = "keypad";
   button_ids = [ "show", "hide" ];
   button_labels = [ "Show", "Hide" ];
-  var default_keypad_setting = "hide";
-  var has_touch = "ontouchstart" in window;
+  let default_keypad_setting = "hide";
+  let has_touch = "ontouchstart" in window;
   if (has_touch) {
    default_keypad_setting = "show";
   }
@@ -35463,7 +35463,7 @@ function AbcDE() {
   insert_text_field(prefs_modal_window, "default_transcriber", "Transcriber Name", "name", undefined, true);
  }
  function insert_keypad_button(container, button_id, value) {
-  var button = document.createElement("input");
+  let button = document.createElement("input");
   button.type = "button";
   button.class = "keypad-button";
   button.id = button_id;
@@ -35474,7 +35474,7 @@ function AbcDE() {
   container.appendChild(button);
  }
  function tear_down_ui() {
-  var abcde_div = document.getElementById(ABCDE_DIV_ID);
+  let abcde_div = document.getElementById(ABCDE_DIV_ID);
   while (abcde_div.firstChild) {
    abcde_div.removeChild(abcde_div.firstChild);
   }
@@ -35485,13 +35485,13 @@ function AbcDE() {
   }
  }
  function handle_qualtrics_click(button_id) {
-  var qualtrics = get_setting("qualtrics");
-  var x_val = getXValue(Org_Abc_Str);
-  var abcDF_store = "abcDF_" + x_val;
-  var abcD_store = "abcD_" + x_val;
-  var fingerings = getEnteredCollection();
+  let qualtrics = get_setting("qualtrics");
+  let x_val = getXValue(Org_Abc_Str);
+  let abcDF_store = "abcDF_" + x_val;
+  let abcD_store = "abcD_" + x_val;
+  let fingerings = getEnteredCollection();
   Qualtrics.SurveyEngine.setEmbeddedData(abcDF_store, fingerings);
-  var abcD = getEnteredAbcD();
+  let abcD = getEnteredAbcD();
   Qualtrics.SurveyEngine.setEmbeddedData(abcD_store, abcD);
   autosave();
   if (button_id === "q_next") {
@@ -35509,7 +35509,7 @@ function AbcDE() {
   }
  }
  function insert_qualtrics_button(container, button_id, value) {
-  var button = document.createElement("input");
+  let button = document.createElement("input");
   button.type = "button";
   button.class = "keypad-button";
   button.id = button_id;
@@ -35520,7 +35520,7 @@ function AbcDE() {
   container.appendChild(button);
  }
  function insert_submit_button(container, button_id, value) {
-  var button = document.createElement("input");
+  let button = document.createElement("input");
   button.type = "button";
   button.class = "keypad-button";
   button.id = button_id;
@@ -35528,7 +35528,7 @@ function AbcDE() {
   container.appendChild(button);
  }
  function insert_keypad_image_button(container, button_id, file_name, alt) {
-  var button = document.createElement("input");
+  let button = document.createElement("input");
   button.id = button_id;
   button.class = "keypad_button";
   button.type = "image";
@@ -35540,10 +35540,10 @@ function AbcDE() {
   container.appendChild(button);
  }
  function insert_keypad() {
-  var keypad_div = document.getElementById(KEYPAD_DIV_ID);
-  var number_div = document.createElement("number_div");
+  let keypad_div = document.getElementById(KEYPAD_DIV_ID);
+  let number_div = document.createElement("number_div");
   number_div.id = "number_div";
-  var symbol_div = document.createElement("symbol_div");
+  let symbol_div = document.createElement("symbol_div");
   symbol_div.id = "symbol_div";
   keypad_div.appendChild(symbol_div);
   keypad_div.appendChild(document.createElement("br"));
@@ -35558,16 +35558,16 @@ function AbcDE() {
   insert_keypad_button(number_div, "toggle", "T");
   insert_keypad_image_button(number_div, "previous", "arrow-circle-left.svg", "<-");
   insert_keypad_image_button(number_div, "next", "arrow-circle-right.svg", "->");
-  var using_qualtrics = get_setting("qualtrics");
+  let using_qualtrics = get_setting("qualtrics");
   if (using_qualtrics) {
    if (get_setting("qualtrics_back")) {
     insert_qualtrics_button(number_div, "q_back", "BACK");
    }
    insert_qualtrics_button(number_div, "q_next", "NEXT");
   }
-  var submit_button_id = get_setting("submit_button_id");
+  let submit_button_id = get_setting("submit_button_id");
   if (submit_button_id) {
-   var submit_button_label = get_setting("submit_button_label");
+   let submit_button_label = get_setting("submit_button_label");
    if (!submit_button_label) {
     submit_button_label = "NEXT";
    }
@@ -35589,23 +35589,23 @@ function AbcDE() {
   }
   insert_preference_fields();
   insert_metadata_fields();
-  var save_button = IMAGE_DIR + "/download_36_x4.png";
-  var button_width = "36";
-  var control_div = document.getElementById(CONTROLS_DIV_ID);
-  var table = document.createElement("table");
-  var tbody = document.createElement("tbody");
-  var row = document.createElement("tr");
+  let save_button = IMAGE_DIR + "/download_36_x4.png";
+  let button_width = "36";
+  let control_div = document.getElementById(CONTROLS_DIV_ID);
+  let table = document.createElement("table");
+  let tbody = document.createElement("tbody");
+  let row = document.createElement("tr");
   control_div.appendChild(table);
   table.appendChild(tbody);
   table.style.backgroundColor = "LightGray";
   table.align = "center";
   tbody.appendChild(row);
-  var downloadify = document.createElement("p");
+  let downloadify = document.createElement("p");
   downloadify.setAttribute("id", "downloadify");
-  var cell = document.createElement("td");
+  let cell = document.createElement("td");
   cell.appendChild(downloadify);
   row.appendChild(cell);
-  var sequence_spinner = document.createElement("input");
+  let sequence_spinner = document.createElement("input");
   sequence_spinner.id = "sequence_spinner";
   sequence_spinner.min = "1";
   sequence_spinner.max = "999";
@@ -35624,7 +35624,7 @@ function AbcDE() {
   if (Options.preset) {
    sequence_spinner.value = Options.preset;
   }
-  var view_button = document.createElement("input");
+  let view_button = document.createElement("input");
   view_button.type = "image";
   view_button.src = IMAGE_DIR + "/eye.svg";
   view_button.width = button_width;
@@ -35636,26 +35636,26 @@ function AbcDE() {
   if (Options.hide_view) {
    cell.style.display = "none";
   }
-  var print_button = document.createElement("input");
+  let print_button = document.createElement("input");
   print_button.type = "image";
   print_button.src = IMAGE_DIR + "/print.svg";
   print_button.width = button_width;
   print_button.alt = "Print...";
   print_button.onclick = print_score;
-  var cell = document.createElement("td");
+  cell = document.createElement("td");
   cell.appendChild(print_button);
   row.appendChild(cell);
   if (Options.hide_print) {
    cell.style.display = "none";
   }
   cell = document.createElement("td");
-  var checkbox = document.createElement("input");
+  let checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.value = "annotated";
   checkbox.checked = Persist_Annotated;
   checkbox.id = "view_annotated";
   checkbox.onclick = toggle_persistence;
-  var label = document.createElement("label");
+  let label = document.createElement("label");
   label.htmlFor = "view_annotated";
   label.appendChild(document.createTextNode("Annotated"));
   cell.appendChild(checkbox);
@@ -35667,7 +35667,7 @@ function AbcDE() {
   if (Options.hide_annotated) {
    cell.style.display = "none";
   }
-  var reset_button = document.createElement("input");
+  let reset_button = document.createElement("input");
   reset_button.type = "image";
   reset_button.src = IMAGE_DIR + "/reload.svg";
   reset_button.width = button_width;
@@ -35679,7 +35679,7 @@ function AbcDE() {
   if (Options.hide_reset) {
    cell.style.display = "none";
   }
-  var copy_button = document.createElement("input");
+  let copy_button = document.createElement("input");
   copy_button.id = "copy_fingerings_button";
   copy_button.type = "image";
   copy_button.src = IMAGE_DIR + "/clipboard.svg";
@@ -35695,7 +35695,7 @@ function AbcDE() {
     text: copy_fingerings
    });
   }
-  var paste_button = document.createElement("input");
+  let paste_button = document.createElement("input");
   paste_button.type = "image";
   paste_button.src = IMAGE_DIR + "/paperclip.svg";
   paste_button.width = button_width;
@@ -35707,7 +35707,7 @@ function AbcDE() {
   if (Options.hide_paste) {
    paste_button.style.display = "none";
   }
-  var url_button = document.createElement("input");
+  let url_button = document.createElement("input");
   url_button.type = "image";
   url_button.src = IMAGE_DIR + "/globe.svg";
   url_button.width = button_width;
@@ -35719,7 +35719,7 @@ function AbcDE() {
   if (!Options.url_input) {
    url_button.style.display = "none";
   }
-  var file_input = document.createElement("input");
+  let file_input = document.createElement("input");
   file_input.setAttribute("type", "file");
   file_input.setAttribute("accept", "text/vnd.abc");
   file_input.onchange = import_file;
@@ -35730,7 +35730,7 @@ function AbcDE() {
   if (!Options.file_input) {
    file_input.style.display = "none";
   }
-  var metadata_button = document.createElement("input");
+  let metadata_button = document.createElement("input");
   metadata_button.type = "image";
   metadata_button.src = IMAGE_DIR + "/tags.svg";
   metadata_button.alt = "Metadata...";
@@ -35742,7 +35742,7 @@ function AbcDE() {
   if (Options.hide_metadata) {
    metadata_button.style.display = "none";
   }
-  var zoom_out_button = document.createElement("input");
+  let zoom_out_button = document.createElement("input");
   zoom_out_button.type = "image";
   zoom_out_button.src = IMAGE_DIR + "/zoom-out.svg";
   zoom_out_button.alt = "Zoom In";
@@ -35751,7 +35751,7 @@ function AbcDE() {
   cell = document.createElement("td");
   cell.appendChild(zoom_out_button);
   row.appendChild(cell);
-  var zoom_in_button = document.createElement("input");
+  let zoom_in_button = document.createElement("input");
   zoom_in_button.type = "image";
   zoom_in_button.src = IMAGE_DIR + "/zoom-in.svg";
   zoom_in_button.alt = "Zoom In";
@@ -35760,7 +35760,7 @@ function AbcDE() {
   cell = document.createElement("td");
   cell.appendChild(zoom_in_button);
   row.appendChild(cell);
-  var prefs_button = document.createElement("input");
+  let prefs_button = document.createElement("input");
   prefs_button.type = "image";
   prefs_button.src = IMAGE_DIR + "/cog.svg";
   prefs_button.alt = "Preferences...";
@@ -35772,7 +35772,7 @@ function AbcDE() {
   if (Options.hide_prefs) {
    prefs_button.style.display = "none";
   }
-  var help_button = document.createElement("input");
+  let help_button = document.createElement("input");
   help_button.type = "image";
   help_button.src = IMAGE_DIR + "/info.svg";
   help_button.alt = "Help";
@@ -35809,8 +35809,8 @@ function AbcDE() {
   console.log(tag + " Line: " + note.line + " Start: " + note.start + " Time: " + note.time + " String: " + note.string + " Size: " + note.size + " Pitch: " + note.pitches.join(",") + " Voice: " + note.voice + " Staff: " + note.staff + " Grace: " + note.grace);
  }
  function purge_redo_stack() {
-  for (var i = 0; i < Notes.length; i++) {
-   var note = Notes[i];
+  for (let i = 0; i < Notes.length; i++) {
+   let note = Notes[i];
    note.undone_fingerings = [];
   }
   Redo = [];
@@ -35836,7 +35836,7 @@ function AbcDE() {
   this.preset_phrase_break = "";
   if (music_types[elem.type] === "note") {
    this.size = elem.notes.length;
-   for (var i = 0; i < this.size; i++) {
+   for (let i = 0; i < this.size; i++) {
     this.pitches.push(elem.notes[i].pit);
    }
    this.pitches.sort(function(a, b) {
@@ -35848,7 +35848,7 @@ function AbcDE() {
    this.grace = true;
    this.start = elem.extra.istart;
    this.size = 1;
-   var last_note = elem.extra;
+   let last_note = elem.extra;
    if (!last_note.notes) {
     alert("Who turned off the notes?!");
     return {};
@@ -35878,14 +35878,14 @@ function AbcDE() {
   this.locked = false;
   this.init = function() {
    this.fingering = "";
-   for (var i = 0; i < this.size; i++) {
+   for (let i = 0; i < this.size; i++) {
     this.fingering += "x";
    }
    this.phrase_break = "";
   };
   this.preset_init = function() {
    this.preset_fingering = "";
-   for (var i = 0; i < this.size; i++) {
+   for (let i = 0; i < this.size; i++) {
     this.preset_fingering += "x";
    }
    this.preset_phrase_break = "";
@@ -35903,7 +35903,7 @@ function AbcDE() {
    if (!fingering_str) {
     this.init();
    } else {
-    var match = PHRASE_RE.exec(fingering_str);
+    let match = PHRASE_RE.exec(fingering_str);
     if (match) {
      this.phrase_break = match[1];
      this.fingering = fingering_str.replace(PHRASE_RE, "");
@@ -35922,7 +35922,7 @@ function AbcDE() {
       this.locked = true;
      }
     }
-    var match = PHRASE_RE.exec(fingering_str);
+    let match = PHRASE_RE.exec(fingering_str);
     if (match) {
      this.preset_phrase_break = match[1];
      this.preset_fingering = fingering_str.replace(PHRASE_RE, "");
@@ -35932,12 +35932,12 @@ function AbcDE() {
    }
   };
   this.get_pitch_fingering = function(leaf_node) {
-   var current_hand = get_current_hand(this);
+   let current_hand = get_current_hand(this);
    if (!leaf_node.fingering.strike) {
     return "x";
    }
-   var hand = leaf_node.fingering.strike.hand || current_hand;
-   var str = hand + leaf_node.fingering.strike.digit;
+   let hand = leaf_node.fingering.strike.hand || current_hand;
+   let str = hand + leaf_node.fingering.strike.digit;
    if (leaf_node.fingering.release) {
     hand = leaf_node.fingering.release.hand || current_hand;
     str += "-" + hand + leaf_node.fingering.release.digit;
@@ -35945,10 +35945,10 @@ function AbcDE() {
    return str;
   };
   this.get_fingering_from_score_fingering = function(score_fingering) {
-   var str = "";
-   var elements = [];
-   var element_fingering;
-   var i;
+   let str = "";
+   let elements = [];
+   let element_fingering;
+   let i;
    if (score_fingering.first.ornaments) {
     elements = score_fingering.first.ornaments;
     str += "(";
@@ -35975,11 +35975,11 @@ function AbcDE() {
   };
   this.update_from_score_fingerings = function(new_score_fingerings) {
    this.init();
-   var new_fingering = "";
-   var finger_count = 0;
+   let new_fingering = "";
+   let finger_count = 0;
    while (finger_count < this.size) {
-    var score_fingering = new_score_fingerings.shift();
-    var abcdf = this.get_fingering_from_score_fingering(score_fingering);
+    let score_fingering = new_score_fingerings.shift();
+    let abcdf = this.get_fingering_from_score_fingering(score_fingering);
     if (score_fingering.segmenter) {
      this.phrase_break = score_fingering.segmenter || "";
     }
@@ -36054,11 +36054,11 @@ function AbcDE() {
   return this;
  }
  function get_score_width() {
-  var width_in_inches = 8.5;
+  let width_in_inches = 8.5;
   if (Magnification !== 1) {
    width_in_inches *= Magnification;
   }
-  var width_str = 'width="' + width_in_inches + 'in"';
+  let width_str = 'width="' + width_in_inches + 'in"';
   return width_str;
  }
  function User() {
@@ -36066,11 +36066,11 @@ function AbcDE() {
    return "";
   };
   this.errmsg = function(msg, l, c) {
-   var diverr = document.getElementById(ERROR_DIV_ID);
+   let diverr = document.getElementById(ERROR_DIV_ID);
    if (l) diverr.innerHTML += '<b onclick="gotoabc(' + l + "," + c + ')" style="cursor: pointer; display: inline-block">' + msg + "</b><br/>\n"; else diverr.innerHTML += msg + "<br/>\n";
   };
   this.img_out = function(str) {
-   var re = /<svg /;
+   let re = /<svg /;
    if (str.match(re)) {
     str = str.replace(re, '<svg id="line_' + Current_Line_Number + '" ');
     Current_Line_Number++;
@@ -36100,14 +36100,14 @@ function AbcDE() {
     return;
    }
    console.log(music_types);
-   for (var v = 0; v < voice_tb.length; v++) {
+   for (let v = 0; v < voice_tb.length; v++) {
     console.log("Voice: " + v);
-    var staff_id = voice_tb[v].st;
+    let staff_id = voice_tb[v].st;
     Voice_Staff[v] = staff_id;
    }
-   var elem = tsfirst;
+   let elem = tsfirst;
    while (elem) {
-    var note = new Note(music_types, elem);
+    let note = new Note(music_types, elem);
     if (note.istart) {
      Notes.push(note);
      Note_At[note.istart] = note;
@@ -36126,7 +36126,7 @@ function AbcDE() {
   this.imagesize = get_score_width();
  }
  function order_notes(a, b) {
-  var time_order = parseInt(a.time) - parseInt(b.time);
+  let time_order = parseInt(a.time) - parseInt(b.time);
   if (time_order !== 0) {
    return time_order;
   }
@@ -36149,8 +36149,8 @@ function AbcDE() {
   return 1;
  }
  function sort_notes_in_finger_order() {
-  var note, line, staff;
-  for (var i = 0; i < Notes.length; i++) {
+  let note, line, staff;
+  for (let i = 0; i < Notes.length; i++) {
    note = Notes[i];
    line = note.line;
    staff = note.staff;
@@ -36163,15 +36163,15 @@ function AbcDE() {
   }
   for (line = 0; line < Notes_On_Line.length; line++) {
    for (staff = 0; staff < 2; staff++) {
-    var staff_line_notes = Notes_On_Line[line][staff];
+    let staff_line_notes = Notes_On_Line[line][staff];
     staff_line_notes.sort(order_notes);
    }
   }
-  var this_note, prior_note;
+  let this_note, prior_note;
   for (staff = 0; staff < 2; staff++) {
    for (line = 0; line < Notes_On_Line.length; line++) {
-    var staff_line_notes = Notes_On_Line[line][staff];
-    for (i = 0; i < staff_line_notes.length; i++) {
+    let staff_line_notes = Notes_On_Line[line][staff];
+    for (let i = 0; i < staff_line_notes.length; i++) {
      this_note = staff_line_notes[i];
      if (!prior_note) {
       prior_note = this_note;
@@ -36187,7 +36187,7 @@ function AbcDE() {
   this_note.next_note = undefined;
  }
  function sort_note_locations() {
-  var key;
+  let key;
   for (key in Note_At) {
    if (Note_At.hasOwnProperty(key)) {
     Sorted_Note_Locations.push(key);
@@ -36198,7 +36198,7 @@ function AbcDE() {
   });
  }
  function get_font_for_hand(hand) {
-  var font = "$1";
+  let font = "$1";
   if (hand.match(RH_RE)) {
    font = "$1";
   }
@@ -36208,36 +36208,36 @@ function AbcDE() {
   return font;
  }
  function get_annotation_position(fingering) {
-  var position = "^";
+  let position = "^";
   if (/^</.test(fingering)) {
    position = "_";
   }
   return position;
  }
  function get_ornament_annotation_str(fingering) {
-  var lh_font = get_font_for_hand("<");
-  var rh_font = get_font_for_hand(">");
-  var cooked_fingering = fingering.replace(/[\)\(]/g, "");
-  var fingers = get_abcdf_note_tokens(cooked_fingering);
-  var annotation_str = "";
-  for (var i = 0; i < fingers.length; i++) {
+  let lh_font = get_font_for_hand("<");
+  let rh_font = get_font_for_hand(">");
+  let cooked_fingering = fingering.replace(/[\)\(]/g, "");
+  let fingers = get_abcdf_note_tokens(cooked_fingering);
+  let annotation_str = "";
+  for (let i = 0; i < fingers.length; i++) {
    fingers[i] = fingers[i].replace(LH_RE, lh_font);
    fingers[i] = fingers[i].replace(RH_RE, rh_font);
    annotation_str += fingers[i];
   }
   annotation_str += '"';
-  var position = get_annotation_position(cooked_fingering);
+  let position = get_annotation_position(cooked_fingering);
   annotation_str = '"' + position + annotation_str;
   return annotation_str;
  }
  function get_annotation_str(fingers, staff, pad_missing_fingers) {
-  var actual_finger_seen = false;
-  var lh_font = get_font_for_hand("<");
-  var rh_font = get_font_for_hand(">");
-  var annotations = [];
-  for (var i = 0; i < fingers.length; i++) {
-   var annotation = "";
-   var finger = "x";
+  let actual_finger_seen = false;
+  let lh_font = get_font_for_hand("<");
+  let rh_font = get_font_for_hand(">");
+  let annotations = [];
+  for (let i = 0; i < fingers.length; i++) {
+   let annotation = "";
+   let finger = "x";
    if (fingers[i] && fingers[i] !== "x") {
     actual_finger_seen = true;
     finger = fingers[i];
@@ -36249,7 +36249,7 @@ function AbcDE() {
    if (finger.match(/^\(/)) {
     annotation = get_ornament_annotation_str(finger);
    } else {
-    var position = get_annotation_position(finger);
+    let position = get_annotation_position(finger);
     finger = finger.replace(LH_RE, lh_font);
     finger = finger.replace(RH_RE, rh_font);
     annotation = '"' + position + finger + '"';
@@ -36257,25 +36257,25 @@ function AbcDE() {
    annotation = annotation.replace(PHRASE_RE, "");
    annotations.unshift(annotation);
   }
-  var annotation_str = "";
+  let annotation_str = "";
   if (actual_finger_seen) {
    annotation_str = annotations.join("");
   }
   return annotation_str;
  }
  function get_single_note_annotation(note) {
-  var finger_str = note.fingering;
+  let finger_str = note.fingering;
   if (finger_str === "x") {
    return "";
   }
   finger_str = finger_str.replace(SPACE_RE, "");
-  var fingers = get_abcdf_note_tokens(finger_str);
-  var note_annotation = get_annotation_str(fingers, note.staff, false);
+  let fingers = get_abcdf_note_tokens(finger_str);
+  let note_annotation = get_annotation_str(fingers, note.staff, false);
   return note_annotation;
  }
  function get_sorted_synchronous_pits(notes_with_pits) {
-  var pits = [];
-  for (var pit in notes_with_pits) {
+  let pits = [];
+  for (let pit in notes_with_pits) {
    if (notes_with_pits.hasOwnProperty(pit)) {
     pits.push(pit);
    }
@@ -36286,15 +36286,15 @@ function AbcDE() {
   return pits;
  }
  function get_sorted_synchronous_notes_with_pit(synchronous_notes) {
-  var pits = [];
-  var notes_with_pit = {};
-  for (var i = 0; i < synchronous_notes.length; i++) {
-   var test_note = synchronous_notes[i];
+  let pits = [];
+  let notes_with_pit = {};
+  for (let i = 0; i < synchronous_notes.length; i++) {
+   let test_note = synchronous_notes[i];
    if (test_note.grace) {
     continue;
    }
-   for (var j = 0; j < test_note.pitches.length; j++) {
-    var pit = test_note.pitches[j];
+   for (let j = 0; j < test_note.pitches.length; j++) {
+    let pit = test_note.pitches[j];
     pits.push(pit);
     if (!(pit in notes_with_pit)) {
      notes_with_pit[pit] = [];
@@ -36302,23 +36302,23 @@ function AbcDE() {
     notes_with_pit[pit].push(test_note);
    }
   }
-  for (i = 0; i < notes_with_pit.length; i++) {
+  for (let i = 0; i < notes_with_pit.length; i++) {
    notes_with_pit[i].sort(order_notes);
   }
   return notes_with_pit;
  }
  function get_synchronous_fingering_array(synchronous_notes) {
-  var notes_with_pit = get_sorted_synchronous_notes_with_pit(synchronous_notes);
-  var pits = get_sorted_synchronous_pits(notes_with_pit);
-  var ordered_fingers = [];
-  for (var i = 0; i < pits.length; i++) {
-   var pit = pits[i];
-   for (var j = 0; j < notes_with_pit[pit].length; j++) {
-    var pit_note = notes_with_pit[pit][j];
-    var note_finger_str = pit_note.fingering;
-    var fingers = get_abcdf_note_tokens(note_finger_str);
-    for (var k = 0; k < pit_note.pitches.length; k++) {
-     var pn_pit = pit_note.pitches[k];
+  let notes_with_pit = get_sorted_synchronous_notes_with_pit(synchronous_notes);
+  let pits = get_sorted_synchronous_pits(notes_with_pit);
+  let ordered_fingers = [];
+  for (let i = 0; i < pits.length; i++) {
+   let pit = pits[i];
+   for (let j = 0; j < notes_with_pit[pit].length; j++) {
+    let pit_note = notes_with_pit[pit][j];
+    let note_finger_str = pit_note.fingering;
+    let fingers = get_abcdf_note_tokens(note_finger_str);
+    for (let k = 0; k < pit_note.pitches.length; k++) {
+     let pn_pit = pit_note.pitches[k];
      if (pn_pit === parseInt(pit)) {
       if (fingers[k] !== "x") {
        ordered_fingers.push(fingers[k]);
@@ -36332,8 +36332,8 @@ function AbcDE() {
   return ordered_fingers;
  }
  function get_grace_note_count(synchronous_notes) {
-  var count = 0;
-  for (var i = 0; i < synchronous_notes.length; i++) {
+  let count = 0;
+  for (let i = 0; i < synchronous_notes.length; i++) {
    if (synchronous_notes[i].grace) {
     count++;
    }
@@ -36347,15 +36347,15 @@ function AbcDE() {
   if (note.grace) {
    return get_single_note_annotation(note);
   }
-  var synchronous_notes = Staff_Notes_At_Time[note.staff][note.time];
-  var grace_note_count = get_grace_note_count(synchronous_notes);
-  var big_note_count = synchronous_notes.length - grace_note_count;
+  let synchronous_notes = Staff_Notes_At_Time[note.staff][note.time];
+  let grace_note_count = get_grace_note_count(synchronous_notes);
+  let big_note_count = synchronous_notes.length - grace_note_count;
   if (big_note_count < 2) {
    return get_single_note_annotation(note);
   }
   synchronous_notes.sort(order_notes);
-  var i = 0;
-  var lowest_note = synchronous_notes[0];
+  let i = 0;
+  let lowest_note = synchronous_notes[0];
   while (lowest_note.grace) {
    i++;
    lowest_note = synchronous_notes[i];
@@ -36363,36 +36363,36 @@ function AbcDE() {
   if (note !== lowest_note) {
    return "";
   }
-  var ordered_fingers = get_synchronous_fingering_array(synchronous_notes);
+  let ordered_fingers = get_synchronous_fingering_array(synchronous_notes);
   return get_annotation_str(ordered_fingers, note.staff, true);
  }
  function get_grace_note_tokens(note) {
-  var tokens = [];
-  var str = note.string;
-  var starts = note.starts;
-  var stops = note.stops;
-  var normalized_starts = [];
-  var normalized_stops = [];
-  for (var i = 0; i < starts.length; i++) {
+  let tokens = [];
+  let str = note.string;
+  let starts = note.starts;
+  let stops = note.stops;
+  let normalized_starts = [];
+  let normalized_stops = [];
+  for (let i = 0; i < starts.length; i++) {
    normalized_starts.push(starts[i] - starts[0]);
    normalized_stops.push(stops[i] - starts[0]);
   }
-  for (var j = 0; j < normalized_starts.length; j++) {
-   var token = str.substring(normalized_starts[j], normalized_stops[j]);
+  for (let j = 0; j < normalized_starts.length; j++) {
+   let token = str.substring(normalized_starts[j], normalized_stops[j]);
    tokens.push(token);
   }
   return tokens;
  }
  function get_fingered_grace_note(note) {
-  var abc_str = "{";
-  var grace_tokens = get_grace_note_tokens(note);
-  var finger_tokens = [];
+  let abc_str = "{";
+  let grace_tokens = get_grace_note_tokens(note);
+  let finger_tokens = [];
   if (note.fingering) {
    finger_tokens = get_abcdf_note_tokens(note.fingering);
   }
-  for (var token_num = 0; token_num < grace_tokens.length; token_num++) {
+  for (let token_num = 0; token_num < grace_tokens.length; token_num++) {
    if (finger_tokens[token_num]) {
-    var naked_finger = finger_tokens[token_num];
+    let naked_finger = finger_tokens[token_num];
     naked_finger = naked_finger.replace(RL_RE, "");
     if (naked_finger !== "x") {
      abc_str += "!" + naked_finger + "!";
@@ -36407,8 +36407,8 @@ function AbcDE() {
   if (note.fingering) {
    return true;
   }
-  var synchronous_notes = Staff_Notes_At_Time[note.staff][note.time];
-  for (var i = 0; i < synchronous_notes.length; i++) {
+  let synchronous_notes = Staff_Notes_At_Time[note.staff][note.time];
+  for (let i = 0; i < synchronous_notes.length; i++) {
    if (synchronous_notes[i].grace) {
     continue;
    }
@@ -36423,11 +36423,11 @@ function AbcDE() {
    return Fonts_Set_In_Source;
   }
   Fonts_Set_In_Source = false;
-  var found_one = false;
-  var found_two = false;
-  var lines = Org_Abc_Str.split("\n");
-  for (var i = 0; i < lines.length; i++) {
-   var line = lines[i];
+  let found_one = false;
+  let found_two = false;
+  let lines = Org_Abc_Str.split("\n");
+  for (let i = 0; i < lines.length; i++) {
+   let line = lines[i];
    if (line.match(/^%%setfont-1/)) {
     found_one = true;
    }
@@ -36446,9 +36446,9 @@ function AbcDE() {
    return Numbering_Set_In_Source;
   }
   Numbering_Set_In_Source = false;
-  var lines = Org_Abc_Str.split("\n");
-  for (var i = 0; i < lines.length; i++) {
-   var line = lines[i];
+  let lines = Org_Abc_Str.split("\n");
+  for (let i = 0; i < lines.length; i++) {
+   let line = lines[i];
    if (line.match(/^%%measurenb\s+\d+/)) {
     Numbering_Set_In_Source = true;
     break;
@@ -36461,9 +36461,9 @@ function AbcDE() {
    return Grace_Notes_In_Source;
   }
   Grace_Notes_In_Source = false;
-  for (var i = 0; i < Sorted_Note_Locations.length; i++) {
-   var sorted_loc = Sorted_Note_Locations[i];
-   var note = Note_At[sorted_loc];
+  for (let i = 0; i < Sorted_Note_Locations.length; i++) {
+   let sorted_loc = Sorted_Note_Locations[i];
+   let note = Note_At[sorted_loc];
    if (note.grace) {
     Grace_Notes_In_Source = true;
     break;
@@ -36472,8 +36472,8 @@ function AbcDE() {
   return Grace_Notes_In_Source;
  }
  function get_abc_phrase_annotation(note) {
-  var abcDF_mark = note.get_phrase_break();
-  var abc_mark = "";
+  let abcDF_mark = note.get_phrase_break();
+  let abc_mark = "";
   switch (abcDF_mark) {
   case ",":
    abc_mark = "!shortphrase!";
@@ -36490,7 +36490,7 @@ function AbcDE() {
   return abc_mark;
  }
  function get_fingered_abc_str() {
-  var fingered_str = "";
+  let fingered_str = "";
   if (!fonts_set_in_source()) {
    fingered_str += SETFONT_COMMANDS + "\n";
    if (grace_notes_in_source()) {
@@ -36498,29 +36498,29 @@ function AbcDE() {
    }
   }
   if (!numbering_set_in_source()) {
-   var numbering_setting = get_setting("measure_number_interval");
+   let numbering_setting = get_setting("measure_number_interval");
    if (numbering_setting) {
     fingered_str += "%%measurenb " + numbering_setting + "\n";
    }
   }
-  var prior_loc = 0;
-  for (var i = 0; i < Sorted_Note_Locations.length; i++) {
-   var sorted_loc = Sorted_Note_Locations[i];
-   var note = Note_At[sorted_loc];
-   var prologue = "";
+  let prior_loc = 0;
+  for (let i = 0; i < Sorted_Note_Locations.length; i++) {
+   let sorted_loc = Sorted_Note_Locations[i];
+   let note = Note_At[sorted_loc];
+   let prologue = "";
    if (note.grace) {
     prologue = Org_Abc_Str.substring(parseInt(prior_loc), parseInt(note.start - 1));
     prior_loc = note.end + 1;
     fingered_str += prologue;
     note.fingered_start = fingered_str.length + note.anno_start - note.start + 1;
     if (note.fingering && note.fingering !== "x") {
-     var finger_tokens = get_abcdf_note_tokens(note.fingering);
+     let finger_tokens = get_abcdf_note_tokens(note.fingering);
      note.fingered_start += 3 * finger_tokens.length;
     }
     fingered_str += get_fingered_grace_note(note);
    } else {
-    var start_loc = parseInt(note.start);
-    var end_loc = parseInt(note.end);
+    let start_loc = parseInt(note.start);
+    let end_loc = parseInt(note.end);
     prologue = Org_Abc_Str.substring(parseInt(prior_loc), start_loc);
     prologue += get_abc_phrase_annotation(note);
     fingered_str += prologue;
@@ -36540,13 +36540,13 @@ function AbcDE() {
   Toggling_Background = true;
   Rerender_Count++;
   console.log("RERENDERING NUMBER " + Rerender_Count);
-  var start_time = new Date().getTime();
-  var target = document.getElementById(TARGET_DIV_ID), diverr = document.getElementById(ERROR_DIV_ID);
-  var user = new User();
+  let start_time = new Date().getTime();
+  let target = document.getElementById(TARGET_DIV_ID), diverr = document.getElementById(ERROR_DIV_ID);
+  let user = new User();
   My_Abc = new Abc(user);
-  var abc_str = get_fingered_abc_str();
-  var end_time = new Date().getTime();
-  var elapsed = end_time - start_time;
+  let abc_str = get_fingered_abc_str();
+  let end_time = new Date().getTime();
+  let elapsed = end_time - start_time;
   console.log("MY LAG: " + elapsed);
   document.getElementById(SOURCE_ID).value = abc_str;
   start_time = new Date().getTime();
@@ -36568,7 +36568,7 @@ function AbcDE() {
    return;
   }
   setTimeout(function() {
-   var elts = document.getElementsByClassName("abcr"), i = elts.length, elt;
+   let elts = document.getElementsByClassName("abcr"), i = elts.length, elt;
    while (--i >= 0) {
     elt = elts[i];
     elt.onclick = function() {
@@ -36597,7 +36597,7 @@ function AbcDE() {
   console.log(String.fromCharCode(key_code) + " --\x3e " + key_code);
   if (key_code === BACKSPACE_CODE) {
    punt_on_input();
-   var current_characters = get_unblanked_current_characters();
+   let current_characters = get_unblanked_current_characters();
    if (current_characters.length > 0 && current_characters[0]) {
     Current_Note.set_fingering("");
     Current_Note.phrase_break = "";
@@ -36633,15 +36633,15 @@ function AbcDE() {
   return true;
  }
  function handle_keydown(e) {
-  var key_code = e.keyCode;
-  var event_handled = handle_key_code(key_code);
+  let key_code = e.keyCode;
+  let event_handled = handle_key_code(key_code);
   if (event_handled) {
    e.preventDefault();
   }
   return event_handled;
  }
  function handle_navigation_input(button_id) {
-  var key_code = TAB_CODE;
+  let key_code = TAB_CODE;
   switch (button_id) {
   case "previous":
    key_code = LEFT_ARROW_CODE;
@@ -36667,7 +36667,7 @@ function AbcDE() {
    key_code = Y_CODE;
    break;
   }
-  var event_handled = handle_key_code(key_code);
+  let event_handled = handle_key_code(key_code);
   if (event_handled) {
    e.preventDefault();
   }
@@ -36704,7 +36704,7 @@ function AbcDE() {
   return "<";
  }
  function finger_notes_from_parse(parse) {
-  var new_score_fingerings = parse.upper.score_fingerings;
+  let new_score_fingerings = parse.upper.score_fingerings;
   while (new_score_fingerings.length > 0) {
    if (Current_Note.update_from_score_fingerings(new_score_fingerings) && Current_Note.next_note) {
     Current_Note = Current_Note.next_note;
@@ -36722,11 +36722,11 @@ function AbcDE() {
   highlight_note(Current_Note);
  }
  function get_unblanked_current_characters() {
-  var unblanked_chars = [];
-  var fingering = Current_Note.get_fingering();
-  var current_fingerings = fingering.split("");
-  for (var i = 0; i < current_fingerings.length; i++) {
-   var char = current_fingerings[i];
+  let unblanked_chars = [];
+  let fingering = Current_Note.get_fingering();
+  let current_fingerings = fingering.split("");
+  for (let i = 0; i < current_fingerings.length; i++) {
+   let char = current_fingerings[i];
    if (char === "x") {
     unblanked_chars.push("");
    } else {
@@ -36736,16 +36736,16 @@ function AbcDE() {
   return unblanked_chars;
  }
  function buffer_current_fingering() {
-  var current_characters = get_unblanked_current_characters();
+  let current_characters = get_unblanked_current_characters();
   while (current_characters.length) {
-   var char = current_characters.pop();
+   let char = current_characters.pop();
    if (char) {
     Input_Buffer.unshift(char);
    }
   }
  }
  function are_within_ornament() {
-  for (var i = 0; i < Trailing_Characters.length; i++) {
+  for (let i = 0; i < Trailing_Characters.length; i++) {
    if (Trailing_Characters[i] === "(") {
     return true;
    }
@@ -36753,7 +36753,7 @@ function AbcDE() {
   return false;
  }
  function flush_buffer() {
-  var modifying_prior_note = false;
+  let modifying_prior_note = false;
   if (Trailing_Characters.length > 0) {
    Array.prototype.unshift.apply(Input_Buffer, Trailing_Characters);
    if (!are_within_ornament()) {
@@ -36761,7 +36761,7 @@ function AbcDE() {
    }
   }
   Trailing_Characters = [];
-  for (var i = Input_Buffer.length - 1; i >= 0; i--) {
+  for (let i = Input_Buffer.length - 1; i >= 0; i--) {
    if (/[\-\/\(]/.test(Input_Buffer[i])) {
     Trailing_Characters.unshift(Input_Buffer.pop());
    } else {
@@ -36775,7 +36775,7 @@ function AbcDE() {
    modifying_prior_note = true;
   }
   if (Open_Ornament) {
-   var current_characters = get_unblanked_current_characters();
+   let current_characters = get_unblanked_current_characters();
    if (current_characters[current_characters.length - 1] === ")") {
     current_characters.pop();
    } else {
@@ -36797,12 +36797,12 @@ function AbcDE() {
     buffer_current_fingering();
    }
   }
-  var input = Input_Buffer.join("");
-  var truncation_count = 0;
-  var try_count = 1;
+  let input = Input_Buffer.join("");
+  let truncation_count = 0;
+  let try_count = 1;
   while (true) {
    try {
-    var parsimony = Abcdf_Parser.parse(input);
+    let parsimony = Abcdf_Parser.parse(input);
     Open_Ornament = false;
     if (try_count === 2) {
      Open_Ornament = true;
@@ -36835,7 +36835,7 @@ function AbcDE() {
  }
  function buffer_character_input(char) {
   clearTimeout(Timer);
-  var character_processed = false;
+  let character_processed = false;
   if (/[\(\)\/\-1-5]/.test(char)) {
    Input_Buffer.push(char);
    character_processed = true;
@@ -36856,7 +36856,7 @@ function AbcDE() {
   return character_processed;
  }
  function handle_keypress(e) {
-  var char = get_char(e).toLowerCase();
+  let char = get_char(e).toLowerCase();
   return buffer_character_input(char);
  }
  function process_options(options) {
@@ -36871,24 +36871,24 @@ function AbcDE() {
   return 6;
  }
  function get_abcd_hdr() {
-  var abcd_hdr = "% abcDidactyl v" + get_abcd_version();
+  let abcd_hdr = "% abcDidactyl v" + get_abcd_version();
   return abcd_hdr;
  }
  function get_abcd_fingering_preamble(fingering_number) {
-  var preamble = "% abcD fingering " + fingering_number + ": ";
+  let preamble = "% abcD fingering " + fingering_number + ": ";
   return preamble;
  }
  function get_abcd(abc_str, pii_okay) {
-  var body_lines = [];
-  var header_lines = [];
+  let body_lines = [];
+  let header_lines = [];
   header_lines.push(get_abcd_hdr());
-  var sequences = get_sequences(abc_str);
-  var lines = abc_str.split("\n");
-  var input_abcd_version = "";
-  var out_of_abcd_block = false;
-  var match;
-  for (var i = 0; i < lines.length; i++) {
-   var line = lines[i];
+  let sequences = get_sequences(abc_str);
+  let lines = abc_str.split("\n");
+  let input_abcd_version = "";
+  let out_of_abcd_block = false;
+  let match;
+  for (let i = 0; i < lines.length; i++) {
+   let line = lines[i];
    if (input_abcd_version) {
     if (out_of_abcd_block) {
      body_lines.push(line);
@@ -36907,17 +36907,17 @@ function AbcDE() {
     }
    }
   }
-  var current_sequence_number = get_current_sequence_number();
-  var current_sequence = get_current_sequence(pii_okay);
+  let current_sequence_number = get_current_sequence_number();
+  let current_sequence = get_current_sequence(pii_okay);
   if (get_setting("output") === "replace") {
-   var sequence_index = current_sequence_number - 1;
+   let sequence_index = current_sequence_number - 1;
    sequences[sequence_index] = current_sequence;
   } else {
    sequences.push(current_sequence);
   }
-  var fingering_line, authority_line, transcriber_line, date_line, comments;
-  for (var i = 0; i < sequences.length; i++) {
-   var sequence_number = i + 1;
+  let fingering_line, authority_line, transcriber_line, date_line, comments;
+  for (let i = 0; i < sequences.length; i++) {
+   let sequence_number = i + 1;
    try {
     Abcdf_Parser.parse(sequences[i].sequence);
    } catch (e) {
@@ -36941,15 +36941,15 @@ function AbcDE() {
     header_lines.push(date_line);
    }
    comments = sequences[i].comments.split("\n");
-   for (var j = 0; j < comments.length; j++) {
+   for (let j = 0; j < comments.length; j++) {
     if (j !== comments.length - 1 || comments[j]) {
      header_lines.push("% " + comments[j]);
     }
    }
   }
   header_lines.push("% abcDidactyl END");
-  var header_str = header_lines.join("\n");
-  var body_str = body_lines.join("\n");
+  let header_str = header_lines.join("\n");
+  let body_str = body_lines.join("\n");
   return header_str + "\n" + body_str;
  }
  function handle_keys() {
@@ -36964,9 +36964,9 @@ function AbcDE() {
   if (Ui_In_Place) {
    return;
   }
-  var abcde_div = document.getElementById(ABCDE_DIV_ID);
+  let abcde_div = document.getElementById(ABCDE_DIV_ID);
   abcde_div.align = "center";
-  var source_div = document.getElementById(SOURCE_ID);
+  let source_div = document.getElementById(SOURCE_ID);
   if (!source_div) {
    source_div = document.createElement("div");
    source_div.id = SOURCE_ID;
@@ -36974,28 +36974,28 @@ function AbcDE() {
    abcde_div.appendChild(source_div);
   }
   source_div.class = SOURCE_CLASS_ID;
-  var prefs_div = document.createElement(PREFS_DIV_ID);
+  let prefs_div = document.createElement(PREFS_DIV_ID);
   prefs_div.id = PREFS_DIV_ID;
   abcde_div.appendChild(prefs_div);
-  var controls_div = document.createElement(CONTROLS_DIV_ID);
+  let controls_div = document.createElement(CONTROLS_DIV_ID);
   controls_div.id = CONTROLS_DIV_ID;
   abcde_div.appendChild(controls_div);
-  var metadata_div = document.createElement(METADATA_DIV_ID);
+  let metadata_div = document.createElement(METADATA_DIV_ID);
   metadata_div.id = METADATA_DIV_ID;
   abcde_div.appendChild(metadata_div);
-  var rendering_div = document.createElement(RENDERING_DIV_ID);
+  let rendering_div = document.createElement(RENDERING_DIV_ID);
   rendering_div.id = RENDERING_DIV_ID;
   abcde_div.appendChild(rendering_div);
-  var target_div = document.createElement(TARGET_DIV_ID);
+  let target_div = document.createElement(TARGET_DIV_ID);
   target_div.id = TARGET_DIV_ID;
   rendering_div.appendChild(target_div);
-  var err_div = document.createElement(ERROR_DIV_ID);
+  let err_div = document.createElement(ERROR_DIV_ID);
   err_div.id = ERROR_DIV_ID;
   rendering_div.appendChild(err_div);
-  for (var i = 0; i < 7; i++) {
+  for (let i = 0; i < 7; i++) {
    rendering_div.appendChild(document.createElement("br"));
   }
-  var keypad_div = document.createElement(KEYPAD_DIV_ID);
+  let keypad_div = document.createElement(KEYPAD_DIV_ID);
   keypad_div.id = KEYPAD_DIV_ID;
   abcde_div.appendChild(keypad_div);
  }
@@ -37006,7 +37006,7 @@ function AbcDE() {
   preset_preferences();
   Org_Abc_Str = document.getElementById(SOURCE_ID).value;
   if (!Org_Abc_Str) {
-   var url = get_setting("default_url");
+   let url = get_setting("default_url");
    if (url) {
     make_cors_request(url);
     Org_Abc_Str = document.getElementById(SOURCE_ID).value;
@@ -37029,7 +37029,7 @@ function AbcDE() {
  function renderUI(options) {
   process_options(options);
   render_ui();
-  var qualtrics = get_setting("qualtrics");
+  let qualtrics = get_setting("qualtrics");
   if (qualtrics) {
    qualtrics.disableNextButton();
    qualtrics.disablePreviousButton();
@@ -37045,12 +37045,12 @@ function AbcDE() {
  }
  function process_note_click(happening) {
   console.log("Processing note click....");
-  var classiness = happening.getAttribute("class");
+  let classiness = happening.getAttribute("class");
   console.log("Click " + classiness);
-  var tokens = classiness.split("_");
-  var note_loc = tokens[1];
+  let tokens = classiness.split("_");
+  let note_loc = tokens[1];
   if (note_loc in Fingered_Note_At) {
-   var clicked_note = Fingered_Note_At[note_loc];
+   let clicked_note = Fingered_Note_At[note_loc];
    print_note("process_note_click", clicked_note);
    highlight_note(clicked_note);
    Current_Note = clicked_note;
@@ -37058,17 +37058,17 @@ function AbcDE() {
  }
  function setEnteredCollection(abcdf) {
   Current_Note = Notes_On_Line[0][0][0];
-  var seq_number = get_current_sequence_number();
-  var seq = get_current_sequence(true);
+  let seq_number = get_current_sequence_number();
+  let seq = get_current_sequence(true);
   seq.sequence = abcdf;
-  var autosaved = get_autosaved_sequence(seq_number);
+  let autosaved = get_autosaved_sequence(seq_number);
   set_preferred_sequence(autosaved, seq);
   rerender();
   highlight_note(Current_Note);
  }
  function undo() {
   punt_on_input();
-  var last_note_changed = Undo.pop();
+  let last_note_changed = Undo.pop();
   if (last_note_changed) {
    last_note_changed.undo_fingering_change();
    Current_Note = last_note_changed;
@@ -37078,7 +37078,7 @@ function AbcDE() {
  }
  function redo() {
   punt_on_input();
-  var last_note_undone = Redo.pop();
+  let last_note_undone = Redo.pop();
   if (last_note_undone) {
    last_note_undone.redo_fingering_change();
    if (last_note_undone.next_note) {
@@ -37092,20 +37092,20 @@ function AbcDE() {
  }
  function collect_manual_input() {
   punt_on_input();
-  var prompt = "";
+  let prompt = "";
   if (Current_Note.preset_fingering) {
    prompt += "Preset (recommended) fingering: " + Current_Note.get_preset_fingering() + "\n\n";
   }
   prompt += "Please enter a fingering string for the selected note.";
-  var initial_fingering = Current_Note.fingering;
-  var new_fingering = window.prompt(prompt, initial_fingering);
+  let initial_fingering = Current_Note.fingering;
+  let new_fingering = window.prompt(prompt, initial_fingering);
   try {
    if (new_fingering === null) {
     return;
    }
    new_fingering = new_fingering.replace(LINE_RE, "");
    new_fingering = new_fingering.replace(SPACE_RE, "");
-   var parsimony = Abcdf_Parser.parse(new_fingering);
+   let parsimony = Abcdf_Parser.parse(new_fingering);
    finger_notes_from_parse(parsimony);
    rerender();
    highlight_note(Current_Note);
@@ -37119,8 +37119,8 @@ function AbcDE() {
   collect_manual_input();
  }
  function render() {
-  var user = new User();
-  var target = document.getElementById(TARGET_DIV_ID), diverr = document.getElementById(ERROR_DIV_ID);
+  let user = new User();
+  let target = document.getElementById(TARGET_DIV_ID), diverr = document.getElementById(ERROR_DIV_ID);
   target.align = "center";
   My_Abc = new Abc(user);
   Abc_Images = "";
@@ -37151,28 +37151,28 @@ function AbcDE() {
   }
  }
  function setcolor(cl, color) {
-  var elts = document.getElementsByClassName(cl), i = elts.length, elt;
+  let elts = document.getElementsByClassName(cl), i = elts.length, elt;
   while (--i >= 0) {
    elt = elts[i];
    elt.setAttribute("color", color);
   }
  }
  function colorsel(color) {
-  var i, n = Colcl.length;
+  let i, n = Colcl.length;
   for (i = 0; i < n; i++) setcolor(Colcl[i], color);
  }
  function is_fully_visible(elem) {
-  var $elem = $(elem);
-  var $window = $(window);
-  var key_pad = document.getElementById(KEYPAD_DIV_ID);
-  var doc_top = $window.scrollTop();
-  var doc_bottom = doc_top + $window.height() - key_pad.offsetHeight;
-  var elem_top = $elem.offset().top;
-  var elem_bottom = elem_top + $elem.height();
+  let $elem = $(elem);
+  let $window = $(window);
+  let key_pad = document.getElementById(KEYPAD_DIV_ID);
+  let doc_top = $window.scrollTop();
+  let doc_bottom = doc_top + $window.height() - key_pad.offsetHeight;
+  let elem_top = $elem.offset().top;
+  let elem_bottom = elem_top + $elem.height();
   return elem_bottom <= doc_bottom && elem_top >= doc_top;
  }
  function highlight_note(note) {
-  var note_start = note.fingered_start;
+  let note_start = note.fingered_start;
   if (Colcl.length != 0) {
    colorsel("black");
    Colcl = [];
@@ -37191,12 +37191,12 @@ function AbcDE() {
     colorsel("red");
    }
   }
-  var line_key = "line_" + note.line;
-  var line_svg = document.getElementById(line_key);
+  let line_key = "line_" + note.line;
+  let line_svg = document.getElementById(line_key);
   if (!is_fully_visible(line_svg)) {
    line_svg.scrollIntoView(false);
-   var key_pad = document.getElementById(KEYPAD_DIV_ID);
-   var y = document.body.scrollTop;
+   let key_pad = document.getElementById(KEYPAD_DIV_ID);
+   let y = document.body.scrollTop;
    window.scrollTo(0, y + key_pad.offsetHeight);
   }
  }
@@ -37204,27 +37204,27 @@ function AbcDE() {
   if (!abc_str) {
    abc_str = Org_Abc_Str;
   }
-  var lines = abc_str.split("\n");
-  for (var i = 0; i < lines.length; i++) {
-   var line = lines[i];
+  let lines = abc_str.split("\n");
+  for (let i = 0; i < lines.length; i++) {
+   let line = lines[i];
    if (/^\s*X:/.test(line)) {
-    var tokens = line.split(":");
+    let tokens = line.split(":");
     if (tokens.length != 2) {
      return "";
     }
-    var val = tokens[1].trim();
+    let val = tokens[1].trim();
     return val;
    }
   }
   return "";
  }
  function get_verbose_note_abcdf(note) {
-  var finger_tokens = [];
+  let finger_tokens = [];
   if (note.fingering) {
    finger_tokens = get_abcdf_note_tokens(note.fingering);
   }
-  var finger_str = note.fingering || "";
-  for (var i = finger_tokens.length; i < note.size; i++) {
+  let finger_str = note.fingering || "";
+  for (let i = finger_tokens.length; i < note.size; i++) {
    finger_str += "x";
   }
   finger_str += note.phrase_break;
@@ -37234,15 +37234,15 @@ function AbcDE() {
   if (note.grace) {
    return get_verbose_note_abcdf(note);
   }
-  var synchronous_notes = Staff_Notes_At_Time[note.staff][note.time];
-  var grace_note_count = get_grace_note_count(synchronous_notes);
-  var big_note_count = synchronous_notes.length - grace_note_count;
+  let synchronous_notes = Staff_Notes_At_Time[note.staff][note.time];
+  let grace_note_count = get_grace_note_count(synchronous_notes);
+  let big_note_count = synchronous_notes.length - grace_note_count;
   if (big_note_count < 2) {
    return get_verbose_note_abcdf(note);
   }
   synchronous_notes.sort(order_notes);
-  var i = 0;
-  var lowest_note = synchronous_notes[0];
+  let i = 0;
+  let lowest_note = synchronous_notes[0];
   while (lowest_note.grace) {
    i++;
    lowest_note = synchronous_notes[i];
@@ -37250,9 +37250,9 @@ function AbcDE() {
   if (note !== lowest_note) {
    return "";
   }
-  var ordered_fingers = get_synchronous_fingering_array(synchronous_notes);
-  var finger_str = "";
-  for (var i = 0; i < ordered_fingers.length; i++) {
+  let ordered_fingers = get_synchronous_fingering_array(synchronous_notes);
+  let finger_str = "";
+  for (let i = 0; i < ordered_fingers.length; i++) {
    if (!ordered_fingers[i]) {
     finger_str += "x";
    } else {
@@ -37262,11 +37262,11 @@ function AbcDE() {
   return finger_str;
  }
  function clean_abcdf(fingering, last_hand) {
-  var clean_tokens = [];
-  var current_hand = last_hand;
-  var tokens = fingering.split("");
-  for (var i = 0; i < tokens.length; i++) {
-   var token = tokens[i];
+  let clean_tokens = [];
+  let current_hand = last_hand;
+  let tokens = fingering.split("");
+  for (let i = 0; i < tokens.length; i++) {
+   let token = tokens[i];
    if (!token.match(RL_RE)) {
     clean_tokens.push(token);
    } else if (token !== current_hand) {
@@ -37277,11 +37277,11 @@ function AbcDE() {
   return clean_tokens.join("");
  }
  function get_abcdf(staff_number, line_number) {
-  var sl_notes = Notes_On_Line[line_number][staff_number];
-  var all_abcdf = "";
-  for (var i = 0; i < sl_notes.length; i++) {
-   var note = sl_notes[i];
-   var abcdf = get_note_abcdf(note);
+  let sl_notes = Notes_On_Line[line_number][staff_number];
+  let all_abcdf = "";
+  for (let i = 0; i < sl_notes.length; i++) {
+   let note = sl_notes[i];
+   let abcdf = get_note_abcdf(note);
    all_abcdf += abcdf;
   }
   return all_abcdf;
@@ -37294,13 +37294,13 @@ function AbcDE() {
   return old_last_hand;
  }
  function current_collection() {
-  var all_abcdf;
-  var all_treble_abcdf = "";
-  var all_bass_abcdf = "";
-  var last_treble_hand = get_staff_hand(0);
-  var last_bass_hand = get_staff_hand(1);
-  for (var i = 0; i < Notes_On_Line.length; i++) {
-   var treble_abcdf = get_abcdf(0, i);
+  let all_abcdf;
+  let all_treble_abcdf = "";
+  let all_bass_abcdf = "";
+  let last_treble_hand = get_staff_hand(0);
+  let last_bass_hand = get_staff_hand(1);
+  for (let i = 0; i < Notes_On_Line.length; i++) {
+   let treble_abcdf = get_abcdf(0, i);
    if (treble_abcdf) {
     treble_abcdf = clean_abcdf(treble_abcdf, last_treble_hand);
     last_treble_hand = get_new_last_hand(treble_abcdf, last_treble_hand);
@@ -37310,7 +37310,7 @@ function AbcDE() {
     }
    }
    if (Notes_On_Line[i][1]) {
-    var bass_abcdf = get_abcdf(1, i);
+    let bass_abcdf = get_abcdf(1, i);
     if (bass_abcdf) {
      bass_abcdf = clean_abcdf(bass_abcdf, last_bass_hand);
      last_bass_hand = get_new_last_hand(bass_abcdf, last_bass_hand);
@@ -37326,7 +37326,7 @@ function AbcDE() {
  }
  function print_score() {
   console.log("Print that score.");
-  var print_window = window.open("", "print_window");
+  let print_window = window.open("", "print_window");
   print_window.document.write(Abc_Images);
   print_window.document.close();
   print_window.focus();
@@ -37334,12 +37334,12 @@ function AbcDE() {
   print_window.close();
  }
  function load_fingering() {
-  var source_elem = document.getElementById(SOURCE_ID);
+  let source_elem = document.getElementById(SOURCE_ID);
   source_elem.value = Org_Abc_Str;
   render_new_sequence();
  }
  function get_persisting_abcd() {
-  var abc_str, abcd_str;
+  let abc_str, abcd_str;
   if (Persist_Annotated) {
    abc_str = get_fingered_abc_str();
    abcd_str = get_abcd(abc_str, true);
@@ -37349,8 +37349,8 @@ function AbcDE() {
   return abcd_str;
  }
  function view_source() {
-  var abcd_str = get_persisting_abcd();
-  var w = window.open();
+  let abcd_str = get_persisting_abcd();
+  let w = window.open();
   w.document.write("<pre>" + abcd_str + "</pre>");
  }
  function getAuthority() {
@@ -37380,8 +37380,8 @@ function AbcDE() {
   } catch (e) {
    return "Bad abcDF parse of string: " + e.message + e.stack;
   }
-  var missing_count = 0;
-  var required_validation = get_setting("validate");
+  let missing_count = 0;
+  let required_validation = get_setting("validate");
   if (required_validation === "complete") {
    missing_count = abcdf_str.split("x").length - 1;
   } else if (required_validation === "none") {
@@ -37397,7 +37397,7 @@ function AbcDE() {
   return "";
  }
  function is_valid_abcdf(abcdf_str) {
-  var invalidity = is_invalid_abcdf(abcdf_str);
+  let invalidity = is_invalid_abcdf(abcdf_str);
   if (invalidity) {
    alert(invalidity);
    return false;
@@ -37405,23 +37405,23 @@ function AbcDE() {
   return true;
  }
  function getValidatedCollection() {
-  var dat = current_collection();
+  let dat = current_collection();
   if (is_valid_abcdf(dat)) {
    return dat;
   }
   return "";
  }
  function getEnteredAbcD() {
-  var persistence_setting = Persist_Annotated;
+  let persistence_setting = Persist_Annotated;
   Persist_Annotated = false;
-  var abcd_str = get_persisting_abcd();
+  let abcd_str = get_persisting_abcd();
   Persist_Annotated = persistence_setting;
   return abcd_str;
  }
  function getValidatedAbcD() {
-  var abcdf = current_collection();
+  let abcdf = current_collection();
   if (is_valid_abcdf(abcdf)) {
-   var abcd = get_persisting_abcd();
+   let abcd = get_persisting_abcd();
    if (!/^\s*X:/m.test(abcd)) {
     alert("File is not valid abc.");
     return "";
@@ -37432,6 +37432,11 @@ function AbcDE() {
    return abcd;
   }
   return "";
+ }
+ function stopAutoSaving() {
+  if (Autosaver) {
+   clearInterval(Autosaver);
+  }
  }
  this.renderUI = renderUI;
  this.getXValue = getXValue;
@@ -37447,5 +37452,6 @@ function AbcDE() {
  this.setEnteredCollection = setEnteredCollection;
  this.handleKeys = handle_keys;
  this.unhandleKeys = unhandle_keys;
+ this.stopAutoSaving = stopAutoSaving;
  return this;
 }

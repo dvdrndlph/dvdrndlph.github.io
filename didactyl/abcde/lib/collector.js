@@ -1,34 +1,38 @@
-// var DB_BASE_URL = 'https://52.9.186.114/'; // Amazon
-var DB_BASE_URL = '/'; // UIC
-var DB_ANNOTATION_URL = DB_BASE_URL + 'annotation.php';
-var DB_EXPERIMENT_SELECT_URL = DB_BASE_URL + 'experiment.php';
-var CONSENT_SUFFIX = 'didactyl_collector_consent';
-var COMPLETIONS_SUFFIX = 'didactyl_collector_completions';
-var DEFAULT_URL_DIR = "https://nlp-music.cs.uic.edu/corpora";
+// let DB_BASE_URL = 'https://52.9.186.114/'; // Amazon
+let DB_BASE_URL = "https://nlp-music.cs.uic.edu/";
+// let DB_BASE_URL = '/'; // UIC
+let DB_ANNOTATION_URL = DB_BASE_URL + 'annotation.php';
+let DB_EXPERIMENT_SELECT_URL = DB_BASE_URL + 'experiment.php';
+let CONSENT_SUFFIX = 'didactyl_collector_consent';
+let COMPLETIONS_SUFFIX = 'didactyl_collector_completions';
+let DEFAULT_URL_DIR = "https://nlp-music.cs.uic.edu/corpora";
 
-var abcDE;
-var consenting;
-var preset;
-var informed = false;
-var experiment_id = 0;
-var experiment_type;
-var client_id;
-var selection_str = '[]';
-var completion_str = '[]';
-var selections = [];
-var selection_id;
-var partial;
-var preset_lock = false;
-var consent_key;
-var completions_key;
-var completions = [];
+let abcDE;
+let db_available = true;
+let consenting;
+let preset_id;
+let preset_str;
+let presets;
+let informed = false;
+let experiment_id = 0;
+let experiment_type;
+let client_id;
+let selection_str = '[]';
+let completion_str = '[]';
+let selections = [];
+let selection_id;
+let partial;
+let preset_lock = false;
+let consent_key;
+let completions_key;
+let completions = [];
 
 // Following function borrowed from http://stackoverflow.com/questions/2090551/parse-query-string-in-javascript.
 function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
+    let query = window.location.search.substring(1);
+    let vars = query.split('&');
+    for (let i = 0; i < vars.length; i++) {
+        let pair = vars[i].split('=');
         if (decodeURIComponent(pair[0]) == variable) {
             return decodeURIComponent(pair[1]);
         }
@@ -43,20 +47,20 @@ function start_over() {
 }
 
 function urlForId(id) {
-    var re = /^([a-z]+)((\d+)_?(\d+)?)/;
-    var matches = id.match(re);
-    var corpus_id = matches[1];
-    var file_id = matches[2]
+    let re = /^([a-z]+)((\d+)_?(\d+)?)/;
+    let matches = id.match(re);
+    let corpus_id = matches[1];
+    let file_id = matches[2]
     // var selection_id = matches[3];
     // var phrase_id = matches[4];
-    var subdir = 'wtc';
+    let subdir = 'wtc';
     if (corpus_id === 'c') {
         subdir = 'clementi';
     }
     if (experiment_type === "interpolate") {
         subdir += '/cooked';
     }
-    var file_name = file_id;
+    let file_name = file_id;
     if (subdir === 'wtc') {
         let pf_re = /.*1$/;
         if (pf_re.test(id)) {
@@ -68,15 +72,14 @@ function urlForId(id) {
         file_name += 'd';
     }
 
-    var url = DEFAULT_URL_DIR + '/' + subdir + '/' + file_name;
+    let url = DEFAULT_URL_DIR + '/' + subdir + '/' + file_name;
     return url;
 }
 
-
 function processConsent() {
-    var formality = document.getElementById('consent_form');
-    var eighteen = document.forms["consent_form"].elements["eighteen"];
-    var understand = document.forms["consent_form"].elements["understand"];
+    let formality = document.getElementById('consent_form');
+    let eighteen = document.forms["consent_form"].elements["eighteen"];
+    let understand = document.forms["consent_form"].elements["understand"];
     if (eighteen.checked && understand.checked) {
         console.log("He or she consented!!");
         localStorage.setItem(consent_key, 'yes');
@@ -93,7 +96,7 @@ function startAnnotating() {
     window.onload();
 }
 
-var EXIT_JSON = {
+let EXIT_JSON = {
     pages: [
         {
             name: "Satisfaction",
@@ -174,7 +177,7 @@ var EXIT_JSON = {
     ]
 };
 
-var INTERPOLATION_EXIT_JSON = {
+let INTERPOLATION_EXIT_JSON = {
     pages: [
         {
             name: "Problems",
@@ -182,11 +185,15 @@ var INTERPOLATION_EXIT_JSON = {
                 {
                     type: "comment",
                     name: "problems",
-                    title: "Please describe any problems you encountered in annotating this piece, including any inconsistencies between the notes on your score and the notes presented in the survey."
+                    title: "Please describe any difficulties you had in completing the fingering of this piece. In particular, highlight any ambiguity you felt in annotating individual notes."
                 }
             ]
         }
     ]
+};
+
+let EVALUATION_EXIT_JSON = {
+
 };
 
 function abort_submission() {
@@ -220,18 +227,35 @@ function set_up_and_run_experiment(data) {
         console.log(error_msg);
         console.log(JSON.stringify(data));
     } else {
-        preset = getQueryVariable("preset") || data.preset;
+        preset_str = getQueryVariable("preset") || data.preset;
+        if (! preset_str) {
+            preset_str = data.defaultPreset;
+        }
+        presets = preset_str.split(",");
+
         selection_str = getQueryVariable("selections") || data.selections;
         if (! selection_str) {
             selection_str = data.defaultSelections;
         }
         selections = selection_str.split(",");
 
+        let preset_selections = []
+        for (let i = 0; i < presets.length; i++) {
+            for (let j = 0; j < selections.length; j++) {
+                let preset_selection = presets[i] + ':' + selections[j];
+                preset_selections.push(preset_selection)
+            }
+        }
+
+        if (presets.length > 0) {
+            selections = preset_selections;
+        }
+
         experiment_type = getQueryVariable("type") || data.type;
         partial = getQueryVariable("partial") || data.partial;
         preset_lock = getQueryVariable("preset_lock") || data.presetLock;
         console.log("Value of experiment type is " + experiment_type);
-        console.log("Value of preset is " + preset);
+        console.log("Value of preset is " + preset_str);
         console.log("Value of selections is " + selection_str);
         console.log("Value of partial is " + partial);
         console.log("Value of preset_lock is " + preset_lock);
@@ -245,13 +269,16 @@ function get_experiment_data(callback) {
 }
 
 function post_annotation(survey_data) {
-    var survey_div = document.getElementById('exit_survey');
-    var thank_you_div = document.getElementById('submission_complete');
-    var abort_button = document.getElementById('abort_submission');
+    let survey_div = document.getElementById('exit_survey');
+    let thank_you_div = document.getElementById('submission_complete');
+    let abort_button = document.getElementById('abort_submission');
 
-    var url = DB_ANNOTATION_URL;
-    var data_str = JSON.stringify(survey_data);
+    let url = DB_ANNOTATION_URL;
+    let data_str = JSON.stringify(survey_data);
     console.log("POSTing: " + data_str);
+    if (! db_available) {
+        return;
+    }
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
@@ -260,14 +287,18 @@ function post_annotation(survey_data) {
         url: url,
         success: function (data) {
             if (data.status !== 0) {
-                var error_msg = "Attempt to save your data failed. " +
+                let error_msg = "Attempt to save your data failed. " +
                     "Please contact the study coordinator at drando2@uic.edu.\n\n" +
                     "Thank you.\n\n" + data.msg;
                 alert(error_msg);
                 console.log(error_msg);
                 console.log(JSON.stringify(data));
             } else {
-                completions.push(survey_data.selectionId);
+                let completion_id = survey_data.selectionId;
+                if (survey_data.presetId) {
+                    completion_id = survey_data.presetId + ':' + survey_data.selectionId;
+                }
+                completions.push(completion_id);
                 completion_str = JSON.stringify(completions);
                 localStorage.setItem(completions_key, completion_str);
                 survey_div.style.display = 'none';
@@ -284,8 +315,6 @@ function post_annotation(survey_data) {
 }
 
 function submit_annotation() {
-    let abort_button = document.getElementById('abort_submission');
-    abort_button.style.display = 'block';
     let abcDF = abcDE.getEnteredAbcDF();
     let msg = "The entered fingering sequence is incomplete. Please provide the missing annotations.";
     let is_complete = true;
@@ -317,8 +346,12 @@ function submit_annotation() {
         return;
     }
 
+    let abort_button = document.getElementById('abort_submission');
+    abort_button.style.display = 'block';
+
     let abcD = abcDE.getEnteredAbcD();
     abcDE.unhandleKeys();
+    abcDE.stopAutoSaving();
     let abcde_div = document.getElementById('abcde');
     abcde_div.style.display = 'none';
     let survey = new Survey.Survey(EXIT_JSON, 'exit_survey');
@@ -336,11 +369,14 @@ function submit_annotation() {
         survey.setValue("clientId", client_id);
         survey.setValue("experimentId", experiment_id);
         survey.setValue("selectionId", selection_id);
+        survey.setValue("presetId", preset_id);
         survey.setValue("abcDF", abcDF);
         survey.setValue("abcD", abcD);
         post_annotation(survey.data);
     });
     survey.render('exit_survey');
+    let survey_div = document.getElementById('exit_survey');
+    survey_div.style.display = 'block';
 }
 
 // The following function was swiped from
@@ -348,7 +384,7 @@ function submit_annotation() {
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
@@ -363,6 +399,11 @@ window.onload = function() {
         console.log("Value of user client_id is " + client_id);
     }
 
+    let nodb_setting = getQueryVariable("nodb");
+    if (nodb_setting) {
+        db_available = false;
+    }
+
     if (!experiment_id) {
         alert("The 'id' parameter is required.");
         return;
@@ -371,13 +412,13 @@ window.onload = function() {
     consent_key = experiment_id + CONSENT_SUFFIX;
     completions_key = experiment_id + COMPLETIONS_SUFFIX;
 
-    var resetting = getParameterByName('reset');
+    let resetting = getParameterByName('reset');
     if (resetting) {
         start_over();
         return;
     }
 
-    var consent_div = document.getElementById('consent_form');
+    let consent_div = document.getElementById('consent_form');
     consenting = localStorage.getItem(consent_key);
     if (consenting !== 'yes') {
         consent_div.style.display = 'block';
@@ -392,14 +433,14 @@ window.onload = function() {
 };
 
 function run_experiment() {
-    var instructions = document.getElementById('instructions');
-    var thank_you_div = document.getElementById('submission_complete');
-    var consent_div = document.getElementById('consent_form');
+    let instructions = document.getElementById('instructions');
+    let thank_you_div = document.getElementById('submission_complete');
+    let consent_div = document.getElementById('consent_form');
 
     if (! informed) {
         consent_div.style.display = 'none';
-        var interpols = document.getElementById('interpolation_instructions');
-        var annots = document.getElementById('annotation_instructions');
+        let interpols = document.getElementById('interpolation_instructions');
+        let annots = document.getElementById('annotation_instructions');
         if (experiment_type === "interpolate") {
             interpols.style.display = 'block';
             annots.style.display = 'none';
@@ -415,7 +456,7 @@ function run_experiment() {
     thank_you_div.style.display = 'none';
     instructions.style.display = 'none';
     completion_str = localStorage.getItem(completions_key);
-    var abcde_div = document.getElementById('abcde');
+    let abcde_div = document.getElementById('abcde');
     completions = JSON.parse(completion_str);
     if (! completions) {
         completions = [];
@@ -425,10 +466,10 @@ function run_experiment() {
         abcde_div.style.display = 'none';
 
         // All done.
-        var instructions = document.getElementById('all_done');
-        instructions.style.display = 'block';
+        let all_done = document.getElementById('all_done');
+        all_done.style.display = 'block';
     } else {
-        for (var i = 0; i < selections.length; i++) {
+        for (let i = 0; i < selections.length; i++) {
             selection_id = selections[i];
             if ($.inArray(selection_id, completions) > -1) {
                 // Already did it.
@@ -438,9 +479,17 @@ function run_experiment() {
                 // Ain't gonna do it.
                 continue;
             }
+
+            preset_id = presets[0];
+            if (presets.length > 0) {
+                // The preset to use is embedded in the selection_id.
+                let tokens = selection_id.split(':');
+                preset_id = tokens[0];
+                selection_id = tokens[1];
+            }
             abcde_div.innerHTML = "";
-            var url = urlForId(selection_id);
-            var settings = {
+            let url = urlForId(selection_id);
+            let settings = {
                 experiment_id: experiment_id,
                 submit_button_id: 'didactyl_collector_submit',
                 submit_button_label: 'NEXT',
@@ -450,7 +499,7 @@ function run_experiment() {
                 file_input: false,
                 url_input: false,
                 preset_select: false,
-                preset: preset,
+                preset: preset_id,
                 hide_print: true,
                 // hide_view: true,
                 hide_prefs: true,
@@ -460,9 +509,12 @@ function run_experiment() {
                 hide_metadata: true,
                 preset_lock: preset_lock,
             };
+            if (abcDE) {
+                abcDE.stopAutoSaving();
+            }
             abcDE = new AbcDE();
             abcDE.renderUI(settings);
-            var next_button = document.getElementById('didactyl_collector_submit');
+            let next_button = document.getElementById('didactyl_collector_submit');
             next_button.onclick = submit_annotation;
             abcde_div.style.display = 'block';
             break;

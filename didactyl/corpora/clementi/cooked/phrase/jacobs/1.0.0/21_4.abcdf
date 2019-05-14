@@ -1,0 +1,61 @@
+% abcDidactyl v6
+% abcD fingering 1: >5432132453212315432132342123154321321213535342135353421@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:15
+% abcD fingering 2: >5432132354312315432132342123154321321213535342135353421@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:15
+% abcD fingering 3: >5432132454312315432132342123154321321213535342135353421@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:15
+% abcD fingering 4: >5432121453212315432132342123154321321213535342135353421@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:15
+% abcD fingering 5: >5432132453212315432132342123154321431213535342135353421@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:15
+% abcD fingering 6: >5432132453212315432132342123154321321214535342135353421@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:15
+% abcD fingering 7: >5432132342132315432132342123154321321213535342135353421@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:15
+% abcD fingering 8: >5432132353212315432132342123154321321213535342135353421@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:15
+% abcD fingering 9: >5432132354321215432132342123154321321213535342135353421@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:15
+% abcD fingering 10: >5432132454321215432132342123154321321213535342135353421@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:15
+% abcDidactyl END
+X:214
+T:Sonatina 2.1.4
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { 1 | 2 }
+L:1/8
+Q:1/4=104
+M:2/4
+I:linebreak $
+K:G
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 bass
+V:1
+!p!"^Allegretto." (ag | fed^c BcdB | %150
+ AGFG) .A2(ag | !<(! fed^c BcdB | A2) z2 !<)! !f! (dfad' | %153
+ ^c'bag fed^c |$ dfaf afge | dfaf afge | d4) z4 |]
+V:2
+ z | z4 | z4 | z4 | z4 | z4 | z4 | z4 | z4 |]

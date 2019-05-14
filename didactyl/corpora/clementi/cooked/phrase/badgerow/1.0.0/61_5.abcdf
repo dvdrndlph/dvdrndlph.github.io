@@ -1,0 +1,66 @@
+% abcDidactyl v6
+% abcD fingering 1: >3211523123112214321152315322432121231232323231313412323232312312345123123453213214321245@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:56:12
+% abcD fingering 2: >3211523123112214321152315322432121453232323231313412323242412312345123123453213214321245@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:56:12
+% abcD fingering 3: >3211523123112214321152315322432121241232323231313412323242412312345123123453213214321245@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:56:12
+% abcD fingering 4: >3211523123112214321152315322432121231232323231313532323242412312345123123453213214321245@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:56:12
+% abcD fingering 5: >3211523123112214321152315322432121231232323231313412323242412312345123123453213214321245@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:56:12
+% abcD fingering 6: >3211523123112214321152315322432121231232323231313412323232312312345123123453213214321234@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:56:12
+% abcD fingering 7: >3211523123112214321152315322432121453232323231313532323242412312345123123453213214321245@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:56:12
+% abcD fingering 8: >3211523123112214321152315322432121453232323231313412323232312312345123123453213214321245@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:56:12
+% abcD fingering 9: >3211523123112214321152315322432121453232323231313412323242412312345123123453213214321234@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:56:12
+% abcD fingering 10: >3211523123112214321152315322432121241232323231313532323242412312345123123453213214321245@
+% Authority: Badgerow Model (2019)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:56:12
+% abcDidactyl END
+X:615
+T:Sonatina 6.1.5
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { ( 1 2 ) | ( 3 4 ) }
+L:1/8
+M:4/4
+Q:1/4=101
+I:linebreak $
+K:D
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 treble
+V:3 bass
+V:4 bass
+V:1
+"^Allegro con spirito." (d2c2 | %972
+"_dolce." B4) (B4 e4 ^G4 | B8 A4) (B2c2 | d4 d4 c4 c4 |$ B4 e8 d2c2 | %976
+ B4) (B4 e4 ^G4 | B8 A4) (a2e2 | c4) (c6 e2d2B2 |$ %979
+ A)(BAB .c2).A2 (FAFA ^GBGB | ABAB .c2).A2 (FAFA ^GBGB | %981
+ ABcd ef^ga)!ff! (ABcd efga |$ fedc BA^GF .E2) z2 .[DEG]2 z2 | %983
+ A zz2z8|]
+V:3
+[K:bass] z2|z8|z8|z8|z8|z8|z8|z8|z8|z8|z8|z8|zzz4|]

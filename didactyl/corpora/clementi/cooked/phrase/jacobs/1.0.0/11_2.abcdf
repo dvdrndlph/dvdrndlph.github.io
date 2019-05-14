@@ -1,0 +1,62 @@
+% abcDidactyl v6
+% abcD fingering 1: >35311454242312153423@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:08
+% abcD fingering 2: >35311353131214231321@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:08
+% abcD fingering 3: >35311454242313231321@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:08
+% abcD fingering 4: >35311353131534231321@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:08
+% abcD fingering 5: >35311454242314231321@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:08
+% abcD fingering 6: >13211454242312153423@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:08
+% abcD fingering 7: >35311454242312142312@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:08
+% abcD fingering 8: >35311353242312153423@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:08
+% abcD fingering 9: >35311353153423153423@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:08
+% abcD fingering 10: >35311353132312153423@
+% Authority: Jacobs Model (2001)
+% Transcriber: Didactyl
+% Transcription date: 2019-05-09 11:53:08
+% abcDidactyl END
+X:112
+T:Sonatina 1.1.2
+C:Muzio Clementi
+Z:Public Domain (PianoXML typeset)
+%%score { 1 | 2 }
+L:1/8
+Q:1/4=180
+M:2/2
+I:linebreak $
+K:C
+% U:s=!stemless!
+V:1 treble nm="Piano" snm="Pno."
+L:1/16
+V:2 bass 
+V:1
+"^Spiritoso." !p! (c4 e2c2 .G4) .G4 | %5
+ (e4 g2e2 .c4) (e2c2 | d2B2c2A2 B2G2A2^F2 | %7
+!f! G2) z2 z4 z8 |]
+V:2
+ z8|z8|z8|z8|]
