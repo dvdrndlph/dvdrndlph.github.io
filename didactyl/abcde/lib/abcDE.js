@@ -92,6 +92,7 @@ function AbcDE() {
         Abc_Images,			// image buffer
         Abc_Fname = "noname.abc",
         Org_Abc_Str,
+        Org_Abc_Chars = [],
         My_Abc,				// Abc object
         Timer = 0,
         Input_Buffer = [],
@@ -188,6 +189,7 @@ function AbcDE() {
         Abc_Fname = "noname.abc";
         Grace_Notes_In_Source = undefined;
         Org_Abc_Str = '';
+        Org_Abc_Chars = [];
         My_Abc = undefined;				// Abc object
         Input_Buffer = [];
         Open_Ornament = false;
@@ -641,26 +643,28 @@ function AbcDE() {
                 let time = sorted_staff_note_times[time_index];
                 let notes = Staff_Notes_At_Time[staff_num][time];
                 notes.sort(order_notes);
-                let g = 0;
-                while (notes[g].grace) {
-                    let grace_note_fingering = '';
-                    notes[g][field_name] = '';
-                    for (let i = 0; i < notes[g].size; i++) {
-                        fingering = staff_fingerings.shift();
-                        if (!fingering) {
-                            console.log(field_name + ' MISSING for grace note:');
-                            print_note(field_name + ' grace note', notes[g]);
+                for (let g = 0; g < notes.length; g++) {
+                    let knot = notes[g];
+                    let pit_count = knot.pitches.length;
+                    if (knot.grace) {
+                        let grace_note_fingering = '';
+                        knot[field_name] = '';
+                        for (let i = 0; i < pit_count; i++) {
+                            fingering = staff_fingerings.shift();
+                            if (!fingering) {
+                                console.log(field_name + ' MISSING for grace note:');
+                                print_note(field_name + ' grace note', knot);
+                            }
+                            fingering = get_handed_fingering(fingering, hand);
+                            hand = get_new_last_hand(fingering, hand);
+                            grace_note_fingering += fingering;
                         }
-                        fingering = get_handed_fingering(fingering, hand);
-                        hand = get_new_last_hand(fingering, hand);
-                        grace_note_fingering += fingering;
+                        if (field_name === 'fingering') {
+                            knot.set_fingering(grace_note_fingering);
+                        } else if (field_name === 'preset_fingering') {
+                            knot.set_preset_fingering(grace_note_fingering);
+                        }
                     }
-                    if (field_name === 'fingering') {
-                        notes[g].set_fingering(grace_note_fingering);
-                    } else if (field_name === 'preset_fingering') {
-                        notes[g].set_preset_fingering(grace_note_fingering);
-                    }
-                    g++;
                 }
 
                 let notes_with_pit = get_sorted_synchronous_notes_with_pit(notes);
@@ -842,7 +846,7 @@ function AbcDE() {
         }
         console.log("abcdf string: " + abcdf_str)
         let parsimony = AbcdfRaw_Parser.parse(abcdf_str);
-        let lined = LINE_RE.exec(line);
+        let lined = LINE_RE.exec(abcdf_str);
         let tokens = get_separated_abcdf_note_tokens(parsimony, staff_num, lined);
         tokens = tokens.filter(function(elem) {
             return elem != "&" && elem != "@";
@@ -1836,11 +1840,10 @@ function AbcDE() {
         this.next_note = null;
         this.line = -1; // Unknown until SVGs are generated.
         this.grace = false;
-        this.anno_start = elem.istart; // For identifying SVG rects.
 
         this.size = 0;
         this.pitches = [];
-        this.start = -1;
+        this.start = elem.istart; // For finding position in ABC.
         this.end = -1;
         this.starts = [];
         this.stops = [];
@@ -1856,11 +1859,9 @@ function AbcDE() {
             this.pitches.sort(function (a, b) {
                 return parseInt(a) - parseInt(b);
             });
-            this.start = elem.istart; // For finding position in ABC.
             this.end = elem.iend;
         } else {
             this.grace = true;
-            this.start = elem.extra.istart;
             this.size = 1;
             let last_note = elem.extra;
             if (!last_note.notes) {
@@ -1873,7 +1874,7 @@ function AbcDE() {
                     alert('Chords not supported in a grace "note."');
                 }
 
-                // We will need to embed fingering decorations (e.g., "!2!") to prior to
+                // We will need to embed fingering decorations (e.g., "!2!") prior to
                 // each element of the grace note, and we don't want to parse the abc
                 // string ourselves, so we steal the spans from the abc2svg parse.
                 this.starts.push(last_note.istart);
@@ -1881,7 +1882,7 @@ function AbcDE() {
 
                 this.pitches.push(last_note.notes[0].pit);
                 if (!last_note.next) {
-                    this.end = last_note.iend;
+                    this.end = last_note.iend + 1;
                     break;
                 }
                 last_note = last_note.next;
@@ -1889,9 +1890,8 @@ function AbcDE() {
             }
         }
 
-        this.istart = elem.istart;
-        this.time = elem.time;
         this.string = Org_Abc_Str.substring(this.start, this.end);
+        this.time = elem.time;
         this.voice = elem.v;
         this.staff = elem.st;
         this.prior_fingerings = [];
@@ -2120,21 +2120,31 @@ function AbcDE() {
         return width_str;
     }
 
+    function containing_note_index(start) {
+        // Note_At always indexes by istart--the actual beginning of
+        // the note string. anno_start provides direct access to
+        // grace-note pitches. So we might need to move left.
+        let index = start;
+        if (Preprocessing_Completed) {
+            while (! (index in Fingered_Note_At)) {
+                index--;
+            }
+        } else {
+            while (! (index in Note_At)) {
+                index--;
+            }
+        }
+        return index;
+    }
+
     function User() {
         this.read_file = function (fn) {
             return '';
         };
         this.errmsg = function (msg, l, c) {
             let diverr = document.getElementById(ERROR_DIV_ID);
-            if (l)
-                diverr.innerHTML += '<b onclick="gotoabc(' +
-                    l + ',' + c +
-                    ')" style="cursor: pointer; display: inline-block">' +
-                    msg + "</b><br/>\n";
-            else
-                diverr.innerHTML += msg + "<br/>\n";
+            diverr.innerHTML += msg + "<br/>\n";
         };
-
         this.img_out = function (str) {
             let re = /<svg /;
             if (str.match(re)) {
@@ -2145,28 +2155,36 @@ function AbcDE() {
             Abc_Images += str;
         };
         this.anno_start = function (type, start, stop, x, y, w, h) {
-            if (!Preprocessing_Completed && start in Note_At) {
-                Note_At[start].line = Current_Line_Number;
-                // print_note('anno_start', Note_At[start]);
-            } else if (type === 'grace') {
-                console.log(type + " ANNO_START start: " + start + " stop: " + stop);
-            }
             // keep the source reference
             Ref.push([start, stop])
+
+            let index = start;
+            if (type === 'grace') {
+                index = containing_note_index(start);
+            }
+
+            if (!Preprocessing_Completed && index in Note_At) {
+                Note_At[index].line = Current_Line_Number;
+                // print_note('anno_start', Note_At[start]);
+            }
             // create a container for the music element
-            My_Abc.out_svg('<g class="e_' + start + '">\n')
+            My_Abc.out_svg('<g class="e_' + index + '">\n')
         };
         this.anno_stop = function (type, start, stop, x, y, w, h) {
+            let index = start;
             if (type === 'grace') {
-                console.log(type + " ANNO_STOP start: " + start + " stop: " + stop);
+                index = containing_note_index(start);
             }
             // close the container
             My_Abc.out_svg('</g>\n');
+
             // create a rectangle
-            My_Abc.out_svg('<rect class="abcr _' + start + '" x="');
-            My_Abc.out_sxsy(x, '" y="', y);
-            My_Abc.out_svg('" width="' + w.toFixed(2) +
-                '" height="' + h.toFixed(2) + '"/>\n')
+            if (type === 'note' || type === 'grace') {
+                My_Abc.out_svg('<rect class="abcr _' + index + '" x="');
+                My_Abc.out_sxsy(x, '" y="', y);
+                My_Abc.out_svg('" width="' + w.toFixed(2) +
+                    '" height="' + h.toFixed(2) + '"/>\n')
+            }
         };
         this.get_abcmodel = function (tsfirst, voice_tb, music_types) {
             if (Preprocessing_Completed) {
@@ -2182,9 +2200,9 @@ function AbcDE() {
             let elem = tsfirst;
             while (elem) {
                 let note = new Note(music_types, elem);
-                if (note.istart) {
+                if (note.start) {
                     Notes.push(note);
-                    Note_At[note.istart] = note; // !! We link to the overall order of note.
+                    Note_At[note.start] = note; // !! We link to the overall order of note.
                     if (!(note.staff in Staff_Notes_At_Time)) {
                         Staff_Notes_At_Time[note.staff] = {};
                     }
@@ -2512,12 +2530,25 @@ function AbcDE() {
         return get_annotation_str(ordered_fingers, note.staff, true);
     }
 
+    function first_relevant_grace_note_index(note) {
+        let first_relevant_index = note.starts[0] - note.start;
+        return first_relevant_index;
+    }
+
+    // Return the preamble to grace note abc string.
+    function grace_note_prefix(note) {
+        let relevant_index = first_relevant_grace_note_index(note);
+        let prefix = note.string.substring(0, relevant_index);
+        return prefix;
+    }
+
     function get_grace_note_tokens(note) {
         let tokens = [];
 
-        let str = note.string;
         let starts = note.starts;
         let stops = note.stops;
+        let str = note.string;
+        str = str.substring(first_relevant_grace_note_index(note));  // Skip preamble like "{/"
         let normalized_starts = [];
         let normalized_stops = [];
         for (let i = 0; i < starts.length; i++) {
@@ -2534,7 +2565,7 @@ function AbcDE() {
     }
 
     function get_fingered_grace_note(note) {
-        let abc_str = '{';
+        let abc_str = grace_note_prefix(note);
         let grace_tokens = get_grace_note_tokens(note);
         // Only single digits are allowed for each grace note token
         // (no slashes, hyphens, or ornaments).
@@ -2677,46 +2708,34 @@ function AbcDE() {
             }
         }
 
-        let prior_loc = 0;
+        Fingered_Note_At = {};
+        let org_prior_loc = 0;
         for (let i = 0; i < Sorted_Note_Locations.length; i++) {
             let sorted_loc = Sorted_Note_Locations[i];
             let note = Note_At[sorted_loc];
             let prologue = '';
+            let org_start_loc = parseInt(note.start);
+            let org_end_loc = parseInt(note.end);
+            prologue = Org_Abc_Str.substring(org_prior_loc, org_start_loc);
+            fingered_str += prologue;
             if (note.grace) {
-                prologue = Org_Abc_Str.substring(parseInt(prior_loc), parseInt(note.start - 1));
-                // Subtract one because open brace is not included in note string. We will add it
-                // back later.
-                prior_loc = note.end + 1;
-                fingered_str += prologue;
-
-                // For some reason, abc2svg considers the starting point of the last note
-                // as the starting point for the grace note group as a whole. We are adjusting
-                // for that weirdness here:
-                note.fingered_start = fingered_str.length + note.anno_start - note.start + 1;
-                if (note.fingering && note.fingering !== 'x') {
-                    // Each fingering annotation takes exactly three characters, since
-                    // only one digit may be assigned to a grace-note element.
-                    // let finger_tokens = get_tokens(FINGER_RE, note.fingering);
-                    let finger_tokens = get_abcdf_note_tokens(note.fingering);
-                    note.fingered_start += 3 * finger_tokens.length;
-                }
+                // The fingering annotations are embedded in the grace note (like "!1!"),
+                // We will find the note by the beginning of the whole thing.
+                note.fingered_start = fingered_str.length;
                 fingered_str += get_fingered_grace_note(note);
             } else {
-                let start_loc = parseInt(note.start);
-                let end_loc = parseInt(note.end);
-                prologue = Org_Abc_Str.substring(parseInt(prior_loc), start_loc);
-                prologue += get_abc_phrase_annotation(note);
-                fingered_str += prologue;
-                prior_loc = end_loc;
+                fingered_str += get_abc_phrase_annotation(note);
                 if (is_epoch_fingered(note)) {
                     fingered_str += get_note_annotation(note);
                 }
+                // fingered_start is where the actual note starts *after the fingering annotation*.
                 note.fingered_start = fingered_str.length;
                 fingered_str += note.string;
             }
+            org_prior_loc = org_end_loc; // One past the end of the note string.
             Fingered_Note_At[note.fingered_start] = note;
         }
-        fingered_str += Org_Abc_Str.substring(prior_loc);
+        fingered_str += Org_Abc_Str.substring(org_prior_loc);
         return fingered_str;
     }
 
@@ -3271,6 +3290,7 @@ function AbcDE() {
         }
         Toggling_Background = true;
         if (Org_Abc_Str) {
+            Org_Abc_Chars = Org_Abc_Str.split('');
             Sequences = get_sequences(Org_Abc_Str);
             set_default_sequence();
             render();
@@ -3298,6 +3318,7 @@ function AbcDE() {
     function render_new_sequence() {
         initialize_globals();
         Org_Abc_Str = document.getElementById(SOURCE_ID).value;
+        Org_Abc_Chars = Org_Abc_Str.split('');
         render();
         Current_Note = Notes_On_Line[0][0][0];
         highlight_note(Current_Note);
@@ -3390,7 +3411,7 @@ function AbcDE() {
         let target = document.getElementById(TARGET_DIV_ID),
             diverr = document.getElementById(ERROR_DIV_ID);
         target.align = 'center';
-        My_Abc = new Abc(user);
+        My_Abc = new abc2svg.Abc(user);
         Abc_Images = '';
         My_Abc.tosvg('edit', '%%bgcolor white\n\
 %%beginsvg\n\
