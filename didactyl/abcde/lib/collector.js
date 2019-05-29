@@ -231,7 +231,7 @@ function set_up_and_run_experiment(data) {
         if (! preset_str) {
             preset_str = data.defaultPreset;
         }
-        if (presets) {
+        if (preset_str) {
             presets = preset_str.split(",");
         }
 
