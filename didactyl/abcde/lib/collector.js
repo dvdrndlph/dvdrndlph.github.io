@@ -231,7 +231,9 @@ function set_up_and_run_experiment(data) {
         if (! preset_str) {
             preset_str = data.defaultPreset;
         }
-        presets = preset_str.split(",");
+        if (presets) {
+            presets = preset_str.split(",");
+        }
 
         selection_str = getQueryVariable("selections") || data.selections;
         if (! selection_str) {
