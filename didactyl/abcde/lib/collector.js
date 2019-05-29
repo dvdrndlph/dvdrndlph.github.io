@@ -12,7 +12,7 @@ let db_available = true;
 let consenting;
 let preset_id;
 let preset_str;
-let presets;
+let presets = [];
 let informed = false;
 let experiment_id = 0;
 let experiment_type;
@@ -231,10 +231,12 @@ function set_up_and_run_experiment(data) {
         if (! preset_str) {
             preset_str = data.defaultPreset;
         }
+        presets = [];
         if (preset_str) {
             presets = preset_str.split(",");
         }
 
+        selections = [];
         selection_str = getQueryVariable("selections") || data.selections;
         if (! selection_str) {
             selection_str = data.defaultSelections;
