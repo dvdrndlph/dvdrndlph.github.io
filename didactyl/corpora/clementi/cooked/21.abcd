@@ -58,14 +58,15 @@ C:Muzio Clementi
 Z:Public Domain (PianoXML typeset)
 %%score { 1 | 2 }
 L:1/8
-M:2/2
+M:2/4
+Q:1/4=104
 I:linebreak $
-K:C
+K:G
 V:1 treble nm="Piano" snm="Pno."
 L:1/16
 V:2 bass
 V:1
-[K:G][M:2/4]!p![Q:1/4=104]"^Allegretto." .d2 | %135
+!p!"^Allegretto." .d2 | %135
  (d2B2)(B2g2) | (g6!p! f)e | .d2.d2 (de)dc | B2.d2 z2 g2 | %139
 !<(! (g2d2)(d2b2)!<)! | b6!p! (ge |$ .d2).d2 (d^cBc | d4) z2 (ag | %143
  fed^c BcdB | A2) z2 z2 (ag | fed^c!<(! BcdB | A2)!<)! z2!f! (d'afd |$ %147
@@ -73,7 +74,7 @@ V:1
  AGFG) .A2(ag |!<(! fed^c BcdB | A2) z2!<)!!f! (dfad' | %153
  ^c'bag fed^c |$ dfaf afge | dfaf afge | d4) z2 |]
 V:2
-[K:G][M:2/4] z | (G,B,DB,) | G,B,DB, | F,A,DA, | G,B,DB, | G,B,DB, | G,B,E z |$ %141
+ z | (G,B,DB,) | G,B,DB, | F,A,DA, | G,B,DB, | G,B,DB, | G,B,E z |$ %141
  .[A,F].[A,F] .[A,E].[A,E] | (D,DD,D) | D,DD,D | (D,/E,/F,/G,/ A,/B,/^C/D/) | D,DD,D | %146
  (D,/F,/)A,/D/ z2 |$ [G,B,][G,B,]A,A, | D,DD,D | D,DD,D | D,DD,D | D,DD,D | %152
  (D,/F,/A,/D/) z2 | (G,E,A,A,, |$ D,) z z .A,, | .D, z z .A,, | D,.D,,.D,, |]
